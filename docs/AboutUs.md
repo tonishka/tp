@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nicsunxnus.png" width="200px">
 
 [[github](http://github.com/NicsunXnus)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nicsunxnus.md)]
 
 * Role: Undecided
 * Responsibilities: Augmenting/Implementing the Find Command
