@@ -7,7 +7,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 ## Summary of Contribution
 
-* **Code Contributed**
+* **Code Contributed**: `to be added soon` 
 * **Enhancements Implemented**: `to be added soon` 
 * **Contributions to the UG**: `to be added soon`
 * **Contributions to the DG**: `to be added soon` 
