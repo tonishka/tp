@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://ckcherry23.github.io)]
 [[github](https://github.com/ckcherry23)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ckcherry23.md)]
 
 * Role: Developer
 * Responsibilities: In-charge of **Storage** and **Commons**
