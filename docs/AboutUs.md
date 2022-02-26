@@ -46,5 +46,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/NicsunXnus)]
 [[portfolio](team/nicsunxnus.md)]
 
-* Role: Undecided
+* Role: Parser,Commands
 * Responsibilities: Augmenting/Implementing the Find Command
