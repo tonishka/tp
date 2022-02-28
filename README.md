@@ -18,3 +18,5 @@ OpenJDK 64-Bit Server VM Zulu11.52+51-CA (build 11.0.13+8-LTS, mixed mode)
 2. Download the latest reache.jar from [here](https://github.com/AY2122S2-CS2103T-W12-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for _Reache_.
 4. Double-click the file to start the app.![image](https://user-images.githubusercontent.com/68203159/156007591-bbc567cc-f891-470c-b98b-d806f6b57d3c.png)
+
+_This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)._
