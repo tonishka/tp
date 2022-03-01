@@ -34,17 +34,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tonishka)] [[portfolio](team/tonishka.md)]
 
 * Role: Undecided
 * Responsibilities: Implementing/Augmenting the Add Command
 
 ### Nicholas Sun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicsunxnus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/NicsunXnus)]
+[[portfolio](team/nicsunxnus.md)]
 
-* Role: Undecided
-* Responsibilities: Augmenting/Implementing the Find Command
+* Role: Parser,Commands
+* Responsibilities: Accountability for anything related to Parser and Commands.
