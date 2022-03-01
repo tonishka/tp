@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/tonishka)] [[portfolio](team/tonishka.md)]
 
-* Role: Undecided
+* Role: Developer
 * Responsibilities: In-charge of **Main** and **Testing**
 
 ### Nicholas Sun
