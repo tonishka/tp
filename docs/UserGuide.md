@@ -39,7 +39,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 | **Action** | **Format, Example** |
 | --- | --- |
-| **Add** | Format: `add <name>` <br> Example: `add Alex Dunphy` |
+| **Add** | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
 | **Edit** | Format: `edit <INDEX NO>` <br> Example: `edit 4` |
 | **Save** | Format: `save` |
 | **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del phone personal` |
@@ -53,7 +53,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 | **Field** | **Mandatory** | **Format, Example** |
 | --- | --- | --- |
-| **Name** | Yes | Format: `add <name>` <br> Example: `add Alex Dunphy` |
+| **Name** | Yes | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
 | **Phone Number** | No | Format: `phone <NUMBER 1> /<LABEL>; <NUMBER 2> /<LABEL>...` <br> Example: `phone 98765432 /Personal; phone 9753468 /Office` |
 | **Email ID** | No | Format: `email <EMAIL 1> /<LABEL>; <EMAIL 2> /<LABEL>...` <br> Example: `email alex@reache.com /Official; email alex98@gmail.com` |
 | **Address** | No | Format: `address <ADDRESS 1> /<LABEL>; <ADDRESS 2> /<LABEL>...` <br> Example: `address 28 Francis Mine, Sacramento, CA - 654321 /Home` |
