@@ -1,4 +1,7 @@
-#Murad Durrani's Project Portfolio Page
+---
+layout: page
+title: Murad Durrani's Project Portfolio Page
+---
 
 ### Project: Reache
 
