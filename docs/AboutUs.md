@@ -32,12 +32,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tonishka Singh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tonishka.png" width="200px">
 
 [[github](http://github.com/tonishka)] [[portfolio](team/tonishka.md)]
 
-* Role: Undecided
-* Responsibilities: Implementing/Augmenting the Add Command
+* Role: Developer
+* Responsibilities: In-charge of **Main** and **Testing**
 
 ### Nicholas Sun
 
