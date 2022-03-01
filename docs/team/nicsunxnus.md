@@ -1,9 +1,11 @@
-Title: Nicholas Sun's Project Portfolio Page
--------------------------------------------------------------------------
+---
+layout: page
+title: Nicholas Sun's Project Portfolio Page
+---
 
-### Project: AddressBook Level 3
+### Project: Reache
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+_Reache_ is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 ## Summary of Contribution
 

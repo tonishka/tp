@@ -1,4 +1,7 @@
-# Title: Charisma Kausar's Project Portfolio Page
+---
+layout: page
+title: Charisma Kausar's Project Portfolio Page
+---
 
 ### Project: Reache
 
