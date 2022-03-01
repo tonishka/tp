@@ -33,7 +33,66 @@ Reache is a desktop app that helps busy working professionals manage their large
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
+### 2.1 Managing Contacts
+#### 2.1.1 Adding a contact: `add`
+Adds a person to the contact list.
 
+Format: `add <NAME>`
+
+After adding a person to the contact list, you will be navigated to their contact details page. 
+From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
+
+Example: `add Alex Dunphy`
+
+#### 2.1.2 Editing a contact: `edit`
+Navigates you to the specified person's contact details page, where you can edit their contact information.
+
+Format: `edit <INDEX NO>`
+
+All commands that can be used to edit contact details can be found under the [Editing Information](#23-editing-information) section.
+
+#### 2.1.3 Deleting a contact: `del`
+Deletes the specified person from the address book.
+
+Format: `del <INDEX NO>`
+
+Example: `del 66`
+
+#### 2.1.4 Clearing all contacts: `clear`
+Clears all contacts from the address book.
+
+Format: `clear`
+
+#### 2.1.5 Saving changes
+_Reache_ saves to the hard disk automatically after any command is issued that changes the data. There is no need to save manually.
+
+#### 2.1.6 Editing the data file
+_Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
+
+### 2.2 Finding Contacts
+#### 2.2.1 Finding contacts: `find`
+Finds a person based on a search category and the value provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
+
+Format: `find <FIELD> <VALUE>`
+
+Examples:<br>
+`find company Tesla` Finds all contacts who work in Tesla.<br>
+`find name Michael Scott` Finds all contacts with the name Michael Scott.<br>
+`find tag supplier` Finds all contacts who are tagged as Supplier.
+
+#### 2.2.2 Listing all contacts: `list`
+Shows a list of all contacts in the address book.
+
+Format: `list`
+
+#### 2.2.3 Viewing a person's full details: `view`
+Expands the view to display all the specified peron's contact information.
+
+Format: `view <INDEX NO>`
+
+Example: `view 34`
+
+### 2.3 Editing Information
 
 ## 3. Command Summary
 
