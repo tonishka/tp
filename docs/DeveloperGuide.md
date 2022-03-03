@@ -346,17 +346,18 @@ Extensions: <br>
 **Use case: UC3 - Delete a Contact**
 
 **MSS:**
-
-1. User requests to delete a contact.
+<p>
+1. User requests to delete a contact. <br>
 2. Reache deletes the contact. <br> 
-Repeat steps 1 and 2 until satisfied. <br>
+&emsp;&emsp;&emsp;&emsp;Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
+</p>
 
 **Extensions:**
 
 1a.  The requested contact does not exist. <br>
-&emsp;&emsp;&emsp;&emsp; 1a1. Reache displays an error message. <br>
-&emsp; &emsp; &emsp;Use case resumes at step 1.
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache displays an error message. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
