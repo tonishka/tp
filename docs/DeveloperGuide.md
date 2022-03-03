@@ -326,18 +326,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Technical requirements:**
 
-*{More to be added}*
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` installed.
 
-### Glossary
+**Quality requirements:**
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+1.  A user with above average typing speed for plain English text should be able to accomplish most of the tasks using commands faster than with the mouse.
+
+**Constraints:**
+
+1.  The product should be only for a single user for higher testability.
+
+**Data requirements:**
+
+1.  Data should be stored locally and on a human-editable file.
+2.  The final JAR file size should not exceed 100MB.
+3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+
+**Usability requirements:**
+
+1.  The DG and UG must be PDF-friendly. 
+2.  The GUI should not cause any resolution-related inconveniences to the user for:
+    1.  standard screen resolutions 1920x1080 and higher
+    2.  screen scales 100% and 125%.
+
+    In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
+    1.  resolutions 1280x720 and higher
+    2.  screen scales 150%.
 
 --------------------------------------------------------------------------------------------------------------------
 
