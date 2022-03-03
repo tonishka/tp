@@ -299,32 +299,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Reache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add a Contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact by their name.
+2.  Reache goes into ‘edit’ mode.
+3.  User <ins>edits the contact’s details (UC2)</ins>.
+4.  Reache displays the newly added contact in the list of contacts.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User inputs using the wrong format.
+   * 1ai. Reache displays an error message.   
 
-  Use case ends.
+  Use case resumes from step 1.
 
-* 3a. The given index is invalid.
+* 2a. Reache informs that the contact name already exists.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+  Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
