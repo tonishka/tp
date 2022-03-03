@@ -7,15 +7,15 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 
 ## Table of Contents
-- [Quick Start](1.-quick-start)
-- [Features](2.-features)
-   - [Managing Contacts](2.1-managing-contacts)
-   - [Finding Contacts](2.2-finding-contacts)
-   - [Editing Information](2.3-editing-information)
-   - [Viewing Help](2.4-viewing-help)
-   - [Exiting the program](2.5-exiting-the-program)
-- [Command Summary](3.-command-summary)
-- [Contact Fields Summary](4.-contact-fields-summary)
+- [Quick Start](#1-quick-start)
+- [Features](#2-features)
+   - [Managing Contacts](#21-managing-contacts)
+   - [Finding Contacts](#22-finding-contacts)
+   - [Editing Information](#23-editing-information)
+   - [Viewing Help](#24-viewing-help-help)
+   - [Exiting the program](#25-exiting-the-program-exit)
+- [Command Summary](#3-command-summary)
+- [Contact Fields Summary](#4-contact-fields-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ Adds a person to the contact list.
 Format: `add <NAME>`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
-From this page, you can edit their contact details using the commands found under the [Editing Information](2.3-editing-information) section.
+From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
 
 Example: `add Alex Dunphy`
 
@@ -63,7 +63,7 @@ Enters editing mode to modify contact details in the address book.
 
 Format: `edit <INDEX NO> `
 
-Information about the details that can be added is found under the [Editing Information](2.3-editing-information) section.
+Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
 
 Example: `edit 4`
 
@@ -75,7 +75,7 @@ _Reache_ saves to the hard disk automatically after any command is issued that c
 
 ### 2.2 Finding Contacts
 #### 2.2.1 Finding contacts: `find`
-Finds a person based on a search category and the value provided. Searchable categories can be found in the [Editing Information](2.3-editing-information) section.
+Finds a person based on a search category and the value provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
 
 Format: `find <FIELD> <VALUE>`
 
@@ -202,4 +202,4 @@ Format: `exit`
 | **Tags** | No | Format: `tag <TAG 1>; <TAG 2>...` <br> Example: `tag Media Contact; Has kids` |
 | **Pronouns** | No | Format: `pronoun <PRONOUNS>` <br> Example: `pronoun They/Them` |
 
-[Back to top](table-of-contents)
+[Back to top](#table-of-contents)
