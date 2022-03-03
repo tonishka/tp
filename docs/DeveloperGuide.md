@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  A user with above average typing speed for plain English text should be able to accomplish most of the tasks using commands faster than with the mouse.
 
-**Constraints:**
+**Testability requirements:**
 
 1.  The product should be only for a single user for higher testability.
 
