@@ -307,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a contact by their name.
 2.  Reache goes into ‘edit’ mode.
-3.  User !!edits the contact’s details (UC2)!!.
+3.  User <ins>edits the contact’s details (UC2)</ins>.
 4.  Reache displays the newly added contact in the list of contacts.
 
     Use case ends.
