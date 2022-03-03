@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User inputs using the wrong format.
    * 1ai. Reache displays an error message.   
 
-  Use case resumes from step 1..
+  Use case resumes from step 1.
 
 * 2a. Reache informs that the contact name already exists.
 
