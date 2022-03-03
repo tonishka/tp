@@ -358,6 +358,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1.  resolutions 1280x720 and higher
     2.  screen scales 150%.
 
+
+### Glossary
+
+* **Mainstream OS:** Windows, MacOS, Linux
+* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
+* **'Default' mode:** Allows the user to view their list of contacts
+* **'Edit' mode:** Allows the user to edit contact details
+
+*{More to be added}*
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
