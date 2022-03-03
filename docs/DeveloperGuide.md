@@ -270,16 +270,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
+| -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `* * *`  | new user                | view a help page with commands and usage instructions               | understand how to use the application                                                 |
+| `* * *`  | user                    | add a new person to the contact list                                | expand my contacts list                                                               |
+| `* * *`  | user                    | delete a person from the contact list                               | remove contacts I no longer require                                                   |
+| `* * *`  | user                    | label and store a person's phone numbers                            | know how to contact them via phone and which number to use (personal, office, etc.)   |
+| `* * *`  | user                    | label and store a person's email addresses                          | know how to contact them via email and which email to use (personal, office, etc.)    |
+| `* * *`  | user                    | label and store a person's addresses                                | know how to find them via address and which address to use (home, office, etc.)       |
+| `* * *`  | user                    | store a person's company                                            | check which company they work at                                                      |
+| `* * *`  | user                    | store a person's job title                                          | check what job they have                                                              |
+| `* * *`  | user                    | store a person's pronouns                                           | check how they prefer to be addressed                                                 |
+| `* * *`  | user                    | assign custom tags to a person                                      | identify them by the tags I give them                                                 |
+| `* * *`  | user                    | edit a person's contact information                                 | update their contact information without having to delete and create a new contact    |
+| `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
+| `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
+| `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
+| `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
+| `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
+| `* *`    | user                    | be warned when I create a contact with a name that exists           | make sure I do not accidentally create a duplicate contact                            |
+| `* *`    | user with many contacts | search for a contact by name                                        | find the contact I am looking for without having to scroll through a long list        |
+| `* *`    | user with many contacts | search for a contact by their contact information                   | find the person I am looking for when I do not remember their name                    |
+| `*`      | user                    | change the colour scheme of the application                         | personalise my experience                                                             |
+| `*`      | user                    | be able to undo my previous command                                 | undo a command if I make a mistake                                                    |
+| `*`      | user                    | save my contacts' addresses as Google Maps links                    | use Google Maps for directions                                                        |
+| `*`      | user with many contacts | be provided a history of my most searched-for contacts              | easily find the contacts I use more often                                             |
+| `*`      | user with many contacts | access my recent search history                                     | can easily search for a previously searched contact                                   |
 
 ### Use cases
 
