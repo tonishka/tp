@@ -359,6 +359,30 @@ Use case ends.
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache displays an error message. <br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes at step 1.
 
+**Use case: UC4 - Find contacts by field**
+
+**MSS:**
+
+<p>
+1. User requests to find contacts by a given value for a field. <br>
+2. Reache shows all contacts that match the find criterion. <br>
+&emsp;&emsp;&emsp;&emsp;Repeat steps 1 and 2 until satisfied. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+
+<p>
+1a. No contacts match the find criterion. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache alerts that no contacts were found. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes at step 1.
+</p>
+
+**Use case: UC5 - View contact's full details**
+
+**MSS:**
+
+
 
 ### Non-Functional Requirements
 
