@@ -382,7 +382,7 @@ Use case ends.
 <p>
 1a. No contacts match the find criterion. <br>
 &emsp; 1a1. Reache alerts that no contacts were found. <br>
-&emsp; Use case resumes at step 1.
+&emsp; Use case ends.
 </p>
 
 **Use case: UC5 - View contact's full details**
