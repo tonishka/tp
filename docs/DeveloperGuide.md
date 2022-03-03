@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
 1. User requests to add a specific field for the contact. <br>
 2. Reache saves the specific field. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;Repeat steps 1 and 2 until satisfied. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
 Use case ends.
@@ -347,7 +347,7 @@ Use case ends.
 <p>
 1. User requests to delete a contact. <br>
 2. Reache asks for confirmation. <br>
-3. User confirms deletion.
+3. User confirms deletion. <br>
 4. Reache deletes the contact. <br> 
 &emsp;Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
@@ -423,7 +423,9 @@ Use case ends.
 **MSS:**
 <p>
 1. User requests to see a list of all contacts. <br>
-2. Reache displays the list. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all contacts. <br>
 Use case ends.
 </p>
 
@@ -432,6 +434,11 @@ Use case ends.
 1a. There are no contacts. <br>
 &emsp; 1a1. Reache alerts that contact list is empty. <br>
 Use case ends.
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
+&emsp; Use case ends.
 </p>
 
 ### Non-Functional Requirements
