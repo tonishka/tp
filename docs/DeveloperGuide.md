@@ -348,8 +348,7 @@ Use case ends.
 1. User requests to delete a contact. <br>
 2. Reache asks for confirmation. <br>
 3. User confirms deletion. <br>
-4. Reache deletes the contact. <br> 
-&emsp;Repeat steps 1 and 2 until satisfied. <br>
+4. Reache deletes the contact. <br>
 Use case ends.
 </p>
 
@@ -365,7 +364,6 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
-
 **Use case: UC4 - Find contacts by field**
 
 **MSS:**
@@ -373,7 +371,6 @@ Use case ends.
 <p>
 1. User requests to find contacts by a given value for a field. <br>
 2. Reache shows all contacts that match the find criterion. <br>
-&emsp;Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
 </p>
 
@@ -391,7 +388,6 @@ Use case ends.
 <p>
 1. User requests to view a contact's full details. <br>
 2. Reache displays the contact's full details. <br>
-&emsp;Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
 </p>
 
