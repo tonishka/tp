@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
 1. User requests to add a specific field for the contact. <br>
 2. Reache saves the specific field. <br>
-&emsp;Repeat steps 1 and 2 until satisfied. <br>
+&emsp; Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
 Use case ends.
@@ -339,8 +339,8 @@ Use case ends.
 <p>
 Extensions: <br>
 1a. User inputs the wrong format. <br>
-&emsp;&emsp;1a1. Reache displays an error message. <br>
-&emsp;&emsp;Use case resumes from step 1.
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
 </p>
 
 **Use case: UC3 - Delete a Contact**
@@ -349,15 +349,15 @@ Extensions: <br>
 <p>
 1. User requests to delete a contact. <br>
 2. Reache deletes the contact. <br> 
-&emsp;&emsp;&emsp;&emsp;Repeat steps 1 and 2 until satisfied. <br>
+&emsp; Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
 </p>
 
 **Extensions:**
 
 1a.  The requested contact does not exist. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache displays an error message. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes at step 1.
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
 
 **Use case: UC4 - Find contacts by field**
 
@@ -366,7 +366,7 @@ Use case ends.
 <p>
 1. User requests to find contacts by a given value for a field. <br>
 2. Reache shows all contacts that match the find criterion. <br>
-&emsp;&emsp;&emsp;&emsp;Repeat steps 1 and 2 until satisfied. <br>
+&emsp; Repeat steps 1 and 2 until satisfied. <br>
 Use case ends.
 </p>
 
@@ -374,8 +374,8 @@ Use case ends.
 
 <p>
 1a. No contacts match the find criterion. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache alerts that no contacts were found. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes at step 1.
+&emsp; 1a1. Reache alerts that no contacts were found. <br>
+&emsp; Use case resumes at step 1.
 </p>
 
 **Use case: UC5 - View contact's full details**
