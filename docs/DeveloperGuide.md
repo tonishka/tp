@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
 1. User requests to add a specific field for the contact. <br>
 2. Reache saves the specific field. <br>
-&emsp; Repeat steps 1 and 2 until satisfied. <br>
+&emsp;&nbsp;Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
 Use case ends.
