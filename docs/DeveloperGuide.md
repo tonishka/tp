@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <p>
 1. User requests to add a specific field for the contact. <br>
 2. Reache saves the specific field. <br>
-&emsp;&emsp;&emsp; Repeat steps 1 and 2 until satisfied. <br>
+&emsp;&emsp;Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
 Use case ends.
@@ -339,8 +339,8 @@ Use case ends.
 <p>
 Extensions: <br>
 1a. User inputs the wrong format. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1a1. Reache displays an error message. <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Use case resumes from step 1.
+&emsp;&emsp;&emsp;1a1. Reache displays an error message. <br>
+&emsp;&emsp;&emsp;Use case resumes from step 1.
 </p>
 
 **Use case: UC3 - Delete a Contact**
@@ -382,6 +382,12 @@ Use case ends.
 
 **MSS:**
 
+<p>
+1. User requests to view a contact's full details. <br>
+2. Reache displays the contact's full details. <br>
+</p>
+
+**Extensions:**
 
 
 ### Non-Functional Requirements
