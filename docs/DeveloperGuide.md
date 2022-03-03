@@ -323,6 +323,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
+**Use case: UC3 - Delete a Contact**
+
+**MSS:**
+
+1. User requests to delete a contact.
+2. Reache deletes the contact. <br> 
+Repeat steps 1 and 2 until satisfied. <br>
+Use case ends.
+
+**Extensions:**
+
+1a.  The requested contact does not exist. <br>
+&emsp;&emsp;&emsp;&emsp; 1a1. Reache displays an error message. <br>
+&emsp; &emsp; &emsp;Use case resumes at step 1.
+
+
+
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

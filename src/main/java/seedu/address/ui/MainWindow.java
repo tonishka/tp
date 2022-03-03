@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -119,8 +120,9 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        //CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox1 = new CommandBox(commandText -> this.executeCommand(commandText));
+        commandBoxPlaceholder.getChildren().add(commandBox1.getRoot());
     }
 
     /**
