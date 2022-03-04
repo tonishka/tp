@@ -257,13 +257,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* really busy working professional
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**User persona**:
+
+<img src="images/Persona.png" />
+
+**Value proposition**: 
+
+We help _busy working professionals_ manage their large list of contacts by providing an **easy-to-use interface to store contacts** and help organize meetings. Our product will help users organize contacts by their companies, job titles, etc., and navigate their professional network quickly and efficiently to find who they are looking for. 
+
 
 
 ### User stories
@@ -439,16 +447,45 @@ Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Technical requirements:**
 
-*{More to be added}*
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` installed.
+
+**Quality requirements:**
+
+1.  A user with above average typing speed for plain English text should be able to accomplish most of the tasks using commands faster than with the mouse.
+
+**Testability requirements:**
+
+1.  The product should be only for a single user for higher testability.
+
+**Data requirements:**
+
+1.  Data should be stored locally and on a human-editable file.
+2.  The final JAR file size should not exceed 100MB.
+3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+
+**Usability requirements:**
+
+1.  The DG and UG must be PDF-friendly. 
+2.  The GUI should not cause any resolution-related inconveniences to the user for:
+    1.  standard screen resolutions 1920x1080 and higher
+    2.  screen scales 100% and 125%.
+
+    In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
+    1.  resolutions 1280x720 and higher
+    2.  screen scales 150%.
+
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS:** Windows, MacOS, Linux
+* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
+* **'Default' mode:** Allows the user to view their list of contacts
+* **'Edit' mode:** Allows the user to edit contact details
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
