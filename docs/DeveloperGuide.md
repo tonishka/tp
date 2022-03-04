@@ -328,7 +328,7 @@ Use case ends.
 </p>
 <p>
 2a. Reache informs that the contact name already exists. <br>
-&emsp; Use case resumes at step 1. <br>
+Use case resumes at step 1. <br>
 </p>
 
 **Use case: UC2 - Edit contact details**
