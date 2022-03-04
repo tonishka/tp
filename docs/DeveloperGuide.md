@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User inputs using the wrong format.
-   * 1ai. Reache displays an error message.   
+   * 1a1. Reache displays an error message.   
 
   Use case resumes from step 1.
 
