@@ -41,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Nicholas Sun
 
-<img src="images/nicsunxnus.png" width="200px">
+<img src="images/nicsunxnus.png" width="200px" height="200px">
 
 [[github](http://github.com/NicsunXnus)]
 [[portfolio](team/nicsunxnus.md)]
 
-* Role: Parser,Commands
-* Responsibilities: Accountability for anything related to Parser and Commands.
+* Role: Developer
+* Responsibilities: In-charge of **Parser** and **Commands**
