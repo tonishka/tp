@@ -107,7 +107,7 @@ Example: `view 34`
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
 | ; | Used to separate entries when multiple entries are provided. <br> E.g. `phone 12345678; 43214321` denotes two phone numbers. |
-| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned.E.g. `phone 12345678 /personal` labels the given number a personal number. |
+| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br>E.g. `phone 12345678 /personal` labels the given number a personal number. |
 | <...> | Indicates the argument that the user should provide in that area |
 
 #### 2.3.2 Add/Edit phone numbers: phone
