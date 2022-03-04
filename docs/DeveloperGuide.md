@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User inputs using the wrong format.
-   * 1ai. Reache displays an error message.   
+   * 1a1. Reache displays an error message.   
 
   Use case resumes from step 1.
 
@@ -331,6 +331,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
+**Use case: UC2 - Edit contact details**
+
+**MSS:**
+<p>
+1. User requests to add a specific field for the contact. <br>
+2. Reache saves the specific field. <br>
+&emsp;Repeat steps 1 and 2 until satisfied. <br>
+3. User requests to leave ‘edit’ mode. <br>
+4. Reache returns to ‘default’ mode. <br>
+Use case ends.
+
+**Extensions:** <br>
+<p>
+1a. User inputs the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
+</p>
+
+**Use case: UC3 - Delete a Contact**
+
+**MSS:**
+<p>
+1. User requests to delete a contact. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms deletion. <br>
+4. Reache deletes the contact. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+<p>
+3a.  User chooses to cancel the deletion. <br>
+&emsp; 3a1. Reache cancels the deletion. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC4 - Find contacts by field**
+
+**MSS:**
+
+<p>
+1. User requests to find contacts by a given value for a field. <br>
+2. Reache shows all contacts that match the find criterion. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+
+<p>
+1a. No contacts match the find criterion. <br>
+&emsp; 1a1. Reache alerts that no contacts were found. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC5 - View contact's full details**
+
+**MSS:**
+<p>
+1. User requests to view a contact's full details. <br>
+2. Reache displays the contact's full details. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+
+**Use case: UC6 - List all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache displays the list. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC7 - Clear all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all contacts. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
+&emsp; Use case ends.
+</p>
 
 ### Non-Functional Requirements
 
