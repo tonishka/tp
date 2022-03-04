@@ -309,27 +309,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Reache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1 - Add a Contact**
+**Use case: UC1 - Add a contact**
 
-**MSS**
+**MSS:**
+<p>
+1. User requests to add a contact by their name. <br>
+2. Reache goes into ‘edit’ mode. <br>
+3. User <ins>edits the contact’s details (UC2)</ins>. <br>
+4. Reache displays the newly added contact in the list of contacts. <br>
+Use case ends.
+</p>
 
-1.  User requests to add a contact by their name.
-2.  Reache goes into ‘edit’ mode.
-3.  User <ins>edits the contact’s details (UC2)</ins>.
-4.  Reache displays the newly added contact in the list of contacts.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. User inputs using the wrong format.
-   * 1a1. Reache displays an error message.   
-
-  Use case resumes from step 1.
-
-* 2a. Reache informs that the contact name already exists.
-
-  Use case resumes at step 1.
+**Extensions:** <br>
+<p>
+1a. User inputs using the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1. <br>
+</p>
+<p>
+2a. Reache informs that the contact name already exists. <br>
+Use case resumes at step 1. <br>
+</p>
 
 **Use case: UC2 - Edit contact details**
 
@@ -341,6 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
 Use case ends.
+</p>
 
 **Extensions:** <br>
 <p>
@@ -349,7 +350,7 @@ Use case ends.
 &emsp; Use case resumes from step 1.
 </p>
 
-**Use case: UC3 - Delete a Contact**
+**Use case: UC3 - Delete a contact**
 
 **MSS:**
 <p>
