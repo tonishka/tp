@@ -257,13 +257,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* really busy working professional
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**User persona**:
+
+<img src="images/Persona.png" />
+
+**Value proposition**: 
+
+We help _busy working professionals_ manage their large list of contacts by providing an **easy-to-use interface to store contacts** and help organize meetings. Our product will help users organize contacts by their companies, job titles, etc., and navigate their professional network quickly and efficiently to find who they are looking for. 
+
 
 
 ### User stories
@@ -315,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User inputs using the wrong format.
-   * 1ai. Reache displays an error message.   
+   * 1a1. Reache displays an error message.   
 
   Use case resumes from step 1.
 
@@ -323,18 +331,161 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
+**Use case: UC2 - Edit contact details**
+
+**MSS:**
+<p>
+1. User requests to add a specific field for the contact. <br>
+2. Reache saves the specific field. <br>
+&emsp;Repeat steps 1 and 2 until satisfied. <br>
+3. User requests to leave ‘edit’ mode. <br>
+4. Reache returns to ‘default’ mode. <br>
+Use case ends.
+
+**Extensions:** <br>
+<p>
+1a. User inputs the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
+</p>
+
+**Use case: UC3 - Delete a Contact**
+
+**MSS:**
+<p>
+1. User requests to delete a contact. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms deletion. <br>
+4. Reache deletes the contact. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+<p>
+3a.  User chooses to cancel the deletion. <br>
+&emsp; 3a1. Reache cancels the deletion. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC4 - Find contacts by field**
+
+**MSS:**
+
+<p>
+1. User requests to find contacts by a given value for a field. <br>
+2. Reache shows all contacts that match the find criterion. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+
+<p>
+1a. No contacts match the find criterion. <br>
+&emsp; 1a1. Reache alerts that no contacts were found. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC5 - View contact's full details**
+
+**MSS:**
+<p>
+1. User requests to view a contact's full details. <br>
+2. Reache displays the contact's full details. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+
+**Use case: UC6 - List all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache displays the list. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC7 - Clear all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all contacts. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
+&emsp; Use case ends.
+</p>
+
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Technical requirements:**
 
-*{More to be added}*
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` installed.
+
+**Quality requirements:**
+
+1.  A user with above average typing speed for plain English text should be able to accomplish most of the tasks using commands faster than with the mouse.
+
+**Testability requirements:**
+
+1.  The product should be only for a single user for higher testability.
+
+**Data requirements:**
+
+1.  Data should be stored locally and on a human-editable file.
+2.  The final JAR file size should not exceed 100MB.
+3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+
+**Usability requirements:**
+
+1.  The DG and UG must be PDF-friendly. 
+2.  The GUI should not cause any resolution-related inconveniences to the user for:
+    1.  standard screen resolutions 1920x1080 and higher
+    2.  screen scales 100% and 125%.
+
+    In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
+    1.  resolutions 1280x720 and higher
+    2.  screen scales 150%.
+
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS:** Windows, MacOS, Linux
+* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
+* **'Default' mode:** Allows the user to view their list of contacts
+* **'Edit' mode:** Allows the user to edit contact details
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
