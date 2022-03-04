@@ -102,6 +102,7 @@ Example: `view 34`
 2. Difference between tags and labels: Labels distinguish multiple entries in the same field whereas tags group together any number of contacts based on some criterion.
 
 #### 2.3.1 Symbols Legend
+
 | Symbol | Meaning |
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
