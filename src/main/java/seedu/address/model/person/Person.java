@@ -29,7 +29,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, HashMap<String, Phone> numbers, HashMap<String, Email> emails,
-                  HashMap<String, Address> addresses, Company company, JobTitle jobTitle, Pronoun pronoun, HashMap<String, Tag> tags) {
+                  HashMap<String, Address> addresses, Company company, JobTitle jobTitle, Pronoun pronoun,
+                  HashMap<String, Tag> tags) {
         requireAllNonNull(name, numbers, emails, addresses, company, jobTitle, pronoun, tags);
         this.name = name;
         this.numbers = numbers;

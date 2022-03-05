@@ -76,7 +76,7 @@ public class SampleDataUtil {
                         put("Home", new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
                         put("Office", new Address("43 Springfield Avenue, Greendale County"));
                     }},
-                    new Company("Greendale Community College"), new JobTitle("Spanish Professor"), new Pronoun("she/her"),
+                    new Company("Greendale College"), new JobTitle("Spanish Professor"), new Pronoun("she/her"),
                     new HashMap<String, Tag>() {{
                         put("family", new Tag("family"));
                     }}
