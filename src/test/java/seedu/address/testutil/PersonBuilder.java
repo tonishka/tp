@@ -95,6 +95,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Person} with the fields of {@code PersonBuilder}
+     */
     public Person build() {
         //return new Person(name, phone, email, address, tags);
 
