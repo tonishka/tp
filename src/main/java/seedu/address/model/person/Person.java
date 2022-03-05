@@ -3,7 +3,9 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -22,24 +24,24 @@ public class Person {
     private final HashMap<String, Address> addresses;
     private final Company company;
     private final JobTitle jobTitle;
-    private final Pronoun pronoun;
-    private final HashMap<String, Tag> tags;
+    private final HashSet<Pronoun> pronouns = new HashSet<>();
+    private final HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, HashMap<String, Phone> numbers, HashMap<String, Email> emails,
-                  HashMap<String, Address> addresses, Company company, JobTitle jobTitle, Pronoun pronoun,
-                  HashMap<String, Tag> tags) {
-        requireAllNonNull(name, numbers, emails, addresses, company, jobTitle, pronoun, tags);
+                  HashMap<String, Address> addresses, Company company, JobTitle jobTitle, HashSet<Pronoun> pronouns,
+                  HashSet<Tag> tags) {
+        requireAllNonNull(name, pronouns, tags);
         this.name = name;
         this.numbers = numbers;
         this.emails = emails;
         this.addresses = addresses;
         this.company = company;
         this.jobTitle = jobTitle;
-        this.pronoun = pronoun;
-        this.tags = tags;
+        this.pronouns.addAll(pronouns);
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -66,11 +68,11 @@ public class Person {
         return jobTitle;
     }
 
-    public Pronoun getPronoun() {
-        return pronoun;
+    public HashSet<Pronoun> getPronouns() {
+        return pronouns;
     }
 
-    public HashMap<String, Tag> getTags() {
+    public HashSet<Tag> getTags() {
         return tags;
     }
 
@@ -108,14 +110,14 @@ public class Person {
                 && otherPerson.getAddresses().equals(getAddresses())
                 && otherPerson.getCompany().equals(getCompany())
                 && otherPerson.getJobTitle().equals(getJobTitle())
-                && otherPerson.getPronoun().equals(getPronoun())
+                && otherPerson.getPronouns().equals(getPronouns())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, numbers, emails, addresses, company, jobTitle, pronoun, tags);
+        return Objects.hash(name, numbers, emails, addresses, company, jobTitle, pronouns, tags);
     }
 
     @Override
@@ -131,11 +133,19 @@ public class Person {
                 .append("; Company: ")
                 .append(getCompany())
                 .append("; Job Title: ")
-                .append(getJobTitle())
-                .append("; Pronouns: ")
-                .append(getPronoun())
-                .append("; Tags: ")
-                .append(getTags());
+                .append(getJobTitle());
+
+        Set<Pronoun> pronouns = getPronouns();
+        if (!pronouns.isEmpty()) {
+            builder.append("; Pronouns: ");
+            pronouns.forEach(builder::append);
+        }
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }

@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,10 +38,10 @@ public class SampleDataUtil {
                         put("Home", new Address("Blk 30 Geylang Street 29, #06-40"));
                         put("Office", new Address("123 Raffles Business Tower"));
                     }},
-                    new Company("Monsters Inc"), new JobTitle("Scarer"), new Pronoun("he/him"),
-                    new HashMap<String, Tag>() {{
-                        put("friend", new Tag("friend"));
-                    }}
+                    new Company("Monsters Inc"),
+                    new JobTitle("Scarer"),
+                    new HashSet<>(Arrays.asList(new Pronoun("he"), new Pronoun("him"))),
+                    new HashSet<>(Arrays.asList(new Tag("friend")))
             ),
             new Person(
                     new Name("Bernice Yu"),
@@ -56,11 +57,10 @@ public class SampleDataUtil {
                         put("Home", new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
                         put("Office", new Address("1725 Slough Avenue, Scranton PA"));
                     }},
-                    new Company("Dunder Mifflin"), new JobTitle("Salesperson"), new Pronoun("she/her"),
-                    new HashMap<String, Tag>() {{
-                        put("colleague", new Tag("colleague"));
-                        put("friend", new Tag("friend"));
-                    }}
+                    new Company("Dunder Mifflin"),
+                    new JobTitle("Salesperson"),
+                    new HashSet<>(Arrays.asList(new Pronoun("she"), new Pronoun("her"))),
+                    new HashSet<>(Arrays.asList(new Tag("colleague"), new Tag("friend")))
             ),
             new Person(
                     new Name("David Li"),
@@ -76,10 +76,10 @@ public class SampleDataUtil {
                         put("Home", new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
                         put("Office", new Address("43 Springfield Avenue, Greendale County"));
                     }},
-                    new Company("Greendale College"), new JobTitle("Spanish Professor"), new Pronoun("she/her"),
-                    new HashMap<String, Tag>() {{
-                        put("family", new Tag("family"));
-                    }}
+                    new Company("Greendale College"),
+                    new JobTitle("Spanish Professor"),
+                    new HashSet<>(Arrays.asList(new Pronoun("he"), new Pronoun("him"))),
+                    new HashSet<>(Arrays.asList(new Tag("family")))
             )
         };
     }

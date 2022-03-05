@@ -27,7 +27,6 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,7 +103,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         */
         return new Person(new Name("Placeholder"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
-                new Company("Placeholder"), new JobTitle("Placeholder"), new Pronoun("Placeholder"), new HashMap<>());
+                new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), new HashSet<>());
     }
 
     @Override

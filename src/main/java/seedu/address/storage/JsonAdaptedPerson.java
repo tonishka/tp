@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +13,6 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Pronoun;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -107,7 +107,7 @@ class JsonAdaptedPerson {
         */
 
         return new Person(new Name("Placeholder"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
-                new Company("Placeholder"), new JobTitle("Placeholder"), new Pronoun("Placeholder"), new HashMap<>());
+                new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), new HashSet<>());
     }
 
 }

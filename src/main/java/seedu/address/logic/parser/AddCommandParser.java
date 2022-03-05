@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -9,7 +10,6 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Pronoun;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
          */
 
         Person person = new Person(new Name("Placeholder"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
-                new Company("Placeholder"), new JobTitle("Placeholder"), new Pronoun("Placeholder"), new HashMap<>());
+                new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), new HashSet<>());
 
         return new AddCommand(person);
     }
