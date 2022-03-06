@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRONOUN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,8 +59,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+            editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_JOBTITLE).isPresent()) {
+            editPersonDescriptor.setJobTitle(ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOBTITLE).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-
+        parsePronounsForEdit(argMultimap.getAllValues(PREFIX_PRONOUN)).ifPresent(editPersonDescriptor::setPronouns);
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -79,4 +89,18 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> pronouns} into a {@code Set<Pronoun>} if {@code pronouns} is non-empty.
+     * If {@code pronouns} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Pronoun>} containing zero tags.
+     */
+    private Optional<Set<Pronoun>> parsePronounsForEdit(Collection<String> pronouns) throws ParseException {
+        assert pronouns != null;
+
+        if (pronouns.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> pronounSet = pronouns.size() == 1 && pronouns.contains("") ? Collections.emptySet() : pronouns;
+        return Optional.of(ParserUtil.parsePronouns(pronounSet));
+    }
 }
