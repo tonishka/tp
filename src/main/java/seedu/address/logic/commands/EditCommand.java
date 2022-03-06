@@ -27,6 +27,7 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,15 +96,20 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
-        /* @Todo
+
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
+
+        HashMap<String,Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
+        HashMap<String,Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
+        HashMap<String,Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
+
+        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        */
-        return new Person(new Name("Placeholder"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
-                new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), new HashSet<>());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
     }
 
     @Override
@@ -130,10 +136,17 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        //private Phone phone;
+        //private Email email;
+        //private Address address;
+        //private Set<Tag> tags;
+        private HashMap<String, Phone> numbers = new HashMap<>();
+        private HashMap<String, Email> emails = new HashMap<>();
+        private HashMap<String, Address> addresses = new HashMap<>();
+        private Company company;
+        private JobTitle jobTitle;
+        private HashSet<Pronoun> pronouns = new HashSet<>();
+        private HashSet<Tag> tags = new HashSet<>();
 
         public EditPersonDescriptor() {}
 
@@ -143,17 +156,36 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setPhone(toCopy.numbers);
+            setEmail(toCopy.emails);
+            setAddress(toCopy.addresses);
             setTags(toCopy.tags);
+            setCompany(toCopy.company);
+            setJobTitle(toCopy.jobTitle);
+            setPronouns(toCopy.pronouns);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, numbers, emails, addresses, tags, company , pronouns, jobTitle);
+        }
+
+        public void setCompany(Company company) {
+            this.company = company;
+        }
+
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
+        }
+
+        public void setJobTitle(JobTitle jobTitle) {
+            this.jobTitle = jobTitle;
+        }
+
+        public Optional<JobTitle> getJobTitle() {
+            return Optional.ofNullable(jobTitle);
         }
 
         public void setName(Name name) {
@@ -164,28 +196,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(HashMap<String, Phone> numbers) {
+            this.numbers = numbers;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<HashMap<String, Phone>> getPhone() {
+            return Optional.ofNullable(numbers);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(HashMap<String, Email> emails) {
+            this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<HashMap<String, Email>> getEmail() {
+            return Optional.ofNullable(emails);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(HashMap<String, Address> addresses) {
+            this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<HashMap<String, Address>> getAddress() {
+            return Optional.ofNullable(addresses);
         }
 
         /**
@@ -203,6 +235,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code pronouns} to this object's {@code pronouns}.
+         * A defensive copy of {@code pronouns} is used internally.
+         */
+        public void setPronouns(Set<Pronoun> pronouns) {
+            this.pronouns = (pronouns != null) ? new HashSet<>(pronouns) : null;
+        }
+
+        /**
+         * Returns an unmodifiable pronouns set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code pronouns} is null.
+         */
+        public Optional<Set<Pronoun>> getPronouns() {
+            return (pronouns != null) ? Optional.of(Collections.unmodifiableSet(pronouns)) : Optional.empty();
         }
 
         @Override

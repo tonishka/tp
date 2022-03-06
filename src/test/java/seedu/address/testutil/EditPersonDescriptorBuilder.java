@@ -49,11 +49,13 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+
+
     /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        //descriptor.setPhone(new Phone(phone));
         return this;
     }
 
@@ -61,7 +63,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        //descriptor.setEmail(new Email(email));
         return this;
     }
 
@@ -69,9 +71,11 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        //descriptor.setAddress(new Address(address));
         return this;
     }
+
+
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
