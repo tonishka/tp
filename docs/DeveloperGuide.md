@@ -335,8 +335,8 @@ Use case resumes at step 1. <br>
 
 **MSS:**
 <p>
-1. User requests to add a specific field for the contact. <br>
-2. Reache saves the specific field. <br>
+1. User requests to add details for specific field(s) of the contact. <br>
+2. Reache saves the specified details along with their respective field(s). <br>
 &emsp;Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>
