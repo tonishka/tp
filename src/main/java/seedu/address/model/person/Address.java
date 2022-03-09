@@ -34,7 +34,12 @@ public class Address {
      * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.contains(" l/ ")) {
+            return test.matches(VALIDATION_REGEX);
+        } else {
+            String[] addressWithTag = test.split( " l/ ");
+            return addressWithTag[0].matches(VALIDATION_REGEX);
+        }
     }
 
     @Override

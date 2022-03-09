@@ -30,7 +30,12 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.contains(" l/ ")) {
+            return test.matches(VALIDATION_REGEX);
+        } else {
+            String[] phoneWithTag = test.split(" l/ ");
+            return phoneWithTag[0].matches(VALIDATION_REGEX);
+        }
     }
 
     @Override

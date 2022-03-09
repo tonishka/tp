@@ -48,7 +48,12 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.contains(" l/ ")) {
+            return test.matches(VALIDATION_REGEX);
+        } else {
+            String[] emailWithTag = test.split(" l/ ");
+            return emailWithTag[0].matches(VALIDATION_REGEX);
+        }
     }
 
     @Override
