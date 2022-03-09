@@ -1,21 +1,23 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Logger;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2122s2-cs2103t-w12-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -93,10 +95,11 @@ public class HelpWindow extends UiPart<Stage> {
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void openUrl() {
+        try {
+            Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
