@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,6 +21,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
@@ -47,31 +51,60 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        //----Single-field data----
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
+
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
         }
+
         if (argMultimap.getValue(PREFIX_JOBTITLE).isPresent()) {
             editPersonDescriptor.setJobTitle(ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOBTITLE).get()));
         }
+        //----Multi-field data-----
+        parseNumbersForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhone);
+        parseAddressesForEdit(argMultimap.getAllValues(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
+        parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmail);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parsePronounsForEdit(argMultimap.getAllValues(PREFIX_PRONOUN)).ifPresent(editPersonDescriptor::setPronouns);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    private Optional<HashMap<String, Email>> parseEmailsForEdit(Collection<String> emails) throws ParseException {
+        assert emails != null;
+
+        if (emails.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> emailCollection = emails.size() == 1 && emails.contains("") ? Collections.emptySet() : emails;
+        return Optional.of(ParserUtil.parseEmails(emailCollection));
+    }
+
+    private Optional<HashMap<String, Phone>> parseNumbersForEdit(Collection<String> numbers) throws ParseException {
+        assert numbers != null;
+
+        if (numbers.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> numberCollection = numbers.size() == 1 && numbers.contains("") ? Collections.emptySet() : numbers;
+        return Optional.of(ParserUtil.parseNumbers(numberCollection));
+    }
+
+    private Optional<HashMap<String, Address>> parseAddressesForEdit(Collection<String> addresses) throws ParseException {
+        assert addresses != null;
+
+        if (addresses.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> addressCollection = addresses.size() == 1 && addresses.contains("") ? Collections.emptySet() : addresses;
+        return Optional.of(ParserUtil.parseAddressess(addressCollection));
     }
 
     /**
