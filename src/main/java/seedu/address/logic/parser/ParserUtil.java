@@ -84,116 +84,76 @@ public class ParserUtil {
         return new JobTitle(trimmedJobTitle);
     }
 
-    /**
-     * Parses a {@code String phone} into a {@code HashMap<String,Phone> phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static HashMap<String, Phone> parsePhone(String phone) throws ParseException {
-        /*requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);*/
-
-        requireNonNull(phone); //-> multiple phone numbers with or without labels
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        HashMap<String, Phone> result = new HashMap<>();
-        if (!trimmedPhone.contains(";")) {//means it is a single phone no
-            if (trimmedPhone.contains(" l/")) {//means no label
-                result.put("", new Phone(trimmedPhone));
-            } else {
-                String[] numberWithTag = trimmedPhone.split(" l/");
-                result.put(numberWithTag[1], new Phone(numberWithTag[0]));
-            }
-        } else {//multiple numbers
-            String[] numbers = trimmedPhone.split(";");
-            for (String phoneNumber: numbers) {
-                if (phoneNumber.contains(" l/")) {//means no label
-                    result.put("", new Phone(phoneNumber));
-                } else {
-                    String[] numberWithTag = phoneNumber.split(" l/");
-                    result.put(numberWithTag[1], new Phone(numberWithTag[0]));
-                }
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code HashMap<String,Address> address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static HashMap<String, Address> parseAddress(String address) throws ParseException {
-        requireNonNull(address); //-> multiple addresses with or without labels
+    public static void parseAddress(String address, HashMap<String,Address> addresses) throws ParseException {
+        requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        HashMap<String, Address> result = new HashMap<>();
-        if (!trimmedAddress.contains(";")) {//means it is a single address
-            if (trimmedAddress.contains(" l/")) {//means no label
-                result.put("", new Address(trimmedAddress));
-            } else {
-                String[] addressWithTag = trimmedAddress.split(" l/");
-                result.put(addressWithTag[1], new Address(addressWithTag[0]));
-            }
-        } else {//multiple addresses
-            String[] numbers = trimmedAddress.split(";");
-            for (String addressNo: numbers) {
-                if (trimmedAddress.contains(" l/")) {//means no label
-                    result.put("", new Address(addressNo));
-                } else {
-                    String[] addressWithTag = addressNo.split(" l/");
-                    result.put(addressWithTag[1], new Address(addressWithTag[0]));
-                }
-            }
+
+        if (address.contains("l/")) {
+            String[] addressWithTag = address.split(" l/ ");
+            addresses.put(addressWithTag[1], new Address(addressWithTag[1]));
+        } else {
+            addresses.put("", new Address(address));
         }
-        return result;
     }
 
-    /**
-     * Parses a {@code String email} into an {@code HashMap<String, Email> email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static HashMap<String, Email> parseEmail(String email) throws ParseException {
+    public static HashMap<String,Address> parseAddressess(Collection<String> addresses) throws ParseException {
+        requireNonNull(addresses);
+        final HashMap<String, Address> addressesMap = new HashMap<>();
+        for (String address : addresses) {
+            parseAddress(address, addressesMap);
+        }
+        return addressesMap;
+    }
+
+    public static void parsePhone(String phone, HashMap<String,Phone> numbers) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
+        if (phone.contains("l/")) {
+            String[] phoneWithTag = phone.split(" l/ ");
+            numbers.put(phoneWithTag[1], new Phone(phoneWithTag[1]));
+        } else {
+            numbers.put("", new Phone(phone));
+        }
+    }
+
+    public static HashMap<String,Phone> parseNumbers(Collection<String> numbers) throws ParseException {
+        requireNonNull(numbers);
+        final HashMap<String, Phone> numbersMap = new HashMap<>();
+        for (String phone : numbers) {
+            parsePhone(phone, numbersMap);
+        }
+        return numbersMap;
+    }
+
+    public static void parseEmail(String email, HashMap<String,Email> emails) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        HashMap<String, Email> result = new HashMap<>();
-        if (!trimmedEmail.contains(";")) {//means it is a single email
-            if (trimmedEmail.contains(" l/")) {//means no label
-                result.put("", new Email(trimmedEmail));
-            } else {
-                String[] emailWithTag = trimmedEmail.split(" l/");
-                result.put(emailWithTag[1], new Email(emailWithTag[0]));
-            }
-        } else {//multiple emails
-            String[] numbers = trimmedEmail.split(";");
-            for (String emailNo: numbers) {
-                if (emailNo.contains(" l/")) {//means no label
-                    result.put("", new Email(emailNo));
-                } else {
-                    String[] emailWithTag = emailNo.split(" l/");
-                    result.put(emailWithTag[1], new Email(emailWithTag[0]));
-                }
-            }
+        if (email.contains("l/")) {
+            String[] emailWithTag = email.split(" l/ ");
+            emails.put(emailWithTag[1], new Email(emailWithTag[1]));
+        } else {
+            emails.put("", new Email(email));
         }
-        return result;
     }
 
-
+    public static HashMap<String,Email> parseEmails(Collection<String> emails) throws ParseException {
+        requireNonNull(emails);
+        final HashMap<String, Email> emailMap = new HashMap<>();
+        for (String email : emails) {
+            parseEmail(email, emailMap);
+        }
+        return emailMap;
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
