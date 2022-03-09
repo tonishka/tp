@@ -2,14 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRONOUN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,6 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
@@ -83,7 +85,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (emails.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> emailCollection = emails.size() == 1 && emails.contains("") ? Collections.emptySet() : emails;
+        Collection<String> emailCollection = emails.size() == 1 && emails.contains("")
+                ? Collections.emptySet() : emails;
         return Optional.of(ParserUtil.parseEmails(emailCollection));
     }
 
@@ -93,7 +96,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (numbers.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> numberCollection = numbers.size() == 1 && numbers.contains("") ? Collections.emptySet() : numbers;
+        Collection<String> numberCollection = numbers.size() == 1 && numbers.contains("")
+                ? Collections.emptySet() : numbers;
         return Optional.of(ParserUtil.parseNumbers(numberCollection));
     }
 
@@ -103,7 +107,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (addresses.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> addressCollection = addresses.size() == 1 && addresses.contains("") ? Collections.emptySet() : addresses;
+        Collection<String> addressCollection = addresses.size() == 1 && addresses.contains("")
+                ? Collections.emptySet() : addresses;
         return Optional.of(ParserUtil.parseAddressess(addressCollection));
     }
 
@@ -133,7 +138,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (pronouns.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> pronounSet = pronouns.size() == 1 && pronouns.contains("") ? Collections.emptySet() : pronouns;
+        Collection<String> pronounSet = pronouns.size() == 1 && pronouns.contains("")
+                ? Collections.emptySet() : pronouns;
         return Optional.of(ParserUtil.parsePronouns(pronounSet));
     }
 }

@@ -29,6 +29,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -70,10 +71,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String jobtitle} into a {@code JobTitle}.
+     * Parses a {@code String jobTitle} into a {@code JobTitle}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code jobtitle} is invalid.
+     * @throws ParseException if the given {@code jobTitle} is invalid.
      */
     public static JobTitle parseJobTitle(String jobTitle) throws ParseException {
         requireNonNull(jobTitle);
@@ -84,7 +85,14 @@ public class ParserUtil {
         return new JobTitle(trimmedJobTitle);
     }
 
-    public static void parseAddress(String address, HashMap<String,Address> addresses) throws ParseException {
+    /**
+     * Parses a {@code String Address} into a {@code Address} and its label.
+     * The Address object and label is then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Address} is invalid.
+     */
+    public static void parseAddress(String address, HashMap<String, Address> addresses) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
@@ -99,7 +107,14 @@ public class ParserUtil {
         }
     }
 
-    public static HashMap<String,Address> parseAddressess(Collection<String> addresses) throws ParseException {
+    /**
+     * Parses a collection of {@code Collection<String> addresses} into pairs of {@code Address} and its label.
+     * The Address object-label pairs are then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given address is invalid.
+     */
+    public static HashMap<String, Address> parseAddressess(Collection<String> addresses) throws ParseException {
         requireNonNull(addresses);
         final HashMap<String, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
@@ -108,7 +123,14 @@ public class ParserUtil {
         return addressesMap;
     }
 
-    public static void parsePhone(String phone, HashMap<String,Phone> numbers) throws ParseException {
+    /**
+     * Parses a {@code String phone} into a {@code Phone} and its label.
+     * The Phone object and label is then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static void parsePhone(String phone, HashMap<String, Phone> numbers) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
@@ -123,7 +145,14 @@ public class ParserUtil {
         }
     }
 
-    public static HashMap<String,Phone> parseNumbers(Collection<String> numbers) throws ParseException {
+    /**
+     * Parses a collection of {@code Collection<String> numbers} into pairs of {@code Phone} and its label.
+     * The Phone object-label pairs are then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given phone is invalid.
+     */
+    public static HashMap<String, Phone> parseNumbers(Collection<String> numbers) throws ParseException {
         requireNonNull(numbers);
         final HashMap<String, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
@@ -132,7 +161,14 @@ public class ParserUtil {
         return numbersMap;
     }
 
-    public static void parseEmail(String email, HashMap<String,Email> emails) throws ParseException {
+    /**
+     * Parses a {@code String email} into a {@code Email} and its label.
+     * The Email object and label is then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static void parseEmail(String email, HashMap<String, Email> emails) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
@@ -146,7 +182,14 @@ public class ParserUtil {
         }
     }
 
-    public static HashMap<String,Email> parseEmails(Collection<String> emails) throws ParseException {
+    /**
+     * Parses a collection of {@code Collection<String> emails} into pairs of {@code Email} and its label.
+     * The Email object-label pairs are then added into a HashMap.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given email is invalid.
+     */
+    public static HashMap<String, Email> parseEmails(Collection<String> emails) throws ParseException {
         requireNonNull(emails);
         final HashMap<String, Email> emailMap = new HashMap<>();
         for (String email : emails) {

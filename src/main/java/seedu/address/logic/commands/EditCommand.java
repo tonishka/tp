@@ -59,7 +59,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -102,9 +102,9 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
 
-        Map<String,Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
-        Map<String,Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
-        Map<String,Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
+        Map<String, Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
+        Map<String, Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
+        Map<String, Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
 
         Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -145,7 +145,8 @@ public class EditCommand extends Command {
         private HashSet<Pronoun> pronouns = new HashSet<>();
         private HashSet<Tag> tags = new HashSet<>();
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -166,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, numbers, emails, addresses, tags, company , pronouns, jobTitle);
+            return CollectionUtil.isAnyNonNull(name, numbers, emails, addresses, tags, company, pronouns, jobTitle);
         }
 
         //----Single data fields----
@@ -226,6 +227,7 @@ public class EditCommand extends Command {
         }
 
         //Tags
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -244,6 +246,7 @@ public class EditCommand extends Command {
         }
 
         //Pronouns
+
         /**
          * Sets {@code pronouns} to this object's {@code pronouns}.
          * A defensive copy of {@code pronouns} is used internally.

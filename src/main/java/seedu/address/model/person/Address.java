@@ -37,7 +37,7 @@ public class Address {
         if (test.contains(" l/ ")) {
             return test.matches(VALIDATION_REGEX);
         } else {
-            String[] addressWithTag = test.split( " l/ ");
+            String[] addressWithTag = test.split(" l/ ");
             return addressWithTag[0].matches(VALIDATION_REGEX);
         }
     }

@@ -62,8 +62,6 @@ public class ParserUtilTest {
     private static final String VALID_PHONE_WITH_LABEL = "123456 l/ home";
 
 
-
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test

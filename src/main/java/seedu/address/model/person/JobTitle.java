@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class JobTitle {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "For Job Titles (assuming job titles can only start with " +
-                    "alphabets and contain only alphabets and certain special characters from thereon)";
+            "For Job Titles (assuming job titles can only start with"
+                    + "alphabets and contain only alphabets and certain special characters from thereon)";
 
     /*
      * The first character of the job title must not be a whitespace,
