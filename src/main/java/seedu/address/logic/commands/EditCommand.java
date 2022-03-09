@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -101,9 +102,9 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
 
-        HashMap<String,Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
-        HashMap<String,Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
-        HashMap<String,Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
+        Map<String,Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
+        Map<String,Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
+        Map<String,Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
 
         Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -136,10 +137,6 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        //private Phone phone;
-        //private Email email;
-        //private Address address;
-        //private Set<Tag> tags;
         private HashMap<String, Phone> numbers = new HashMap<>();
         private HashMap<String, Email> emails = new HashMap<>();
         private HashMap<String, Address> addresses = new HashMap<>();
@@ -172,6 +169,8 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, numbers, emails, addresses, tags, company , pronouns, jobTitle);
         }
 
+        //----Single data fields----
+        //Company
         public void setCompany(Company company) {
             this.company = company;
         }
@@ -180,6 +179,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(company);
         }
 
+        //JobTitle
         public void setJobTitle(JobTitle jobTitle) {
             this.jobTitle = jobTitle;
         }
@@ -188,6 +188,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(jobTitle);
         }
 
+        //Name
         public void setName(Name name) {
             this.name = name;
         }
@@ -196,30 +197,35 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
+        //-----Multiple data fields----
+        //Phone
         public void setPhone(HashMap<String, Phone> numbers) {
-            this.numbers = numbers;
+            this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
         }
 
-        public Optional<HashMap<String, Phone>> getPhone() {
-            return Optional.ofNullable(numbers);
+        public Optional<Map<String, Phone>> getPhone() {
+            return (numbers != null) ? Optional.of(Collections.unmodifiableMap(numbers)) : Optional.empty();
         }
 
+        //Email
         public void setEmail(HashMap<String, Email> emails) {
             this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
         }
 
-        public Optional<HashMap<String, Email>> getEmail() {
-            return Optional.ofNullable(emails);
+        public Optional<Map<String, Email>> getEmail() {
+            return (emails != null) ? Optional.of(Collections.unmodifiableMap(emails)) : Optional.empty();
         }
 
+        //Address
         public void setAddress(HashMap<String, Address> addresses) {
             this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
         }
 
-        public Optional<HashMap<String, Address>> getAddress() {
-            return Optional.ofNullable(addresses);
+        public Optional<Map<String, Address>> getAddress() {
+            return (addresses != null) ? Optional.of(Collections.unmodifiableMap(addresses)) : Optional.empty();
         }
 
+        //Tags
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -237,6 +243,7 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        //Pronouns
         /**
          * Sets {@code pronouns} to this object's {@code pronouns}.
          * A defensive copy of {@code pronouns} is used internally.
@@ -253,6 +260,7 @@ public class EditCommand extends Command {
         public Optional<Set<Pronoun>> getPronouns() {
             return (pronouns != null) ? Optional.of(Collections.unmodifiableSet(pronouns)) : Optional.empty();
         }
+        //
 
         @Override
         public boolean equals(Object other) {
