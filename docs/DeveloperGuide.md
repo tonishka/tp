@@ -279,7 +279,7 @@ We help _busy working professionals_ manage their large list of contacts by prov
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
-| -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| -------- |-------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | `* * *`  | new user                | view a help page with commands and usage instructions               | understand how to use the application                                                 |
 | `* * *`  | user                    | add a new person to the contact list                                | expand my contacts list                                                               |
 | `* * *`  | user                    | delete a person from the contact list                               | remove contacts I no longer require                                                   |
@@ -293,6 +293,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | edit a person's contact information                                 | update their contact information without having to delete and create a new contact    |
 | `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
 | `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
+| `* * *`  | user                    | save my data automatically                                          | reduce the risk of my data being lost                                                 |
+| `* * *`  | advanced user           | save all my contacts in an editable file                            | edit my contacts directly from the data file                                          |
 | `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
 | `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
 | `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
