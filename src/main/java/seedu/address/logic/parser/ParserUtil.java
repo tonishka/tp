@@ -50,7 +50,7 @@ public class ParserUtil {
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.contains(" l/ ")) {
             String[] inputWithTag = trimmedUserInput.split(" l/");
-            return Optional.of(inputWithTag[1]);
+            return Optional.of(inputWithTag[1].trim());
         } else {
             return Optional.empty();
         }
@@ -116,7 +116,7 @@ public class ParserUtil {
         if (!Address.isValidAddress(addressWithTag[0])) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(addressWithTag[0]);
+        return new Address(addressWithTag[0].trim());
     }
 
     /**
@@ -152,7 +152,7 @@ public class ParserUtil {
         if (!Phone.isValidPhone(phoneWithTag[0])) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(phoneWithTag[0]);
+        return new Phone(phoneWithTag[0].trim());
     }
 
     /**
@@ -188,7 +188,7 @@ public class ParserUtil {
         if (!Email.isValidEmail(emailWithTag[0])) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(emailWithTag[0]);
+        return new Email(emailWithTag[0].trim());
     }
 
     /**

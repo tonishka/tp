@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -71,12 +72,12 @@ public class Person {
         return jobTitle;
     }
 
-    public HashSet<Pronoun> getPronouns() {
-        return pronouns;
+    public Set<Pronoun> getPronouns() {
+        return Collections.unmodifiableSet(pronouns);
     }
 
-    public HashSet<Tag> getTags() {
-        return tags;
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
