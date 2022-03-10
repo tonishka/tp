@@ -1,6 +1,9 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.*;
 
@@ -120,13 +123,8 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Numbers: ")
-                .append(getNumbers())
-                .append("; Emails: ")
-                .append(getEmails())
-                .append("; Addresses: ")
-                .append(getAddresses())
+        builder.append("; Name: ")
+                .append(getName())
                 .append("; Company: ")
                 .append(getCompany())
                 .append("; Job Title: ")
@@ -142,6 +140,24 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Map<String, Phone> numbers = getNumbers();
+        if (!numbers.isEmpty()) {
+            builder.append("; Numbers: ");
+            numbers.forEach((label, number) -> builder.append(PREFIX_PHONE + number.phone + " l/ " + label + " "));
+        }
+
+        Map<String, Address> addresses = getAddresses();
+        if (!addresses.isEmpty()) {
+            builder.append("; Addresses: ");
+            addresses.forEach((label, address) -> builder.append(PREFIX_ADDRESS + address.addressName + " l/ " + label + " "));
+        }
+
+        Map<String, Email> emails = getEmails();
+        if (!emails.isEmpty()) {
+            builder.append("; Emails: ");
+            emails.forEach((label, email) -> builder.append(PREFIX_EMAIL + email.email + " l/ " + label + " "));
         }
 
         return builder.toString();

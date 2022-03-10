@@ -148,7 +148,6 @@ public class SampleDataUtil {
             Address tab = entry.getValue();
             System.out.print("Label: " + key + ", ");
             System.out.println("Address: " + tab);
-            // do something with key and/or tab
         }
     }
 }
