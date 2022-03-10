@@ -77,8 +77,12 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         HashMap<String, Phone> numbers = new HashMap<>();
-        numbers.put("home", new Phone(phone));
-        numbers.put("", new Phone(phone));
+        String[] phoneWithTag = phone.split(" l/");
+        if (phoneWithTag.length == 1) {
+            numbers.put("", new Phone(phone));
+        } else {
+            numbers.put(phoneWithTag[1], new Phone(phoneWithTag[0]));
+        }
         descriptor.setNumbers(numbers);
         return this;
     }
@@ -88,8 +92,12 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         HashMap<String, Email> emails = new HashMap<>();
-        emails.put("home", new Email(email));
-        emails.put("", new Email(email));
+        String[] emailWithTag = email.split(" l/");
+        if (emailWithTag.length == 1) {
+            emails.put("", new Email(email));
+        } else {
+            emails.put(emailWithTag[1], new Email(emailWithTag[0]));
+        }
         descriptor.setEmails(emails);
         return this;
     }
@@ -99,8 +107,12 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         HashMap<String, Address> addresses = new HashMap<>();
-        addresses.put("home", new Address(address));
-        addresses.put("", new Address(address));
+        String[] addressWithTag = address.split(" l/");
+        if (addressWithTag.length == 1) {
+            addresses.put("", new Address(address));
+        } else {
+            addresses.put(addressWithTag[1], new Address(addressWithTag[0]));
+        }
         descriptor.setAddresses(addresses);
         return this;
     }
