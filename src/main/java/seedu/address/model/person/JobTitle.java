@@ -16,7 +16,7 @@ public class JobTitle {
      * The first character of the job title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s0-9\\p{Punct}][A-Za-z0-9\\s]*$";
+    public static final String VALIDATION_REGEX = "[^\\s\\d\\p{Punct}][A-Za-z\\d\\s]*$";
 
     public final String jobTitle;
 
