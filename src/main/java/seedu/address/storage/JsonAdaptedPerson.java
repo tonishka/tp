@@ -25,7 +25,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final HashMap<String, JsonAdaptedPhone> numbers;
-    private final String email;
+    private final HashMap<String, JsonAdaptedEmail> emails;
     private final HashMap<String, JsonAdaptedAddress> addresses;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,12 +35,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("numbers") HashMap<String, JsonAdaptedPhone> numbers,
-            @JsonProperty("email") String email,
+            @JsonProperty("emails") HashMap<String, JsonAdaptedEmail> emails,
             @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.numbers = numbers;
-        this.email = email;
+        this.emails = emails;
         this.addresses = addresses;
 
         if (tagged != null) {
@@ -53,13 +53,18 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        email = source.getEmails().toString();
 
         HashMap<String, JsonAdaptedPhone> numbersMap = new HashMap<String, JsonAdaptedPhone>();
         for (String key : source.getNumbers().keySet()) {
             numbersMap.put(key, new JsonAdaptedPhone(source.getNumbers().get(key)));
         }
         numbers = numbersMap;
+
+        HashMap<String, JsonAdaptedEmail> emailsMap = new HashMap<String, JsonAdaptedEmail>();
+        for (String key : source.getNumbers().keySet()) {
+            emailsMap.put(key, new JsonAdaptedEmail(source.getEmails().get(key)));
+        }
+        emails = emailsMap;
 
         HashMap<String, JsonAdaptedAddress> addressesMap = new HashMap<String, JsonAdaptedAddress>();
         for (String key : source.getAddresses().keySet()) {
@@ -86,27 +91,19 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-//        if (phone == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-//        }
-//        if (!Phone.isValidPhone(phone)) {
-//            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-//        }
-//        final Phone modelPhone = new Phone(phone);
-//
-//        if (email == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-//        }
-//        if (!Email.isValidEmail(email)) {
-//            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-//        }
-//        final Email modelEmail = new Email(email);
-
         HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
         if (numbers != null) {
             for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
                 String key = mapElement.getKey();
                 modelNumbers.put(key, mapElement.getValue().toModelType());
+            }
+        }
+
+        HashMap<String, Email> modelEmails = new HashMap<String, Email>();
+        if (emails != null) {
+            for (Map.Entry<String, JsonAdaptedEmail> mapElement : emails.entrySet()) {
+                String key = mapElement.getKey();
+                modelEmails.put(key, mapElement.getValue().toModelType());
             }
         }
 
@@ -125,7 +122,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<Tag>(personTags);
 
-        return new Person(modelName, modelNumbers, new HashMap<>(), modelAddresses,
+        return new Person(modelName, modelNumbers, modelEmails, modelAddresses,
                 new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), modelTags);
     }
 
@@ -134,7 +131,7 @@ class JsonAdaptedPerson {
         return "JsonAdaptedPerson{"
                 + "name='" + name + '\''
                 + ", phone='" + numbers + '\''
-                + ", email='" + email + '\''
+                + ", email='" + emails + '\''
                 + ", addresses='" + addresses + '\''
                 + ", tagged=" + tagged +
                 + '}';
