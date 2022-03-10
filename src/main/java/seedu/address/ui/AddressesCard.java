@@ -24,7 +24,7 @@ public class AddressesCard extends UiPart<Region> {
     public AddressesCard(Map<String, Address> addresses) {
         super(FXML);
         for (Map.Entry<String, Address> address : addresses.entrySet()) {
-            addressesContainer.getChildren().add(new InfoBox(address.getKey(), address.getValue().value).getRoot());
+            addressesContainer.getChildren().add(new InfoBox(address.getKey(), address.getValue().address).getRoot());
         }
     }
 }

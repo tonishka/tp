@@ -24,7 +24,7 @@ public class EmailsCard extends UiPart<Region> {
     public EmailsCard(Map<String, Email> emails) {
         super(FXML);
         for (Map.Entry<String, Email> email : emails.entrySet()) {
-            emailsContainer.getChildren().add(new InfoBox(email.getKey(), email.getValue().value).getRoot());
+            emailsContainer.getChildren().add(new InfoBox(email.getKey(), email.getValue().email).getRoot());
         }
     }
 }

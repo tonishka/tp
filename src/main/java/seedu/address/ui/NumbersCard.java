@@ -24,7 +24,7 @@ public class NumbersCard extends UiPart<Region> {
     public NumbersCard(Map<String, Phone> numbers) {
         super(FXML);
         for (Map.Entry<String, Phone> number : numbers.entrySet()) {
-            numbersContainer.getChildren().add(new InfoBox(number.getKey(), number.getValue().value).getRoot());
+            numbersContainer.getChildren().add(new InfoBox(number.getKey(), number.getValue().phone).getRoot());
         }
     }
 }

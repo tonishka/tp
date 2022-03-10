@@ -44,11 +44,11 @@ public class ParticularsCard extends UiPart<Region> {
         tags.forEach(tag -> this.tags.getChildren().add(new Label(tag.tagName)));
 
         if (!isNull(job) && !isNull(company)) {
-            occupation.setText(job.value + ", " + company.value);
+            occupation.setText(job.jobTitle + ", " + company.company);
         } else if (!isNull(job)) {
-            occupation.setText(job.value);
+            occupation.setText(job.jobTitle);
         } else if (!isNull(company)) {
-            occupation.setText(company.value);
+            occupation.setText(company.company);
         }
     }
 
