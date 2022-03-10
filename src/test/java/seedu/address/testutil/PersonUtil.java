@@ -51,13 +51,13 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_PRONOUN + s.pronoun + " ")
         );
         person.getAddresses().forEach(
-                (label, address) -> sb.append(PREFIX_ADDRESS + address.addressName + " l/ " + label + " ")
+                (label, address) -> sb.append(PREFIX_ADDRESS + address.addressName + " l/" + label + " ")
         );
         person.getEmails().forEach(
-                (label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/ " + label + " ")
+                (label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " ")
         );
         person.getNumbers().forEach(
-                (label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/ " + label + " ")
+                (label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/" + label + " ")
         );
 
         return sb.toString();
@@ -75,7 +75,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
@@ -84,7 +84,7 @@ public class PersonUtil {
         if (descriptor.getPronouns().isPresent()) {
             Set<Pronoun> pronouns = descriptor.getPronouns().get();
             if (pronouns.isEmpty()) {
-                sb.append(PREFIX_PRONOUN);
+                sb.append(PREFIX_PRONOUN + " ");
             } else {
                 pronouns.forEach(s -> sb.append(PREFIX_PRONOUN).append(s.pronoun).append(" "));
             }
@@ -93,28 +93,28 @@ public class PersonUtil {
         if (descriptor.getNumbers().isPresent()) {
             Map<String, Phone> numbers = descriptor.getNumbers().get();
             if (numbers.isEmpty()) {
-                sb.append(PREFIX_PHONE);
+                sb.append(PREFIX_PHONE + " ");
             } else {
-                numbers.forEach((label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/ " + label + " "));
+                numbers.forEach((label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/" + label + " "));
             }
         }
 
         if (descriptor.getEmails().isPresent()) {
             Map<String, Email> emails = descriptor.getEmails().get();
             if (emails.isEmpty()) {
-                sb.append(PREFIX_EMAIL);
+                sb.append(PREFIX_EMAIL + " ");
             } else {
-                emails.forEach((label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/ " + label + " "));
+                emails.forEach((label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " "));
             }
         }
 
         if (descriptor.getAddresses().isPresent()) {
             Map<String, Address> addresses = descriptor.getAddresses().get();
             if (addresses.isEmpty()) {
-                sb.append(PREFIX_ADDRESS);
+                sb.append(PREFIX_ADDRESS + " ");
             } else {
                 addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.addressName +
-                        " l/ " + label + " "));
+                        " l/" + label + " "));
             }
         }
 

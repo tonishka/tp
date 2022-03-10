@@ -116,7 +116,7 @@ public class SampleDataUtil {
      */
     public static Map<String, Address> getAddressMap(String... strings) {
         return Arrays.stream(strings)
-                .map(addressLabelPair -> addressLabelPair.split(" l/ "))
+                .map(addressLabelPair -> addressLabelPair.split(" l/"))
                 .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1 ? "" : addressLabelPair[1],
                         addressLabelPair -> new Address(addressLabelPair[0])));
     }
@@ -126,7 +126,7 @@ public class SampleDataUtil {
      */
     public static Map<String, Email> getEmailMap(String... strings) {
         return Arrays.stream(strings)
-                .map(emailLabelPair -> emailLabelPair.split(" l/ "))
+                .map(emailLabelPair -> emailLabelPair.split(" l/"))
                 .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1 ? "" : emailLabelPair[1],
                         emailLabelPair -> new Email(emailLabelPair[0])));
     }
@@ -136,7 +136,7 @@ public class SampleDataUtil {
      */
     public static Map<String, Phone> getPhoneMap(String... strings) {
         return Arrays.stream(strings)
-                .map(phoneLabelPair -> phoneLabelPair.split(" l/ "))
+                .map(phoneLabelPair -> phoneLabelPair.split(" l/"))
                 .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1 ? "" : phoneLabelPair[1],
                         phoneLabelPair -> new Phone(phoneLabelPair[0])));
     }
@@ -148,7 +148,6 @@ public class SampleDataUtil {
             Address tab = entry.getValue();
             System.out.print("Label: " + key + ", ");
             System.out.println("Address: " + tab);
-            // do something with key and/or tab
         }
     }
 }

@@ -1,7 +1,11 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -68,12 +72,12 @@ public class Person {
         return jobTitle;
     }
 
-    public HashSet<Pronoun> getPronouns() {
-        return pronouns;
+    public Set<Pronoun> getPronouns() {
+        return Collections.unmodifiableSet(pronouns);
     }
 
-    public HashSet<Tag> getTags() {
-        return tags;
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -123,13 +127,8 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Numbers: ")
-                .append(getNumbers())
-                .append("; Emails: ")
-                .append(getEmails())
-                .append("; Addresses: ")
-                .append(getAddresses())
+        builder.append("Name: ")
+                .append(getName())
                 .append("; Company: ")
                 .append(getCompany())
                 .append("; Job Title: ")
@@ -145,6 +144,24 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Map<String, Phone> numbers = getNumbers();
+        if (!numbers.isEmpty()) {
+            builder.append("; Numbers: ");
+            numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+        }
+
+        Map<String, Address> addresses = getAddresses();
+        if (!addresses.isEmpty()) {
+            builder.append("; Addresses: ");
+            addresses.forEach((label, address) -> builder.append(address.addressName + " l/" + label + " "));
+        }
+
+        Map<String, Email> emails = getEmails();
+        if (!emails.isEmpty()) {
+            builder.append("; Emails: ");
+            emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
         }
 
         return builder.toString();
