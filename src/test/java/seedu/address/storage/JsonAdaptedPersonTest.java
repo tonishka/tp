@@ -27,7 +27,7 @@ public class JsonAdaptedPersonTest {
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = "98765432";
-    private static final String VALID_EMAIL = BENSON.getEmails().toString();
+    private static final String VALID_EMAIL = "benson.murphy@example.com";
     private static final String VALID_ADDRESS = "123 Monty Carl, 326459";
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -48,8 +48,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
         validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
 
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, validNumbers, VALID_EMAIL, validAddresses, VALID_TAGS);
+                new JsonAdaptedPerson(INVALID_NAME, validNumbers, validEmails, validAddresses, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -62,7 +65,10 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
         validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
 
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, validNumbers, VALID_EMAIL,
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person = new JsonAdaptedPerson(null, validNumbers, validEmails,
                 validAddresses, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -76,8 +82,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> invalidNumbers = new HashMap<>();
         invalidNumbers.put("phone#1", new JsonAdaptedPhone(INVALID_PHONE));
 
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, invalidNumbers, VALID_EMAIL, validAddresses, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, invalidNumbers, validEmails, validAddresses, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -100,8 +109,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
         validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
 
+        HashMap<String, JsonAdaptedEmail> invalidEmails = new HashMap<>();
+        invalidEmails.put("email#1", new JsonAdaptedEmail(INVALID_EMAIL));
+
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, validNumbers, INVALID_EMAIL, validAddresses, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, validNumbers, invalidEmails, validAddresses, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -124,8 +136,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
         validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
 
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, validNumbers, VALID_EMAIL, invalidAddresses, VALID_TAGS);
+                new JsonAdaptedPerson(VALID_NAME, validNumbers, validEmails, invalidAddresses, VALID_TAGS);
         System.out.println(person);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -152,8 +167,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
         validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
 
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, validNumbers, VALID_EMAIL, validAddresses, invalidTags);
+                new JsonAdaptedPerson(VALID_NAME, validNumbers, validEmails, validAddresses, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
