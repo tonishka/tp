@@ -24,7 +24,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final HashMap<String, JsonAdaptedPhone> numbers;
     private final String email;
     private final HashMap<String, JsonAdaptedAddress> addresses;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -33,11 +33,13 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+            @JsonProperty("numbers") HashMap<String, JsonAdaptedPhone> numbers,
+            @JsonProperty("email") String email,
+            @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+        this.numbers = numbers;
         this.email = email;
         this.addresses = addresses;
 
@@ -51,13 +53,19 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getNumbers().toString();
         email = source.getEmails().toString();
-        HashMap<String, JsonAdaptedAddress> ret = new HashMap<String, JsonAdaptedAddress>();
-        for (String key : source.getAddresses().keySet()) {
-            ret.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
+
+        HashMap<String, JsonAdaptedPhone> numbersMap = new HashMap<String, JsonAdaptedPhone>();
+        for (String key : source.getNumbers().keySet()) {
+            numbersMap.put(key, new JsonAdaptedPhone(source.getNumbers().get(key)));
         }
-        addresses = ret;
+        numbers = numbersMap;
+
+        HashMap<String, JsonAdaptedAddress> addressesMap = new HashMap<String, JsonAdaptedAddress>();
+        for (String key : source.getAddresses().keySet()) {
+            addressesMap.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
+        }
+        addresses = addressesMap;
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -73,6 +81,14 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
+        if (numbers != null) {
+            for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
+                String key = mapElement.getKey();
+                modelNumbers.put(key, mapElement.getValue().toModelType());
+            }
         }
 
         HashMap<String, Address> modelAddresses = new HashMap<String, Address>();
@@ -109,7 +125,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<Tag>(personTags);
 
-        return new Person(modelName, new HashMap<>(), new HashMap<>(), modelAddresses,
+        return new Person(modelName, modelNumbers, new HashMap<>(), modelAddresses,
                 new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), modelTags);
     }
 
@@ -117,7 +133,7 @@ class JsonAdaptedPerson {
     public String toString() {
         return "JsonAdaptedPerson{"
                 + "name='" + name + '\''
-                + ", phone='" + phone + '\''
+                + ", phone='" + numbers + '\''
                 + ", email='" + email + '\''
                 + ", addresses='" + addresses + '\''
                 + ", tagged=" + tagged +
