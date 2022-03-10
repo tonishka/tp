@@ -29,7 +29,7 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddresses("123, Jurong West Ave 6, #08-111 l/ home").withEmails("alice@example.com l/ business")
+            .withAddresses("123, Jurong West Ave 6, #08-111 l/home").withEmails("alice@example.com l/business")
             .withNumbers("94351253").withCompany("Tesla").withJobTitle("CEO")
             .withPronouns("she")
             .withTags("friends").build();
@@ -39,8 +39,8 @@ public class TypicalPersons {
             .withCompany("Apple").withJobTitle("Accountant")
             .withPronouns("him")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withNumbers("95352563 l/ personal")
-            .withEmails("heinz@example.com l/ personal", "heinzWork@example.com l/ work")
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withNumbers("95352563 l/personal")
+            .withEmails("heinz@example.com l/personal", "heinzWork@example.com l/work")
             .withAddresses("wall street").withCompany("Samsung").withJobTitle("Data Analyst").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withNumbers("87652533")
             .withCompany("exampleCompany").withJobTitle("exampleJob").withTags("friends").build();

@@ -5,7 +5,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -68,8 +72,8 @@ public class Person {
         return jobTitle;
     }
 
-    public HashSet<Pronoun> getPronouns() {
-        return pronouns;
+    public Set<Pronoun> getPronouns() {
+        return Collections.unmodifiableSet(pronouns);
     }
 
     public Set<Tag> getTags() {
@@ -123,7 +127,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Name: ")
+        builder.append("Name: ")
                 .append(getName())
                 .append("; Company: ")
                 .append(getCompany())
@@ -145,19 +149,19 @@ public class Person {
         Map<String, Phone> numbers = getNumbers();
         if (!numbers.isEmpty()) {
             builder.append("; Numbers: ");
-            numbers.forEach((label, number) -> builder.append(PREFIX_PHONE + number.phone + " l/ " + label + " "));
+            numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
         }
 
         Map<String, Address> addresses = getAddresses();
         if (!addresses.isEmpty()) {
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(PREFIX_ADDRESS + address.addressName + " l/ " + label + " "));
+            addresses.forEach((label, address) -> builder.append(address.addressName + " l/" + label + " "));
         }
 
         Map<String, Email> emails = getEmails();
         if (!emails.isEmpty()) {
             builder.append("; Emails: ");
-            emails.forEach((label, email) -> builder.append(PREFIX_EMAIL + email.email + " l/ " + label + " "));
+            emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
         }
 
         return builder.toString();
