@@ -22,7 +22,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_PRONOUN = "him/her";
+    private static final String INVALID_PRONOUN = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Benson";
@@ -234,6 +234,25 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 */
+    @Test
+    public void toModelType_invalidPronouns_throwsIllegalValueException() {
+        List<JsonAdaptedPronoun> invalidPronouns = new ArrayList<>(VALID_PRONOUNS);
+        invalidPronouns.add(new JsonAdaptedPronoun(INVALID_PRONOUN));
+
+        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+
+        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
+                        validNumbers, validEmails, validAddresses, invalidPronouns, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
