@@ -48,9 +48,9 @@ public class ParserUtil {
     public static Optional<String> parseLabel(String userInput) {
         requireNonNull(userInput);
         String trimmedUserInput = userInput.trim();
-        if (trimmedUserInput.contains(" l/ ")) {
-            String[] inputWithTag = trimmedUserInput.split(" l/ ");
-            return Optional.of(inputWithTag[1]);
+        if (trimmedUserInput.contains(" l/")) {
+            String[] inputWithTag = trimmedUserInput.split(" l/");
+            return Optional.of(inputWithTag[1].trim());
         } else {
             return Optional.empty();
         }
@@ -110,10 +110,13 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        String[] addressWithTag = trimmedAddress.split(" l/ ");
+        String[] addressWithTag = trimmedAddress.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Address.isValidAddress(addressWithTag[0])) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        if (addressWithTag[0].contains("l/") && !addressWithTag[0].contains(" l/")) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(addressWithTag[0]);
