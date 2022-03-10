@@ -4,8 +4,10 @@
 <?import javafx.scene.layout.StackPane?>
 
 <?import javafx.geometry.Insets?>
-
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="background"
+            fitToWidth="true" fitToHeight="true">
+<VBox styleClass="background">
     <StackPane VBox.vgrow="NEVER" fx:id="particularsCardPlaceholder" />
     <StackPane VBox.vgrow="NEVER" fx:id="numbersCardPlaceholder">
         <padding>
@@ -23,3 +25,4 @@
         </padding>
     </StackPane>
 </VBox>
+</ScrollPane>

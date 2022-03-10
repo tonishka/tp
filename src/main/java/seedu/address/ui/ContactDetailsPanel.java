@@ -28,6 +28,7 @@ public class ContactDetailsPanel extends UiPart<Region> {
     private final ParticularsCard particularsCard;
     private final NumbersCard numbersCard;
     private final EmailsCard emailsCard;
+    private final AddressesCard addressesCard;
 
     @FXML
     private StackPane particularsCardPlaceholder;
@@ -76,5 +77,8 @@ public class ContactDetailsPanel extends UiPart<Region> {
 
         emailsCard = new EmailsCard(person.getEmails());
         emailsCardPlaceholder.getChildren().add(emailsCard.getRoot());
+
+        addressesCard = new AddressesCard(person.getAddresses());
+        addressesCardPlaceholder.getChildren().add(addressesCard.getRoot());
     }
 }
