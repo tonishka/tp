@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -38,6 +39,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String userInput} into an {@code Optional<String>} and returns the label.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Optional<String> parseLabel(String userInput) {
+        requireNonNull(userInput);
+        String trimmedUserInput = userInput.trim();
+        if (trimmedUserInput.contains(" l/ ")) {
+            String[] inputWithTag = trimmedUserInput.split(" l/ ");
+            return Optional.of(inputWithTag[1]);
+        } else {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -86,24 +102,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Address} into a {@code Address} and its label.
-     * The Address object and label is then added into a HashMap.
+     * Parses a {@code String Address} into a {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code Address} is invalid.
      */
-    public static void parseAddress(String address, HashMap<String, Address> addresses) throws ParseException {
+    public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-
-        if (address.contains("l/")) {
-            String[] addressWithTag = address.split(" l/ ");
-            addresses.put(addressWithTag[1], new Address(addressWithTag[1]));
+        if (trimmedAddress.contains("l/")) {
+            String[] addressWithTag = trimmedAddress.split(" l/ ");
+            if (Address.isValidAddress(addressWithTag[0])) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+            return new Address(addressWithTag[0]);
         } else {
-            addresses.put("", new Address(address));
+            if (Address.isValidAddress(trimmedAddress)) {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            }
+            return new Address(trimmedAddress);
         }
     }
 
@@ -118,30 +135,33 @@ public class ParserUtil {
         requireNonNull(addresses);
         final HashMap<String, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
-            parseAddress(address, addressesMap);
+            Address parsedAddress = parseAddress(address);
+            String label = parseLabel(address).orElseGet(() -> "");
+            addressesMap.put(label, parsedAddress);
         }
         return addressesMap;
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone} and its label.
-     * The Phone object and label is then added into a HashMap.
+     * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static void parsePhone(String phone, HashMap<String, Phone> numbers) throws ParseException {
+    public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-
         if (phone.contains("l/")) {
-            String[] phoneWithTag = phone.split(" l/ ");
-            numbers.put(phoneWithTag[1], new Phone(phoneWithTag[1]));
+            String[] phoneWithTag = trimmedPhone.split(" l/ ");
+            if (Phone.isValidPhone(phoneWithTag[0])) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            return new Phone(phoneWithTag[0]);
         } else {
-            numbers.put("", new Phone(phone));
+            if (Phone.isValidPhone(trimmedPhone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            return new Phone(trimmedPhone);
         }
     }
 
@@ -156,29 +176,33 @@ public class ParserUtil {
         requireNonNull(numbers);
         final HashMap<String, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
-            parsePhone(phone, numbersMap);
+            Phone parsedPhone = parsePhone(phone);
+            String label = parseLabel(phone).orElseGet(() -> "");
+            numbersMap.put(label, parsedPhone);
         }
         return numbersMap;
     }
 
     /**
-     * Parses a {@code String email} into a {@code Email} and its label.
-     * The Email object and label is then added into a HashMap.
+     * Parses a {@code String email} into a {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static void parseEmail(String email, HashMap<String, Email> emails) throws ParseException {
+    public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        if (email.contains("l/")) {
-            String[] emailWithTag = email.split(" l/ ");
-            emails.put(emailWithTag[1], new Email(emailWithTag[1]));
+        if (trimmedEmail.contains(" l/ ")) {
+            String[] emailWithTag = trimmedEmail.split(" l/ ");
+            if (Email.isValidEmail(emailWithTag[0])) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
+            return new Email(emailWithTag[0]);
         } else {
-            emails.put("", new Email(email));
+            if (Email.isValidEmail(trimmedEmail)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
+            return new Email(trimmedEmail);
         }
     }
 
@@ -193,7 +217,9 @@ public class ParserUtil {
         requireNonNull(emails);
         final HashMap<String, Email> emailMap = new HashMap<>();
         for (String email : emails) {
-            parseEmail(email, emailMap);
+            Email parsedEmail = parseEmail(email);
+            String label = parseLabel(email).orElseGet(() -> "");
+            emailMap.put(label, parsedEmail);
         }
         return emailMap;
     }
