@@ -116,7 +116,7 @@ public class ParserUtil {
         if (!Address.isValidAddress(addressWithTag[0])) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(addressWithTag[0]);
+        return new Address(addressWithTag[0].trim());
     }
 
     /**
