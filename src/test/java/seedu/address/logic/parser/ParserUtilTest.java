@@ -41,7 +41,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE_LABEL_2 = "123456 l/home";
     private static final String INVALID_PHONE_LABEL_3 = "123456l/home";
     private static final String INVALID_ADDRESS_WITH_LABEL_1 = "123 Main Street #0505 l/home";
-    private static final String INVALID_ADDRESS_WITH_LABEL_2 = "123 Main Street #0505l/home";
+    private static final String INVALID_ADDRESS_WITH_LABEL_2 = " 123 Main Street #0505l/home";
     private static final String INVALID_ADDRESS_WITH_LABEL_3 = "23 Main Street #0505l/ home";
     private static final String INVALID_EMAIL_WITH_LABEL_1 = "rachel@example.com l/home";
     private static final String INVALID_EMAIL_WITH_LABEL_2 = "rachel@example.coml/home";

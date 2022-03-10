@@ -110,7 +110,7 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        String[] addressWithTag = trimmedAddress.split(" l/ ");
+        String[] addressWithTag = trimmedAddress.split("l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Address.isValidAddress(addressWithTag[0])) {
