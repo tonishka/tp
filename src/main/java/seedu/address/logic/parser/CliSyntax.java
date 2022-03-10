@@ -14,5 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRONOUN = new Prefix("pr/");
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_JOBTITLE = new Prefix("j/");
+    public static final Prefix PREFIX_LABEL = new Prefix("l/");
 
 }
