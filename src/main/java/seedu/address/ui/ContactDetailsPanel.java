@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
@@ -25,6 +27,7 @@ public class ContactDetailsPanel extends UiPart<Region> {
 
     private final ParticularsCard particularsCard;
     private final NumbersCard numbersCard;
+    private final EmailsCard emailsCard;
 
     @FXML
     private StackPane particularsCardPlaceholder;
@@ -70,5 +73,8 @@ public class ContactDetailsPanel extends UiPart<Region> {
 
         numbersCard = new NumbersCard(person.getNumbers());
         numbersCardPlaceholder.getChildren().add(numbersCard.getRoot());
+
+        emailsCard = new EmailsCard(person.getEmails());
+        emailsCardPlaceholder.getChildren().add(emailsCard.getRoot());
     }
 }
