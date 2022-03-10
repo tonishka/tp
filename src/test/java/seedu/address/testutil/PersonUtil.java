@@ -41,7 +41,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
 
         sb.append(PREFIX_NAME).append(person.getName().fullName).append(" ");
-        sb.append(PREFIX_COMPANY).append(person.getCompany().companyName).append(" ");
+        sb.append(PREFIX_COMPANY).append(person.getCompany().company).append(" ");
         sb.append(PREFIX_JOBTITLE).append(person.getJobTitle().jobTitle).append(" ");
 
         person.getTags().stream().forEach(
@@ -51,7 +51,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_PRONOUN + s.pronoun + " ")
         );
         person.getAddresses().forEach((
-            label, address) -> sb.append(PREFIX_ADDRESS + address.addressName + " l/" + label + " ")
+            label, address) -> sb.append(PREFIX_ADDRESS + address.address + " l/" + label + " ")
         );
         person.getEmails().forEach((
             label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " ")
@@ -69,7 +69,7 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.companyName).append(" "));
+        descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.company).append(" "));
         descriptor.getJobTitle().ifPresent(jobTitle -> sb.append(PREFIX_JOBTITLE)
                 .append(jobTitle.jobTitle).append(" "));
 
@@ -114,7 +114,7 @@ public class PersonUtil {
             if (addresses.isEmpty()) {
                 sb.append(PREFIX_ADDRESS + " ");
             } else {
-                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.addressName
+                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.address
                         + " l/" + label + " "));
             }
         }

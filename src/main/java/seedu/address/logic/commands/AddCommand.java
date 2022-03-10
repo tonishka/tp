@@ -44,7 +44,7 @@ public class AddCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddCommand(Person person) {
-        requireNonNull(person);
+        //requireNonNull(person);
         toAdd = person;
     }
 
@@ -52,12 +52,14 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        /*
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+         */
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true, null);
     }
 
     @Override
