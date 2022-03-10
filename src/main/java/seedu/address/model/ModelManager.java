@@ -147,4 +147,12 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
+    public String toString() {
+        return "ModelManager{" +
+                "addressBook=" + addressBook +
+                ", userPrefs=" + userPrefs +
+                ", filteredPersons=" + filteredPersons +
+                '}';
+    }
 }
