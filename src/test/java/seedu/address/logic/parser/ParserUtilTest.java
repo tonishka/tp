@@ -40,8 +40,10 @@ public class ParserUtilTest {
 
     private static final String INVALID_PHONE_LABEL = "123456l/ home";
     private static final String INVALID_PHONE_LABEL_2 = "123456l/home";
+
     private static final String INVALID_ADDRESS_WITH_LABEL_1 = "l/home";
     private static final String INVALID_ADDRESS_WITH_LABEL_2 = "123 Main Street #0505l/home";
+
     private static final String INVALID_ADDRESS_WITH_LABEL_3 = "23 Main Street #0505l/ home";
     private static final String INVALID_EMAIL_WITH_LABEL_2 = "rachel@example.coml/home";
     private static final String INVALID_EMAIL_WITH_LABEL_3 = "rachel@example.coml/ home";
@@ -135,8 +137,9 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE));
         assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_3));
     }
 
     //***PLEASE DOUBLE CHECK THIS***
