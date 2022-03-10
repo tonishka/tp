@@ -102,14 +102,14 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
 
-        Map<String, Phone> updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
-        Map<String, Email> updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
-        Map<String, Address> updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
+        Map<String, Phone> updatedPhones = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
+        Map<String, Email> updatedEmails = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
+        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
 
         Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
                 updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
     }
 
