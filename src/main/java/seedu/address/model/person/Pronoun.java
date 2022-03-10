@@ -17,7 +17,7 @@ public class Pronoun {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String pronoun;
 
     /**
      * Constructs an {@code Pronoun}.
@@ -27,7 +27,7 @@ public class Pronoun {
     public Pronoun(String pronoun) {
         requireNonNull(pronoun);
         checkArgument(isValidPronoun(pronoun), MESSAGE_CONSTRAINTS);
-        value = pronoun;
+        this.pronoun = pronoun;
     }
 
     /**
@@ -39,18 +39,18 @@ public class Pronoun {
 
     @Override
     public String toString() {
-        return value;
+        return pronoun;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Pronoun // instanceof handles nulls
+                && pronoun.equals(((Pronoun) other).pronoun)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return pronoun.hashCode();
     }
 }
