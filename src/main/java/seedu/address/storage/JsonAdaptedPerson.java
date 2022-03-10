@@ -78,27 +78,6 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
-        HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
-        if (numbers != null) {
-            for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
-                String key = mapElement.getKey();
-                modelNumbers.put(key, mapElement.getValue().toModelType());
-            }
-        }
-
-        HashMap<String, Address> modelAddresses = new HashMap<String, Address>();
-        if (addresses != null) {
-            for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
-                String key = mapElement.getKey();
-                modelAddresses.put(key, mapElement.getValue().toModelType());
-            }
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -122,6 +101,27 @@ class JsonAdaptedPerson {
 //            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
 //        }
 //        final Email modelEmail = new Email(email);
+
+        HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
+        if (numbers != null) {
+            for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
+                String key = mapElement.getKey();
+                modelNumbers.put(key, mapElement.getValue().toModelType());
+            }
+        }
+
+        HashMap<String, Address> modelAddresses = new HashMap<String, Address>();
+        if (addresses != null) {
+            for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
+                String key = mapElement.getKey();
+                modelAddresses.put(key, mapElement.getValue().toModelType());
+            }
+        }
+
+        final List<Tag> personTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
 
         final Set<Tag> modelTags = new HashSet<Tag>(personTags);
 
