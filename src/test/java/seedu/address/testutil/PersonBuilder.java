@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -131,5 +131,19 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, numbers, emails, addresses, company, jobTitle, pronouns, tags);
+    }
+
+    @Override
+    public String toString() {
+        return "PersonBuilder{"
+                + "name=" + name
+                + ", company=" + company
+                + ", jobTitle=" + jobTitle
+                + ", numbers=" + numbers
+                + ", addresses=" + addresses
+                + ", emails=" + emails
+                + ", pronouns=" + pronouns
+                + ", tags=" + tags
+                + '}';
     }
 }
