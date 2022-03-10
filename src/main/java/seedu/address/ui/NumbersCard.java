@@ -5,11 +5,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Phone;
-
 import java.util.Map;
 import java.util.logging.Logger;
 
-
+/**
+ * Card containing the numbers associated with a person.
+ */
 public class NumbersCard extends UiPart<Region> {
     private static final String FXML = "NumbersCard.fxml";
     private final Logger logger = LogsCenter.getLogger(NumbersCard.class);
@@ -18,7 +19,7 @@ public class NumbersCard extends UiPart<Region> {
     private VBox numbersContainer;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code NumbersCard} with the given {@code Map} of numbers and their respective labels.
      */
     public NumbersCard(Map<String, Phone> numbers) {
         super(FXML);

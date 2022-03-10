@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -11,6 +13,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.person.Person;
 
 /**
  * The manager of the UI component.
@@ -23,7 +26,7 @@ public class UiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
-    private MainWindow mainWindow;
+    private Stage primaryStage;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -38,15 +41,28 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        this.primaryStage = primaryStage;
+        showMainWindow();
+    }
 
+    public void showContactWindow() {
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
-            //mainWindow.show(); //This should be called before creating other UI parts
-            //mainWindow.fillInnerParts();
-            ContactWindow contactWindow = new ContactWindow(primaryStage, logic);
+            primaryStage.close();
+            ContactWindow contactWindow = new ContactWindow(new Stage(), logic);
             contactWindow.show();
             contactWindow.fillInnerParts();
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+        }
+    }
 
+    public void showMainWindow() {
+        try {
+            primaryStage.close();
+            MainWindow mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow.show(); //This should be called before creating other UI parts
+            mainWindow.fillInnerParts();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -58,7 +74,7 @@ public class UiManager implements Ui {
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(primaryStage, type, title, headerText, contentText);
     }
 
     /**

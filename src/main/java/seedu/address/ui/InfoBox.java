@@ -1,15 +1,14 @@
 package seedu.address.ui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Phone;
-
 import java.util.logging.Logger;
 
+/**
+ * Bordered container that displays a piece of information below its corresponding label.
+ */
 public class InfoBox extends UiPart<Region> {
     private static final String FXML = "InfoBox.fxml";
     private final Logger logger = LogsCenter.getLogger(InfoBox.class);
@@ -21,7 +20,7 @@ public class InfoBox extends UiPart<Region> {
     private Label value;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates an {@code InfoBox} with the given {@code label} and {@value}.
      */
     public InfoBox(String label, String value) {
         super(FXML);

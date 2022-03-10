@@ -5,11 +5,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
-
 import java.util.Map;
 import java.util.logging.Logger;
 
-
+/**
+ * Card containing the emails associated with a person.
+ */
 public class EmailsCard extends UiPart<Region> {
     private static final String FXML = "EmailsCard.fxml";
     private final Logger logger = LogsCenter.getLogger(EmailsCard.class);
@@ -18,7 +19,7 @@ public class EmailsCard extends UiPart<Region> {
     private VBox emailsContainer;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates an {@code EmailsCard} with the given {@code Map} of emails and their associated labels.
      */
     public EmailsCard(Map<String, Email> emails) {
         super(FXML);
