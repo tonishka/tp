@@ -24,9 +24,12 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String company;
+    private final String jobTitle;
     private final HashMap<String, JsonAdaptedPhone> numbers;
     private final HashMap<String, JsonAdaptedEmail> emails;
     private final HashMap<String, JsonAdaptedAddress> addresses;
+//    private final List<JsonAdaptedPronoun> pronouns = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,11 +37,15 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
+            @JsonProperty("company") String company,
+            @JsonProperty("jobTitle") String jobTitle,
             @JsonProperty("numbers") HashMap<String, JsonAdaptedPhone> numbers,
             @JsonProperty("emails") HashMap<String, JsonAdaptedEmail> emails,
             @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.company = company;
+        this.jobTitle = jobTitle;
         this.numbers = numbers;
         this.emails = emails;
         this.addresses = addresses;
@@ -53,6 +60,8 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        company = source.getCompany().company;
+        jobTitle = source.getJobTitle().jobTitle;
 
         HashMap<String, JsonAdaptedPhone> numbersMap = new HashMap<String, JsonAdaptedPhone>();
         for (String key : source.getNumbers().keySet()) {
@@ -91,6 +100,22 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+        }
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
+
+        if (jobTitle == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobTitle.class.getSimpleName()));
+        }
+        if (!JobTitle.isValidJobTitle(jobTitle)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final JobTitle modelJobTitle = new JobTitle(jobTitle);
+
         HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
         if (numbers != null) {
             for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
@@ -123,13 +148,15 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<Tag>(personTags);
 
         return new Person(modelName, modelNumbers, modelEmails, modelAddresses,
-                new Company("Placeholder"), new JobTitle("Placeholder"), new HashSet<>(), modelTags);
+                modelCompany, modelJobTitle, new HashSet<>(), modelTags);
     }
 
     @Override
     public String toString() {
         return "JsonAdaptedPerson{"
                 + "name='" + name + '\''
+                + ", company='" + company + '\''
+                + ", jobTitle='" + jobTitle + '\''
                 + ", phone='" + numbers + '\''
                 + ", email='" + emails + '\''
                 + ", addresses='" + addresses + '\''
