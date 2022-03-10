@@ -54,7 +54,7 @@ public class ParserUtilTest {
     private static final String VALID_PRONOUN_2 = "she";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_JOBTITLE = "Head Chef [9 to 5]";
+    private static final String VALID_JOBTITLE = "Head Chef";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -136,9 +136,9 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_JOBTITLE));
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_JOBTITLE_2));
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_JOBTITLE_3));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_3));
     }
 
     //***PLEASE DOUBLE CHECK THIS***
