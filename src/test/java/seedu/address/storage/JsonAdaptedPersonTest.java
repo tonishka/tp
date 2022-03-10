@@ -13,14 +13,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_COMPANY = "$tripe";
+    private static final String INVALID_COMPANY = " ";
     private static final String INVALID_JOBTITLE = "#1 Employee";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -28,7 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PRONOUN = "him/her";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_NAME = "Benson";
     private static final String VALID_COMPANY = "Apple";
     private static final String VALID_JOBTITLE = "Accountant";
     private static final String VALID_PHONE = "98765432";
@@ -40,7 +37,6 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -81,6 +77,41 @@ public class JsonAdaptedPersonTest {
                 validNumbers, validEmails,
                 validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidCompany_throwsIllegalValueException() {
+        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+
+        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, INVALID_COMPANY, VALID_JOBTITLE, validNumbers,
+                        validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        String expectedMessage = Company.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullCompany_throwsIllegalValueException() {
+        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+
+        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_JOBTITLE,
+                validNumbers, validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
