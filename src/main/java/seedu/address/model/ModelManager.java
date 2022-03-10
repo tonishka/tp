@@ -149,10 +149,10 @@ public class ModelManager implements Model {
 
     @Override
     public String toString() {
-        return "ModelManager{" +
-                "addressBook=" + addressBook +
-                ", userPrefs=" + userPrefs +
-                ", filteredPersons=" + filteredPersons +
-                '}';
+        return "ModelManager{"
+                + "addressBook=" + addressBook
+                + ", userPrefs=" + userPrefs
+                + ", filteredPersons=" + filteredPersons
+                + '}';
     }
 }
