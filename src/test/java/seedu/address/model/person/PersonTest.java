@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+import java.util.HashSet;
+
 public class PersonTest {
 
     @Test
