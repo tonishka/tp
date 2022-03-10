@@ -51,7 +51,7 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_PRONOUN + s.pronoun + " ")
         );
         person.getAddresses().forEach(
-                (label, address) -> sb.append(PREFIX_ADDRESS + address.addressName + " l/" + label + " ")
+                (label, address) -> sb.append(PREFIX_ADDRESS + address.address + " l/" + label + " ")
         );
         person.getEmails().forEach(
                 (label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " ")
@@ -113,7 +113,7 @@ public class PersonUtil {
             if (addresses.isEmpty()) {
                 sb.append(PREFIX_ADDRESS + " ");
             } else {
-                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.addressName +
+                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.address +
                         " l/" + label + " "));
             }
         }
