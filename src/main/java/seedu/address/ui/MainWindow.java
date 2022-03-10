@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -101,7 +102,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executePersonListCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -154,7 +155,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void loadPersonListScreen() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        CommandBox commandBox = new CommandBox(this::executePersonListCommand);
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
@@ -163,18 +166,53 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void loadContactScreen() {
         contactDetailsPanel = new ContactDetailsPanel();
+        CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
     }
 
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see seedu.address.logic.Logic#executePersonListCommand(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executePersonListCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.executePersonListCommand(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
+
+            if (commandResult.isLoadContactDetails()) {
+                //requireNonNull(commandResult.getPerson());    Commented out until feature implementation is done
+                loadContactScreen();    //Should eventually take Person as a parameter to load
+            }
+
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
+     * Executes the command and returns the result.
+     *
+     * @see seedu.address.logic.Logic#executePersonListCommand(String)
+     */
+    private CommandResult executeContactDetailsCommand(String commandText) throws CommandException, ParseException {
+        try {
+            Person currentPerson = contactDetailsPanel.getPerson();
+            CommandResult commandResult = logic.executeContactDetailsCommand(commandText, currentPerson);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -188,11 +226,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isLoadPersonList()) {
                 loadPersonListScreen();
-            }
-
-            if (commandResult.isLoadContactDetails()) {
-                //requireNonNull(commandResult.getPerson());    Commented out until feature implementation is done
-                loadContactScreen();
             }
 
             return commandResult;

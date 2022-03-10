@@ -79,4 +79,8 @@ public class ContactDetailsPanel extends UiPart<Region> {
         addressesCard = new AddressesCard(person.getAddresses());
         addressesCardPlaceholder.getChildren().add(addressesCard.getRoot());
     }
+
+    public Person getPerson() {
+        return person;
+    }
 }
