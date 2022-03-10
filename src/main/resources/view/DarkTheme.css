@@ -160,6 +160,15 @@
      -fx-border-top-width: 1px;
 }
 
+.info-box {
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-border-top-width: 1px;
+     -fx-border-insets: 4px;
+     -fx-padding: 5px;
+     -fx-border-radius: 5px;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }

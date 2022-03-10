@@ -24,9 +24,19 @@ public class ContactDetailsPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ContactDetailsPanel.class);
 
     private final ParticularsCard particularsCard;
+    private final NumbersCard numbersCard;
 
     @FXML
     private StackPane particularsCardPlaceholder;
+
+    @FXML
+    private StackPane numbersCardPlaceholder;
+
+    @FXML
+    private StackPane emailsCardPlaceholder;
+
+    @FXML
+    private StackPane addressesCardPlaceholder;
 
     //Temporary, until we connect this to the rest of the app
     private Person person = new Person(
@@ -57,5 +67,8 @@ public class ContactDetailsPanel extends UiPart<Region> {
         particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
                 person.getJobTitle(), person.getCompany());
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());
+
+        numbersCard = new NumbersCard(person.getNumbers());
+        numbersCardPlaceholder.getChildren().add(numbersCard.getRoot());
     }
 }

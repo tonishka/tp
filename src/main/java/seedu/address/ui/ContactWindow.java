@@ -42,7 +42,7 @@ public class ContactWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane contactDetailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +111,7 @@ public class ContactWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         contactDetailsPanel = new ContactDetailsPanel();
-        personListPanelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
+        contactDetailsPanelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
