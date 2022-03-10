@@ -10,14 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class JobTitle {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "For Job Titles (assuming job titles can only start with"
-                    + "alphabets and contain only alphabets and certain special characters from thereon)";
+            "JobTitle can take any values, and it should not be blank";
 
     /*
      * The first character of the job title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[A-Za-z][\\sA-Za-z_()\\[\\]<>@.#&+-]*$";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 
