@@ -1,12 +1,18 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+
+
 import javafx.fxml.FXML;
+
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -40,13 +46,25 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
-
+        /*
+        Pattern pattern = Pattern.compile("add [a-zA-Z]+", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(commandText);
+        if (matcher.find()) {
+            System.out.println("as");
+            handleOptional();
+        }*/
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    @FXML
+    public void handleOptional() {
+        OptWindow optWindow = new OptWindow();
+        optWindow.show();
     }
 
     /**

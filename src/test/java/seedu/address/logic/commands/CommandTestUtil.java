@@ -65,9 +65,9 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + " " + LABEL_HOME;
-    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + " " + LABEL_WORK;
-    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + " " + LABEL_FRIEND;
+    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + LABEL_HOME;
+    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + LABEL_WORK;
+    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + LABEL_FRIEND;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PRONOUN_DESC_HIM = " " + PREFIX_PRONOUN + VALID_PRONOUN_HIM;

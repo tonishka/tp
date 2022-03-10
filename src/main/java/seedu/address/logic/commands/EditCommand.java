@@ -131,6 +131,11 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
+    @Override
+    public String toString() {
+        return "Edit " + index + ": " + editPersonDescriptor;
+    }
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
@@ -285,6 +290,49 @@ public class EditCommand extends Command {
                     && getEmails().equals(e.getEmails())
                     && getAddresses().equals(e.getAddresses())
                     && getTags().equals(e.getTags());
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            builder.append("Name: ")
+                    .append(getName())
+                    .append("; Company: ")
+                    .append(getCompany())
+                    .append("; Job Title: ")
+                    .append(getJobTitle());
+
+            Set<Pronoun> pronouns = getPronouns().get();
+            if (!pronouns.isEmpty()) {
+                builder.append("; Pronouns: ");
+                pronouns.forEach(builder::append);
+            }
+
+            Set<Tag> tags = getTags().get();
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+
+            Map<String, Phone> numbers = getNumbers().get();
+            if (!numbers.isEmpty()) {
+                builder.append("; Numbers: ");
+                numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+            }
+
+            Map<String, Address> addresses = getAddresses().get();
+            if (!addresses.isEmpty()) {
+                builder.append("; Addresses: ");
+                addresses.forEach((label, address) -> builder.append(address.addressName + " l/" + label + " "));
+            }
+
+            Map<String, Email> emails = getEmails().get();
+            if (!emails.isEmpty()) {
+                builder.append("; Emails: ");
+                emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
+            }
+
+            return builder.toString();
         }
     }
 }
