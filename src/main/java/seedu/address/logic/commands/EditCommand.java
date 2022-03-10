@@ -102,9 +102,9 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
 
-        Map<String, Phone> updatedPhones = editPersonDescriptor.getPhone().orElse(personToEdit.getNumbers());
-        Map<String, Email> updatedEmails = editPersonDescriptor.getEmail().orElse(personToEdit.getEmails());
-        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddress().orElse(personToEdit.getAddresses());
+        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(personToEdit.getNumbers());
+        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
+        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(personToEdit.getAddresses());
 
         Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
@@ -154,9 +154,9 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.numbers);
-            setEmail(toCopy.emails);
-            setAddress(toCopy.addresses);
+            setNumbers(toCopy.numbers);
+            setEmails(toCopy.emails);
+            setAddresses(toCopy.addresses);
             setTags(toCopy.tags);
             setCompany(toCopy.company);
             setJobTitle(toCopy.jobTitle);
@@ -200,29 +200,29 @@ public class EditCommand extends Command {
 
         //-----Multiple data fields----
         //Phone
-        public void setPhone(HashMap<String, Phone> numbers) {
+        public void setNumbers(Map<String, Phone> numbers) {
             this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
         }
 
-        public Optional<Map<String, Phone>> getPhone() {
+        public Optional<Map<String, Phone>> getNumbers() {
             return (numbers != null) ? Optional.of(Collections.unmodifiableMap(numbers)) : Optional.empty();
         }
 
         //Email
-        public void setEmail(HashMap<String, Email> emails) {
+        public void setEmails(Map<String, Email> emails) {
             this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
         }
 
-        public Optional<Map<String, Email>> getEmail() {
+        public Optional<Map<String, Email>> getEmails() {
             return (emails != null) ? Optional.of(Collections.unmodifiableMap(emails)) : Optional.empty();
         }
 
         //Address
-        public void setAddress(HashMap<String, Address> addresses) {
+        public void setAddresses(Map<String, Address> addresses) {
             this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
         }
 
-        public Optional<Map<String, Address>> getAddress() {
+        public Optional<Map<String, Address>> getAddresses() {
             return (addresses != null) ? Optional.of(Collections.unmodifiableMap(addresses)) : Optional.empty();
         }
 
@@ -281,9 +281,9 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getNumbers().equals(e.getNumbers())
+                    && getEmails().equals(e.getEmails())
+                    && getAddresses().equals(e.getAddresses())
                     && getTags().equals(e.getTags());
         }
     }

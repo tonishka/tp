@@ -65,9 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setJobTitle(ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOBTITLE).get()));
         }
         //----Multi-field data-----
-        parseNumbersForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setPhone);
-        parseAddressesForEdit(argMultimap.getAllValues(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
-        parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmail);
+        parseNumbersForEdit(argMultimap.getAllValues(PREFIX_PHONE)).ifPresent(editPersonDescriptor::setNumbers);
+        parseAddressesForEdit(argMultimap.getAllValues(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddresses);
+        parseEmailsForEdit(argMultimap.getAllValues(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmails);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parsePronounsForEdit(argMultimap.getAllValues(PREFIX_PRONOUN)).ifPresent(editPersonDescriptor::setPronouns);
 
@@ -109,7 +109,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> addressCollection = addresses.size() == 1 && addresses.contains("")
                 ? Collections.emptySet() : addresses;
-        return Optional.of(ParserUtil.parseAddressess(addressCollection));
+        return Optional.of(ParserUtil.parseAddresses(addressCollection));
     }
 
     /**

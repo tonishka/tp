@@ -300,7 +300,7 @@ public class ParserUtilTest {
     @Test
     public void parseAddresses_collectionWithValidAddresses_returnsAddressesMap() throws Exception {
         HashMap<String, Address> actualAddressesMap = ParserUtil
-                .parseAddressess(Arrays.asList(VALID_ADDRESS, VALID_ADDRESS_WITH_LABEL));
+                .parseAddresses(Arrays.asList(VALID_ADDRESS, VALID_ADDRESS_WITH_LABEL));
         HashMap<String, Address> expectedAddressesMap = new HashMap<String, Address>();
         expectedAddressesMap.put("", new Address(VALID_ADDRESS));
         expectedAddressesMap.put("home", new Address(VALID_ADDRESS));
@@ -311,11 +311,11 @@ public class ParserUtilTest {
     @Test
     public void parseAddresses_collectionWithInvalidAddressesPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseAddressess(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS)));
+                .parseAddresses(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS)));
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseAddressess(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS_WITH_LABEL_2)));
+                .parseAddresses(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS_WITH_LABEL_2)));
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseAddressess(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS_WITH_LABEL_3)));
+                .parseAddresses(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS_WITH_LABEL_3)));
     }
 
     //------------------------------------------------------------------------------------------------------------------

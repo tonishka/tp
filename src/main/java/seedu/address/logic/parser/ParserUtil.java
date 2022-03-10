@@ -110,18 +110,13 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (trimmedAddress.contains("l/")) {
-            String[] addressWithTag = trimmedAddress.split(" l/ ");
-            if (Address.isValidAddress(addressWithTag[0])) {
-                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-            }
-            return new Address(addressWithTag[0]);
-        } else {
-            if (Address.isValidAddress(trimmedAddress)) {
-                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-            }
-            return new Address(trimmedAddress);
+        String[] addressWithTag = trimmedAddress.split(" l/ ");
+        //Regardless if there is a label or not, the first entry in the array
+        //will always be the main value (without label), so this works
+        if (!Address.isValidAddress(addressWithTag[0])) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
+        return new Address(addressWithTag[0]);
     }
 
     /**
@@ -131,7 +126,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given address is invalid.
      */
-    public static HashMap<String, Address> parseAddressess(Collection<String> addresses) throws ParseException {
+    public static HashMap<String, Address> parseAddresses(Collection<String> addresses) throws ParseException {
         requireNonNull(addresses);
         final HashMap<String, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
@@ -151,18 +146,13 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (phone.contains("l/")) {
-            String[] phoneWithTag = trimmedPhone.split(" l/ ");
-            if (Phone.isValidPhone(phoneWithTag[0])) {
-                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            return new Phone(phoneWithTag[0]);
-        } else {
-            if (Phone.isValidPhone(trimmedPhone)) {
-                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            return new Phone(trimmedPhone);
+        String[] phoneWithTag = trimmedPhone.split(" l/ ");
+        //Regardless if there is a label or not, the first entry in the array
+        //will always be the main value (without label), so this works
+        if (!Phone.isValidPhone(phoneWithTag[0])) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
+        return new Phone(phoneWithTag[0]);
     }
 
     /**
@@ -192,18 +182,13 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (trimmedEmail.contains(" l/ ")) {
-            String[] emailWithTag = trimmedEmail.split(" l/ ");
-            if (Email.isValidEmail(emailWithTag[0])) {
-                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-            }
-            return new Email(emailWithTag[0]);
-        } else {
-            if (Email.isValidEmail(trimmedEmail)) {
-                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-            }
-            return new Email(trimmedEmail);
+        String[] emailWithTag = trimmedEmail.split(" l/ ");
+        //Regardless if there is a label or not, the first entry in the array
+        //will always be the main value (without label), so this works
+        if (!Email.isValidEmail(emailWithTag[0])) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
+        return new Email(emailWithTag[0]);
     }
 
     /**
