@@ -35,7 +35,7 @@ public class ParserUtilTest {
     private static final String INVALID_COMPANY = " ";
 
     private static final String INVALID_JOBTITLE = " ";
-    private static final String INVALID_JOBTITLE_2 = "PizzaHut\nWorker";
+    private static final String INVALID_JOBTITLE_2 = " PizzaHut Worker";
     private static final String INVALID_JOBTITLE_3 = "        ";
 
     private static final String INVALID_PHONE_LABEL_1 = "123456l/ home";

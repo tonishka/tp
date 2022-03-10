@@ -142,13 +142,13 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private HashMap<String, Phone> numbers = new HashMap<>();
-        private HashMap<String, Email> emails = new HashMap<>();
-        private HashMap<String, Address> addresses = new HashMap<>();
+        private HashMap<String, Phone> numbers;
+        private HashMap<String, Email> emails;
+        private HashMap<String, Address> addresses;
         private Company company;
         private JobTitle jobTitle;
-        private HashSet<Pronoun> pronouns = new HashSet<>();
-        private HashSet<Tag> tags = new HashSet<>();
+        private HashSet<Pronoun> pronouns;
+        private HashSet<Tag> tags;
 
         public EditPersonDescriptor() {
         }

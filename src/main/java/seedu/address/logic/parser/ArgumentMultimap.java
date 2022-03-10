@@ -64,9 +64,9 @@ public class ArgumentMultimap {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
-            builder.append("Prefix:" + entry.getKey() + " ");
+            builder.append("(Prefix:" + entry.getKey() + " ");
             for (String arg : entry.getValue()) {
-                builder.append("Arg: " + arg + " ");
+                builder.append("Arg:" + arg + ") ");
             }
         }
         return builder.toString();

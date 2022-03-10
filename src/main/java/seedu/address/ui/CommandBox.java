@@ -40,13 +40,6 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
-        /*
-        Pattern pattern = Pattern.compile("add [a-zA-Z]+", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(commandText);
-        if (matcher.find()) {
-            System.out.println("as");
-            handleOptional();
-        }*/
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
