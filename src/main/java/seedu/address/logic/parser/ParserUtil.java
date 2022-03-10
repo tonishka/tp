@@ -113,13 +113,10 @@ public class ParserUtil {
         String[] addressWithTag = trimmedAddress.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
-        if (!Address.isValidAddress(addressWithTag[0])) {
+        if (!Address.isValidAddress(addressWithTag[0]) || addressWithTag[0].contains("l/")) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        if (addressWithTag[0].contains("l/") && !addressWithTag[0].contains(" l/")) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(addressWithTag[0]);
+        return new Address(addressWithTag[0].trim());
     }
 
     /**
@@ -149,13 +146,13 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        String[] phoneWithTag = trimmedPhone.split(" l/ ");
+        String[] phoneWithTag = trimmedPhone.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
-        if (!Phone.isValidPhone(phoneWithTag[0])) {
+        if (!Phone.isValidPhone(phoneWithTag[0]) || phoneWithTag[0].contains("l/")) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(phoneWithTag[0]);
+        return new Phone(phoneWithTag[0].trim());
     }
 
     /**
@@ -185,13 +182,13 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        String[] emailWithTag = trimmedEmail.split(" l/ ");
+        String[] emailWithTag = trimmedEmail.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
-        if (!Email.isValidEmail(emailWithTag[0])) {
+        if (!Email.isValidEmail(emailWithTag[0]) || emailWithTag[0].contains("l/")) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new Email(emailWithTag[0]);
+        return new Email(emailWithTag[0].trim());
     }
 
     /**

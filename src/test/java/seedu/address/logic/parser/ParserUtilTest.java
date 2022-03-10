@@ -33,19 +33,18 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_COMPANY = " ";
+
     private static final String INVALID_JOBTITLE = " ";
     private static final String INVALID_JOBTITLE_2 = "PizzaHut\nWorker";
     private static final String INVALID_JOBTITLE_3 = "        ";
 
     private static final String INVALID_PHONE_LABEL = "123456l/ home";
-    private static final String INVALID_PHONE_LABEL_2 = "123456 l/home";
-    private static final String INVALID_PHONE_LABEL_3 = "123456l/home";
+    private static final String INVALID_PHONE_LABEL_2 = "123456l/home";
 
     private static final String INVALID_ADDRESS_WITH_LABEL_1 = "l/home";
     private static final String INVALID_ADDRESS_WITH_LABEL_2 = "123 Main Street #0505l/home";
 
     private static final String INVALID_ADDRESS_WITH_LABEL_3 = "23 Main Street #0505l/ home";
-    private static final String INVALID_EMAIL_WITH_LABEL_1 = "rachel@example.com l/home";
     private static final String INVALID_EMAIL_WITH_LABEL_2 = "rachel@example.coml/home";
     private static final String INVALID_EMAIL_WITH_LABEL_3 = "rachel@example.coml/ home";
 
@@ -60,9 +59,9 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
-    private static final String VALID_ADDRESS_WITH_LABEL = "123 Main Street #0505 l/ home";
-    private static final String VALID_EMAIL_WITH_LABEL = "rachel@example.com l/ friend";
-    private static final String VALID_PHONE_WITH_LABEL = "123456 l/ home";
+    private static final String VALID_ADDRESS_WITH_LABEL = "123 Main Street #0505 l/home";
+    private static final String VALID_EMAIL_WITH_LABEL = "rachel@example.com l/friend";
+    private static final String VALID_PHONE_WITH_LABEL = "123456 l/home";
 
 
     private static final String WHITESPACE = " \t\r\n";
@@ -204,7 +203,7 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parsePhone_invalidValueWithLabel_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_LABEL));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_LABEL_1));
     }
 
     //***PLEASE DOUBLE CHECK THESE***
@@ -244,9 +243,9 @@ public class ParserUtilTest {
     public void parseNumbers_collectionWithInvalidNumbersPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE)));
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_2)));
+                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_1)));
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_3)));
+                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_2)));
     }
 
     //***PLEASE DOUBLE CHECK THIS****
@@ -311,7 +310,7 @@ public class ParserUtilTest {
 
     //***PLEASE DOUBLE CHECK THIS****
     @Test
-    public void parseAddresses_collectionWithInvalidAddressesPlusLabel_throwsParseException() {
+    public void parseAddresses_collectionWithInvalidAddressesPlusLabel_throwsParseException() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil
                 .parseAddresses(Arrays.asList(VALID_ADDRESS, INVALID_ADDRESS)));
         assertThrows(ParseException.class, () -> ParserUtil
@@ -387,9 +386,9 @@ public class ParserUtilTest {
     public void parseEmails_collectionWithInvalidEmailsPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseEmails(Arrays.asList(VALID_EMAIL, INVALID_EMAIL)));
         assertThrows(ParseException.class, () -> ParserUtil
-                .parseEmails(Arrays.asList(VALID_EMAIL, INVALID_EMAIL_WITH_LABEL_1)));
-        assertThrows(ParseException.class, () -> ParserUtil
                 .parseEmails(Arrays.asList(VALID_EMAIL, INVALID_EMAIL_WITH_LABEL_2)));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseEmails(Arrays.asList(VALID_EMAIL, INVALID_EMAIL_WITH_LABEL_3)));
     }
 
     //------------------------------------------------------------------------------------------------------------------
