@@ -15,6 +15,7 @@ rachel@Macbook-Air ~ % java -version
 openjdk version &quot;11.0.13&quot; 2021-10-19 LTS
 OpenJDK Runtime Environment Zulu11.52+51-CA (build 11.0.13+8-LTS)
 OpenJDK 64-Bit Server VM Zulu11.52+51-CA (build 11.0.13+8-LTS, mixed mode)
+
 ```
     2. If you do not have Java 11 installed, follow the guide given [here](https://java.com/en/download/help/download_options.html).
 
