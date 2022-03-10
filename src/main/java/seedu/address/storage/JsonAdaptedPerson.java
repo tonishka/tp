@@ -76,9 +76,11 @@ class JsonAdaptedPerson {
         }
 
         HashMap<String, Address> modelAddresses = new HashMap<String, Address>();
-        for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
-            String key = mapElement.getKey();
-            modelAddresses.put(key, mapElement.getValue().toModelType());
+        if (addresses != null) {
+            for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
+                String key = mapElement.getKey();
+                modelAddresses.put(key, mapElement.getValue().toModelType());
+            }
         }
 
         if (name == null) {
