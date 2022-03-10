@@ -2,8 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,9 +19,9 @@ public class Person {
     private final Name name;
 
     // Data fields
-    private final HashMap<String, Phone> numbers;
-    private final HashMap<String, Email> emails;
-    private final HashMap<String, Address> addresses;
+    private final Map<String, Phone> numbers;
+    private final Map<String, Email> emails;
+    private final Map<String, Address> addresses;
     private final Company company;
     private final JobTitle jobTitle;
     private final HashSet<Pronoun> pronouns = new HashSet<>();
@@ -30,9 +30,9 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, HashMap<String, Phone> numbers, HashMap<String, Email> emails,
-                  HashMap<String, Address> addresses, Company company, JobTitle jobTitle, HashSet<Pronoun> pronouns,
-                  HashSet<Tag> tags) {
+    public Person(Name name, Map<String, Phone> numbers, Map<String, Email> emails,
+                  Map<String, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
+                  Set<Tag> tags) {
         requireAllNonNull(name, pronouns, tags);
         this.name = name;
         this.numbers = numbers;
@@ -48,15 +48,15 @@ public class Person {
         return name;
     }
 
-    public HashMap<String, Phone> getNumbers() {
+    public Map<String, Phone> getNumbers() {
         return numbers;
     }
 
-    public HashMap<String, Email> getEmails() {
+    public Map<String, Email> getEmails() {
         return emails;
     }
 
-    public HashMap<String, Address> getAddresses() {
+    public Map<String, Address> getAddresses() {
         return addresses;
     }
 

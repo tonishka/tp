@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class JobTitle {
 
-    public static final String MESSAGE_CONSTRAINTS = "Job titles can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "JobTitle can take any values, and it should not be blank";
 
     /*
      * The first character of the job title must not be a whitespace,
@@ -17,7 +18,7 @@ public class JobTitle {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String jobTitle;
 
     /**
      * Constructs an {@code JobTitle}.
@@ -27,7 +28,7 @@ public class JobTitle {
     public JobTitle(String jobTitle) {
         requireNonNull(jobTitle);
         checkArgument(isValidJobTitle(jobTitle), MESSAGE_CONSTRAINTS);
-        value = jobTitle;
+        this.jobTitle = jobTitle;
     }
 
     /**
@@ -39,18 +40,18 @@ public class JobTitle {
 
     @Override
     public String toString() {
-        return value;
+        return jobTitle;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof JobTitle // instanceof handles nulls
+                && jobTitle.equals(((JobTitle) other).jobTitle)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return jobTitle.hashCode();
     }
 }

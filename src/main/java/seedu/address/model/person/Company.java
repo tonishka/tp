@@ -17,7 +17,7 @@ public class Company {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String companyName;
 
     /**
      * Constructs an {@code Company}.
@@ -27,7 +27,7 @@ public class Company {
     public Company(String company) {
         requireNonNull(company);
         checkArgument(isValidCompany(company), MESSAGE_CONSTRAINTS);
-        value = company;
+        companyName = company;
     }
 
     /**
@@ -39,18 +39,18 @@ public class Company {
 
     @Override
     public String toString() {
-        return value;
+        return companyName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Company // instanceof handles nulls
+                && companyName.equals(((Company) other).companyName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return companyName.hashCode();
     }
 }
