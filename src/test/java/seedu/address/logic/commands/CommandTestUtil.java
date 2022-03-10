@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRONOUN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -57,20 +58,21 @@ public class CommandTestUtil {
     public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String JOB_TITLE_DESC_AMY = " " + PREFIX_JOBTITLE + VALID_JOB_TITLE_AMY;
-    public static final String JOB_TITLE_DESC_BOB = " " + PREFIX_JOBTITLE + VALID_JOB_TITLE_AMY;
+    public static final String JOB_TITLE_DESC_BOB = " " + PREFIX_JOBTITLE + VALID_JOB_TITLE_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + LABEL_HOME;
-    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + LABEL_WORK;
-    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + LABEL_FRIEND;
+    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + " " + LABEL_HOME;
+    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + " " + LABEL_WORK;
+    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + " " + LABEL_FRIEND;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String PRONOUN_DESC_HIM = " " + PREFIX_TAG + VALID_PRONOUN_HIM;
-    public static final String PRONOUN_DESC_SHE = " " + PREFIX_TAG + VALID_PRONOUN_SHE;
+    public static final String PRONOUN_DESC_HIM = " " + PREFIX_PRONOUN + VALID_PRONOUN_HIM;
+    public static final String PRONOUN_DESC_SHE = " " + PREFIX_PRONOUN + VALID_PRONOUN_SHE;
+    public static final String PRONOUN_DESC_THEY = " " + PREFIX_PRONOUN + VALID_PRONOUN_THEY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

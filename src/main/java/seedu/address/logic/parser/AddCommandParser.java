@@ -51,12 +51,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
-        JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOBTITLE).get());
-
+        Company company = new Company("Placeholder");
+        JobTitle jobTitle = new JobTitle("Placeholder");
         HashMap<String, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
         HashMap<String, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
         HashMap<String, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
+
+        if (arePrefixesPresent(argMultimap, PREFIX_COMPANY)) {
+            company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_JOBTITLE)) {
+            jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOBTITLE).get());
+        }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Pronoun> pronounList = ParserUtil.parsePronouns(argMultimap.getAllValues(PREFIX_PRONOUN));
