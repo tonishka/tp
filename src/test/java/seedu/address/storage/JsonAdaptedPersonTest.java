@@ -116,6 +116,41 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidJobTutle_throwsIllegalValueException() {
+        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+
+        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, INVALID_JOBTITLE, validNumbers,
+                        validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        String expectedMessage = JobTitle.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullJobTitle_throwsIllegalValueException() {
+        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+
+        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+
+        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, null,
+                validNumbers, validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, JobTitle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
         validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
