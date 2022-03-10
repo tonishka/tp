@@ -49,7 +49,7 @@ public class ParserUtil {
         requireNonNull(userInput);
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.contains(" l/ ")) {
-            String[] inputWithTag = trimmedUserInput.split(" l/ ");
+            String[] inputWithTag = trimmedUserInput.split(" l/");
             return Optional.of(inputWithTag[1]);
         } else {
             return Optional.empty();
@@ -110,7 +110,7 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        String[] addressWithTag = trimmedAddress.split(" l/ ");
+        String[] addressWithTag = trimmedAddress.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Address.isValidAddress(addressWithTag[0])) {
@@ -146,7 +146,7 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        String[] phoneWithTag = trimmedPhone.split(" l/ ");
+        String[] phoneWithTag = trimmedPhone.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Phone.isValidPhone(phoneWithTag[0])) {
@@ -182,7 +182,7 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        String[] emailWithTag = trimmedEmail.split(" l/ ");
+        String[] emailWithTag = trimmedEmail.split(" l/");
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Email.isValidEmail(emailWithTag[0])) {
