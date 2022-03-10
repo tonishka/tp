@@ -46,7 +46,7 @@ public class ContactDetailsPanel extends UiPart<Region> {
             new Company("Monsters Inc"),
             new JobTitle("Scarer"),
             new HashSet<>(Arrays.asList(new Pronoun("he"), new Pronoun("him"))),
-            new HashSet<>(Arrays.asList(new Tag("friend")))
+            new HashSet<>(Arrays.asList(new Tag("friend"), new Tag("family")))
     );
 
     /**
@@ -54,7 +54,8 @@ public class ContactDetailsPanel extends UiPart<Region> {
      */
     public ContactDetailsPanel() {
         super(FXML);
-        particularsCard = new ParticularsCard(person.getName(), person.getPronouns());
+        particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
+                person.getJobTitle(), person.getCompany());
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());
     }
 }
