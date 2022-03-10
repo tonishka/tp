@@ -84,3 +84,4 @@ public class ContactDetailsPanel extends UiPart<Region> {
         return person;
     }
 }
+
