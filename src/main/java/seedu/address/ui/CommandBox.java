@@ -11,9 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -59,12 +56,6 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
-    }
-
-    @FXML
-    public void handleOptional() {
-        OptWindow optWindow = new OptWindow();
-        optWindow.show();
     }
 
     /**

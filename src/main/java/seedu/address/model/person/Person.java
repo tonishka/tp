@@ -155,7 +155,7 @@ public class Person {
         Map<String, Address> addresses = getAddresses();
         if (!addresses.isEmpty()) {
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(address.addressName + " l/" + label + " "));
+            addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
         }
 
         Map<String, Email> emails = getEmails();
