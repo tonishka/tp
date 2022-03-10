@@ -17,7 +17,7 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String addressName;
 
     /**
      * Constructs an {@code Address}.
@@ -27,7 +27,7 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        addressName = address;
     }
 
     /**
@@ -39,19 +39,19 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return addressName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                && addressName.equals(((Address) other).addressName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return addressName.hashCode();
     }
 
 }

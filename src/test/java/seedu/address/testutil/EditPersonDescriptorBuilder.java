@@ -1,15 +1,19 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,13 +36,15 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
-        /*
+
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setCompany(person.getCompany());
+        descriptor.setJobTitle(person.getJobTitle());
+        descriptor.setNumbers(person.getNumbers());
+        descriptor.setEmails(person.getEmails());
+        descriptor.setAddresses(person.getAddresses());
+        descriptor.setPronouns(person.getPronouns());
         descriptor.setTags(person.getTags());
-         */
     }
 
     /**
@@ -50,10 +56,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Company} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCompany(String company) {
+        descriptor.setCompany(new Company(company));
+        return this;
+    }
+
+    /**
+     * Sets the {@code JobTitle} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withJobTitle(String jobTitle) {
+        descriptor.setJobTitle(new JobTitle(jobTitle));
+        return this;
+    }
+
+
+    /**
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        HashMap<String, Phone> numbers = new HashMap<>();
+        numbers.put("home", new Phone(phone));
+        numbers.put("", new Phone(phone));
+        descriptor.setNumbers(numbers);
         return this;
     }
 
@@ -61,7 +87,10 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        HashMap<String, Email> emails = new HashMap<>();
+        emails.put("home", new Email(email));
+        emails.put("", new Email(email));
+        descriptor.setEmails(emails);
         return this;
     }
 
@@ -69,7 +98,20 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        HashMap<String, Address> addresses = new HashMap<>();
+        addresses.put("home", new Address(address));
+        addresses.put("", new Address(address));
+        descriptor.setAddresses(addresses);
+        return this;
+    }
+
+    /**
+     * Parses the {@code pronouns} into a {@code Set<Pronouns>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPronouns(String... pronouns) {
+        Set<Pronoun> pronounSet = Stream.of(pronouns).map(Pronoun::new).collect(Collectors.toSet());
+        descriptor.setPronouns(pronounSet);
         return this;
     }
 
