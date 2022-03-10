@@ -14,6 +14,7 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,7 +30,7 @@ class JsonAdaptedPerson {
     private final HashMap<String, JsonAdaptedPhone> numbers;
     private final HashMap<String, JsonAdaptedEmail> emails;
     private final HashMap<String, JsonAdaptedAddress> addresses;
-//    private final List<JsonAdaptedPronoun> pronouns = new ArrayList<>();
+    private final List<JsonAdaptedPronoun> pronouns = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,6 +43,7 @@ class JsonAdaptedPerson {
             @JsonProperty("numbers") HashMap<String, JsonAdaptedPhone> numbers,
             @JsonProperty("emails") HashMap<String, JsonAdaptedEmail> emails,
             @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
+            @JsonProperty("pronouns") List<JsonAdaptedPronoun> pronouns,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.company = company;
@@ -49,7 +51,9 @@ class JsonAdaptedPerson {
         this.numbers = numbers;
         this.emails = emails;
         this.addresses = addresses;
-
+        if (pronouns != null) {
+            this.pronouns.addAll(pronouns);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -80,6 +84,10 @@ class JsonAdaptedPerson {
             addressesMap.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
         }
         addresses = addressesMap;
+
+        pronouns.addAll(source.getPronouns().stream()
+                .map(JsonAdaptedPronoun::new)
+                .collect(Collectors.toList()));
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -140,6 +148,13 @@ class JsonAdaptedPerson {
             }
         }
 
+        final List<Pronoun> personPronouns = new ArrayList<>();
+        for (JsonAdaptedPronoun pronoun : pronouns) {
+            personPronouns.add(pronoun.toModelType());
+        }
+
+        final Set<Pronoun> modelPronouns = new HashSet<Pronoun>(personPronouns);
+
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -148,7 +163,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<Tag>(personTags);
 
         return new Person(modelName, modelNumbers, modelEmails, modelAddresses,
-                modelCompany, modelJobTitle, new HashSet<>(), modelTags);
+                modelCompany, modelJobTitle, modelPronouns, modelTags);
     }
 
     @Override
@@ -160,7 +175,8 @@ class JsonAdaptedPerson {
                 + ", phone='" + numbers + '\''
                 + ", email='" + emails + '\''
                 + ", addresses='" + addresses + '\''
-                + ", tagged=" + tagged +
+                + ", pronouns=" + pronouns
+                + ", tagged=" + tagged
                 + '}';
     }
 }
