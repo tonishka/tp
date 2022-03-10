@@ -11,9 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -82,7 +79,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.address.logic.Logic#execute(String)
+         * @see seedu.address.logic.Logic#executePersonListCommand(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

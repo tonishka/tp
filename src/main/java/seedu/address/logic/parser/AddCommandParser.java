@@ -39,6 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        /* Commented out for now so that the screen can be changed upon an AddCommand. To be fixed once features are
+            implemented.
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
                         .tokenize(args,
@@ -70,8 +73,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Person person = new Person(name, numbers, emails, addresses,
                 company, jobTitle, pronounList, tagList);
+        */
 
-        return new AddCommand(person);
+        return new AddCommand(null);
     }
 
     /**
