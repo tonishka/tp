@@ -72,8 +72,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX
-                , () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> ParserUtil
+                .parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -232,8 +232,8 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_collectionWithInvalidNumbers_throwsParseException() {
-        assertThrows(ParseException.class
-                , () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE_WITH_LABEL, INVALID_PHONE)));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseNumbers(Arrays.asList(VALID_PHONE_WITH_LABEL, INVALID_PHONE)));
         assertThrows(ParseException.class, () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE)));
     }
 
@@ -241,10 +241,10 @@ public class ParserUtilTest {
     @Test
     public void parseNumbers_collectionWithInvalidNumbersPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE)));
-        assertThrows(ParseException.class
-                , () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_2)));
-        assertThrows(ParseException.class
-                , () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_3)));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_2)));
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_3)));
     }
 
     //***PLEASE DOUBLE CHECK THIS****
