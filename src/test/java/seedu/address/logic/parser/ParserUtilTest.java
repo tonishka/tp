@@ -38,13 +38,13 @@ public class ParserUtilTest {
     private static final String INVALID_JOBTITLE_2 = "PizzaHut\nWorker";
     private static final String INVALID_JOBTITLE_3 = "        ";
 
-    private static final String INVALID_PHONE_LABEL = "123456l/ home";
+    private static final String INVALID_PHONE_LABEL_1 = "123456l/ home";
     private static final String INVALID_PHONE_LABEL_2 = "123456l/home";
 
     private static final String INVALID_ADDRESS_WITH_LABEL_1 = "l/home";
     private static final String INVALID_ADDRESS_WITH_LABEL_2 = "123 Main Street #0505l/home";
-
     private static final String INVALID_ADDRESS_WITH_LABEL_3 = "23 Main Street #0505l/ home";
+
     private static final String INVALID_EMAIL_WITH_LABEL_2 = "rachel@example.coml/home";
     private static final String INVALID_EMAIL_WITH_LABEL_3 = "rachel@example.coml/ home";
 

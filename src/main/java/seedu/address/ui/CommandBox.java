@@ -61,12 +61,6 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    @FXML
-    public void handleOptional() {
-        OptWindow optWindow = new OptWindow();
-        optWindow.show();
-    }
-
     /**
      * Sets the command box style to use the default style.
      */
