@@ -74,7 +74,7 @@ class JsonAdaptedPerson {
         numbers = numbersMap;
 
         HashMap<String, JsonAdaptedEmail> emailsMap = new HashMap<String, JsonAdaptedEmail>();
-        for (String key : source.getNumbers().keySet()) {
+        for (String key : source.getEmails().keySet()) {
             emailsMap.put(key, new JsonAdaptedEmail(source.getEmails().get(key)));
         }
         emails = emailsMap;
