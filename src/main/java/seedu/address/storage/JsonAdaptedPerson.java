@@ -147,7 +147,6 @@ class JsonAdaptedPerson {
             }
         }
 
-        System.out.println(addresses);
         final List<Pronoun> personPronouns = new ArrayList<>();
         for (JsonAdaptedPronoun pronoun : pronouns) {
             personPronouns.add(pronoun.toModelType());
