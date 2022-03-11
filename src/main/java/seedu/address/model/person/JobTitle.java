@@ -17,7 +17,7 @@ public class JobTitle {
      * otherwise " " (a blank string) becomes a valid input.
      */
 
-    public static final String VALIDATION_REGEX = "^[^\\s\\d\\p{Punct}][A-Za-z\\d\\s]*$";
+    public static final String VALIDATION_REGEX = "[^\\p{javaSpaceChar}\\d\\p{Punct}][A-Za-z\\d\\s]*$";
 
     public final String jobTitle;
 
