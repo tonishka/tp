@@ -13,7 +13,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -161,22 +166,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
         validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
 
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
-                        invalidNumbers, validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
+                invalidNumbers, validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
-/*
- In Reache, phone numbers are not mandatory fields
-    @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-*/
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
@@ -189,22 +183,11 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedEmail> invalidEmails = new HashMap<>();
         invalidEmails.put("email#1", new JsonAdaptedEmail(INVALID_EMAIL));
 
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
-                        validNumbers, invalidEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
+                validNumbers, invalidEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
-/*
- In Reache, emails are not mandatory fields
-    @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-*/
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
@@ -217,23 +200,13 @@ public class JsonAdaptedPersonTest {
         HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
         validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
 
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
-                        validNumbers, validEmails, invalidAddresses, VALID_PRONOUNS, VALID_TAGS);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
+                validNumbers, validEmails, invalidAddresses, VALID_PRONOUNS, VALID_TAGS);
         System.out.println(person);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-/*
- In Reache, addresses are not mandatory fields
-    @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-*/
     @Test
     public void toModelType_invalidPronouns_throwsIllegalValueException() {
         List<JsonAdaptedPronoun> invalidPronouns = new ArrayList<>(VALID_PRONOUNS);
