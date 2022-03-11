@@ -15,7 +15,8 @@ public class Address {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    //public static final String VALIDATION_REGEX = "[^\\s].*";
+    private static final String NO_SPACE = "^[^\\s].*$";
 
     public final String address;
 
@@ -34,7 +35,7 @@ public class Address {
      * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(NO_SPACE);
     }
 
     @Override
