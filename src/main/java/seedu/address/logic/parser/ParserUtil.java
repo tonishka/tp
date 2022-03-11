@@ -114,6 +114,7 @@ public class ParserUtil {
         //Regardless if there is a label or not, the first entry in the array
         //will always be the main value (without label), so this works
         if (!Address.isValidAddress(addressWithTag[0]) || addressWithTag[0].contains("l/")) {
+            System.out.println("Reached here from" + addressWithTag[0]);
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(addressWithTag[0].trim());
