@@ -121,7 +121,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidJobTutle_throwsIllegalValueException() {
+    public void toModelType_invalidJobTitle_throwsIllegalValueException() {
         HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
         validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
 
@@ -202,7 +202,6 @@ public class JsonAdaptedPersonTest {
 
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                 validNumbers, validEmails, invalidAddresses, VALID_PRONOUNS, VALID_TAGS);
-        System.out.println(person);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
