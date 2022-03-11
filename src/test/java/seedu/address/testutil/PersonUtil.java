@@ -45,19 +45,19 @@ public class PersonUtil {
         sb.append(PREFIX_JOBTITLE).append(person.getJobTitle().jobTitle).append(" ");
 
         person.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getPronouns().stream().forEach(
-                s -> sb.append(PREFIX_PRONOUN + s.pronoun + " ")
+            s -> sb.append(PREFIX_PRONOUN + s.pronoun + " ")
         );
-        person.getAddresses().forEach(
-                (label, address) -> sb.append(PREFIX_ADDRESS + address.address + " l/" + label + " ")
+        person.getAddresses().forEach((
+            label, address) -> sb.append(PREFIX_ADDRESS + address.address + " l/" + label + " ")
         );
-        person.getEmails().forEach(
-                (label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " ")
+        person.getEmails().forEach((
+            label, email) -> sb.append(PREFIX_EMAIL + email.email + " l/" + label + " ")
         );
-        person.getNumbers().forEach(
-                (label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/" + label + " ")
+        person.getNumbers().forEach((
+            label, number) -> sb.append(PREFIX_PHONE + number.phone + " l/" + label + " ")
         );
 
         return sb.toString();
@@ -70,7 +70,8 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.company).append(" "));
-        descriptor.getJobTitle().ifPresent(jobTitle -> sb.append(PREFIX_JOBTITLE).append(jobTitle.jobTitle).append(" "));
+        descriptor.getJobTitle().ifPresent(jobTitle -> sb.append(PREFIX_JOBTITLE)
+                .append(jobTitle.jobTitle).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
@@ -113,8 +114,8 @@ public class PersonUtil {
             if (addresses.isEmpty()) {
                 sb.append(PREFIX_ADDRESS + " ");
             } else {
-                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.address +
-                        " l/" + label + " "));
+                addresses.forEach((label, address) -> sb.append(PREFIX_ADDRESS + address.address
+                        + " l/" + label + " "));
             }
         }
 
