@@ -84,7 +84,6 @@ class JsonAdaptedPerson {
             addressesMap.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
         }
         addresses = addressesMap;
-
         pronouns.addAll(source.getPronouns().stream()
                 .map(JsonAdaptedPronoun::new)
                 .collect(Collectors.toList()));
@@ -148,6 +147,7 @@ class JsonAdaptedPerson {
             }
         }
 
+        System.out.println(addresses);
         final List<Pronoun> personPronouns = new ArrayList<>();
         for (JsonAdaptedPronoun pronoun : pronouns) {
             personPronouns.add(pronoun.toModelType());
