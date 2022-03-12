@@ -1,6 +1,11 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -84,7 +89,6 @@ class JsonAdaptedPerson {
             addressesMap.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
         }
         addresses = addressesMap;
-
         pronouns.addAll(source.getPronouns().stream()
                 .map(JsonAdaptedPronoun::new)
                 .collect(Collectors.toList()));
@@ -117,7 +121,8 @@ class JsonAdaptedPerson {
         final Company modelCompany = new Company(company);
 
         if (jobTitle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, JobTitle.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);

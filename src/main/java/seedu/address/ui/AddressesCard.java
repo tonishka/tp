@@ -1,12 +1,13 @@
 package seedu.address.ui;
 
+import java.util.Map;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Address;
-import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Card containing the addresses associated with a person.

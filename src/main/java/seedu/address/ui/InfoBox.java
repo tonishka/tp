@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import java.util.logging.Logger;
 
 /**
  * Bordered container that displays a piece of information below its corresponding label.
