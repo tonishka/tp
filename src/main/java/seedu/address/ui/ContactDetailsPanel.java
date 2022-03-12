@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -13,11 +18,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.logging.Logger;
 
 public class ContactDetailsPanel extends UiPart<Region> {
     private static final String FXML = "ContactDetailsPanel.fxml";

@@ -1,5 +1,11 @@
 package seedu.address.ui;
 
+import static java.util.Objects.isNull;
+
+import java.util.Iterator;
+import java.util.Set;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,10 +16,6 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.logging.Logger;
-import static java.util.Objects.isNull;
 
 /**
  * Card that displays a persons particulars, including their name, pronouns, tags, and occupation details.
