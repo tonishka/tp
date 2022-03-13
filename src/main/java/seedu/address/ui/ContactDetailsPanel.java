@@ -40,32 +40,15 @@ public class ContactDetailsPanel extends UiPart<Region> {
     @FXML
     private StackPane addressesCardPlaceholder;
 
-    //Temporary, until we connect this to the rest of the app
-    private Person person = new Person(
-            new Name("Alex Yeoh"),
-            new HashMap<>() {{
-                put("Personal", new Phone("87438807"));
-                put("Work", new Phone("82165492"));
-            }},
-            new HashMap<>() {{
-                put("Personal", new Email("alexyeoh@example.com"));
-                put("Work", new Email("alex_y@company.com"));
-            }},
-            new HashMap<>() {{
-                put("Home", new Address("Blk 30 Geylang Street 29, #06-40"));
-                put("Office", new Address("123 Raffles Business Tower"));
-            }},
-            new Company("Monsters Inc"),
-            new JobTitle("Scarer"),
-            new HashSet<>(Arrays.asList(new Pronoun("he"), new Pronoun("him"))),
-            new HashSet<>(Arrays.asList(new Tag("friend"), new Tag("family")))
-    );
+    private Person person;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ContactDetailsPanel() {
+    public ContactDetailsPanel(Person person) {
         super(FXML);
+        this.person = person;
+
         particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
                 person.getJobTitle().orElse(null), person.getCompany().orElse(null));
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());

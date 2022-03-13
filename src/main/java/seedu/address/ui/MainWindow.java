@@ -18,6 +18,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -164,8 +166,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches the screen to display the contact information of a specific person.
      */
-    private void loadContactScreen() {
-        contactDetailsPanel = new ContactDetailsPanel();
+    private void loadContactScreen(Person person) {
+        contactDetailsPanel = new ContactDetailsPanel(person);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -192,8 +194,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLoadContactDetails()) {
-                //requireNonNull(commandResult.getPerson());    Commented out until feature implementation is done
-                loadContactScreen(); //Should eventually take Person as a parameter to load
+                requireNonNull(commandResult.getPerson());
+                loadContactScreen(commandResult.getPerson());
             }
 
             return commandResult;
