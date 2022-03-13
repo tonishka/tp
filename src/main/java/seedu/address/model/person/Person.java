@@ -46,6 +46,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Copy constructor.
+     */
     public Person(Person toCopy) {
         setName(toCopy.name);
         setNumbers(toCopy.numbers);
@@ -59,11 +62,12 @@ public class Person {
 
     /**
      * Returns an empty person with nothing values.
+     *
      * @return an empty person with nothing values
      */
     public static Person getEmptyPerson() {
-        return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>()
-                , new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
+        return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
+                new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
     }
 
     public Name getName() {

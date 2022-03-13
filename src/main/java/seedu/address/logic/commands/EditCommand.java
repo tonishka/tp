@@ -71,6 +71,13 @@ public class EditCommand extends Command {
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
+    /**
+     * Returns a new EditCommand that sets the personToEdit
+     * to the value of the parameter.
+     *
+     * @param personToEdit person in the AddressBook to be edited
+     * @return EditCommand with the person to be edited
+     */
     public EditCommand parsePerson(Person personToEdit) {
         requireNonNull(personToEdit);
         return new EditCommand(editPersonDescriptor, personToEdit);
@@ -89,8 +96,8 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false
-                , false, true,
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false,
+                false, true,
                 editedPerson);
     }
 
