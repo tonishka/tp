@@ -196,8 +196,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isLoadContactDetails()) {
                 Person personToEdit = commandResult.getPerson();
-                requireNonNull(personToEdit);    //Commented out until feature implementation is done
-                loadContactScreen(personToEdit); //Should eventually take Person as a parameter to load
+                requireNonNull(personToEdit);
+                loadContactScreen(personToEdit);
             }
 
             return commandResult;
