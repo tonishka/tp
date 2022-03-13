@@ -50,4 +50,8 @@ public class Tag {
     public String toString() {
         return tagName;
     }
+
+    public String prettyString() {
+        return "[" + tagName + "]";
+    }
 }
