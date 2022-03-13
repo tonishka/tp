@@ -41,7 +41,7 @@ public class ContactDetailsParser {
         switch (commandWord) {
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCommandParser().parse(arguments).parsePerson(person);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -164,8 +166,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches the screen to display the contact information of a specific person.
      */
-    private void loadContactScreen() {
-        contactDetailsPanel = new ContactDetailsPanel();
+    private void loadContactScreen(Person personToDisplay) {
+        contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -192,8 +194,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLoadContactDetails()) {
-                //requireNonNull(commandResult.getPerson());    Commented out until feature implementation is done
-                loadContactScreen(); //Should eventually take Person as a parameter to load
+                Person personToEdit = commandResult.getPerson();
+                requireNonNull(personToEdit);    //Commented out until feature implementation is done
+                loadContactScreen(personToEdit); //Should eventually take Person as a parameter to load
             }
 
             return commandResult;

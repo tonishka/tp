@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -45,20 +46,29 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Returns an empty person with nothing values.
+     * @return an empty person with nothing values
+     */
+    public static Person getEmptyPerson() {
+        return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>()
+                , new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
+    }
+
     public Name getName() {
         return name;
     }
 
     public Map<String, Phone> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableMap(numbers);
     }
 
     public Map<String, Email> getEmails() {
-        return emails;
+        return Collections.unmodifiableMap(emails);
     }
 
     public Map<String, Address> getAddresses() {
-        return addresses;
+        return Collections.unmodifiableMap(addresses);
     }
 
     public Company getCompany() {

@@ -39,7 +39,7 @@ public class Pronoun {
 
     @Override
     public String toString() {
-        return pronoun;
+        return pronoun + "/";
     }
 
     @Override
