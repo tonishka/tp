@@ -146,9 +146,9 @@ Example: `t/Media Contact t/Has kids`
 
 #### 2.3.8 Add/Edit pronoun: `pronoun`
 
-Format: `p/<PRONOUNS>`
+Format: `pr/<PRONOUNS>`
 
-Example: `p/He p/Him`
+Example: `pr/He p/Him`
 
 #### 2.3.9 Delete field: `del`
 
@@ -201,6 +201,6 @@ Format: `exit`
 | **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
 | **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
 | **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/Media Contact t/Has kids` |
-| **Pronouns** | No | Format: `p/<PRONOUNS>` <br> Example: `p/They p/Them` |
+| **Pronouns** | No | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them` |
 
 [Back to top](#table-of-contents)
