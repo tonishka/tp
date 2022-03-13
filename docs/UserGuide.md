@@ -146,7 +146,7 @@ Example: `t/Media Contact t/Has kids`
 
 #### 2.3.8 Add/Edit pronoun: `pronoun`
 
-Format: `pr/<PRONOUNS>`
+Format: `pr/<PRONOUN 1> pr/<PRONOUN 2>...`
 
 Example: `pr/He p/Him`
 
