@@ -106,14 +106,13 @@ Example: `view 34`
 | Symbol | Meaning |
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
-| ; | Used to separate entries when multiple entries are provided. <br> E.g. `phone 12345678; 43214321` denotes two phone numbers. |
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br>E.g. `phone 12345678 /personal` labels the given number a personal number. |
 | <...> | Indicates the argument that the user should provide in that area |
 
 #### 2.3.2 Add/Edit phone numbers: phone
-Format: `p/<NUMBER 1> l/<LABEL> p/<NUMBER 2> l/<LABEL>...`
+Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
-Example: `p/8765432 l/Personal; p/9753468 l/Office`
+Example: `ph/8765432 l/Personal ph/9753468 l/Office`
 
 #### 2.3.3 Add/Edit emails: `email`
 Format:  `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...`
@@ -181,7 +180,7 @@ Format: `exit`
 | **Action** | **Format, Example** |
 | --- | --- |
 | **Add** | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
-| **Edit** | Format: `edit <INDEX NO>` <br> Example: `edit 4` |
+| **Edit** | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> <` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/normal ph/123456` |
 | **Save** | Format: `save` |
 | **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del phone personal` |
 | **Clear** | Format: `clear` |
@@ -194,10 +193,10 @@ Format: `exit`
 
 | **Field** | **Mandatory** | **Format, Example** |
 | --- | --- | --- |
-| **Name** | Yes | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
-| **Phone Number** | No | Format: `p/<NUMBER 1> l/<LABEL> p/<NUMBER 2> l/<LABEL>...` <br> Example: `p/98765432 l/Personal; p/9753468 l/Office` |
-| **Email ID** | No | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official; e/alex98@gmail.com` |
-| **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
+| **Name** | Yes | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy` |
+| **Phone Number** | No | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office` |
+| **Email ID** | No | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com` |
+| **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
 | **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
 | **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
 | **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/Media Contact t/Has kids` |
