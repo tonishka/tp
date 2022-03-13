@@ -28,6 +28,8 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
                 return testPhone(person);
             case "e":
                 return testEmail(person);
+            case "a":
+                return testAddress(person);
             default:
                 return testName(person);
         }
@@ -63,5 +65,11 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
                         person.getEmails(), keyword));
+    }
+
+    private boolean testAddress(Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                        person.getAddresses(), keyword));
     }
 }
