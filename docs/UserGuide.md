@@ -148,7 +148,7 @@ Example: `t/Media Contact t/Has kids`
 
 Format: `pr/<PRONOUN 1> pr/<PRONOUN 2>...`
 
-Example: `pr/He p/Him`
+Example: `pr/He pr/Him`
 
 #### 2.3.9 Delete field: `del`
 
