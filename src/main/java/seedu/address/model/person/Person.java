@@ -18,16 +18,16 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private Name name;
 
     // Data fields
-    private final Map<String, Phone> numbers;
-    private final Map<String, Email> emails;
-    private final Map<String, Address> addresses;
-    private final Company company;
-    private final JobTitle jobTitle;
-    private final HashSet<Pronoun> pronouns = new HashSet<>();
-    private final HashSet<Tag> tags = new HashSet<>();
+    private Map<String, Phone> numbers;
+    private Map<String, Email> emails;
+    private Map<String, Address> addresses;
+    private Company company;
+    private JobTitle jobTitle;
+    private HashSet<Pronoun> pronouns = new HashSet<>();
+    private HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -46,6 +46,17 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    public Person(Person toCopy) {
+        setName(toCopy.name);
+        setNumbers(toCopy.numbers);
+        setEmails(toCopy.emails);
+        setAddresses(toCopy.addresses);
+        setTags(toCopy.tags);
+        setCompany(toCopy.company);
+        setJobTitle(toCopy.jobTitle);
+        setPronouns(toCopy.pronouns);
+    }
+
     /**
      * Returns an empty person with nothing values.
      * @return an empty person with nothing values
@@ -59,32 +70,64 @@ public class Person {
         return name;
     }
 
+    public void setName(Name name) {
+        this.name = name;
+    }
+
     public Map<String, Phone> getNumbers() {
         return Collections.unmodifiableMap(numbers);
+    }
+
+    public void setNumbers(Map<String, Phone> numbers) {
+        this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
     }
 
     public Map<String, Email> getEmails() {
         return Collections.unmodifiableMap(emails);
     }
 
+    public void setEmails(Map<String, Email> emails) {
+        this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
+    }
+
     public Map<String, Address> getAddresses() {
         return Collections.unmodifiableMap(addresses);
+    }
+
+    public void setAddresses(Map<String, Address> addresses) {
+        this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
     }
 
     public Company getCompany() {
         return company;
     }
 
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public JobTitle getJobTitle() {
         return jobTitle;
+    }
+
+    public void setJobTitle(JobTitle jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     public Set<Pronoun> getPronouns() {
         return Collections.unmodifiableSet(pronouns);
     }
 
+    public void setPronouns(Set<Pronoun> pronouns) {
+        this.pronouns = (pronouns != null) ? new HashSet<>(pronouns) : null;
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
     /**
@@ -150,7 +193,7 @@ public class Person {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            tags.forEach(tag -> builder.append("[" + tag + "]"));
         }
 
         Map<String, Phone> numbers = getNumbers();

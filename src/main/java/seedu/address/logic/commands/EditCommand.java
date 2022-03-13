@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     private EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
         requireNonNull(editPersonDescriptor);
         requireNonNull(personToEdit);
-        this.personToEdit = personToEdit;
+        this.personToEdit = new Person(personToEdit);
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
