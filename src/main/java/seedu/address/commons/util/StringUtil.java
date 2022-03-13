@@ -51,7 +51,7 @@ public class StringUtil {
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         return sentence.stream()
-                .map(t -> t.toString())
+                .flatMap(t -> Arrays.stream(t.toString().split(" ")))
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
