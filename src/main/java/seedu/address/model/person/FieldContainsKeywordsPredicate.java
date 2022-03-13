@@ -20,6 +20,8 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
             return testCompany(person);
         } else if (field.equals("j")) {
             return testJob(person);
+        } else if (field.equals("t")) {
+            return testTag(person);
         } else {
             return testName(person);
         }
@@ -38,5 +40,10 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     public boolean testJob(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().jobTitle, keyword));
+    }
+
+    public boolean testTag(Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInSet(person.getTagSet(), keyword));
     }
 }

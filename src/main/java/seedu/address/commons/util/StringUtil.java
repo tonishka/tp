@@ -1,11 +1,15 @@
 package seedu.address.commons.util;
 
+import seedu.address.model.tag.Tag;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
 
 /**
  * Helper functions for handling strings.
@@ -35,6 +39,19 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    public static boolean containsWordIgnoreCaseInSet(HashSet<? extends Object> sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        return sentence.stream()
+                .map(t -> t.toString())
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
