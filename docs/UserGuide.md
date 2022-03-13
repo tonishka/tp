@@ -39,12 +39,12 @@ Reache is a desktop app that helps busy working professionals manage their large
 #### 2.1.1 Adding a contact: `add`
 Adds a person to the contact list.
 
-Format: `add <NAME>`
+Format: `add n/<NAME>`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
 From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
 
-Example: `add Alex Dunphy`
+Example: `add n/Alex Dunphy`
 
 #### 2.1.2 Clearing all contacts: `clear`
 Clears all contacts from the address book.
@@ -111,44 +111,44 @@ Example: `view 34`
 | <...> | Indicates the argument that the user should provide in that area |
 
 #### 2.3.2 Add/Edit phone numbers: phone
-Format: `phone <NUMBER 1> /<LABEL>; <NUMBER 2> /<LABEL>...`
+Format: `p/<NUMBER 1> l/<LABEL> p/<NUMBER 2> l/<LABEL>...`
 
-Example: `phone 98765432 /Personal; phone 9753468 /Office`
+Example: `p/8765432 l/Personal; p/9753468 l/Office`
 
 #### 2.3.3 Add/Edit emails: `email`
-Format:  `email <EMAIL 1> /<LABEL>; <EMAIL 2> /<LABEL>...`
+Format:  `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...`
 
-Example: -email alex@reache.com /Official; email alex98@gmail.com- 
+Example: -e/alex@reache.com l/Official; e/alex98@gmail.com- 
 
 #### 2.3.4 Add/Edit address: `address`
 
-Format: `address <ADDRESS 1> /<LABEL>; <ADDRESS 2> /<LABEL>...`
+Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...`
 
-Example: `address 28 Francis Mine, Sacramento, CA - 654321 /Home`  
+Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home`  
 
 #### 2.3.5 Add/Edit company: `company`
 
-Format: `company <COMPANY>`
+Format: `c/<COMPANY>`
 
-Example: `company Tesla`
+Example: `c/Tesla`
 
 #### 2.3.6 Add/Edit job title: `job`
 
-Format: `job <JOB TITLE>`
+Format: `j/<JOB TITLE>`
 
-Example: `job Software Engineer` 
+Example: `j/Software Engineer` 
 
 #### 2.3.7 Add/Edit tags: `tag`
 
-Format: `tag <TAG 1>; <TAG 2>...`
+Format: `t/<TAG 1> t/<TAG 2>...`
 
-Example: `tag Media Contact; Has kids`
+Example: `t/Media Contact t/Has kids`
 
 #### 2.3.8 Add/Edit pronoun: `pronoun`
 
-Format: `pronoun <PRONOUNS>`
+Format: `p/<PRONOUNS>`
 
-Example: `pronoun He/Him`
+Example: `p/He p/Him`
 
 #### 2.3.9 Delete field: `del`
 
@@ -180,7 +180,7 @@ Format: `exit`
 
 | **Action** | **Format, Example** |
 | --- | --- |
-| **Add** | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
+| **Add** | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
 | **Edit** | Format: `edit <INDEX NO>` <br> Example: `edit 4` |
 | **Save** | Format: `save` |
 | **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del phone personal` |
@@ -194,13 +194,13 @@ Format: `exit`
 
 | **Field** | **Mandatory** | **Format, Example** |
 | --- | --- | --- |
-| **Name** | Yes | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
-| **Phone Number** | No | Format: `phone <NUMBER 1> /<LABEL>; <NUMBER 2> /<LABEL>...` <br> Example: `phone 98765432 /Personal; phone 9753468 /Office` |
-| **Email ID** | No | Format: `email <EMAIL 1> /<LABEL>; <EMAIL 2> /<LABEL>...` <br> Example: `email alex@reache.com /Official; email alex98@gmail.com` |
-| **Address** | No | Format: `address <ADDRESS 1> /<LABEL>; <ADDRESS 2> /<LABEL>...` <br> Example: `address 28 Francis Mine, Sacramento, CA - 654321 /Home` |
-| **Company** | No | Format: `company <COMPANY>` <br> Example: `company Tesla` |
-| **Job Title** | No | Format: `job <JOB TITLE>` <br> Example: `job Software Engineer` |
-| **Tags** | No | Format: `tag <TAG 1>; <TAG 2>...` <br> Example: `tag Media Contact; Has kids` |
-| **Pronouns** | No | Format: `pronoun <PRONOUNS>` <br> Example: `pronoun They/Them` |
+| **Name** | Yes | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
+| **Phone Number** | No | Format: `p/<NUMBER 1> l/<LABEL> p/<NUMBER 2> l/<LABEL>...` <br> Example: `p/98765432 l/Personal; p/9753468 l/Office` |
+| **Email ID** | No | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official; e/alex98@gmail.com` |
+| **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
+| **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
+| **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
+| **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/Media Contact t/Has kids` |
+| **Pronouns** | No | Format: `p/<PRONOUNS>` <br> Example: `p/They p/Them` |
 
 [Back to top](#table-of-contents)
