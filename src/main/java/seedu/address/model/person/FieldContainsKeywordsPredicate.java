@@ -33,33 +33,33 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
         }
     }
 
-    public boolean testCompany(Person person) {
+    private boolean testCompany(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCompany().toString(), keyword));
     }
 
-    public boolean testName(Person person) {
+    private boolean testName(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }
 
-    public boolean testJob(Person person) {
+    private boolean testJob(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().jobTitle, keyword));
     }
 
-    public boolean testTag(Person person) {
+    private boolean testTag(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInSet(person.getTagSet(), keyword));
     }
 
-    public boolean testPhone(Person person) {
+    private boolean testPhone(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
                         person.getNumbers(), keyword));
     }
 
-    public boolean testEmail(Person person) {
+    private boolean testEmail(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
                         person.getEmails(), keyword));
