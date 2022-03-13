@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -29,12 +30,12 @@ public class Person {
     private final HashSet<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Name, numbers, emails, addresses, pronouns, and tags must be present and not null.
      */
     public Person(Name name, Map<String, Phone> numbers, Map<String, Email> emails,
                   Map<String, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
                   Set<Tag> tags) {
-        requireAllNonNull(name, pronouns, tags);
+        requireAllNonNull(name, numbers, emails, addresses, pronouns, tags);
         this.name = name;
         this.numbers = numbers;
         this.emails = emails;
@@ -61,12 +62,12 @@ public class Person {
         return addresses;
     }
 
-    public Company getCompany() {
-        return company;
+    public Optional<Company> getCompany() {
+        return Optional.ofNullable(company);
     }
 
-    public JobTitle getJobTitle() {
-        return jobTitle;
+    public Optional<JobTitle> getJobTitle() {
+        return Optional.ofNullable(jobTitle);
     }
 
     public Set<Pronoun> getPronouns() {
@@ -125,11 +126,17 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getName())
-                .append("; Company: ")
-                .append(getCompany())
-                .append("; Job Title: ")
-                .append(getJobTitle());
+                .append(getName());
+
+        if (!(company == null)) {
+            builder.append("; Company: ")
+                    .append(getCompany().get());
+        }
+
+        if (!(jobTitle == null)) {
+            builder.append("; Job Title: ")
+                    .append(getJobTitle().get());
+        }
 
         Set<Pronoun> pronouns = getPronouns();
         if (!pronouns.isEmpty()) {

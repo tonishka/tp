@@ -69,8 +69,8 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        company = source.getCompany().company;
-        jobTitle = source.getJobTitle().jobTitle;
+        company = source.getCompany().map(c -> c.company).orElse(null);
+        jobTitle = source.getJobTitle().map(j -> j.jobTitle).orElse(null);
 
         HashMap<String, JsonAdaptedPhone> numbersMap = new HashMap<String, JsonAdaptedPhone>();
         for (String key : source.getNumbers().keySet()) {
@@ -112,22 +112,20 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (company == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+        if (!(company == null)) {
+            if (!Company.isValidCompany(company)) {
+                throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
+            }
         }
-        if (!Company.isValidCompany(company)) {
-            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
-        }
-        final Company modelCompany = new Company(company);
 
-        if (jobTitle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    JobTitle.class.getSimpleName()));
+        final Company modelCompany = company == null ? null : new Company(company);
+
+        if (!(jobTitle == null)) {
+            if (!JobTitle.isValidJobTitle(jobTitle)) {
+                throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
+            }
         }
-        if (!JobTitle.isValidJobTitle(jobTitle)) {
-            throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
-        }
-        final JobTitle modelJobTitle = new JobTitle(jobTitle);
+        final JobTitle modelJobTitle = jobTitle == null ? null : new JobTitle(jobTitle);
 
         HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
         if (numbers != null) {

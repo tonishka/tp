@@ -41,8 +41,8 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
 
         sb.append(PREFIX_NAME).append(person.getName().fullName).append(" ");
-        sb.append(PREFIX_COMPANY).append(person.getCompany().company).append(" ");
-        sb.append(PREFIX_JOBTITLE).append(person.getJobTitle().jobTitle).append(" ");
+        sb.append(PREFIX_COMPANY).append(person.getCompany().map(c -> c.company).orElse("")).append(" ");
+        sb.append(PREFIX_JOBTITLE).append(person.getJobTitle().map(j -> j.jobTitle).orElse("")).append(" ");
 
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

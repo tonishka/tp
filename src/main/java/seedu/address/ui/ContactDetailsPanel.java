@@ -67,7 +67,7 @@ public class ContactDetailsPanel extends UiPart<Region> {
     public ContactDetailsPanel() {
         super(FXML);
         particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
-                person.getJobTitle(), person.getCompany());
+                person.getJobTitle().orElse(null), person.getCompany().orElse(null));
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());
 
         numbersCard = new NumbersCard(person.getNumbers());
