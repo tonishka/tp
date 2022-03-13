@@ -11,40 +11,40 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Charisma Kausar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ckcherry23.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://ckcherry23.github.io)]
+[[github](https://github.com/ckcherry23)]
+[[portfolio](team/ckcherry23.md)]
 
-* Role: Undecided
-* Responsibilities: Parsing
+* Role: Developer
+* Responsibilities: In-charge of **Storage** and **Commons**
 
 ### Murad Durrani
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/muraddurrani.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/muraddurrani)]
+[[portfolio](team/muraddurrani.md)]
 
-* Role: Undecided
-* Responsibilities: GUI
+* Role: Developer
+* Responsibilities: In-charge of **Model** and **UI**
 
 ### Tonishka Singh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tonishka.png" width="200px">
 
 [[github](http://github.com/tonishka)] [[portfolio](team/tonishka.md)]
 
-* Role: Undecided
-* Responsibilities: Implementing/Augmenting the Add Command
+* Role: Developer
+* Responsibilities: In-charge of **Main** and **Testing**
 
 ### Nicholas Sun
 
-<img src="images/nicsunxnus.png" width="200px">
+<img src="images/nicsunxnus.png" width="200px" height="200px">
 
 [[github](http://github.com/NicsunXnus)]
 [[portfolio](team/nicsunxnus.md)]
 
-* Role: Parser,Commands
-* Responsibilities: Accountability for anything related to Parser and Commands.
+* Role: Developer
+* Responsibilities: In-charge of **Parser** and **Commands**

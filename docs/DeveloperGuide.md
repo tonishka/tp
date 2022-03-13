@@ -257,71 +257,236 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* really busy working professional
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**User persona**:
+
+<img src="images/Persona.png" />
+
+**Value proposition**: 
+
+We help _busy working professionals_ manage their large list of contacts by providing an **easy-to-use interface to store contacts** and help organize meetings. Our product will help users organize contacts by their companies, job titles, etc., and navigate their professional network quickly and efficiently to find who they are looking for. 
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
+| -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `* * *`  | new user                | view a help page with commands and usage instructions               | understand how to use the application                                                 |
+| `* * *`  | user                    | add a new person to the contact list                                | expand my contacts list                                                               |
+| `* * *`  | user                    | delete a person from the contact list                               | remove contacts I no longer require                                                   |
+| `* * *`  | user                    | label and store a person's phone numbers                            | know how to contact them via phone and which number to use (personal, office, etc.)   |
+| `* * *`  | user                    | label and store a person's email addresses                          | know how to contact them via email and which email to use (personal, office, etc.)    |
+| `* * *`  | user                    | label and store a person's addresses                                | know how to find them via address and which address to use (home, office, etc.)       |
+| `* * *`  | user                    | store a person's company                                            | check which company they work at                                                      |
+| `* * *`  | user                    | store a person's job title                                          | check what job they have                                                              |
+| `* * *`  | user                    | store a person's pronouns                                           | check how they prefer to be addressed                                                 |
+| `* * *`  | user                    | assign custom tags to a person                                      | identify them by the tags I give them                                                 |
+| `* * *`  | user                    | edit a person's contact information                                 | update their contact information without having to delete and create a new contact    |
+| `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
+| `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
+| `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
+| `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
+| `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
+| `* *`    | user                    | be warned when I create a contact with a name that exists           | make sure I do not accidentally create a duplicate contact                            |
+| `* *`    | user with many contacts | search for a contact by name                                        | find the contact I am looking for without having to scroll through a long list        |
+| `* *`    | user with many contacts | search for a contact by their contact information                   | find the person I am looking for when I do not remember their name                    |
+| `*`      | user                    | change the colour scheme of the application                         | personalise my experience                                                             |
+| `*`      | user                    | be able to undo my previous command                                 | undo a command if I make a mistake                                                    |
+| `*`      | user                    | save my contacts' addresses as Google Maps links                    | use Google Maps for directions                                                        |
+| `*`      | user with many contacts | be provided a history of my most searched-for contacts              | easily find the contacts I use more often                                             |
+| `*`      | user with many contacts | access my recent search history                                     | can easily search for a previously searched contact                                   |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Reache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add a contact**
 
-**MSS**
+**MSS:**
+<p>
+1. User requests to add a contact by their name. <br>
+2. Reache goes into ‘edit’ mode. <br>
+3. User <ins>edits the contact’s details (UC2)</ins>. <br>
+4. Reache displays the newly added contact in the list of contacts. <br>
+Use case ends.
+</p>
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions:** <br>
+<p>
+1a. User inputs using the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1. <br>
+</p>
+<p>
+2a. Reache informs that the contact name already exists. <br>
+Use case resumes at step 1. <br>
+</p>
 
-    Use case ends.
+**Use case: UC2 - Edit contact details**
 
-**Extensions**
+**MSS:**
+<p>
+1. User requests to add a specific field for the contact. <br>
+2. Reache saves the specific field. <br>
+&emsp;Repeat steps 1 and 2 until satisfied. <br>
+3. User requests to leave ‘edit’ mode. <br>
+4. Reache returns to ‘default’ mode. <br>
+Use case ends.
+</p>
 
-* 2a. The list is empty.
+**Extensions:** <br>
+<p>
+1a. User inputs the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
+</p>
 
-  Use case ends.
+**Use case: UC3 - Delete a contact**
 
-* 3a. The given index is invalid.
+**MSS:**
+<p>
+1. User requests to delete a contact. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms deletion. <br>
+4. Reache deletes the contact. <br>
+Use case ends.
+</p>
 
-    * 3a1. AddressBook shows an error message.
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+<p>
+3a.  User chooses to cancel the deletion. <br>
+&emsp; 3a1. Reache cancels the deletion. <br>
+&emsp; Use case ends.
+</p>
 
-      Use case resumes at step 2.
+**Use case: UC4 - Find contacts by field**
 
-*{More to be added}*
+**MSS:**
+
+<p>
+1. User requests to find contacts by a given value for a field. <br>
+2. Reache shows all contacts that match the find criterion. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+
+<p>
+1a. No contacts match the find criterion. <br>
+&emsp; 1a1. Reache alerts that no contacts were found. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC5 - View contact's full details**
+
+**MSS:**
+<p>
+1. User requests to view a contact's full details. <br>
+2. Reache displays the contact's full details. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested contact does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+
+**Use case: UC6 - List all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache displays the list. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+
+**Use case: UC7 - Clear all contacts**
+
+**MSS:**
+<p>
+1. User requests to see a list of all contacts. <br>
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all contacts. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a. There are no contacts. <br>
+&emsp; 1a1. Reache alerts that contact list is empty. <br>
+&emsp; Use case ends.
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
+&emsp; Use case ends.
+</p>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Technical requirements:**
 
-*{More to be added}*
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` installed.
+
+**Quality requirements:**
+
+1.  A user with above average typing speed for plain English text should be able to accomplish most of the tasks using commands faster than with the mouse.
+
+**Testability requirements:**
+
+1.  The product should be only for a single user for higher testability.
+
+**Data requirements:**
+
+1.  Data should be stored locally and on a human-editable file.
+2.  The final JAR file size should not exceed 100MB.
+3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+
+**Usability requirements:**
+
+1.  The DG and UG must be PDF-friendly. 
+2.  The GUI should not cause any resolution-related inconveniences to the user for:
+    1.  standard screen resolutions 1920x1080 and higher
+    2.  screen scales 100% and 125%.
+
+    In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
+    1.  resolutions 1280x720 and higher
+    2.  screen scales 150%.
+
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS:** Windows, MacOS, Linux
+* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
+* **'Default' mode:** Allows the user to view their list of contacts
+* **'Edit' mode:** Allows the user to edit contact details
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 

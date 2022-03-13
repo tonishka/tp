@@ -18,7 +18,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses user input entered from the PersonList screen.
  */
 public class AddressBookParser {
 
