@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,14 +17,19 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (field.equals("c")) {
-            return testCompany(person);
-        } else if (field.equals("j")) {
-            return testJob(person);
-        } else if (field.equals("t")) {
-            return testTag(person);
-        } else {
-            return testName(person);
+        switch (field) {
+            case "c":
+                return testCompany(person);
+            case "j":
+                return testJob(person);
+            case "t":
+                return testTag(person);
+            case "p":
+                return testPhone(person);
+            case "e":
+                return testEmail(person);
+            default:
+                return testName(person);
         }
     }
 
@@ -45,5 +51,17 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     public boolean testTag(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInSet(person.getTagSet(), keyword));
+    }
+
+    public boolean testPhone(Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                        person.getNumbers(), keyword));
+    }
+
+    public boolean testEmail(Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                        person.getEmails(), keyword));
     }
 }

@@ -8,6 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -52,6 +53,19 @@ public class StringUtil {
 
         return sentence.stream()
                 .flatMap(t -> Arrays.stream(t.toString().split(" ")))
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    public static boolean containsWordIgnoreCaseInMap(HashMap<String, ? extends Object> sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        return sentence.values().stream()
+                .flatMap(s -> Arrays.stream(s.toString().split(" ")))
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
