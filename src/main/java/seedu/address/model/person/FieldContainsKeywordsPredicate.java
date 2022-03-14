@@ -80,4 +80,12 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
                         person.getAddresses(), keyword));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FieldContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((FieldContainsKeywordsPredicate) other).keywords))
+                && field.equals(((FieldContainsKeywordsPredicate) other).field); // state check
+    }
 }

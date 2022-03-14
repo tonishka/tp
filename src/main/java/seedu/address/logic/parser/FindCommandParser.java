@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] input = trimmedArgs.split("/", 2);
         String field = input[0];
-        String[] fieldKeywords = input[1].split("\\s+");
+        String[] fieldKeywords = input[1].trim().split("\\s+");
 
         return new FindCommand(new FieldContainsKeywordsPredicate(Arrays.asList(fieldKeywords), field));
     }
