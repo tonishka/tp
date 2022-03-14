@@ -16,19 +16,19 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
-    private Name name;
+    private final Name name;
 
     // Data fields
-    private Map<String, Phone> numbers;
-    private Map<String, Email> emails;
-    private Map<String, Address> addresses;
-    private Company company;
-    private JobTitle jobTitle;
-    private HashSet<Pronoun> pronouns = new HashSet<>();
-    private HashSet<Tag> tags = new HashSet<>();
+    private final Map<String, Phone> numbers;
+    private final Map<String, Email> emails;
+    private final Map<String, Address> addresses;
+    private final Company company;
+    private final JobTitle jobTitle;
+    private final HashSet<Pronoun> pronouns = new HashSet<>();
+    private final HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Name, numbers, emails, addresses, pronouns, and tags must be present and not null.
@@ -62,15 +62,15 @@ public class Person {
     }
 
     public Map<String, Phone> getNumbers() {
-        return Collections.unmodifiableMap(numbers);
+        return numbers;
     }
 
     public Map<String, Email> getEmails() {
-        return Collections.unmodifiableMap(emails);
+        return emails;
     }
 
     public Map<String, Address> getAddresses() {
-        return Collections.unmodifiableMap(addresses);
+        return addresses;
     }
 
     public Optional<Company> getCompany() {
@@ -87,6 +87,10 @@ public class Person {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public HashSet<Tag> getTagSet() {
+        return this.tags;
     }
 
     /**
@@ -160,7 +164,7 @@ public class Person {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(tag -> builder.append("[" + tag + "]"));
+            tags.forEach(tag -> builder.append(tag.prettyString()));
         }
 
         Map<String, Phone> numbers = getNumbers();
@@ -184,4 +188,11 @@ public class Person {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Person another) {
+        int nameCompare = this.name.fullName.compareTo(another.name.fullName);
+        int companyCompare = this.company.company.compareTo(another.company.company);
+        int jobCompare = this.company.company.compareTo(another.jobTitle.jobTitle);
+        return nameCompare == 0 ? (companyCompare == 0 ? jobCompare : companyCompare) : nameCompare;
+    }
 }
