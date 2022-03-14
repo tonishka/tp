@@ -75,7 +75,7 @@ _Reache_ saves to the hard disk automatically after any command is issued that c
 
 ### 2.2 Finding Contacts
 #### 2.2.1 Finding contacts: `find`
-Finds a person based on a search category and the value provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
+Finds a person based on a search field and keywords provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
 
 Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 
@@ -85,6 +85,7 @@ Examples:<br>
 `find t/supplier` Finds all contacts who are tagged as `Supplier`. <br>
 `find Alexandra` Finds all contacts who have `Alexandra` somewhere in their contact information.
 
+**Note: `find` expects at least one keyword to match.**
 
 #### 2.2.2 Listing all contacts: `list`
 Shows a list of all contacts in the address book.
