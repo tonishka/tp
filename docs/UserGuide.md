@@ -180,11 +180,11 @@ Format: `exit`
 | **Action** | **Format, Example** |
 | --- | --- |
 | **Add** | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
-| **Edit** | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> <` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/normal ph/123456` |
+| **Edit** | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
 | **Save** | Format: `save` |
-| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del phone personal` |
+| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del p/ personal` |
 | **Clear** | Format: `clear` |
-| **Find** | Format: `find <FIELD> <VALUE>` <br> Example: `find name Michael Scott` |
+| **Find** | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott` |
 | **View** | Format: `view` |
 | **List** | Format: `list` |
 | **Help** | Format: `help` |
@@ -199,7 +199,7 @@ Format: `exit`
 | **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
 | **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
 | **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
-| **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/Media Contact t/Has kids` |
+| **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids` |
 | **Pronouns** | No | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them` |
 
 [Back to top](#table-of-contents)
