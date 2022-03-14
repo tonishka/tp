@@ -64,7 +64,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true, toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true, false, toAdd);
     }
 
     @Override
