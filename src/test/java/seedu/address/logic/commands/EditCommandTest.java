@@ -93,8 +93,8 @@ public class EditCommandTest {
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build()
-                , model.getFilteredPersonList().get(0));
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build(),
+                model.getFilteredPersonList().get(0));
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
