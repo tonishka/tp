@@ -86,7 +86,8 @@ public class DeleteFieldCommand extends Command {
             return false;
         }
 
-        return false;
+        return personToDeleteField.equals(((DeleteFieldCommand) other).personToDeleteField)
+                && deleteFieldDescriptor.equals(((DeleteFieldCommand) other).deleteFieldDescriptor);
     }
 
     /**
@@ -103,7 +104,6 @@ public class DeleteFieldCommand extends Command {
         Company updatedCompany = deleteFieldDescriptor.getCompany().orElse(null);
         JobTitle updatedJobTitle = deleteFieldDescriptor.getJobTitle().orElse(null);
 
-        //New HashMaps are created to remove Unmodifiable Map's limitation
         Map<String, Phone> updatedPhones =
                 new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
 

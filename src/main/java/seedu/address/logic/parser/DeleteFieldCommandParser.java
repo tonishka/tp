@@ -55,7 +55,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         }
 
         EditPersonDescriptor deleteFieldDescriptor = new EditPersonDescriptor(personToDeleteField);
-        //----Single-field data----
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             throw new ParseException(MESSAGE_INVALID_VIEW + "\n"
                     + DeleteFieldCommand.MESSAGE_DELETE_NAME_FAILURE);
