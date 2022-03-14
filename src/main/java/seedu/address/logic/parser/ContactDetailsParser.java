@@ -45,7 +45,7 @@ public class ContactDetailsParser {
             return new BackCommand();
 
         case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditCommandParser().parse(arguments, person);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

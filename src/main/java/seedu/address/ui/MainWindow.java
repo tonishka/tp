@@ -78,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -166,8 +167,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches the screen to display the contact information of a specific person.
      */
-    private void loadContactScreen(Person person) {
-        contactDetailsPanel = new ContactDetailsPanel(person);
+    private void loadContactScreen(Person personToDisplay) {
+        contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -194,8 +195,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLoadContactDetails()) {
-                requireNonNull(commandResult.getPerson());
-                loadContactScreen(commandResult.getPerson());
+                Person personToEdit = commandResult.getPerson();
+                requireNonNull(personToEdit);
+                loadContactScreen(personToEdit);
             }
 
             return commandResult;
