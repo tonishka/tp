@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -44,6 +45,16 @@ public class Person implements Comparable<Person> {
         this.jobTitle = jobTitle;
         this.pronouns.addAll(pronouns);
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Returns an empty person with nothing values.
+     *
+     * @return an empty person with nothing values
+     */
+    public static Person getEmptyPerson() {
+        return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
+                new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
     }
 
     public Name getName() {
@@ -145,7 +156,9 @@ public class Person implements Comparable<Person> {
         Set<Pronoun> pronouns = getPronouns();
         if (!pronouns.isEmpty()) {
             builder.append("; Pronouns: ");
-            pronouns.forEach(builder::append);
+            pronouns.stream().limit(1).forEach(builder::append);
+            pronouns.stream().skip(1).forEach(pronoun -> builder.append("/" + pronoun));
+
         }
 
         Set<Tag> tags = getTags();

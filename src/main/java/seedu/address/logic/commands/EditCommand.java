@@ -11,13 +11,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -55,32 +52,26 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final Person personToEdit;
 
     /**
-     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
+     * @param personToEdit         the target person
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
         requireNonNull(editPersonDescriptor);
-
-        this.index = index;
+        requireNonNull(personToEdit);
+        this.personToEdit = personToEdit;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person personToEdit = this.personToEdit;
+        Person editedPerson = createUpdatedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -88,26 +79,40 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false,
+                false, true,
+                editedPerson);
     }
 
-    /*
+    /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editPersonDescriptor}.Note that this is different from createEditedPerson as
+     * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the editPersonDescriptor
+     * while this adds the values of the HashMaps and HashSet components of Person with that of the
+     * editedPersonDescriptor.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    public static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(personToEdit != null);
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany().orElse(null));
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle().orElse(null));
 
-        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(personToEdit.getNumbers());
-        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
-        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(personToEdit.getAddresses());
+        //New HashMaps are created to remove Unmodifiable Map's limitation
+        Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
+        updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
 
-        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Map<String, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
+        updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
+
+        Map<String, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
+        updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
+
+        Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
+        updatedPronouns.addAll(editPersonDescriptor.getPronouns().orElse(new HashSet<>()));
+
+        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
+        updatedTags.addAll(editPersonDescriptor.getTags().orElse(new HashSet<>()));
 
         return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
                 updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
@@ -127,13 +132,13 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return personToEdit.equals(e.personToEdit)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
-        return "Edit " + index + ": " + editPersonDescriptor;
+        return "Edit " + personToEdit + ": " + editPersonDescriptor;
     }
 
     /**
@@ -295,6 +300,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             final StringBuilder builder = new StringBuilder();
+            builder.append("EditPersonDescriptor: [");
             builder.append("Name: ")
                     .append(getName())
                     .append("; Company: ")
@@ -331,7 +337,7 @@ public class EditCommand extends Command {
                 builder.append("; Emails: ");
                 emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
             }
-
+            builder.append("]");
             return builder.toString();
         }
     }
