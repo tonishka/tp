@@ -6,10 +6,20 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+
+/**
+ * Tests that a {@code Person}'s details matches any of the keywords given for a specified field in {@code Name,
+ * Company, Job Title, Address, Email, Phone, Tags}.
+ */
 public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private final String field;
 
+    /**
+     * Constructor for FieldContainsKeywordsPredicate
+     * @param keywords The list of keywords to match
+     * @param field The field to search in
+     */
     public FieldContainsKeywordsPredicate(List<String> keywords, String field) {
         this.keywords = keywords;
         this.field = field;
