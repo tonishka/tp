@@ -92,11 +92,14 @@ public class EditCommand extends Command {
      * editedPersonDescriptor.
      */
     public static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(personToEdit != null);
+        requireNonNull(personToEdit);
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany().orElse(null));
-        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle().orElse(null));
+        Name updatedName = editPersonDescriptor.getName()
+                .orElse(personToEdit.getName());
+        Company updatedCompany = editPersonDescriptor.getCompany()
+                .orElse(personToEdit.getCompany().orElse(null));
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle()
+                .orElse(personToEdit.getJobTitle().orElse(null));
 
         //New HashMaps are created to remove Unmodifiable Map's limitation
         Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
