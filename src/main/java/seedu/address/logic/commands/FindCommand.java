@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.FieldContainsKeywordsPredicate;
 
 /**
@@ -20,7 +19,6 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " c/ Tesla;SpaceX";
 
-    //private final NameContainsKeywordsPredicate predicate;
     private final FieldContainsKeywordsPredicate predicate;
 
     public FindCommand(FieldContainsKeywordsPredicate predicate) {

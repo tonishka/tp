@@ -77,7 +77,9 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public HashSet<Tag> getTagSet() { return this.tags; }
+    public HashSet<Tag> getTagSet() {
+        return this.tags;
+    }
 
     /**
      * Returns true if both persons have the same name.
