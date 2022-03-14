@@ -28,7 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String field = "all"; // If field is not provided or not a valid field, all fields are searched
         String fieldKeywords[] = trimmedArgs.split(" ");
         String[] tempArr = trimmedArgs.split(" ");
-        final String STARTS_WITH_FIELD_REGEX = "^[a-z]{1,2}[/].*";
+        final String STARTS_WITH_FIELD_REGEX = "^[a-z]{1,2}[/](.|\\n)*";
 
         if (trimmedArgs.matches(STARTS_WITH_FIELD_REGEX)) {
             tempArr = trimmedArgs.split("/", 2);
@@ -41,7 +41,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!field.equals("all") && !tempArr[1].trim().isEmpty()) {
             // Field provided and keywords are given
-            fieldKeywords = tempArr[1].trim().split(" ");
+            fieldKeywords = tempArr[1].trim().split("\\s+");
         }
 
         return new FindCommand(new FieldContainsKeywordsPredicate(Arrays.asList(fieldKeywords), field));
