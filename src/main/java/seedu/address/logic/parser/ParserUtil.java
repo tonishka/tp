@@ -132,7 +132,7 @@ public class ParserUtil {
         final HashMap<String, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
             Address parsedAddress = parseAddress(address);
-            String label = parseLabel(address).orElseGet(() -> "");
+            String label = parseLabel(address).orElseGet(() -> "Address #" + parsedAddress.hashCode());
             addressesMap.put(label, parsedAddress);
         }
         return addressesMap;
@@ -168,7 +168,7 @@ public class ParserUtil {
         final HashMap<String, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
             Phone parsedPhone = parsePhone(phone);
-            String label = parseLabel(phone).orElseGet(() -> "");
+            String label = parseLabel(phone).orElseGet(() -> "Phone #" + parsedPhone.hashCode());
             numbersMap.put(label, parsedPhone);
         }
         return numbersMap;
@@ -204,7 +204,7 @@ public class ParserUtil {
         final HashMap<String, Email> emailMap = new HashMap<>();
         for (String email : emails) {
             Email parsedEmail = parseEmail(email);
-            String label = parseLabel(email).orElseGet(() -> "");
+            String label = parseLabel(email).orElseGet(() -> "Email #" + parsedEmail.hashCode());
             emailMap.put(label, parsedEmail);
         }
         return emailMap;
