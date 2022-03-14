@@ -99,8 +99,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
-        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany().orElse(null));
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle().orElse(null));
 
         Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(personToEdit.getNumbers());
         Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());

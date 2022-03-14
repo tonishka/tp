@@ -58,8 +58,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Company company = new Company("Placeholder");
-        JobTitle jobTitle = new JobTitle("Placeholder");
+        Company company = null;
+        JobTitle jobTitle = null;
         HashMap<String, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
         HashMap<String, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
         HashMap<String, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));

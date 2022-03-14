@@ -38,8 +38,8 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
 
         descriptor.setName(person.getName());
-        descriptor.setCompany(person.getCompany());
-        descriptor.setJobTitle(person.getJobTitle());
+        descriptor.setCompany(person.getCompany().orElse(null));
+        descriptor.setJobTitle(person.getJobTitle().orElse(null));
         descriptor.setNumbers(person.getNumbers());
         descriptor.setEmails(person.getEmails());
         descriptor.setAddresses(person.getAddresses());
