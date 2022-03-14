@@ -194,6 +194,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isLoadPersonList()) {
+                loadPersonListScreen();
+            }
+
             if (commandResult.isLoadContactDetails()) {
                 Person personToEdit = commandResult.getPerson();
                 requireNonNull(personToEdit);
@@ -230,6 +234,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isLoadPersonList()) {
                 loadPersonListScreen();
+            }
+
+            if (commandResult.isLoadContactDetails()) {
+                Person personToEdit = commandResult.getPerson();
+                requireNonNull(personToEdit);
+                loadContactScreen(personToEdit);
             }
 
             return commandResult;
