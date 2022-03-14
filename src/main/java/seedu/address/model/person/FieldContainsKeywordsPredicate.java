@@ -39,8 +39,10 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
             return testEmail(person);
         } else if ("a".equals(field)) {
             return testAddress(person);
+        } else if ("n".equals(field)) {
+            return testName(person);
         }
-        return testName(person);
+        return testAll(person);
     }
 
     private boolean testCompany(Person person) {
@@ -79,6 +81,16 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
                         person.getAddresses(), keyword));
+    }
+
+    private boolean testAll(Person person) {
+        return testAddress(person) ||
+                testName(person) ||
+                testTag(person) ||
+                testJob(person) ||
+                testCompany(person) ||
+                testEmail(person) ||
+                testPhone(person);
     }
 
     @Override
