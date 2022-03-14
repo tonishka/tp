@@ -279,7 +279,7 @@ We help _busy working professionals_ manage their large list of contacts by prov
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
-| -------- |-------------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `* * *`  | new user                | view a help page with commands and usage instructions               | understand how to use the application                                                 |
 | `* * *`  | user                    | add a new person to the contact list                                | expand my contacts list                                                               |
 | `* * *`  | user                    | delete a person from the contact list                               | remove contacts I no longer require                                                   |
