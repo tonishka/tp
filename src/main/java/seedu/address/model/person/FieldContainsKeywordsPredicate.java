@@ -55,7 +55,7 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     private boolean testJob(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().jobTitle, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().toString(), keyword));
     }
 
     private boolean testTag(Person person) {
