@@ -26,11 +26,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         String field = "all"; // If field is not provided or not a valid field, all fields are searched
-        String fieldKeywords[] = trimmedArgs.split(" ");
+        String[] fieldKeywords = trimmedArgs.split(" ");
         String[] tempArr = trimmedArgs.split(" ");
-        final String STARTS_WITH_FIELD_REGEX = "^[a-z]{1,2}[/](.|\\n)*";
+        String checkField = "^[a-z]{1,2}[/](.|\\n)*";
 
-        if (trimmedArgs.matches(STARTS_WITH_FIELD_REGEX)) {
+        if (trimmedArgs.matches(checkField)) {
             tempArr = trimmedArgs.split("/", 2);
             field = tempArr[0];
         }

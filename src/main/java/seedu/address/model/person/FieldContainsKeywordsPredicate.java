@@ -84,13 +84,13 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean testAll(Person person) {
-        return testAddress(person) ||
-                testName(person) ||
-                testTag(person) ||
-                testJob(person) ||
-                testCompany(person) ||
-                testEmail(person) ||
-                testPhone(person);
+        return testAddress(person)
+                || testName(person)
+                || testTag(person)
+                || testJob(person)
+                || testCompany(person)
+                || testEmail(person)
+                || testPhone(person);
     }
 
     @Override
