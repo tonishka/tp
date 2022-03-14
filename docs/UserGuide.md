@@ -159,11 +159,11 @@ Without a `<LABEL>`, the command will delete all information stored in `<TYPE>`.
 
 Examples:
 
-`del phone personal` -    Deletes the personal phone number of the contact.
+`del p/ personal` -    Deletes the personal phone number of the contact.
 
-`del address` -         Deletes all addresses of the contact.
+`del a/` -         Deletes all addresses of the contact.
 
-`del email Official` -   Deletes the Official email of the contact.
+`del e/ Official` -   Deletes the Official email of the contact.
    
 #### 2.4 Viewing help: `help`
 Shows a message explaining how to access the help page.
