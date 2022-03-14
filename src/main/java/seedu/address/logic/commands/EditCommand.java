@@ -95,8 +95,8 @@ public class EditCommand extends Command {
         requireNonNull(personToEdit != null);
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
-        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany().orElse(null));
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle().orElse(null));
 
         //New HashMaps are created to remove Unmodifiable Map's limitation
         Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());

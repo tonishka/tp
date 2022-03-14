@@ -53,8 +53,8 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        company = personToCopy.getCompany();
-        jobTitle = personToCopy.getJobTitle();
+        company = personToCopy.getCompany().orElse(null);
+        jobTitle = personToCopy.getJobTitle().orElse(null);
         numbers = personToCopy.getNumbers();
         emails = personToCopy.getEmails();
         addresses = personToCopy.getAddresses();

@@ -29,7 +29,6 @@ public class ContactDetailsPanel extends UiPart<Region> {
     @FXML
     private StackPane addressesCardPlaceholder;
 
-    //Temporary, until we connect this to the rest of the app
     private Person person;
 
     /**
@@ -39,7 +38,7 @@ public class ContactDetailsPanel extends UiPart<Region> {
         super(FXML);
         person = personToDisplay;
         particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
-                person.getJobTitle(), person.getCompany());
+                person.getJobTitle().orElse(null), person.getCompany().orElse(null));
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());
 
         numbersCard = new NumbersCard(person.getNumbers());
