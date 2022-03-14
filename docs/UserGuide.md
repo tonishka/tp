@@ -106,7 +106,7 @@ Example: `view 34`
 | Symbol | Meaning |
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
-| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br>E.g. `phone 12345678 /personal` labels the given number a personal number. |
+| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `p/ 12345678 l/personal` labels the given number as "personal". |
 | <...> | Indicates the argument that the user should provide in that area |
 
 #### 2.3.2 Add/Edit phone numbers: phone
