@@ -61,8 +61,8 @@ class JsonSerializableAddressBook {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("JsonSerializableAddressBook:\n");
-        for (JsonAdaptedPerson jAP : persons) {
-            builder.append("[" + jAP + "]\n");
+        for (JsonAdaptedPerson person : persons) {
+            builder.append("[" + person + "]\n");
         }
         return builder.toString();
     }
