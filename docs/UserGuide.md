@@ -96,7 +96,7 @@ Format: `view <INDEX NO>`
 
 Example: `view 34`
 
-#### 2.2.3 Returning after viewing a person's full details: `back`
+#### 2.2.4 Returning after viewing a person's full details: `back`
 Returns to the list of all contacts after viewing and/or editing a person's contact details.
 
 Format: `back`
