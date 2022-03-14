@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -39,6 +40,9 @@ public class ContactDetailsParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case BackCommand.COMMAND_WORD:
+            return new BackCommand();
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
