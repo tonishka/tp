@@ -25,9 +25,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String field = "all"; // If field is not provided or not a valid field, all fields are searched
-        String[] fieldKeywords = trimmedArgs.split(" ");
-        String[] tempArr = trimmedArgs.split(" ");
+        // If field is not provided or not a valid field, all fields are searched.
+        String field = "all";
+        // To be used as keywords if no field is specified, updated later conditionally.
+        String[] fieldKeywords = trimmedArgs.split("\\s+");
+        // Temporary array to hold intermediate values.
+        String[] tempArr = trimmedArgs.split("\\s+");
+        // Regex to check if field is specified by user.
         String checkField = "^[a-z]{1,2}[/](.|\\n)*";
 
         if (trimmedArgs.matches(checkField)) {
