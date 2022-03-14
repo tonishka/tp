@@ -47,20 +47,6 @@ public class Person {
     }
 
     /**
-     * Copy constructor.
-     */
-    public Person(Person toCopy) {
-        setName(toCopy.name);
-        setNumbers(toCopy.numbers);
-        setEmails(toCopy.emails);
-        setAddresses(toCopy.addresses);
-        setTags(toCopy.tags);
-        setCompany(toCopy.company);
-        setJobTitle(toCopy.jobTitle);
-        setPronouns(toCopy.pronouns);
-    }
-
-    /**
      * Returns an empty person with nothing values.
      *
      * @return an empty person with nothing values
@@ -191,7 +177,9 @@ public class Person {
         Set<Pronoun> pronouns = getPronouns();
         if (!pronouns.isEmpty()) {
             builder.append("; Pronouns: ");
-            pronouns.forEach(builder::append);
+            pronouns.stream().limit(1).forEach(builder::append);
+            pronouns.stream().skip(1).forEach(pronoun -> builder.append("/" + pronoun));
+
         }
 
         Set<Tag> tags = getTags();

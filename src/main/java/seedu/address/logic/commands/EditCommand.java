@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     private EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
         requireNonNull(editPersonDescriptor);
         requireNonNull(personToEdit);
-        this.personToEdit = new Person(personToEdit);
+        this.personToEdit = personToEdit;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -88,7 +88,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
 
         Person personToEdit = this.personToEdit;
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createUpdatedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -118,6 +118,39 @@ public class EditCommand extends Command {
 
         Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
+        return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
+                updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
+    }
+
+    /*
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.Note that this is different from createEditedPerson as
+     * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the editPersonDescriptor
+     * while this adds the values of the HashMaps and HashSet components of Person with that of the
+     * editedPersonDescriptor.
+     */
+    private static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
+
+        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(new HashMap<>());
+        updatedPhones.putAll(personToEdit.getNumbers());
+
+        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(new HashMap<>());
+        updatedEmails.putAll(personToEdit.getEmails());
+
+        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(new HashMap<>());
+        updatedAddresses.putAll(personToEdit.getAddresses());
+
+        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(new HashSet<>());
+        updatedPronouns.addAll(personToEdit.getPronouns());
+
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(new HashSet<>());
+        updatedTags.addAll(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
                 updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
