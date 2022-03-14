@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ContactDetailsPanel contactDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ConfirmWindow confirmWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        confirmWindow = new ConfirmWindow(logic);
     }
 
     private void setAccelerators() {
@@ -132,6 +134,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the confirmation window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleConfirmation() {
+        if (!confirmWindow.isShowing()) {
+            confirmWindow.show();
+        } else {
+            confirmWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -191,6 +205,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.requiresConfirmation()) {
+                handleConfirmation();
             }
 
             if (commandResult.isLoadContactDetails()) {
