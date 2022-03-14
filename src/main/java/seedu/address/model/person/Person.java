@@ -78,6 +78,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public HashSet<Tag> getTagSet() {
+        return this.tags;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -147,7 +151,7 @@ public class Person {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            tags.forEach(tag -> builder.append(tag.prettyString()));
         }
 
         Map<String, Phone> numbers = getNumbers();
