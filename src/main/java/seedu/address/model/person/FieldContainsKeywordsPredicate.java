@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
@@ -17,22 +17,20 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        switch (field) {
-            case "c":
-                return testCompany(person);
-            case "j":
-                return testJob(person);
-            case "t":
-                return testTag(person);
-            case "p":
-                return testPhone(person);
-            case "e":
-                return testEmail(person);
-            case "a":
-                return testAddress(person);
-            default:
-                return testName(person);
+        if ("c".equals(field)) {
+            return testCompany(person);
+        } else if ("j".equals(field)) {
+            return testJob(person);
+        } else if ("t".equals(field)) {
+            return testTag(person);
+        } else if ("p".equals(field)) {
+            return testPhone(person);
+        } else if ("e".equals(field)) {
+            return testEmail(person);
+        } else if ("a".equals(field)) {
+            return testAddress(person);
         }
+        return testName(person);
     }
 
     private boolean testCompany(Person person) {
