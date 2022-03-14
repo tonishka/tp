@@ -112,20 +112,17 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (!(company == null)) {
-            if (!Company.isValidCompany(company)) {
-                throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
-            }
+        if (!(company == null || Company.isValidCompany(company))) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         }
 
-        final Company modelCompany = company == null ? null : new Company(company);
+        final Company modelCompany = company != null ? new Company(company) : null;
 
-        if (!(jobTitle == null)) {
-            if (!JobTitle.isValidJobTitle(jobTitle)) {
-                throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
-            }
+        if (!(jobTitle == null || JobTitle.isValidJobTitle(jobTitle))) {
+            throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
-        final JobTitle modelJobTitle = jobTitle == null ? null : new JobTitle(jobTitle);
+
+        final JobTitle modelJobTitle = jobTitle != null ? new JobTitle(jobTitle) : null;
 
         HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
         if (numbers != null) {
