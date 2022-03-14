@@ -57,30 +57,13 @@ public class EditCommand extends Command {
 
     /**
      * @param editPersonDescriptor details to edit the person with
+     * @param personToEdit the target person
      */
-    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
-        personToEdit = Person.getEmptyPerson();
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-    }
-
-    private EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
+    public EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
         requireNonNull(editPersonDescriptor);
         requireNonNull(personToEdit);
         this.personToEdit = personToEdit;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-    }
-
-    /**
-     * Returns a new EditCommand that sets the personToEdit
-     * to the value of the parameter.
-     *
-     * @param personToEdit person in the AddressBook to be edited
-     * @return EditCommand with the person to be edited
-     */
-    public EditCommand parsePerson(Person personToEdit) {
-        requireNonNull(personToEdit);
-        return new EditCommand(editPersonDescriptor, personToEdit);
     }
 
     @Override
@@ -103,54 +86,33 @@ public class EditCommand extends Command {
 
     /*
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
-        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
-
-        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(personToEdit.getNumbers());
-        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
-        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(personToEdit.getAddresses());
-
-        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
-                updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
-    }
-
-    /*
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.Note that this is different from createEditedPerson as
      * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the editPersonDescriptor
      * while this adds the values of the HashMaps and HashSet components of Person with that of the
      * editedPersonDescriptor.
      */
-    private static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    public static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(personToEdit != null);
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
 
-        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(new HashMap<>());
-        updatedPhones.putAll(personToEdit.getNumbers());
+        //New HashMaps are created to remove Unmodifiable Map's limitation
+        Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
+        updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
 
-        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(new HashMap<>());
-        updatedEmails.putAll(personToEdit.getEmails());
+        Map<String, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
+        updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
 
-        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(new HashMap<>());
-        updatedAddresses.putAll(personToEdit.getAddresses());
+        Map<String, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
+        updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
 
-        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(new HashSet<>());
-        updatedPronouns.addAll(personToEdit.getPronouns());
+        Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
+        updatedPronouns.addAll(editPersonDescriptor.getPronouns().orElse(new HashSet<>()));
 
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(new HashSet<>());
-        updatedTags.addAll(personToEdit.getTags());
+        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
+        updatedTags.addAll(editPersonDescriptor.getTags().orElse(new HashSet<>()));
 
         return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
                 updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
