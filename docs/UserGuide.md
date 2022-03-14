@@ -80,9 +80,9 @@ Finds a person based on a search category and the value provided. Searchable cat
 Format: `find <FIELD> <VALUE>`
 
 Examples:<br>
-`find company Tesla` Finds all contacts who work in Tesla.<br>
-`find name Michael Scott` Finds all contacts with the name Michael Scott.<br>
-`find tag supplier` Finds all contacts who are tagged as Supplier.
+`find c/ Tesla` Finds all contacts who work in Tesla.<br>
+`find n/ Michael Scott` Finds all contacts with the name Michael Scott.<br>
+`find t/ supplier` Finds all contacts who are tagged as Supplier.
 
 #### 2.2.2 Listing all contacts: `list`
 Shows a list of all contacts in the address book.
