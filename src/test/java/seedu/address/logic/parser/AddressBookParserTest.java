@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -53,7 +53,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit_throwsParseException() throws ParseException {
-        assertThrows(ParseException.class, MESSAGE_INVALID_EDIT, () -> parser.parseCommand("edit n/name"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_VIEW, () -> parser.parseCommand("edit n/name"));
     }
 
     @Test
