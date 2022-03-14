@@ -57,7 +57,7 @@ public class EditCommand extends Command {
 
     /**
      * @param editPersonDescriptor details to edit the person with
-     * @param personToEdit the target person
+     * @param personToEdit         the target person
      */
     public EditCommand(EditPersonDescriptor editPersonDescriptor, Person personToEdit) {
         requireNonNull(editPersonDescriptor);
@@ -84,7 +84,7 @@ public class EditCommand extends Command {
                 editedPerson);
     }
 
-    /*
+    /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.Note that this is different from createEditedPerson as
      * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the editPersonDescriptor

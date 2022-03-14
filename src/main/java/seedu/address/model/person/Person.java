@@ -60,64 +60,32 @@ public class Person {
         return name;
     }
 
-    public void setName(Name name) {
-        this.name = name;
-    }
-
     public Map<String, Phone> getNumbers() {
         return Collections.unmodifiableMap(numbers);
-    }
-
-    public void setNumbers(Map<String, Phone> numbers) {
-        this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
     }
 
     public Map<String, Email> getEmails() {
         return Collections.unmodifiableMap(emails);
     }
 
-    public void setEmails(Map<String, Email> emails) {
-        this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
-    }
-
     public Map<String, Address> getAddresses() {
         return Collections.unmodifiableMap(addresses);
-    }
-
-    public void setAddresses(Map<String, Address> addresses) {
-        this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
     }
 
     public Company getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public JobTitle getJobTitle() {
         return jobTitle;
-    }
-
-    public void setJobTitle(JobTitle jobTitle) {
-        this.jobTitle = jobTitle;
     }
 
     public Set<Pronoun> getPronouns() {
         return Collections.unmodifiableSet(pronouns);
     }
 
-    public void setPronouns(Set<Pronoun> pronouns) {
-        this.pronouns = (pronouns != null) ? new HashSet<>(pronouns) : null;
-    }
-
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
     /**
