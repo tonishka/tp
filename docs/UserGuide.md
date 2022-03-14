@@ -90,11 +90,16 @@ Shows a list of all contacts in the address book.
 Format: `list`
 
 #### 2.2.3 Viewing a person's full details: `view`
-Expands the view to display all the specified peron's contact information.
+Displays the specified person's contact information and allows the contact to be edited.
 
 Format: `view <INDEX NO>`
 
 Example: `view 34`
+
+#### 2.2.3 Returning after viewing a person's full details: `back`
+Returns to the list of all contacts after viewing and/or editing a person's contact details.
+
+Format: `back`
 
 ### 2.3 Editing Information
 *Note:*
