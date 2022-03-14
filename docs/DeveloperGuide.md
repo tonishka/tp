@@ -293,6 +293,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | edit a person's contact information                                 | update their contact information without having to delete and create a new contact    |
 | `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
 | `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
+| `* * *`  | user                    | save my data automatically                                          | reduce the risk of my data being lost                                                 |
+| `* * *`  | advanced user           | save all my contacts in an editable file                            | edit my contacts directly from the data file                                          |
 | `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
 | `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
 | `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
@@ -335,8 +337,8 @@ Use case resumes at step 1. <br>
 
 **MSS:**
 <p>
-1. User requests to add a specific field for the contact. <br>
-2. Reache saves the specific field. <br>
+1. User requests to add details for specific field(s) of the contact. <br>
+2. Reache saves the specified details along with their respective field(s). <br>
 &emsp;Repeat steps 1 and 2 until satisfied. <br>
 3. User requests to leave ‘edit’ mode. <br>
 4. Reache returns to ‘default’ mode. <br>

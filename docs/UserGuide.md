@@ -39,12 +39,12 @@ Reache is a desktop app that helps busy working professionals manage their large
 #### 2.1.1 Adding a contact: `add`
 Adds a person to the contact list.
 
-Format: `add <NAME>`
+Format: `add n/<NAME>`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
 From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
 
-Example: `add Alex Dunphy`
+Example: `add n/Alex Dunphy`
 
 #### 2.1.2 Clearing all contacts: `clear`
 Clears all contacts from the address book.
@@ -80,9 +80,9 @@ Finds a person based on a search category and the value provided. Searchable cat
 Format: `find <FIELD> <VALUE>`
 
 Examples:<br>
-`find company Tesla` Finds all contacts who work in Tesla.<br>
-`find name Michael Scott` Finds all contacts with the name Michael Scott.<br>
-`find tag supplier` Finds all contacts who are tagged as Supplier.
+`find c/ Tesla` Finds all contacts who work in Tesla.<br>
+`find n/ Michael Scott` Finds all contacts with the name Michael Scott.<br>
+`find t/ supplier` Finds all contacts who are tagged as Supplier.
 
 #### 2.2.2 Listing all contacts: `list`
 Shows a list of all contacts in the address book.
@@ -90,11 +90,16 @@ Shows a list of all contacts in the address book.
 Format: `list`
 
 #### 2.2.3 Viewing a person's full details: `view`
-Expands the view to display all the specified peron's contact information.
+Displays the specified person's contact information and allows the contact to be edited.
 
 Format: `view <INDEX NO>`
 
 Example: `view 34`
+
+#### 2.2.4 Returning after viewing a person's full details: `back`
+Returns to the list of all contacts after viewing and/or editing a person's contact details.
+
+Format: `back`
 
 ### 2.3 Editing Information
 *Note:*
@@ -106,49 +111,48 @@ Example: `view 34`
 | Symbol | Meaning |
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
-| ; | Used to separate entries when multiple entries are provided. <br> E.g. `phone 12345678; 43214321` denotes two phone numbers. |
-| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br>E.g. `phone 12345678 /personal` labels the given number a personal number. |
+| / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
 | <...> | Indicates the argument that the user should provide in that area |
 
 #### 2.3.2 Add/Edit phone numbers: phone
-Format: `phone <NUMBER 1> /<LABEL>; <NUMBER 2> /<LABEL>...`
+Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
-Example: `phone 98765432 /Personal; phone 9753468 /Office`
+Example: `ph/8765432 l/Personal ph/9753468 l/Office`
 
 #### 2.3.3 Add/Edit emails: `email`
-Format:  `email <EMAIL 1> /<LABEL>; <EMAIL 2> /<LABEL>...`
+Format:  `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...`
 
-Example: -email alex@reache.com /Official; email alex98@gmail.com- 
+Example: `e/alex@reache.com l/Official; e/alex98@gmail.com`
 
 #### 2.3.4 Add/Edit address: `address`
 
-Format: `address <ADDRESS 1> /<LABEL>; <ADDRESS 2> /<LABEL>...`
+Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...`
 
-Example: `address 28 Francis Mine, Sacramento, CA - 654321 /Home`  
+Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home`  
 
 #### 2.3.5 Add/Edit company: `company`
 
-Format: `company <COMPANY>`
+Format: `c/<COMPANY>`
 
-Example: `company Tesla`
+Example: `c/Tesla`
 
 #### 2.3.6 Add/Edit job title: `job`
 
-Format: `job <JOB TITLE>`
+Format: `j/<JOB TITLE>`
 
-Example: `job Software Engineer` 
+Example: `j/Software Engineer` 
 
 #### 2.3.7 Add/Edit tags: `tag`
 
-Format: `tag <TAG 1>; <TAG 2>...`
+Format: `t/<TAG 1> t/<TAG 2>...`
 
-Example: `tag Media Contact; Has kids`
+Example: `t/Media Contact t/Has kids`
 
 #### 2.3.8 Add/Edit pronoun: `pronoun`
 
-Format: `pronoun <PRONOUNS>`
+Format: `pr/<PRONOUN 1> pr/<PRONOUN 2>...`
 
-Example: `pronoun He/Him`
+Example: `pr/He pr/Him`
 
 #### 2.3.9 Delete field: `del`
 
@@ -160,11 +164,11 @@ Without a `<LABEL>`, the command will delete all information stored in `<TYPE>`.
 
 Examples:
 
-`del phone personal` -    Deletes the personal phone number of the contact.
+`del p/ personal` -    Deletes the personal phone number of the contact.
 
-`del address` -         Deletes all addresses of the contact.
+`del a/` -         Deletes all addresses of the contact.
 
-`del email Official` -   Deletes the Official email of the contact.
+`del e/ Official` -   Deletes the Official email of the contact.
    
 #### 2.4 Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -180,12 +184,12 @@ Format: `exit`
 
 | **Action** | **Format, Example** |
 | --- | --- |
-| **Add** | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
-| **Edit** | Format: `edit <INDEX NO>` <br> Example: `edit 4` |
+| **Add** | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
+| **Edit** | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
 | **Save** | Format: `save` |
-| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del phone personal` |
+| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del p/ personal` |
 | **Clear** | Format: `clear` |
-| **Find** | Format: `find <FIELD> <VALUE>` <br> Example: `find name Michael Scott` |
+| **Find** | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott` |
 | **View** | Format: `view` |
 | **List** | Format: `list` |
 | **Help** | Format: `help` |
@@ -194,13 +198,13 @@ Format: `exit`
 
 | **Field** | **Mandatory** | **Format, Example** |
 | --- | --- | --- |
-| **Name** | Yes | Format: `add <NAME>` <br> Example: `add Alex Dunphy` |
-| **Phone Number** | No | Format: `phone <NUMBER 1> /<LABEL>; <NUMBER 2> /<LABEL>...` <br> Example: `phone 98765432 /Personal; phone 9753468 /Office` |
-| **Email ID** | No | Format: `email <EMAIL 1> /<LABEL>; <EMAIL 2> /<LABEL>...` <br> Example: `email alex@reache.com /Official; email alex98@gmail.com` |
-| **Address** | No | Format: `address <ADDRESS 1> /<LABEL>; <ADDRESS 2> /<LABEL>...` <br> Example: `address 28 Francis Mine, Sacramento, CA - 654321 /Home` |
-| **Company** | No | Format: `company <COMPANY>` <br> Example: `company Tesla` |
-| **Job Title** | No | Format: `job <JOB TITLE>` <br> Example: `job Software Engineer` |
-| **Tags** | No | Format: `tag <TAG 1>; <TAG 2>...` <br> Example: `tag Media Contact; Has kids` |
-| **Pronouns** | No | Format: `pronoun <PRONOUNS>` <br> Example: `pronoun They/Them` |
+| **Name** | Yes | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy` |
+| **Phone Number** | No | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office` |
+| **Email ID** | No | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com` |
+| **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
+| **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
+| **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
+| **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids` |
+| **Pronouns** | No | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them` |
 
 [Back to top](#table-of-contents)
