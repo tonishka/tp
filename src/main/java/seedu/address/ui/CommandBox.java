@@ -40,7 +40,6 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
-
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
@@ -77,7 +76,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.address.logic.Logic#execute(String)
+         * @see seedu.address.logic.Logic#executePersonListCommand(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

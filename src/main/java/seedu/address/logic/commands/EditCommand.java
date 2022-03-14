@@ -9,8 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,10 +22,13 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,7 +59,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -86,7 +91,7 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
-    /**
+    /*
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
@@ -94,12 +99,18 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
+        JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
+
+        Map<String, Phone> updatedPhones = editPersonDescriptor.getNumbers().orElse(personToEdit.getNumbers());
+        Map<String, Email> updatedEmails = editPersonDescriptor.getEmails().orElse(personToEdit.getEmails());
+        Map<String, Address> updatedAddresses = editPersonDescriptor.getAddresses().orElse(personToEdit.getAddresses());
+
+        Set<Pronoun> updatedPronouns = editPersonDescriptor.getPronouns().orElse(personToEdit.getPronouns());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
+                updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
     }
 
     @Override
@@ -120,18 +131,27 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
+    @Override
+    public String toString() {
+        return "Edit " + index + ": " + editPersonDescriptor;
+    }
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private HashMap<String, Phone> numbers;
+        private HashMap<String, Email> emails;
+        private HashMap<String, Address> addresses;
+        private Company company;
+        private JobTitle jobTitle;
+        private HashSet<Pronoun> pronouns;
+        private HashSet<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -139,19 +159,42 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setNumbers(toCopy.numbers);
+            setEmails(toCopy.emails);
+            setAddresses(toCopy.addresses);
             setTags(toCopy.tags);
+            setCompany(toCopy.company);
+            setJobTitle(toCopy.jobTitle);
+            setPronouns(toCopy.pronouns);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, numbers, emails, addresses, tags, company, pronouns, jobTitle);
         }
 
+        //----Single data fields----
+        //Company
+        public void setCompany(Company company) {
+            this.company = company;
+        }
+
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
+        }
+
+        //JobTitle
+        public void setJobTitle(JobTitle jobTitle) {
+            this.jobTitle = jobTitle;
+        }
+
+        public Optional<JobTitle> getJobTitle() {
+            return Optional.ofNullable(jobTitle);
+        }
+
+        //Name
         public void setName(Name name) {
             this.name = name;
         }
@@ -160,29 +203,35 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        //-----Multiple data fields----
+        //Phone
+        public void setNumbers(Map<String, Phone> numbers) {
+            this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Map<String, Phone>> getNumbers() {
+            return (numbers != null) ? Optional.of(Collections.unmodifiableMap(numbers)) : Optional.empty();
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        //Email
+        public void setEmails(Map<String, Email> emails) {
+            this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Map<String, Email>> getEmails() {
+            return (emails != null) ? Optional.of(Collections.unmodifiableMap(emails)) : Optional.empty();
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        //Address
+        public void setAddresses(Map<String, Address> addresses) {
+            this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Map<String, Address>> getAddresses() {
+            return (addresses != null) ? Optional.of(Collections.unmodifiableMap(addresses)) : Optional.empty();
         }
+
+        //Tags
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -201,6 +250,26 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        //Pronouns
+
+        /**
+         * Sets {@code pronouns} to this object's {@code pronouns}.
+         * A defensive copy of {@code pronouns} is used internally.
+         */
+        public void setPronouns(Set<Pronoun> pronouns) {
+            this.pronouns = (pronouns != null) ? new HashSet<>(pronouns) : null;
+        }
+
+        /**
+         * Returns an unmodifiable pronouns set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code pronouns} is null.
+         */
+        public Optional<Set<Pronoun>> getPronouns() {
+            return (pronouns != null) ? Optional.of(Collections.unmodifiableSet(pronouns)) : Optional.empty();
+        }
+        //
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -217,10 +286,53 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getNumbers().equals(e.getNumbers())
+                    && getEmails().equals(e.getEmails())
+                    && getAddresses().equals(e.getAddresses())
                     && getTags().equals(e.getTags());
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder builder = new StringBuilder();
+            builder.append("Name: ")
+                    .append(getName())
+                    .append("; Company: ")
+                    .append(getCompany())
+                    .append("; Job Title: ")
+                    .append(getJobTitle());
+
+            Set<Pronoun> pronouns = getPronouns().get();
+            if (!pronouns.isEmpty()) {
+                builder.append("; Pronouns: ");
+                pronouns.forEach(builder::append);
+            }
+
+            Set<Tag> tags = getTags().get();
+            if (!tags.isEmpty()) {
+                builder.append("; Tags: ");
+                tags.forEach(builder::append);
+            }
+
+            Map<String, Phone> numbers = getNumbers().get();
+            if (!numbers.isEmpty()) {
+                builder.append("; Numbers: ");
+                numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+            }
+
+            Map<String, Address> addresses = getAddresses().get();
+            if (!addresses.isEmpty()) {
+                builder.append("; Addresses: ");
+                addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
+            }
+
+            Map<String, Email> emails = getEmails().get();
+            if (!emails.isEmpty()) {
+                builder.append("; Emails: ");
+                emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
+            }
+
+            return builder.toString();
         }
     }
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,22 +18,30 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Map<String, Phone> numbers;
+    private final Map<String, Email> emails;
+    private final Map<String, Address> addresses;
+    private final Company company;
+    private final JobTitle jobTitle;
+    private final HashSet<Pronoun> pronouns = new HashSet<>();
+    private final HashSet<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Map<String, Phone> numbers, Map<String, Email> emails,
+                  Map<String, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, pronouns, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.numbers = numbers;
+        this.emails = emails;
+        this.addresses = addresses;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.pronouns.addAll(pronouns);
         this.tags.addAll(tags);
     }
 
@@ -40,22 +49,30 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Map<String, Phone> getNumbers() {
+        return numbers;
     }
 
-    public Email getEmail() {
-        return email;
+    public Map<String, Email> getEmails() {
+        return emails;
     }
 
-    public Address getAddress() {
-        return address;
+    public Map<String, Address> getAddresses() {
+        return addresses;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
+    public Company getCompany() {
+        return company;
+    }
+
+    public JobTitle getJobTitle() {
+        return jobTitle;
+    }
+
+    public Set<Pronoun> getPronouns() {
+        return Collections.unmodifiableSet(pronouns);
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -89,34 +106,61 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getNumbers().equals(getNumbers())
+                && otherPerson.getEmails().equals(getEmails())
+                && otherPerson.getAddresses().equals(getAddresses())
+                && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getJobTitle().equals(getJobTitle())
+                && otherPerson.getPronouns().equals(getPronouns())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, numbers, emails, addresses, company, jobTitle, pronouns, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append("Name: ")
+                .append(getName())
+                .append("; Company: ")
+                .append(getCompany())
+                .append("; Job Title: ")
+                .append(getJobTitle());
+
+        Set<Pronoun> pronouns = getPronouns();
+        if (!pronouns.isEmpty()) {
+            builder.append("; Pronouns: ");
+            pronouns.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Map<String, Phone> numbers = getNumbers();
+        if (!numbers.isEmpty()) {
+            builder.append("; Numbers: ");
+            numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+        }
+
+        Map<String, Address> addresses = getAddresses();
+        if (!addresses.isEmpty()) {
+            builder.append("; Addresses: ");
+            addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
+        }
+
+        Map<String, Email> emails = getEmails();
+        if (!emails.isEmpty()) {
+            builder.append("; Emails: ");
+            emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
+        }
+
         return builder.toString();
     }
 
