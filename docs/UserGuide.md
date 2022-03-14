@@ -61,7 +61,7 @@ Example: `del 66`
 #### 2.1.4 Editing a contact: edit
 Enters editing mode to modify contact details in the address book.
 
-Format: `edit <INDEX NO> `
+Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
 Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
 
