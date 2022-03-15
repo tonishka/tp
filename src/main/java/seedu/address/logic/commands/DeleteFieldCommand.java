@@ -86,14 +86,14 @@ public class DeleteFieldCommand extends Command {
             return false;
         }
 
-// state check
+        // state check
         return personToDeleteField.equals(((DeleteFieldCommand) other).personToDeleteField)
                 && deleteFieldDescriptor.equals(((DeleteFieldCommand) other).deleteFieldDescriptor);
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToDeleteField}
-     * edited with {@code deleteFieldDescriptor}. 
+     * edited with {@code deleteFieldDescriptor}.
      */
     public static Person createUpdatedPerson(Person personToDeleteField, EditPersonDescriptor deleteFieldDescriptor) {
         requireNonNull(personToDeleteField);
