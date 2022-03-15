@@ -62,7 +62,7 @@ public class DeleteFieldCommand extends Command {
         requireNonNull(model);
 
         Person personToDeleteField = this.personToDeleteField;
-        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(personToDeleteField, deleteFieldDescriptor);
+        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(deleteFieldDescriptor);
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -95,9 +95,7 @@ public class DeleteFieldCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToDeleteField}
      * edited with {@code deleteFieldDescriptor}.
      */
-    public static Person createUpdatedPerson(Person personToDeleteField, EditPersonDescriptor deleteFieldDescriptor) {
-        requireNonNull(personToDeleteField);
-
+    public static Person createUpdatedPerson(EditPersonDescriptor deleteFieldDescriptor) {
         Name updatedName = deleteFieldDescriptor.getName().orElse(null);
         Company updatedCompany = deleteFieldDescriptor.getCompany().orElse(null);
         JobTitle updatedJobTitle = deleteFieldDescriptor.getJobTitle().orElse(null);

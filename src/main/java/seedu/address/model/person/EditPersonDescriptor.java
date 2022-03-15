@@ -51,8 +51,8 @@ public class EditPersonDescriptor {
         setEmails(toCopy.getEmails());
         setAddresses(toCopy.getAddresses());
         setTags(toCopy.getTags());
-        setCompany(toCopy.getCompany().get());
-        setJobTitle(toCopy.getJobTitle().get());
+        setCompany(toCopy.getCompany().isPresent() ? toCopy.getCompany().get() : null);
+        setJobTitle(toCopy.getJobTitle().isPresent() ? toCopy.getJobTitle().get() : null);
         setPronouns(toCopy.getPronouns());
     }
 
