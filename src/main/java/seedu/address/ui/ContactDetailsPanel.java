@@ -34,10 +34,9 @@ public class ContactDetailsPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ContactDetailsPanel(Person person) {
+    public ContactDetailsPanel(Person personToDisplay) {
         super(FXML);
-        this.person = person;
-
+        person = personToDisplay;
         particularsCard = new ParticularsCard(person.getName(), person.getPronouns(), person.getTags(),
                 person.getJobTitle().orElse(null), person.getCompany().orElse(null));
         particularsCardPlaceholder.getChildren().add(particularsCard.getRoot());

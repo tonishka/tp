@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -44,6 +45,16 @@ public class Person {
         this.jobTitle = jobTitle;
         this.pronouns.addAll(pronouns);
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Returns an empty person with nothing values.
+     *
+     * @return an empty person with nothing values
+     */
+    public static Person getEmptyPerson() {
+        return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
+                new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
     }
 
     public Name getName() {
@@ -76,6 +87,10 @@ public class Person {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public HashSet<Tag> getTagSet() {
+        return this.tags;
     }
 
     /**
@@ -141,13 +156,15 @@ public class Person {
         Set<Pronoun> pronouns = getPronouns();
         if (!pronouns.isEmpty()) {
             builder.append("; Pronouns: ");
-            pronouns.forEach(builder::append);
+            pronouns.stream().limit(1).forEach(builder::append);
+            pronouns.stream().skip(1).forEach(pronoun -> builder.append("/" + pronoun));
+
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            tags.forEach(tag -> builder.append(tag.prettyString()));
         }
 
         Map<String, Phone> numbers = getNumbers();
@@ -171,4 +188,11 @@ public class Person {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Person another) {
+        int nameCompare = this.name.fullName.compareTo(another.name.fullName);
+        int companyCompare = this.company.company.compareTo(another.company.company);
+        int jobCompare = this.company.company.compareTo(another.jobTitle.jobTitle);
+        return nameCompare == 0 ? (companyCompare == 0 ? jobCompare : companyCompare) : nameCompare;
+    }
 }
