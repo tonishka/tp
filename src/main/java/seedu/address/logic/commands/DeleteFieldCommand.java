@@ -71,8 +71,7 @@ public class DeleteFieldCommand extends Command {
         model.setPerson(personToDeleteField, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, updatedPerson), false, false,
-                false, true,
-                updatedPerson);
+                false, true, false, updatedPerson);
     }
 
     @Override
