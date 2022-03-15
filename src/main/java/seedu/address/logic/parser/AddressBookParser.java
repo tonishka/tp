@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -52,10 +51,9 @@ public class AddressBookParser {
             return new AddCommandParser().parse(arguments);
 
         case BackCommand.COMMAND_WORD:
-            throw new ParseException(MESSAGE_INVALID_VIEW);
 
         case EditCommand.COMMAND_WORD:
-            throw new ParseException(MESSAGE_INVALID_EDIT);
+            throw new ParseException(MESSAGE_INVALID_VIEW);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
