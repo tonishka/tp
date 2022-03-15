@@ -28,16 +28,20 @@ public class CommandResult {
     /** The application should display the ContactDetailsPanel. */
     private final boolean loadContactDetails;
 
+    /** The previous command requires confirmation. */
+    private final boolean requiresConfirmation;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean loadPersonList,
-                         boolean loadContactDetails, Person person) {
+                         boolean loadContactDetails, boolean requiresConfirmation, Person person) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.loadPersonList = loadPersonList;
         this.loadContactDetails = loadContactDetails;
+        this.requiresConfirmation = requiresConfirmation;
         this.person = person;
     }
 
@@ -46,7 +50,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, null);
+        this(feedbackToUser, false, false, false, false, false, null);
     }
 
     /**
@@ -54,7 +58,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedBackToUser, boolean showHelp, boolean exit) {
-        this(feedBackToUser, showHelp, exit, false, false, null);
+        this(feedBackToUser, showHelp, exit, false, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -75,6 +79,10 @@ public class CommandResult {
 
     public boolean isLoadContactDetails() {
         return loadContactDetails;
+    }
+
+    public boolean requiresConfirmation() {
+        return requiresConfirmation;
     }
 
     public Person getPerson() {
