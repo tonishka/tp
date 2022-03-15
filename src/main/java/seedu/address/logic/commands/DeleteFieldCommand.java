@@ -85,19 +85,16 @@ public class DeleteFieldCommand extends Command {
             return false;
         }
 
+        // state check
         return personToDeleteField.equals(((DeleteFieldCommand) other).personToDeleteField)
                 && deleteFieldDescriptor.equals(((DeleteFieldCommand) other).deleteFieldDescriptor);
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToDeleteField}
-     * edited with {@code deleteFieldDescriptor}.Note that this is different from createEditedPerson as
-     * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the deleteFieldDescriptor
-     * while this adds the values of the HashMaps and HashSet components of Person with that of the
-     * editedPersonDescriptor.
+     * edited with {@code deleteFieldDescriptor}.
      */
     public static Person createUpdatedPerson(EditPersonDescriptor deleteFieldDescriptor) {
-
         Name updatedName = deleteFieldDescriptor.getName().orElse(null);
         Company updatedCompany = deleteFieldDescriptor.getCompany().orElse(null);
         JobTitle updatedJobTitle = deleteFieldDescriptor.getJobTitle().orElse(null);
