@@ -210,6 +210,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.requiresConfirmation()) {
                 handleConfirmation();
+            }
 
             if (commandResult.isLoadPersonList()) {
                 loadPersonListScreen();
