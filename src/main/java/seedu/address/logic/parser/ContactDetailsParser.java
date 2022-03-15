@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteFieldCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -46,6 +47,9 @@ public class ContactDetailsParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments, person);
+
+        case DeleteFieldCommand.COMMAND_WORD:
+            return new DeleteFieldCommandParser().parse(arguments, person);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

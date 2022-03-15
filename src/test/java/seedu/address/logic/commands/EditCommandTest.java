@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -17,11 +18,11 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -112,7 +113,7 @@ public class EditCommandTest {
         //no need to add editcommand = editcommand.parsePerson()
         //since personToEdit in editcommand is guranteed to be dffierent
         //than firstPerson.
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -124,7 +125,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(
                 new EditPersonDescriptorBuilder(personInList).build(), Person.getEmptyPerson());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
     }
 
     //Should be changed to suit ViewCommand

@@ -132,6 +132,8 @@ public class ParserUtil {
         final HashMap<String, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
             Address parsedAddress = parseAddress(address);
+            // Helps in manual testing:
+            // String label = parseLabel(address).orElseGet(() -> "Address #" + parsedAddress.hashCode());
             String label = parseLabel(address).orElseGet(() -> "");
             addressesMap.put(label, parsedAddress);
         }

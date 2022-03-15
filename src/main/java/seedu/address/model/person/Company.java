@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's company in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
-public class Company {
+public class Company implements Comparable<Company> {
 
     public static final String MESSAGE_CONSTRAINTS = "Companies can take any values, and it should not be blank";
 
@@ -52,5 +52,10 @@ public class Company {
     @Override
     public int hashCode() {
         return company.hashCode();
+    }
+
+    @Override
+    public int compareTo(Company o) {
+        return this.company.compareTo(o.company);
     }
 }
