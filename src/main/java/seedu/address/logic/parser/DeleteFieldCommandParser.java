@@ -72,7 +72,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         if (deleteFieldDescriptor.getNumbers().isPresent()) {
             Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
 
-            assert numbersToBeDeleted != null;
+            requireNonNull(numbersToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
                 deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
@@ -86,7 +86,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         if (deleteFieldDescriptor.getEmails().isPresent()) {
             Collection<String> emailsToBeDeleted = argMultimap.getAllValues(PREFIX_EMAIL);
 
-            assert emailsToBeDeleted != null;
+            requireNonNull(emailsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(emailsToBeDeleted)) {
                 deleteFieldDescriptor.setEmails(new HashMap<String, Email>());
@@ -100,7 +100,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         if (deleteFieldDescriptor.getAddresses().isPresent()) {
             Collection<String> addressesToBeDeleted = argMultimap.getAllValues(PREFIX_ADDRESS);
 
-            assert addressesToBeDeleted != null;
+            requireNonNull(addressesToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(addressesToBeDeleted)) {
                 deleteFieldDescriptor.setAddresses(new HashMap<String, Address>());
@@ -115,7 +115,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         if (deleteFieldDescriptor.getTags().isPresent()) {
             Collection<String> tagsToBeDeleted = argMultimap.getAllValues(PREFIX_TAG);
 
-            assert tagsToBeDeleted != null;
+            requireNonNull(tagsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(tagsToBeDeleted)) {
                 deleteFieldDescriptor.setTags(new HashSet<Tag>());
@@ -129,7 +129,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         if (deleteFieldDescriptor.getPronouns().isPresent()) {
             Collection<String> pronounsToBeDeleted = argMultimap.getAllValues(PREFIX_PRONOUN);
 
-            assert pronounsToBeDeleted != null;
+            requireNonNull(pronounsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(pronounsToBeDeleted)) {
                 deleteFieldDescriptor.setPronouns(new HashSet<Pronoun>());
