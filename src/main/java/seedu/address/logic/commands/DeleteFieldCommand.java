@@ -92,10 +92,7 @@ public class DeleteFieldCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToDeleteField}
-     * edited with {@code deleteFieldDescriptor}.Note that this is different from createEditedPerson as
-     * createEditedPerson replaces all HashMaps and HashSet components of Person with that of the deleteFieldDescriptor
-     * while this adds the values of the HashMaps and HashSet components of Person with that of the
-     * editedPersonDescriptor.
+     * edited with {@code deleteFieldDescriptor}. 
      */
     public static Person createUpdatedPerson(Person personToDeleteField, EditPersonDescriptor deleteFieldDescriptor) {
         requireNonNull(personToDeleteField);
