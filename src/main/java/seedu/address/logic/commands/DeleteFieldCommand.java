@@ -86,6 +86,7 @@ public class DeleteFieldCommand extends Command {
             return false;
         }
 
+// state check
         return personToDeleteField.equals(((DeleteFieldCommand) other).personToDeleteField)
                 && deleteFieldDescriptor.equals(((DeleteFieldCommand) other).deleteFieldDescriptor);
     }
