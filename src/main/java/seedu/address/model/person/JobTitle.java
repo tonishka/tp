@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's job title in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidJobTitle(String)}
  */
-public class JobTitle {
+public class JobTitle implements Comparable<JobTitle> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "JobTitle can take any values, and it should not be blank";
@@ -54,5 +54,10 @@ public class JobTitle {
     @Override
     public int hashCode() {
         return jobTitle.hashCode();
+    }
+
+    @Override
+    public int compareTo(JobTitle o) {
+        return this.jobTitle.compareTo(o.jobTitle);
     }
 }

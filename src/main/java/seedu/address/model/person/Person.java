@@ -191,6 +191,12 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person another) {
         int nameCompare = this.name.fullName.compareTo(another.name.fullName);
-        return nameCompare;
+        int companyCompare = (this.company != null && another.company != null)
+                ? this.company.compareTo(another.company)
+                : 0;
+        int jobCompare = (this.jobTitle != null && another.jobTitle != null)
+                ? this.jobTitle.compareTo(another.jobTitle)
+                : 0;
+        return nameCompare == 0 ? (companyCompare == 0 ? jobCompare : companyCompare) : nameCompare;
     }
 }
