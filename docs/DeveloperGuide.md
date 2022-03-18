@@ -304,6 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                    | change the colour scheme of the application                         | personalise my experience                                                             |
 | `*`      | user                    | be able to undo my previous command                                 | undo a command if I make a mistake                                                    |
 | `*`      | user                    | save my contacts' addresses as Google Maps links                    | use Google Maps for directions                                                        |
+| `*`      | user                    | see information about my business dealings with my contacts         | resume my business with them                                                        |
 | `*`      | user with many contacts | be provided a history of my most searched-for contacts              | easily find the contacts I use more often                                             |
 | `*`      | user with many contacts | access my recent search history                                     | can easily search for a previously searched contact                                   |
 
