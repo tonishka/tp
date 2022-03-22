@@ -5,7 +5,7 @@ package seedu.address.commons.core;
  */
 public class Messages {
     public static final String MESSAGE_DUPLICATE_PERSON = "A person with this name already exists. "
-            + "Please do add tags that differentiate between them!";
+            + "Please do add tags to other persons with the same name to differentiate between them!";
     public static final String MESSAGE_DUPLICATE_DETAILS = "A person with these details already exists. "
             + "Please do add tags that differentiate between them!";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
