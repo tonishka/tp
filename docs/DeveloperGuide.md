@@ -234,6 +234,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### View person feature
+
+Given below is an example usage scenario and how the view mechanism behaves at each step.
+
+Step 1. From the person list screen, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the `Index` of the person to de displayed.
+
+Step 2. 
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
