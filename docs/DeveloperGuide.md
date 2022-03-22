@@ -197,6 +197,8 @@ Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with 
 
 The following sequence diagram shows how the view feature works:
 
+![EditActivityDiagram](images/ViewCommandSequenceDiagram.png)
+
 #### Design considerations:
 
 **Aspect: Where to display a person's contact details:**
@@ -216,7 +218,7 @@ The following sequence diagram shows how the view feature works:
     * Difficult to implement
     * Slower program use due to the addition of an additional navigation step
     
-We chose alternative 2 because its benefit to the user experience and visual clarity of the address book outweighs the cost of including an additional navigation step.
+We chose alternative 2 because its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step.
 
 ### \[Proposed\] Undo/redo feature
 
