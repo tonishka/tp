@@ -76,7 +76,7 @@ Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
 Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
 
-Example: `edit n/Alex p/ 98765432 t/has kids`
+Example: `edit n/Alex ph/98765432 t/has kids`
 
 #### 2.1.5 Editing the data file
 _Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
