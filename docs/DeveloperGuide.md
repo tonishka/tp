@@ -265,6 +265,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find feature
+
+#### Implementation
+
+#### Design Considerations
+
+#### Aspect: How keywords are matched
+
+- **Alternative 1 (Current Choice):** Ignore case and full match is required <br>
+  - Pros:
+    - Easy to implement. 
+    - It gives the best performance if the user remembers the exact keyword they are searching for.
+  - Cons: Weak matching, i.e., `abc` does not match with `ab`. The current implementation would be less useful if the user 
+  remembers only some part of the search keywords.
+
+- **Alternative 2:** Ignore case but full match is not required <br>
+  - Pros: Strong matching, would be especially helpful if the user remembers only bits and pieces of search keywords.
+  - Cons: Difficult and time-consuming to implement.
+
+#### Aspect: What happens when user does not specify a field
+
+**Note:** <br> 
+For evaluating the usefulness of the alternatives these are the assumptions made as to why the user does not specify 
+the field: <br>
+a) they forgot, <br>
+b) they do not want to restrict their search to one field, or <br>
+c) they do not remember which field they want to search.
+
+**Alternative 1 (Current Choice):** Search all fields for the keyword <br>
+- Pros:
+  - This is the most intuitive approach. 
+  - For all above mentioned scenarios a-c, this alternative is will produce the most useful result.
+- Cons:
+  - If there is a lot of data it will take more time to search all fields for every person.
+  - Requires the most complex implementation among all alternatives. 
+  - Performs a lot of unnecessary comparisons (`alex` will never match any phone number, likewise `659347563` will 
+  never match any name). 
+
+**Alternative 2:** Use name as the default search field
+- Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this command, this is likely to produce a useful result.
+- Cons: Useless for scenario b) and c).
+
+**Alternative 3:** Produce a command syntax error and ask user to enter field
+- Pros: Simple implementation. Useful in scenario a) above.
+- Cons: Useless for scenario b) and c).
+
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
