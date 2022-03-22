@@ -166,6 +166,7 @@ The following sequence diagram shows how the edit operation works:
 ![DetailedParsingForEditSequenceDiagram](images/DetailedParsingForEditSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for an edit command:
+
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design considerations:
