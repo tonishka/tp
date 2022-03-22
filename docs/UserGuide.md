@@ -178,7 +178,7 @@ Without a `<LABEL>`, the command will delete all information stored in `<TYPE>`.
 
 Examples:
 
-`del p/ personal` -    Deletes the personal phone number of the contact.
+`del ph/ personal` -    Deletes the personal phone number of the contact.
 
 `del a/` -         Deletes all addresses of the contact.
 
