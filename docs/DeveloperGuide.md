@@ -171,7 +171,7 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 #### Design considerations:
 
-**Aspect: How edit executes:**
+**Aspect: How edit saves:**
 
 * **Alternative 1 (current choice):** Each edit is saved immediately.
     * Pros: Prevents data loss from system crashes.
