@@ -166,11 +166,12 @@ The following sequence diagram shows how the edit operation works:
 ![DetailedParsingForEditSequenceDiagram](images/DetailedParsingForEditSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for an edit command:
+
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How edit executes:**
+**Aspect: How edit saves:**
 
 * **Alternative 1 (current choice):** Each edit is saved immediately.
     * Pros: Prevents data loss from system crashes.
