@@ -1,5 +1,11 @@
+.root {
+    -dark: #023047;
+    -yellow: #ffb703;
+    -lightgrey: #dcdcdc;
+    -lightblue: #219ebc;
+}
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-lightgrey, 100%);
     background-color: #383838; /* Used in the default.html file */
 }
 
@@ -13,14 +19,14 @@
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
     -fx-opacity: 1;
 }
 
@@ -40,9 +46,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: -lightgrey;
+    -fx-control-inner-background: -lightgrey;
+    -fx-background-color: -lightgrey;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -67,7 +73,7 @@
 .table-view .column-header .label {
     -fx-font-size: 20pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -77,20 +83,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: derive(-lightgrey, 20%);
+    -fx-border-color: transparent transparent transparent -lightblue;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-lightgrey, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-lightgrey, 20%);
 }
 
 .list-cell {
@@ -100,15 +106,18 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    /*-fx-background-color: #3c3e3f;*/
+    -fx-background-color: #ffffff;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    /*-fx-background-color: #515658;*/
+    -fx-background-color: #ffffff;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    /*-fx-background-color: #424d5f;*/
+    -fx-background-color: #ffffff;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -117,7 +126,7 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .cell_big_label {
@@ -135,34 +144,34 @@
 .headline {
     -fx-font-family: "Helvetica Bold", Arial, sans-serif;
     -fx-font-size: 16px;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .primary_text {
     -fx-font-family: "Helvetica Bold", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .secondary_text {
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(-lightgrey, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(-lightgrey, 20%);
+     -fx-border-color: derive(-lightgrey, 10%);
      -fx-border-top-width: 1px;
 }
 
 .info-box {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(-lightgrey, 20%);
+     -fx-border-color: derive(-lightgrey, 10%);
      -fx-border-top-width: 1px;
      -fx-border-insets: 4px;
      -fx-padding: 5px;
@@ -170,14 +179,14 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(-lightgrey, 30%);
 }
 
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .result-display .label {
@@ -186,47 +195,47 @@
 
 .status-bar .label {
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(-lightgrey, 30%);
+    -fx-border-color: derive(-lightgrey, 25%);
     -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(-lightgrey, 30%);
+    -fx-border-color: derive(-lightgrey, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(-lightgrey, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(-lightgrey, 50%);
 }
 
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-lightgrey, 20%);
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
     -fx-opacity: 0.9;
 }
 
@@ -244,7 +253,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: -lightgrey;
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -256,12 +265,12 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  -fx-background-color: -dark;
+  -fx-text-fill: -lightgrey;
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    -fx-border-color: -dark, -dark;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
@@ -270,13 +279,13 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
+    -fx-background-color: -lightgrey;
+    -fx-text-fill: -dark;
 }
 
 .button:default {
     -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: -dark;
 }
 
 .button:default:hover {
@@ -284,36 +293,36 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: -lightgrey;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: -lightgrey;
 }
 
 .dialog-pane > *.label.content {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(-lightgrey, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
     -fx-font-size: 18px;
     -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
+    -fx-fill: -dark;
+    -fx-text-fill: -dark;
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-lightgrey, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(-lightgrey, 50%);
     -fx-background-insets: 3;
 }
 
@@ -347,12 +356,12 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #383838 #383838 -dark #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: -dark;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -371,7 +380,7 @@
 
 #tags .label {
     -fx-text-fill: black;
-    -fx-background-color: #FDF37C;
+    -fx-background-color: -yellow;
     -fx-padding: 2 6 2 6;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
