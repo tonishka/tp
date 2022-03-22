@@ -102,6 +102,10 @@ public class Person implements Comparable<Person> {
             return true;
         }
 
+        if (otherPerson == null) {
+            return false;
+        }
+
         return otherPerson.getName() != null
                 && otherPerson.getName().equals(this.getName())
                 && otherPerson.getTags() != null
