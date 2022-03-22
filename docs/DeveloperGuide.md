@@ -154,6 +154,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit feature
+The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsParser`, `EditCommandParser` and `EditCommand` classes.
+
+The following sequence diagram shows how the edit operation works:
+
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
+- Here, the user executes an add command which takes in a new name input "Jack" which is tagged with a prefix "n/" for input type identification.
+- If a user were to execute a view command instead, the only difference would be that the editing is done on an existing contact instead of a new one.
+
+![DetailedParsingForEditSequenceDiagram](images/DetailedParsingForEditSequenceDiagram.png)
+
+Below is an activity diagram summarising the possible paths for an edit command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How edit saves:**
+
+* **Alternative 1 (current choice):** Each edit is saved immediately.
+    * Pros: Prevents data loss from system crashes.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2 :** All edits are saved only after executing a save command (not implemented feature).
+    * Pros: Allows user to revert their changes
+    * Cons: System crashes will not save the edits.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -312,6 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                    | change the colour scheme of the application                         | personalise my experience                                                             |
 | `*`      | user                    | be able to undo my previous command                                 | undo a command if I make a mistake                                                    |
 | `*`      | user                    | save my contacts' addresses as Google Maps links                    | use Google Maps for directions                                                        |
+| `*`      | user                    | see information about my business dealings with my contacts         | continue my business with them                                                        |
 | `*`      | user with many contacts | be provided a history of my most searched-for contacts              | easily find the contacts I use more often                                             |
 | `*`      | user with many contacts | access my recent search history                                     | can easily search for a previously searched contact                                   |
 
