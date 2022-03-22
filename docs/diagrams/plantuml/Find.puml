@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes find command;
+if (is Field given) then (true)
+  :Search given field for keyword(s);
+else
+:Search all fields for keyword(s);
+endif
+:Display list of matched people;
+stop
+
+@enduml

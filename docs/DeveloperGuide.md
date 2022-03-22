@@ -269,6 +269,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
+Below is an activity diagram summarising the possible paths for a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 #### Design Considerations
 
 #### Aspect: How keywords are matched
