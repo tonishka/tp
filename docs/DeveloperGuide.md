@@ -181,6 +181,43 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
 
+### View person feature
+
+The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+
+Given below is an example usage scenario and how the view mechanism behaves at each step.
+
+Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+
+The following sequence diagram shows how the view feature works:
+
+#### Design considerations:
+
+**Aspect: Where to display a person's contact details:**
+
+* **Alternative 1:** Display all contact information in the person list screen.
+  * Pros:
+    * Easy to implement
+    * Does not require the user to navigate to a new screen, which speeds up program use
+  * Cons:
+    * Clutters the person list screen with a lot of information for each person
+    
+* **Alternative 2 (current choice):** Navigate to a new screen to for contact information
+  * Pros:
+    * Greatly reduces clutter in the person list screen
+    * Reduces the size of the person list, making it easier to scroll through
+  * Cons:
+    * Difficult to implement
+    * Slower program use due to the addition of an additional navigation step
+    
+We chose alternative 2 because its benefit to the user experience and visual clarity of the address book outweighs the cost of including an additional navigation step.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -260,14 +297,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### View person feature
-
-Given below is an example usage scenario and how the view mechanism behaves at each step.
-
-Step 1. From the person list screen, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the `Index` of the person to de displayed.
-
-Step 2. 
 
 ### \[Proposed\] Data archiving
 
