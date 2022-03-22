@@ -94,11 +94,15 @@ public class Person implements Comparable<Person> {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same details.
      */
     public boolean isSamePerson(Person otherPerson) {
-        return this.equals(otherPerson);
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.equals(this);
     }
 
     /**

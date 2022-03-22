@@ -64,7 +64,7 @@ public class DeleteFieldCommand extends Command {
         Person personToDeleteField = this.personToDeleteField;
         Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(deleteFieldDescriptor);
 
-        if (!personToDeleteField.isSamePerson(updatedPerson)) {
+        if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
