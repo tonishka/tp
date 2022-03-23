@@ -17,7 +17,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -84,7 +83,7 @@ public class EditPersonDescriptorBuilder {
                 .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1
                                 ? new Label(phoneLabelPair[0], true)
                                 : new Label(phoneLabelPair[1], false),
-                        phoneLabelPair -> new Phone(phoneLabelPair[0])));
+                    phoneLabelPair -> new Phone(phoneLabelPair[0])));
 
         descriptor.setNumbers(parsedNumbers);
         return this;
@@ -99,7 +98,7 @@ public class EditPersonDescriptorBuilder {
                 .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1
                                 ? new Label(emailLabelPair[0], true)
                                 : new Label(emailLabelPair[1], false),
-                        emailLabelPair -> new Email(emailLabelPair[0])));
+                    emailLabelPair -> new Email(emailLabelPair[0])));
 
         descriptor.setEmails(parsedEmails);
         return this;
@@ -114,7 +113,7 @@ public class EditPersonDescriptorBuilder {
                 .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1
                                 ? new Label(addressLabelPair[0], true)
                                 : new Label(addressLabelPair[1], false),
-                        addressLabelPair -> new Address(addressLabelPair[0])));
+                    addressLabelPair -> new Address(addressLabelPair[0])));
 
         descriptor.setAddresses(parsedAddresses);
         return this;

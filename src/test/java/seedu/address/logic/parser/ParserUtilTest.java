@@ -262,8 +262,8 @@ public class ParserUtilTest {
                 .parseNumbers(Arrays.asList(VALID_PHONE, VALID_PHONE_WITH_LABEL));
         HashMap<Label, Phone> expectedNumbersMap = new HashMap<>();
 
-        expectedNumbersMap.
-                put(new Label(VALID_PHONE, true), new Phone(VALID_PHONE));
+        expectedNumbersMap
+                .put(new Label(VALID_PHONE, true), new Phone(VALID_PHONE));
         expectedNumbersMap.put(new Label("home", false), new Phone(VALID_PHONE));
         assertEquals(expectedNumbersMap, actualNumbersMap);
     }
@@ -307,8 +307,8 @@ public class ParserUtilTest {
                 .parseAddresses(Arrays.asList(VALID_ADDRESS, VALID_ADDRESS_WITH_LABEL));
         HashMap<Label, Address> expectedAddressesMap = new HashMap<>();
 
-        expectedAddressesMap.
-                put(new Label(VALID_ADDRESS, true), new Address(VALID_ADDRESS));
+        expectedAddressesMap
+                .put(new Label(VALID_ADDRESS, true), new Address(VALID_ADDRESS));
         expectedAddressesMap.put(new Label("home", false), new Address(VALID_ADDRESS));
         assertEquals(expectedAddressesMap, actualAddressesMap);
     }
@@ -382,8 +382,8 @@ public class ParserUtilTest {
                 .parseEmails(Arrays.asList(VALID_EMAIL, VALID_EMAIL_WITH_LABEL));
         HashMap<Label, Email> expectedEmailsMap = new HashMap<>();
 
-        expectedEmailsMap.
-                put(new Label(VALID_EMAIL, true), new Email(VALID_EMAIL));
+        expectedEmailsMap
+                .put(new Label(VALID_EMAIL, true), new Email(VALID_EMAIL));
         expectedEmailsMap.put(new Label("friend", false), new Email(VALID_EMAIL));
         assertEquals(expectedEmailsMap, actualEmailsMap);
     }
