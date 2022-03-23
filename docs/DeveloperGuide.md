@@ -195,7 +195,7 @@ The _delete fields_ operation works similar to the _edit_ operation, except for:
 2. the parsing of the command
 
 The deletion functionality sets the fields to return to their initial empty values.
-It can be illustrated in the code snippets below:
+It is illustrated in the code snippets below:
 
 ```java
     // Single-valued fields
