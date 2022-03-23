@@ -2,9 +2,10 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.util.Iterator;
 
 public class MeetingsList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
