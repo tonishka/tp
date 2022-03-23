@@ -181,6 +181,69 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
 
+### Delete fields feature
+The **delete fields** feature can be used to delete fields stored for the contacts. This feature is also restricted to the Contact Details screen (in _edit_ mode), which can be accessed after the `add` or `view` commands. It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+Note: This feature is different from the **delete contacts** feature, which is only accessible on the Person Details screen (in _default_ mode).
+
+#### Design considerations:
+Since certain fields allow for multiple values to be stored, the user needs to specify the label of the value (or the value itself for non-labelled fields) they want to delete along with the field to be deleted for such fields.
+
+**Aspect: What happens when the user does not specify a label or value:**
+
+* **Alternative 1 (current choice):** Delete all the values stored for this field immediately.
+    * Pros:
+      * Seems to be the most intuitive approach.
+      * Easier to implement.
+      * Faster to execute command.
+    * Cons:
+      * User may have forgotten to mention the label or field, which could lead to unintended loss of data.
+
+* **Alternative 2 :** Confirm that the user wants to delete all values for this field
+    * Pros:
+      * Allows user to cancel the command if it was unintentional.
+    * Cons:
+      * Slower to execute command.
+      * Difficult to implement, since the current implementation does not store command history.
+
+### View person feature
+
+The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+
+Given below is an example usage scenario and how the view mechanism behaves at each step.
+
+Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+
+The following sequence diagram shows how the view feature works:
+
+![EditActivityDiagram](images/ViewCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Where to display a person's contact details:**
+
+* **Alternative 1:** Display all contact information in the person list screen.
+  * Pros:
+    * Easy to implement
+    * Does not require the user to navigate to a new screen, which speeds up program use
+  * Cons:
+    * Clutters the person list screen with a lot of information for each person
+    
+* **Alternative 2 (current choice):** Navigate to a new screen to for contact information
+  * Pros:
+    * Greatly reduces clutter in the person list screen
+    * Reduces the size of the person list, making it easier to scroll through
+  * Cons:
+    * Difficult to implement
+    * Slower program use due to the addition of an additional navigation step
+    
+We chose alternative 2 because its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -265,6 +328,53 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find feature
+
+#### Implementation
+
+#### Design Considerations
+
+#### Aspect: How keywords are matched
+
+- **Alternative 1 (Current Choice):** Ignore case and full match is required <br>
+  - Pros:
+    - Easy to implement. 
+    - It gives the best performance if the user remembers the exact keyword they are searching for.
+  - Cons: Weak matching, i.e., `abc` does not match with `ab`. The current implementation would be less useful if the user 
+  remembers only some part of the search keywords.
+
+- **Alternative 2:** Ignore case but full match is not required <br>
+  - Pros: Strong matching, would be especially helpful if the user remembers only bits and pieces of search keywords.
+  - Cons: Difficult and time-consuming to implement.
+
+#### Aspect: What happens when user does not specify a field
+
+**Note:** <br> 
+For evaluating the usefulness of the alternatives these are the assumptions made as to why the user does not specify 
+the field: <br>
+a) they forgot, <br>
+b) they do not want to restrict their search to one field, or <br>
+c) they do not remember which field they want to search.
+
+**Alternative 1 (Current Choice):** Search all fields for the keyword <br>
+- Pros:
+  - This is the most intuitive approach. 
+  - For all above mentioned scenarios a-c, this alternative is will produce the most useful result.
+- Cons:
+  - If there is a lot of data it will take more time to search all fields for every person.
+  - Requires the most complex implementation among all alternatives. 
+  - Performs a lot of unnecessary comparisons (`alex` will never match any phone number, likewise `659347563` will 
+  never match any name). 
+
+**Alternative 2:** Use name as the default search field
+- Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this command, this is likely to produce a useful result.
+- Cons: Useless for scenario b) and c).
+
+**Alternative 3:** Produce a command syntax error and ask user to enter field
+- Pros: Simple implementation. Useful in scenario a) above.
+- Cons: Useless for scenario b) and c).
+
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
