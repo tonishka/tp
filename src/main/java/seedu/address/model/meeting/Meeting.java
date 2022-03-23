@@ -7,7 +7,7 @@ import seedu.address.model.person.Person;
 /**
  * Represents a meeting of which the user is a part.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
     private final Agenda agenda;
     private final MeetingPlace place;
     private final MeetingTime time;
@@ -56,5 +56,13 @@ public class Meeting {
                 && otherMeeting.getTime().equals(getTime())
                 && otherMeeting.getPlace().equals(getPlace())
                 && otherMeeting.getAttendees().equals(getAttendees());
+    }
+
+    @Override
+    /**
+     * Chronological order is enforced on meetings
+     */
+    public int compareTo(Meeting other) {
+        return getTime().dateTime.compareTo((other.getTime().dateTime));
     }
 }
