@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -120,37 +121,42 @@ public class SampleDataUtil {
      * Returns a address map containing the list of strings given.
      */
     public static Map<Label, Address> getAddressMap(String... strings) {
-        return Arrays.stream(strings)
+        Map<Label, Address> addresses = Arrays.stream(strings)
                 .map(addressLabelPair -> addressLabelPair.split(" l/"))
                 .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1
                                 ? new Label(addressLabelPair[0], true)
                                 : new Label(addressLabelPair[1], false),
                     addressLabelPair -> new Address(addressLabelPair[0])));
 
+        return ParserUtil.replacePlaceholdersInMap(addresses);
     }
 
     /**
      * Returns a email map containing the list of strings given.
      */
     public static Map<Label, Email> getEmailMap(String... strings) {
-        return Arrays.stream(strings)
+        Map<Label, Email> emails = Arrays.stream(strings)
                 .map(emailLabelPair -> emailLabelPair.split(" l/"))
                 .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1
                                 ? new Label(emailLabelPair[0], true)
                                 : new Label(emailLabelPair[1], false),
                     emailLabelPair -> new Email(emailLabelPair[0])));
+
+        return ParserUtil.replacePlaceholdersInMap(emails);
     }
 
     /**
      * Returns a phone map containing the list of strings given.
      */
     public static Map<Label, Phone> getPhoneMap(String... strings) {
-        return Arrays.stream(strings)
+        Map<Label, Phone> numbers = Arrays.stream(strings)
                 .map(phoneLabelPair -> phoneLabelPair.split(" l/"))
                 .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1
                                 ? new Label(phoneLabelPair[0], true)
                                 : new Label(phoneLabelPair[1], false),
                     phoneLabelPair -> new Phone(phoneLabelPair[0])));
+
+        return ParserUtil.replacePlaceholdersInMap(numbers);
     }
 
     /**

@@ -115,7 +115,7 @@ public class ParserUtilTest {
     //------------------------------------------------------------------------------------------------------------------
     @Test
     public void parseLabel_validValueWithoutLabel_returnsPlaceholderLabel() throws Exception {
-        Label expectedLabel = new Label(String.valueOf(VALID_ADDRESS.hashCode()), true);
+        Label expectedLabel = new Label(VALID_ADDRESS, true);
         Label actualContent = parseLabel(VALID_ADDRESS);
         assertEquals(expectedLabel, actualContent);
     }
@@ -262,10 +262,8 @@ public class ParserUtilTest {
                 .parseNumbers(Arrays.asList(VALID_PHONE, VALID_PHONE_WITH_LABEL));
         HashMap<Label, Phone> expectedNumbersMap = new HashMap<>();
 
-        Phone valid_phone = new Phone(VALID_PHONE);
-
         expectedNumbersMap.
-                put(new Label(String.valueOf(valid_phone.hashCode()), true), new Phone(VALID_PHONE));
+                put(new Label(VALID_PHONE, true), new Phone(VALID_PHONE));
         expectedNumbersMap.put(new Label("home", false), new Phone(VALID_PHONE));
         assertEquals(expectedNumbersMap, actualNumbersMap);
     }
@@ -309,10 +307,8 @@ public class ParserUtilTest {
                 .parseAddresses(Arrays.asList(VALID_ADDRESS, VALID_ADDRESS_WITH_LABEL));
         HashMap<Label, Address> expectedAddressesMap = new HashMap<>();
 
-        Address valid_address = new Address(VALID_ADDRESS);
-
         expectedAddressesMap.
-                put(new Label(String.valueOf(valid_address.hashCode()), true), new Address(VALID_ADDRESS));
+                put(new Label(VALID_ADDRESS, true), new Address(VALID_ADDRESS));
         expectedAddressesMap.put(new Label("home", false), new Address(VALID_ADDRESS));
         assertEquals(expectedAddressesMap, actualAddressesMap);
     }
@@ -386,10 +382,8 @@ public class ParserUtilTest {
                 .parseEmails(Arrays.asList(VALID_EMAIL, VALID_EMAIL_WITH_LABEL));
         HashMap<Label, Email> expectedEmailsMap = new HashMap<>();
 
-        Email valid_email = new Email(VALID_EMAIL);
-
         expectedEmailsMap.
-                put(new Label(String.valueOf(valid_email.hashCode()), true), new Email(VALID_EMAIL));
+                put(new Label(VALID_EMAIL, true), new Email(VALID_EMAIL));
         expectedEmailsMap.put(new Label("friend", false), new Email(VALID_EMAIL));
         assertEquals(expectedEmailsMap, actualEmailsMap);
     }
