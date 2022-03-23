@@ -202,7 +202,8 @@ It can be illustrated in the code snippets below:
     if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
         deleteFieldDescriptor.setCompany(null);
     }
-    
+```
+```java
     // Multi-valued fields
     if (deleteFieldDescriptor.getNumbers().isPresent()) {
         Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
@@ -212,7 +213,8 @@ It can be illustrated in the code snippets below:
         if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
             deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
         } else {
-            Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
+            Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers()
+                    .orElse(new HashMap<>()));
             numbersToBeDeleted.forEach(numbers::remove);
             deleteFieldDescriptor.setNumbers(numbers);
         }
@@ -421,6 +423,8 @@ c) they do not remember which field they want to search.
 - Cons: Useless for scenario b) and c).
 
   
+### Manage meetings
+[Coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
