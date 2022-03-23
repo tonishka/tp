@@ -182,8 +182,9 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Cons: System crashes will not save the edits.
 
 ### Delete fields feature
-The **delete fields** feature can be used to delete fields stored for the contacts. This feature is also restricted to the Contact Details screen (in _edit_ mode), which can be accessed after the `add` or `view` commands. It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
-Note: This feature is different from the **delete contacts** feature, which is only accessible on the Person Details screen (in _default_ mode).
+The **delete fields** feature can be used to delete fields stored for the contacts. This feature is also restricted to the Contact Details screen (in _edit_ mode), which can be accessed after the _add_ or _view_ commands. It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+
+<ins>Note</ins>: This feature is different from the **delete contacts** feature, which is only accessible on the Person Details screen (in _default_ mode).
 
 #### Design considerations:
 Since certain fields allow for multiple values to be stored, the user needs to specify the label of the value (or the value itself for non-labelled fields) they want to delete along with the field to be deleted for such fields.
@@ -204,6 +205,8 @@ Since certain fields allow for multiple values to be stored, the user needs to s
     * Cons:
       * Slower to execute command.
       * Difficult to implement, since the current implementation does not store command history.
+
+We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be very helpful for executing other commands.
 
 ### View person feature
 
