@@ -1,8 +1,8 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.person.Person;
-
 import java.util.HashSet;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a meeting of which the user is a part.
@@ -13,6 +13,13 @@ public class Meeting {
     private final MeetingTime time;
     private final HashSet<Person> attendees;
 
+    /**
+     * Constructs a new meeting with the given parameters
+     * @param agenda Agenda of the meeting
+     * @param place Meeting place
+     * @param time Meeting time and date
+     * @param attendees Other attendees of the meeting
+     */
     public Meeting (Agenda agenda, MeetingPlace place, MeetingTime time, HashSet<Person> attendees) {
         this.agenda = agenda;
         this.place = place;

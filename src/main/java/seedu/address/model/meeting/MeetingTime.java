@@ -1,9 +1,9 @@
 package seedu.address.model.meeting;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the meeting time for a meeting.
@@ -14,6 +14,10 @@ public class MeetingTime {
     public final LocalDateTime dateTime;
     private final DateTimeFormatter formatter;
 
+    /**
+     * Creates a new meeting time
+     * @param dateTime
+     */
     public MeetingTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
         this.formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
