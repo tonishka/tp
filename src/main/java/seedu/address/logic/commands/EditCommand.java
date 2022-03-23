@@ -16,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
@@ -99,13 +100,13 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getJobTitle().orElse(null));
 
         //New HashMaps are created to remove Unmodifiable Map's limitation
-        Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
+        Map<Label, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
         updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
 
-        Map<String, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
+        Map<Label, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
         updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
 
-        Map<String, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
+        Map<Label, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
         updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
 
         Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
