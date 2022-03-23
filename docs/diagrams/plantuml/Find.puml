@@ -3,9 +3,9 @@
 
 start
 :User executes find command;
-if () then ([is Field given])
+if () then ([Field is given])
   :Search given field for keyword(s);
-else
+else ([else])
 :Search all fields for keyword(s);
 endif
 :Display list of matched people;
