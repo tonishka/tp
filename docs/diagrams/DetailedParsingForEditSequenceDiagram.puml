@@ -37,6 +37,9 @@ deactivate Jack
 ECP <-- ParserUtil : jack
 deactivate ParserUtil
 ECP -> EditPersonDescriptor : setName(jack)
+activate EditPersonDescriptor
+ECP <-- EditPersonDescriptor
+deactivate EditPersonDescriptor
 ECP -> EditCommand ** : EditCommand(editPersonDescriptor, personToEdit)
 activate  EditCommand
 ECP <-- EditCommand :editCommand
