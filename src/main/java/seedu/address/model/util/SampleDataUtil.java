@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -28,16 +29,16 @@ public class SampleDataUtil {
             new Person(
                     new Name("Alex Yeoh"),
                     new HashMap<>() {{
-                        put("Personal", new Phone("87438807"));
-                        put("Work", new Phone("82165492"));
+                        put(new Label("Personal", false), new Phone("87438807"));
+                        put(new Label("Work", false), new Phone("82165492"));
                     }},
                     new HashMap<>() {{
-                        put("Personal", new Email("alexyeoh@example.com"));
-                        put("Work", new Email("alex_y@company.com"));
+                        put(new Label("Personal", false), new Email("alexyeoh@example.com"));
+                        put(new Label("Work", false), new Email("alex_y@company.com"));
                     }},
                     new HashMap<>() {{
-                        put("Home", new Address("Blk 30 Geylang Street 29, #06-40"));
-                        put("Office", new Address("123 Raffles Business Tower"));
+                        put(new Label("Home", false), new Address("Blk 30 Geylang Street 29, #06-40"));
+                        put(new Label("Office", false), new Address("123 Raffles Business Tower"));
                     }},
                     new Company("Monsters Inc"),
                     new JobTitle("Scarer"),
@@ -47,16 +48,17 @@ public class SampleDataUtil {
             new Person(
                     new Name("Bernice Yu"),
                     new HashMap<>() {{
-                        put("Personal", new Phone("99272758"));
-                        put("Work", new Phone("93210283"));
+                        put(new Label("Personal", false), new Phone("99272758"));
+                        put(new Label("Work", false), new Phone("93210283"));
                     }},
                     new HashMap<>() {{
-                        put("Personal", new Email("berniceyu@example.com"));
-                        put("Work", new Email("bernice_y@company.com"));
+                        put(new Label("Personal", false), new Email("berniceyu@example.com"));
+                        put(new Label("Work", false), new Email("bernice_y@company.com"));
                     }},
                     new HashMap<>() {{
-                        put("Home", new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
-                        put("Office", new Address("1725 Slough Avenue, Scranton PA"));
+                        put(new Label("Home", false),
+                                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
+                        put(new Label("Office", false), new Address("1725 Slough Avenue, Scranton PA"));
                     }},
                     new Company("Dunder Mifflin"),
                     new JobTitle("Salesperson"),
@@ -66,16 +68,18 @@ public class SampleDataUtil {
             new Person(
                     new Name("David Li"),
                     new HashMap<>() {{
-                        put("Personal", new Phone("91031282"));
-                        put("Work", new Phone("92492021"));
+                        put(new Label("Personal", false), new Phone("91031282"));
+                        put(new Label("Work", false), new Phone("92492021"));
                     }},
                     new HashMap<>() {{
-                        put("Personal", new Email("lidavid@example.com"));
-                        put("Work", new Email("david_li@company.com"));
+                        put(new Label("Personal", false), new Email("lidavid@example.com"));
+                        put(new Label("Work", false), new Email("david_li@company.com"));
                     }},
                     new HashMap<>() {{
-                        put("Home", new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
-                        put("Office", new Address("43 Springfield Avenue, Greendale County"));
+                        put(new Label("Home", false),
+                                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"));
+                        put(new Label("Office", false),
+                                new Address("43 Springfield Avenue, Greendale County"));
                     }},
                     new Company("Greendale College"),
                     new JobTitle("Spanish Professor"),
