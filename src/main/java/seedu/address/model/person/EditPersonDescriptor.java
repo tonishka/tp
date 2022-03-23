@@ -213,7 +213,8 @@ public class EditPersonDescriptor {
         if (getAddresses().isPresent()) {
             Map<Label, Address> addresses = getAddresses().get();
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(address.address).append(" l/").append(label).append(" "));
+            addresses.forEach((label, address) -> builder.append(address.address).append(" l/")
+                    .append(label).append(" "));
         }
 
         if (getEmails().isPresent()) {

@@ -171,15 +171,15 @@ public class Person implements Comparable<Person> {
         Map<Label, Phone> numbers = getNumbers();
         if (!numbers.isEmpty()) {
             builder.append("; Numbers: ");
-            numbers.forEach((label, number) -> builder.append(number.phone).append(" l/").append(label.label).
-                    append(" "));
+            numbers.forEach((label, number) -> builder.append(number.phone).append(" l/").append(label.label)
+                    .append(" "));
         }
 
         Map<Label, Address> addresses = getAddresses();
         if (!addresses.isEmpty()) {
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(address.address).append(" l/").
-                    append(label.label).append(" "));
+            addresses.forEach((label, address) -> builder.append(address.address).append(" l/")
+                    .append(label.label).append(" "));
         }
 
         Map<Label, Email> emails = getEmails();

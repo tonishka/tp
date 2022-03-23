@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import seedu.address.model.label.Label;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -10,6 +8,8 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import seedu.address.model.label.Label;
 
 /**
  * Helper functions for handling strings.
