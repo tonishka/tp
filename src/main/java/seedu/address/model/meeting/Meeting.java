@@ -58,10 +58,10 @@ public class Meeting implements Comparable<Meeting> {
                 && otherMeeting.getAttendees().equals(getAttendees());
     }
 
-    @Override
     /**
-     * Chronological order is enforced on meetings
+     * Chronological order is enforced on meetings.
      */
+    @Override
     public int compareTo(Meeting other) {
         return getTime().dateTime.compareTo((other.getTime().dateTime));
     }
