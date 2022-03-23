@@ -4,15 +4,15 @@
 
 start
 :User executes add or view command;
-if (is Add command) then (Yes)
+if () then ([is Add Command])
     :AddressbookStorage saves contact with details added;
-else (is View Command)
+else ([is View Command])
     endif
 :Open contact details window;
 repeat
     :User executes edit command;
     :AddressbookStorage saves changes;
-repeat while (User wants to make more edits?) is (yes)
+repeat while () is ([User wants to make more edits])
 :User executes back command;
 stop
 @enduml

@@ -34,12 +34,23 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 --------------------------------------------------------------------------------------------------------------------
 
+#### Notes about the command format: <br>
+- Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
+  e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
+- Items in square brackets are optional. <br>
+  e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
+- Items with ... after them can be used multiple times including zero times.
+  e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
+- Parameters can be in any order.
+- `l/` is used to label parameters. They are optional. 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. Features
 ### 2.1 Managing Contacts
 #### 2.1.1 Adding a contact: `add`
 Adds a person to the contact list.
 
-Format: `add n/<NAME>`
+Format: `add n/<NAME> [ph/<PHONE_NUMBER> l/<LABEL>]... [e/<EMAIL> l/<LABEL>]... [a/<ADDRESS> l/LABEL]... [t/TAG]...`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
 From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
@@ -65,7 +76,7 @@ Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
 Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
 
-Example: `edit 4`
+Example: `edit n/Alex ph/98765432 t/has kids`
 
 #### 2.1.5 Editing the data file
 _Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
@@ -159,7 +170,7 @@ Example: `pr/He pr/Him`
 
 #### 2.3.9 Delete field: `del`
 
-Format: `del <TYPE> <LABEL>`
+Format: `del <TYPE 1> <LABEL 1> <TYPE 2> <LABEL 2>...`
 
 `<TYPE>` refers to the category of information you wish to delete, as indicated by its command word.
 
@@ -167,7 +178,7 @@ Without a `<LABEL>`, the command will delete all information stored in `<TYPE>`.
 
 Examples:
 
-`del p/ personal` -    Deletes the personal phone number of the contact.
+`del ph/ personal` -    Deletes the personal phone number of the contact.
 
 `del a/` -         Deletes all addresses of the contact.
 
@@ -185,29 +196,29 @@ Format: `exit`
 
 ## 3. Command Summary
 
-| **Action** | **Format, Example** |
-| --- | --- |
-| **Add** | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy` |
-| **Edit** | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
-| **Save** | Format: `save` |
-| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <FIELD> <LABEL>` <br> Example: `del p/ personal` |
-| **Clear** | Format: `clear` |
-| **Find** | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott` |
-| **View** | Format: `view` |
-| **List** | Format: `list` |
-| **Help** | Format: `help` |
+| **Action** | **Format, Example**                                                                                                                                                                                         |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                    |
+| **Edit**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                           |                                                                                                                                                                                        |
+| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
+| **Clear**  | Format: `clear`                                                                                                                                                                                             |
+| **Find**   | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                        |
+| **View**   | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                               |
+| **Back**   | Format: `back`                                                                                                                                                                                              |
+| **List**   | Format: `list`                                                                                                                                                                                              |
+| **Help**   | Format: `help`                                                                                                                                                                                              |
 
 ## 4. Contact Fields Summary
 
-| **Field** | **Mandatory** | **Format, Example** |
-| --- | --- | --- |
-| **Name** | Yes | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy` |
-| **Phone Number** | No | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office` |
-| **Email ID** | No | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com` |
-| **Address** | No | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
-| **Company** | No | Format: `c/<COMPANY>` <br> Example: `c/Tesla` |
-| **Job Title** | No | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer` |
-| **Tags** | No | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids` |
-| **Pronouns** | No | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them` |
+| **Field**        | **Mandatory** | **Format, Example**                                                                                                            |
+|------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Name**         | Yes           | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy`                                                                               |
+| **Phone Number** | No            | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office`        |
+| **Email ID**     | No            | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com`       |
+| **Address**      | No            | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
+| **Company**      | No            | Format: `c/<COMPANY>` <br> Example: `c/Tesla`                                                                                  |
+| **Job Title**    | No            | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer`                                                                    |
+| **Tags**         | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
+| **Pronouns**     | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
 
 [Back to top](#table-of-contents)
