@@ -247,9 +247,17 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and efficie
 
 ### Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
-and to start with a new address book.
+and to start with a new address book. Since deleted data cannot be recovered, 
+the app opens a pop-up window asking for confirmation that 
+the user wants to delete all of their stored contacts.
 
 The following sequence diagram shows how the clear operation works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+This activity diagram summarises the possible paths of executing the _clear_ command:
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
 ### View person feature
 
@@ -267,7 +275,7 @@ Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with 
 
 The following sequence diagram shows how the view feature works:
 
-![EditActivityDiagram](images/ViewCommandSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 #### Design considerations:
 
