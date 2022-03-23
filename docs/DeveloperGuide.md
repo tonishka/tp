@@ -182,12 +182,47 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Cons: System crashes will not save the edits.
 
 ### Delete fields feature
-The **delete fields** feature can be used to delete fields stored for the contacts. This feature is also restricted to the Contact Details screen (in _edit_ mode), which can be accessed after the _add_ or _view_ commands. It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+The **delete fields** feature can be used to delete fields stored for the contacts. 
+This feature is also restricted to the Contact Details screen (in _edit_ mode), 
+which can be accessed after the _add_ or _view_ commands. 
+It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
 
-<ins>Note</ins>: This feature is different from the **delete contacts** feature, which is only accessible on the Person Details screen (in _default_ mode).
+<ins>Note</ins>: This feature is different from the **delete contacts** feature, 
+which is only accessible on the Person Details screen (in _default_ mode).
+
+The _delete fields_ operation works similar to the _edit_ operation, except for:
+1. the deletion functionality 
+2. the command syntax.
+
+The deletion functionality sets the fields to return to their initial empty values.
+It can be illustrated in the code snippets below:
+
+```java
+    // Single-valued fields
+    if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+        deleteFieldDescriptor.setCompany(null);
+    }
+    
+    // Multi-valued fields
+    if (deleteFieldDescriptor.getNumbers().isPresent()) {
+        Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
+    
+        requireNonNull(numbersToBeDeleted);
+    
+        if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
+            deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
+        } else {
+            Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
+            numbersToBeDeleted.forEach(numbers::remove);
+            deleteFieldDescriptor.setNumbers(numbers);
+        }
+    }
+```
 
 #### Design considerations:
-Since certain fields allow for multiple values to be stored, the user needs to specify the label of the value (or the value itself for non-labelled fields) they want to delete along with the field to be deleted for such fields.
+Since certain fields allow for multiple values to be stored, 
+the user needs to specify the label of the value (or the value itself for non-labelled fields) 
+they want to delete along with the field to be deleted for such fields.
 
 **Aspect: What happens when the user does not specify a label or value:**
 
