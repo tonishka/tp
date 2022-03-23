@@ -1,0 +1,15 @@
+@startuml
+
+start
+:User enters clear command;
+:Confirmation window is opened;
+if () then ([User confirms
+action])
+  :Address book is cleared;
+else ([User cancels
+action])
+endif
+:Confirmation window closes;
+stop
+
+@enduml
