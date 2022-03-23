@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -60,9 +61,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Company company = null;
         JobTitle jobTitle = null;
-        HashMap<String, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
-        HashMap<String, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
-        HashMap<String, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
+        HashMap<Label, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
+        HashMap<Label, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
+        HashMap<Label, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
 
         if (arePrefixesPresent(argMultimap, PREFIX_COMPANY)) {
             company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
