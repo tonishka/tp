@@ -6,10 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.source.tree.Tree;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.label.Label;
@@ -125,7 +127,7 @@ class JsonAdaptedPerson {
 
         final JobTitle modelJobTitle = jobTitle != null ? new JobTitle(jobTitle) : null;
 
-        HashMap<Label, Phone> modelNumbers = new HashMap<>();
+        TreeMap<Label, Phone> modelNumbers = new TreeMap<>();
         if (numbers != null) {
             for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
                 String key = mapElement.getKey();
@@ -133,7 +135,7 @@ class JsonAdaptedPerson {
             }
         }
 
-        HashMap<Label, Email> modelEmails = new HashMap<>();
+        TreeMap<Label, Email> modelEmails = new TreeMap<>();
         if (emails != null) {
             for (Map.Entry<String, JsonAdaptedEmail> mapElement : emails.entrySet()) {
                 String key = mapElement.getKey();
@@ -141,7 +143,7 @@ class JsonAdaptedPerson {
             }
         }
 
-        HashMap<Label, Address> modelAddresses = new HashMap<>();
+        TreeMap<Label, Address> modelAddresses = new TreeMap<>();
         if (addresses != null) {
             for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
                 String key = mapElement.getKey();

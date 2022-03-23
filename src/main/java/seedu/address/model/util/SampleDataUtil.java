@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.label.Label;
@@ -118,30 +119,37 @@ public class SampleDataUtil {
     /**
      * Returns a address map containing the list of strings given.
      */
-    public static Map<String, Address> getAddressMap(String... strings) {
+    public static Map<Label, Address> getAddressMap(String... strings) {
         return Arrays.stream(strings)
                 .map(addressLabelPair -> addressLabelPair.split(" l/"))
-                .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1 ? "" : addressLabelPair[1],
+                .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1
+                                ? new Label(addressLabelPair[0], true)
+                                : new Label(addressLabelPair[1], false),
                     addressLabelPair -> new Address(addressLabelPair[0])));
+
     }
 
     /**
      * Returns a email map containing the list of strings given.
      */
-    public static Map<String, Email> getEmailMap(String... strings) {
+    public static Map<Label, Email> getEmailMap(String... strings) {
         return Arrays.stream(strings)
                 .map(emailLabelPair -> emailLabelPair.split(" l/"))
-                .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1 ? "" : emailLabelPair[1],
+                .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1
+                                ? new Label(emailLabelPair[0], true)
+                                : new Label(emailLabelPair[1], false),
                     emailLabelPair -> new Email(emailLabelPair[0])));
     }
 
     /**
      * Returns a phone map containing the list of strings given.
      */
-    public static Map<String, Phone> getPhoneMap(String... strings) {
+    public static Map<Label, Phone> getPhoneMap(String... strings) {
         return Arrays.stream(strings)
                 .map(phoneLabelPair -> phoneLabelPair.split(" l/"))
-                .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1 ? "" : phoneLabelPair[1],
+                .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1
+                                ? new Label(phoneLabelPair[0], true)
+                                : new Label(phoneLabelPair[1], false),
                     phoneLabelPair -> new Phone(phoneLabelPair[0])));
     }
 
@@ -151,9 +159,9 @@ public class SampleDataUtil {
      * @param s parameter
      */
     public static void main(String[] s) {
-        Map<String, Address> map = getAddressMap("Blk 30 Geylang Street 29, #06-40", "Blk 30 Geylang l/ home");
-        for (Map.Entry<String, Address> entry : map.entrySet()) {
-            String key = entry.getKey();
+        Map<Label, Address> map = getAddressMap("Blk 30 Geylang Street 29, #06-40", "Blk 30 Geylang l/ home");
+        for (Map.Entry<Label, Address> entry : map.entrySet()) {
+            Label key = entry.getKey();
             Address tab = entry.getValue();
             System.out.print("Label: " + key + ", ");
             System.out.println("Address: " + tab);

@@ -50,7 +50,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the {@code trimmedLabel} is invalid.
      */
-    public static Label parseLabel(String userInput, Object value) throws ParseException {
+    public static Label parseLabel(String userInput) throws ParseException {
         requireNonNull(userInput);
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.contains(" l/")) {
@@ -61,7 +61,7 @@ public class ParserUtil {
             }
             return new Label(trimmedLabel, false);
         } else {
-            return new Label(String.valueOf(value.hashCode()), true);
+            return new Label(userInput, true);
         }
     }
 
@@ -140,7 +140,7 @@ public class ParserUtil {
         final HashMap<Label, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
             Address parsedAddress = parseAddress(address);
-            Label label = parseLabel(address, parsedAddress);
+            Label label = parseLabel(address);
             addressesMap.put(label, parsedAddress);
         }
         return addressesMap;
@@ -176,7 +176,7 @@ public class ParserUtil {
         final HashMap<Label, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
             Phone parsedPhone = parsePhone(phone);
-            Label label = parseLabel(phone, parsedPhone);
+            Label label = parseLabel(phone);
             numbersMap.put(label, parsedPhone);
         }
         return numbersMap;
@@ -212,7 +212,7 @@ public class ParserUtil {
         final HashMap<Label, Email> emailMap = new HashMap<>();
         for (String email : emails) {
             Email parsedEmail = parseEmail(email);
-            Label label = parseLabel(email, parsedEmail);
+            Label label = parseLabel(email);
             emailMap.put(label, parsedEmail);
         }
         return emailMap;

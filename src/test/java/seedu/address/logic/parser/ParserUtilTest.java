@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseAddress;
 import static seedu.address.logic.parser.ParserUtil.parseLabel;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -116,17 +115,15 @@ public class ParserUtilTest {
     //------------------------------------------------------------------------------------------------------------------
     @Test
     public void parseLabel_validValueWithoutLabel_returnsPlaceholderLabel() throws Exception {
-        Address address = parseAddress(VALID_ADDRESS);
-        Label expectedLabel = new Label(String.valueOf(address.hashCode()), true);
-        Label actualContent = parseLabel(VALID_ADDRESS, address);
+        Label expectedLabel = new Label(String.valueOf(VALID_ADDRESS.hashCode()), true);
+        Label actualContent = parseLabel(VALID_ADDRESS);
         assertEquals(expectedLabel, actualContent);
     }
 
     @Test
     public void parseLabel_validValueWithLabel_returnsLabel() throws Exception {
-        Address address = parseAddress(VALID_ADDRESS_WITH_LABEL);
         Label expectedLabel = new Label("home", false);
-        Label actualContent = parseLabel(VALID_ADDRESS_WITH_LABEL, address);
+        Label actualContent = parseLabel(VALID_ADDRESS_WITH_LABEL);
         assertEquals(expectedLabel, actualContent);
     }
 
