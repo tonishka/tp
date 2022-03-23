@@ -38,7 +38,8 @@ public class Label implements Comparable<Label> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Label // instanceof handles nulls
-                && label.equals(((Label) other).label)); // state check
+                && label.equals(((Label) other).label)
+                && (isPlaceholder == ((Label) other).isPlaceholder)); // state check
     }
 
     @Override
