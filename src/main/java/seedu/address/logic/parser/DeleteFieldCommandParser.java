@@ -79,7 +79,13 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
                 deleteFieldDescriptor.setNumbers(new HashMap<>());
             } else {
                 Map<Label, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
-                numbersToBeDeleted.forEach(numbers::remove);
+
+                for (String number : numbersToBeDeleted) {
+                    if (!Label.isValidLabel(number)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    numbers.remove(new Label(number, false));
+                }
                 deleteFieldDescriptor.setNumbers(numbers);
             }
         }
@@ -93,7 +99,13 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
                 deleteFieldDescriptor.setEmails(new HashMap<>());
             } else {
                 Map<Label, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
-                emailsToBeDeleted.forEach(emails::remove);
+
+                for (String email : emailsToBeDeleted) {
+                    if (!Label.isValidLabel(email)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    emails.remove(new Label(email, false));
+                }
                 deleteFieldDescriptor.setEmails(emails);
             }
         }
@@ -108,7 +120,13 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             } else {
                 Map<Label, Address> addresses =
                         new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
-                addressesToBeDeleted.forEach(addresses::remove);
+
+                for (String address : addressesToBeDeleted) {
+                    if (!Label.isValidLabel(address)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    addresses.remove(new Label(address, false));
+                }
                 deleteFieldDescriptor.setAddresses(addresses);
             }
         }
