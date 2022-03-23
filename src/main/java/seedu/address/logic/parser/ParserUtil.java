@@ -5,12 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -43,17 +43,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String userInput} into an {@code Optional<String>} and returns the label.
+     * Parses {@code String userInput} into an {@code Label}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the {@code trimmedLabel} is invalid.
      */
-    public static Optional<String> parseLabel(String userInput) {
+    public static Label parseLabel(String userInput, Object value) throws ParseException {
         requireNonNull(userInput);
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.contains(" l/")) {
-            String[] inputWithTag = trimmedUserInput.split(" l/");
-            return Optional.of(inputWithTag[1].trim());
+            String[] inputWithTag = trimmedUserInput.split(" l/", 2);
+            String trimmedLabel = inputWithTag[1].trim();
+            if (!Label.isValidLabel(trimmedLabel)) {
+                throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+            }
+            return new Label(trimmedLabel, false);
         } else {
-            return Optional.empty();
+            return new Label(String.valueOf(value.hashCode()), true);
         }
     }
 
@@ -121,20 +127,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> addresses} into pairs of {@code Address} and its label.
+     * Parses a collection of {@code Collection<String> addresses} into pairs of {@code Address} and its {@code Label}.
      * The Address object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given address is invalid.
+     * @throws ParseException if the given address or label is invalid.
      */
-    public static HashMap<String, Address> parseAddresses(Collection<String> addresses) throws ParseException {
+    public static HashMap<Label, Address> parseAddresses(Collection<String> addresses) throws ParseException {
         requireNonNull(addresses);
-        final HashMap<String, Address> addressesMap = new HashMap<>();
+        final HashMap<Label, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
             Address parsedAddress = parseAddress(address);
-            // Helps in manual testing:
-            // String label = parseLabel(address).orElseGet(() -> "Address #" + parsedAddress.hashCode());
-            String label = parseLabel(address).orElseGet(() -> "");
+            Label label = parseLabel(address, parsedAddress);
             addressesMap.put(label, parsedAddress);
         }
         return addressesMap;
@@ -159,18 +163,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> numbers} into pairs of {@code Phone} and its label.
+     * Parses a collection of {@code Collection<String> numbers} into pairs of {@code Phone} and its {@code Label}.
      * The Phone object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given phone is invalid.
+     * @throws ParseException if the given phone or label is invalid.
      */
-    public static HashMap<String, Phone> parseNumbers(Collection<String> numbers) throws ParseException {
+    public static HashMap<Label, Phone> parseNumbers(Collection<String> numbers) throws ParseException {
         requireNonNull(numbers);
-        final HashMap<String, Phone> numbersMap = new HashMap<>();
+        final HashMap<Label, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
             Phone parsedPhone = parsePhone(phone);
-            String label = parseLabel(phone).orElseGet(() -> "");
+            Label label = parseLabel(phone, parsedPhone);
             numbersMap.put(label, parsedPhone);
         }
         return numbersMap;
@@ -195,18 +199,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> emails} into pairs of {@code Email} and its label.
+     * Parses a collection of {@code Collection<String> emails} into pairs of {@code Email} and its {@code Label}.
      * The Email object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given email is invalid.
+     * @throws ParseException if the given email or label is invalid.
      */
-    public static HashMap<String, Email> parseEmails(Collection<String> emails) throws ParseException {
+    public static HashMap<Label, Email> parseEmails(Collection<String> emails) throws ParseException {
         requireNonNull(emails);
-        final HashMap<String, Email> emailMap = new HashMap<>();
+        final HashMap<Label, Email> emailMap = new HashMap<>();
         for (String email : emails) {
             Email parsedEmail = parseEmail(email);
-            String label = parseLabel(email).orElseGet(() -> "");
+            Label label = parseLabel(email, parsedEmail);
             emailMap.put(label, parsedEmail);
         }
         return emailMap;

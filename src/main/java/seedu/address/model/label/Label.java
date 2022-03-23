@@ -13,16 +13,18 @@ public class Label {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]+";
 
     public final String label;
+    public final boolean isPlaceholder;
 
     /**
      * Constructs a {@code Label}.
      *
      * @param label A valid label name.
      */
-    public Label(String label) {
+    public Label(String label, boolean isPlaceholder) {
         requireNonNull(label);
         checkArgument(isValidLabel(label), MESSAGE_CONSTRAINTS);
         this.label = label;
+        this.isPlaceholder = isPlaceholder;
     }
 
     /**
