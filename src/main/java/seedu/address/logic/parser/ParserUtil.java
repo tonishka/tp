@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -269,5 +271,35 @@ public class ParserUtil {
             pronounSet.add(parsePronoun(pronoun));
         }
         return pronounSet;
+    }
+
+    /**
+     * Replaces all placeholder labels in the given {@code HashMap<Label, T>} with default labels.
+     *
+     * @param entries The {@code HashMap<Label, T>} of key-value pairs to be given default labels.
+     * @param <T> The type of the value in the given {@code HashMap<Label, T>}.
+     * @return A {@code HashMap<Label, T>} with default labels in place of placeholders.
+     */
+    public static <T> Map<Label, T> replacePlaceholdersInMap(Map<Label, T> entries) {
+        //TreeMaps are implemented with trees so entries are sorted automatically
+        Map<Label, T> labelledEntries = new TreeMap<>();
+        Map<Label, T> placeholderEntries = new TreeMap<>();
+
+        //Moves all labelled entries to labelledEntries and placeholder entries to placeholderEntries
+        for (Label label : entries.keySet()) {
+            if (label.isPlaceholder) {
+                placeholderEntries.put(label, entries.get(label));
+            } else {
+                labelledEntries.put(label, entries.get(label));
+            }
+        }
+
+        int i = labelledEntries.size() + 1;
+
+        for (Label label : placeholderEntries.keySet()) {
+            labelledEntries.put(new Label("#" + i, false), placeholderEntries.get(label));
+            i++;
+        }
+        return labelledEntries;
     }
 }

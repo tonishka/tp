@@ -7,10 +7,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Label in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidLabel(String)}
  */
-public class Label {
+public class Label implements Comparable<Label> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Label names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s]+";
+    public static final String MESSAGE_CONSTRAINTS = "Labels can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String label;
     public final boolean isPlaceholder;
@@ -51,5 +51,13 @@ public class Label {
      */
     public String toString() {
         return label;
+    }
+
+    /**
+     *
+     */
+    @Override
+    public int compareTo(Label other) {
+        return label.compareTo(other.label);
     }
 }

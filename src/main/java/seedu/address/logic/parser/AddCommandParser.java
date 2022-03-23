@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRONOUN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -61,9 +61,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Company company = null;
         JobTitle jobTitle = null;
-        HashMap<Label, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
-        HashMap<Label, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
-        HashMap<Label, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
+        Map<Label, Phone> numbers = ParserUtil.parseNumbers(argMultimap.getAllValues(PREFIX_PHONE));
+        numbers = ParserUtil.replacePlaceholdersInMap(numbers);
+
+        Map<Label, Email> emails = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
+        emails = ParserUtil.replacePlaceholdersInMap(emails);
+
+        Map<Label, Address> addresses = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
+        addresses = ParserUtil.replacePlaceholdersInMap(addresses);
 
         if (arePrefixesPresent(argMultimap, PREFIX_COMPANY)) {
             company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
