@@ -3,7 +3,7 @@
 
 start
 :User executes find command;
-if (is Field given) then (true)
+if () then ([is Field given])
   :Search given field for keyword(s);
 else
 :Search all fields for keyword(s);
