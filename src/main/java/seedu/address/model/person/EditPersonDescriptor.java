@@ -191,32 +191,32 @@ public class EditPersonDescriptor {
                 .append("; Job Title: ")
                 .append(getJobTitle());
 
-        Set<Pronoun> pronouns = getPronouns().get();
-        if (!pronouns.isEmpty()) {
+        if (getPronouns().isPresent()) {
+            Set<Pronoun> pronouns = getPronouns().get();
             builder.append("; Pronouns: ");
             pronouns.forEach(builder::append);
         }
 
-        Set<Tag> tags = getTags().get();
-        if (!tags.isEmpty()) {
+        if (getTags().isPresent()) {
+            Set<Tag> tags = getTags().get();
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
 
-        Map<String, Phone> numbers = getNumbers().get();
-        if (!numbers.isEmpty()) {
+        if (getNumbers().isPresent()) {
+            Map<String, Phone> numbers = getNumbers().get();
             builder.append("; Numbers: ");
             numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
         }
 
-        Map<String, Address> addresses = getAddresses().get();
-        if (!addresses.isEmpty()) {
+        if (getAddresses().isPresent()) {
+            Map<String, Address> addresses = getAddresses().get();
             builder.append("; Addresses: ");
             addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
         }
 
-        Map<String, Email> emails = getEmails().get();
-        if (!emails.isEmpty()) {
+        if (getEmails().isPresent()) {
+            Map<String, Email> emails = getEmails().get();
             builder.append("; Emails: ");
             emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
         }

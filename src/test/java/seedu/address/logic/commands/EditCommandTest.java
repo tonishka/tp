@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DETAILS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -110,10 +110,10 @@ public class EditCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(descriptor, Person.getEmptyPerson());
-        //no need to add editcommand = editcommand.parsePerson()
-        //since personToEdit in editcommand is guranteed to be dffierent
-        //than firstPerson.
-        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
+        // no need to add editCommand = EditCommand.parsePerson()
+        // since personToEdit in editCommand is guaranteed to be different
+        // from firstPerson.
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_DETAILS);
     }
 
     @Test
@@ -125,7 +125,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(
                 new EditPersonDescriptorBuilder(personInList).build(), Person.getEmptyPerson());
 
-        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_DETAILS);
     }
 
     //Should be changed to suit ViewCommand

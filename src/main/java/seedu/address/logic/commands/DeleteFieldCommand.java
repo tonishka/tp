@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DETAILS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashMap;
@@ -65,7 +65,7 @@ public class DeleteFieldCommand extends Command {
         Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(deleteFieldDescriptor);
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);
