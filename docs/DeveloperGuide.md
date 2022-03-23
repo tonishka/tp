@@ -192,7 +192,7 @@ which is only accessible on the Person Details screen (in _default_ mode).
 
 The _delete fields_ operation works similar to the _edit_ operation, except for:
 1. the deletion functionality 
-2. the command syntax.
+2. the parsing of the command
 
 The deletion functionality sets the fields to return to their initial empty values.
 It can be illustrated in the code snippets below:
@@ -244,6 +244,12 @@ they want to delete along with the field to be deleted for such fields.
       * Difficult to implement, since the current implementation does not store command history.
 
 We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be very helpful for executing other commands.
+
+### Clear address book feature
+The **clear address book** feature can be used to delete all the contacts stored by the user 
+and to start with a new address book.
+
+The following sequence diagram shows how the clear operation works:
 
 ### View person feature
 
