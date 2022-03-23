@@ -332,6 +332,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
+Below is a sequence diagram summarising the mechanism of find command:
+
+![FindSequencdDiagaram](images/FindSequenceDiagram.png)
+
+Below is an activity diagram summarising the possible paths for a find command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 #### Design Considerations
 
 #### Aspect: How keywords are matched
