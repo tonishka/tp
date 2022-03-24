@@ -332,6 +332,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
+The find command is used to search for people based on certain criteria.
+<br> {More details to be added later}
+
 Below is a sequence diagram summarising the mechanism of find command:
 
 ![FindSequencdDiagaram](images/FindSequenceDiagram.png)
