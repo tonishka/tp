@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.model.label.Label;
 import seedu.address.model.tag.Tag;
 
 
@@ -17,9 +18,9 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptor {
     private Name name;
-    private HashMap<String, Phone> numbers;
-    private HashMap<String, Email> emails;
-    private HashMap<String, Address> addresses;
+    private HashMap<Label, Phone> numbers;
+    private HashMap<Label, Email> emails;
+    private HashMap<Label, Address> addresses;
     private Company company;
     private JobTitle jobTitle;
     private HashSet<Pronoun> pronouns;
@@ -93,29 +94,29 @@ public class EditPersonDescriptor {
 
     //-----Multiple data fields----
     //Phone
-    public void setNumbers(Map<String, Phone> numbers) {
-        this.numbers = (numbers != null) ? new HashMap<String, Phone>(numbers) : null;
+    public void setNumbers(Map<Label, Phone> numbers) {
+        this.numbers = (numbers != null) ? new HashMap<>(numbers) : null;
     }
 
-    public Optional<Map<String, Phone>> getNumbers() {
+    public Optional<Map<Label, Phone>> getNumbers() {
         return (numbers != null) ? Optional.of(Collections.unmodifiableMap(numbers)) : Optional.empty();
     }
 
     //Email
-    public void setEmails(Map<String, Email> emails) {
-        this.emails = (emails != null) ? new HashMap<String, Email>(emails) : null;
+    public void setEmails(Map<Label, Email> emails) {
+        this.emails = (emails != null) ? new HashMap<>(emails) : null;
     }
 
-    public Optional<Map<String, Email>> getEmails() {
+    public Optional<Map<Label, Email>> getEmails() {
         return (emails != null) ? Optional.of(Collections.unmodifiableMap(emails)) : Optional.empty();
     }
 
     //Address
-    public void setAddresses(Map<String, Address> addresses) {
-        this.addresses = (addresses != null) ? new HashMap<String, Address>(addresses) : null;
+    public void setAddresses(Map<Label, Address> addresses) {
+        this.addresses = (addresses != null) ? new HashMap<>(addresses) : null;
     }
 
-    public Optional<Map<String, Address>> getAddresses() {
+    public Optional<Map<Label, Address>> getAddresses() {
         return (addresses != null) ? Optional.of(Collections.unmodifiableMap(addresses)) : Optional.empty();
     }
 
@@ -204,21 +205,22 @@ public class EditPersonDescriptor {
         }
 
         if (getNumbers().isPresent()) {
-            Map<String, Phone> numbers = getNumbers().get();
+            Map<Label, Phone> numbers = getNumbers().get();
             builder.append("; Numbers: ");
-            numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+            numbers.forEach((label, number) -> builder.append(number.phone).append(" l/").append(label).append(" "));
         }
 
         if (getAddresses().isPresent()) {
-            Map<String, Address> addresses = getAddresses().get();
+            Map<Label, Address> addresses = getAddresses().get();
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
+            addresses.forEach((label, address) -> builder.append(address.address).append(" l/")
+                    .append(label).append(" "));
         }
 
         if (getEmails().isPresent()) {
-            Map<String, Email> emails = getEmails().get();
+            Map<Label, Email> emails = getEmails().get();
             builder.append("; Emails: ");
-            emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
+            emails.forEach((label, email) -> builder.append(email.email).append(" l/").append(label).append(" "));
         }
         builder.append("]");
         return builder.toString();

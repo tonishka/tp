@@ -108,7 +108,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withNumbers(VALID_PHONE_BOB).withEmails(VALID_EMAIL_AMY).withAddresses(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
 
@@ -119,8 +119,8 @@ public class EditCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withNumbers(VALID_PHONE_BOB)
+                .withEmails(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -136,19 +136,19 @@ public class EditCommandParserTest {
 
         // phone
         userInput = PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withNumbers(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withEmails(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withAddresses(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -160,13 +160,16 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
+    public void parse_multipleRepeatedFields_acceptsAll() {
         String userInput = PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withNumbers(VALID_PHONE_AMY, VALID_PHONE_BOB)
+                .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB)
+                .withAddresses(VALID_ADDRESS_AMY, VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(descriptor, Person.getEmptyPerson());
 

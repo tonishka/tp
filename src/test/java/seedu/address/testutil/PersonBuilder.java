@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -28,9 +29,9 @@ public class PersonBuilder {
     private Name name;
     private Company company;
     private JobTitle jobTitle;
-    private Map<String, Phone> numbers;
-    private Map<String, Address> addresses;
-    private Map<String, Email> emails;
+    private Map<Label, Phone> numbers;
+    private Map<Label, Address> addresses;
+    private Map<Label, Email> emails;
     private Set<Pronoun> pronouns;
     private Set<Tag> tags;
 
@@ -41,9 +42,9 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         company = new Company(DEFAULT_COMPANY);
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
-        numbers = new HashMap<String, Phone>();
-        addresses = new HashMap<String, Address>();
-        emails = new HashMap<String, Email>();
+        numbers = new HashMap<Label, Phone>();
+        addresses = new HashMap<Label, Address>();
+        emails = new HashMap<Label, Email>();
         pronouns = new HashSet<>();
         tags = new HashSet<>();
     }
