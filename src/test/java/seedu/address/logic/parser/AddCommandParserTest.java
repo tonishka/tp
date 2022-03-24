@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
@@ -23,11 +24,14 @@ import static seedu.address.logic.commands.CommandTestUtil.PRONOUN_DESC_HIM;
 import static seedu.address.logic.commands.CommandTestUtil.PRONOUN_DESC_THEY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRONOUN_HIM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -64,20 +68,26 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_TITLE_DESC_BOB
                 + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPerson));
 
-        // multiple phones - last phone accepted
+        // multiple phones - all phones accepted
+        Person expectedPersonMultiplePhones = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withNumbers(VALID_PHONE_AMY, VALID_PHONE_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_TITLE_DESC_BOB
-                + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPerson));
+                + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPersonMultiplePhones));
 
-        // multiple emails - last email accepted
+        // multiple emails - all emails accepted
+        Person expectedPersonMultipleEmails = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withEmails(VALID_EMAIL_AMY, VALID_EMAIL_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_TITLE_DESC_BOB
-                + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPerson));
+                + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPersonMultipleEmails));
 
-        // multiple addresses - last address accepted
+        // multiple addresses - all addresses accepted
+        Person expectedPersonMultipleAddresses = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withAddresses(VALID_ADDRESS_AMY, VALID_ADDRESS_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB
-                + JOB_TITLE_DESC_BOB + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_TITLE_DESC_BOB
+                + PRONOUN_DESC_HIM + PRONOUN_DESC_THEY, new AddCommand(expectedPersonMultipleAddresses));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)

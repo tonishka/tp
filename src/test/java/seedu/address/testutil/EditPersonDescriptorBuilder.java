@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
@@ -73,47 +75,47 @@ public class EditPersonDescriptorBuilder {
 
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the numbers of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        HashMap<String, Phone> numbers = new HashMap<>();
-        String[] phoneWithTag = phone.split(" l/");
-        if (phoneWithTag.length == 1) {
-            numbers.put("", new Phone(phone));
-        } else {
-            numbers.put(phoneWithTag[1], new Phone(phoneWithTag[0]));
-        }
-        descriptor.setNumbers(numbers);
+    public EditPersonDescriptorBuilder withNumbers(String... numbers) {
+        Map<Label, Phone> parsedNumbers = Arrays.stream(numbers)
+                .map(phoneLabelPair -> phoneLabelPair.split(" l/"))
+                .collect(Collectors.toMap(phoneLabelPair -> phoneLabelPair.length == 1
+                                ? new Label(phoneLabelPair[0], true)
+                                : new Label(phoneLabelPair[1], false),
+                    phoneLabelPair -> new Phone(phoneLabelPair[0])));
+
+        descriptor.setNumbers(parsedNumbers);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the emails of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        HashMap<String, Email> emails = new HashMap<>();
-        String[] emailWithTag = email.split(" l/");
-        if (emailWithTag.length == 1) {
-            emails.put("", new Email(email));
-        } else {
-            emails.put(emailWithTag[1], new Email(emailWithTag[0]));
-        }
-        descriptor.setEmails(emails);
+    public EditPersonDescriptorBuilder withEmails(String... emails) {
+        Map<Label, Email> parsedEmails = Arrays.stream(emails)
+                .map(emailLabelPair -> emailLabelPair.split(" l/"))
+                .collect(Collectors.toMap(emailLabelPair -> emailLabelPair.length == 1
+                                ? new Label(emailLabelPair[0], true)
+                                : new Label(emailLabelPair[1], false),
+                    emailLabelPair -> new Email(emailLabelPair[0])));
+
+        descriptor.setEmails(parsedEmails);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the addresses of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        HashMap<String, Address> addresses = new HashMap<>();
-        String[] addressWithTag = address.split(" l/");
-        if (addressWithTag.length == 1) {
-            addresses.put("", new Address(address));
-        } else {
-            addresses.put(addressWithTag[1], new Address(addressWithTag[0]));
-        }
-        descriptor.setAddresses(addresses);
+    public EditPersonDescriptorBuilder withAddresses(String... addresses) {
+        Map<Label, Address> parsedAddresses = Arrays.stream(addresses)
+                .map(addressLabelPair -> addressLabelPair.split(" l/"))
+                .collect(Collectors.toMap(addressLabelPair -> addressLabelPair.length == 1
+                                ? new Label(addressLabelPair[0], true)
+                                : new Label(addressLabelPair[1], false),
+                    addressLabelPair -> new Address(addressLabelPair[0])));
+
+        descriptor.setAddresses(parsedAddresses);
         return this;
     }
 

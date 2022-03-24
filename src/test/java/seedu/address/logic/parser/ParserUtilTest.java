@@ -16,6 +16,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -90,7 +91,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -113,17 +114,17 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
     @Test
-    public void parseLabel_validValueWithoutLabel_returnsEmptyString() {
-        String expectedString = "";
-        String actualContent = parseLabel(VALID_ADDRESS).orElse("");
-        assertEquals(expectedString, actualContent);
+    public void parseLabel_validValueWithoutLabel_returnsPlaceholderLabel() throws Exception {
+        Label expectedLabel = new Label(VALID_ADDRESS, true);
+        Label actualContent = parseLabel(VALID_ADDRESS);
+        assertEquals(expectedLabel, actualContent);
     }
 
     @Test
-    public void parseLabel_validValueWithLabel_returnsLabel() {
-        String expectedString = "home";
-        String actualContent = parseLabel(VALID_ADDRESS_WITH_LABEL).orElse("");
-        assertEquals(expectedString, actualContent);
+    public void parseLabel_validValueWithLabel_returnsLabel() throws Exception {
+        Label expectedLabel = new Label("home", false);
+        Label actualContent = parseLabel(VALID_ADDRESS_WITH_LABEL);
+        assertEquals(expectedLabel, actualContent);
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -131,7 +132,7 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseJobTitle((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseJobTitle(null));
     }
 
     //***PLEASE DOUBLE CHECK THIS***
@@ -162,7 +163,7 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseCompany_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany(null));
     }
 
     //***PLEASE DOUBLE CHECK THIS***
@@ -191,7 +192,7 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     //***PLEASE DOUBLE CHECK THIS****
@@ -257,11 +258,13 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_collectionWithValidNumbers_returnsNumberMap() throws Exception {
-        HashMap<String, Phone> actualNumbersMap = ParserUtil
+        HashMap<Label, Phone> actualNumbersMap = ParserUtil
                 .parseNumbers(Arrays.asList(VALID_PHONE, VALID_PHONE_WITH_LABEL));
-        HashMap<String, Phone> expectedNumbersMap = new HashMap<String, Phone>();
-        expectedNumbersMap.put("", new Phone(VALID_PHONE));
-        expectedNumbersMap.put("home", new Phone(VALID_PHONE));
+        HashMap<Label, Phone> expectedNumbersMap = new HashMap<>();
+
+        expectedNumbersMap
+                .put(new Label(VALID_PHONE, true), new Phone(VALID_PHONE));
+        expectedNumbersMap.put(new Label("home", false), new Phone(VALID_PHONE));
         assertEquals(expectedNumbersMap, actualNumbersMap);
     }
 
@@ -270,7 +273,7 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     //***PLEASE DOUBLE CHECK THIS****
@@ -300,11 +303,13 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddresses_collectionWithValidAddresses_returnsAddressesMap() throws Exception {
-        HashMap<String, Address> actualAddressesMap = ParserUtil
+        HashMap<Label, Address> actualAddressesMap = ParserUtil
                 .parseAddresses(Arrays.asList(VALID_ADDRESS, VALID_ADDRESS_WITH_LABEL));
-        HashMap<String, Address> expectedAddressesMap = new HashMap<String, Address>();
-        expectedAddressesMap.put("", new Address(VALID_ADDRESS));
-        expectedAddressesMap.put("home", new Address(VALID_ADDRESS));
+        HashMap<Label, Address> expectedAddressesMap = new HashMap<>();
+
+        expectedAddressesMap
+                .put(new Label(VALID_ADDRESS, true), new Address(VALID_ADDRESS));
+        expectedAddressesMap.put(new Label("home", false), new Address(VALID_ADDRESS));
         assertEquals(expectedAddressesMap, actualAddressesMap);
     }
 
@@ -327,7 +332,7 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         HashMap<String, Email> testEmailMap = new HashMap<>();
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     //***PLEASE DOUBLE CHECK THESE***
@@ -373,11 +378,13 @@ public class ParserUtilTest {
     //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseEmails_collectionWithValidEmails_returnsEmailsMap() throws Exception {
-        HashMap<String, Email> actualEmailsMap = ParserUtil
+        HashMap<Label, Email> actualEmailsMap = ParserUtil
                 .parseEmails(Arrays.asList(VALID_EMAIL, VALID_EMAIL_WITH_LABEL));
-        HashMap<String, Email> expectedEmailsMap = new HashMap<String, Email>();
-        expectedEmailsMap.put("", new Email(VALID_EMAIL));
-        expectedEmailsMap.put("friend", new Email(VALID_EMAIL));
+        HashMap<Label, Email> expectedEmailsMap = new HashMap<>();
+
+        expectedEmailsMap
+                .put(new Label(VALID_EMAIL, true), new Email(VALID_EMAIL));
+        expectedEmailsMap.put(new Label("friend", false), new Email(VALID_EMAIL));
         assertEquals(expectedEmailsMap, actualEmailsMap);
     }
 

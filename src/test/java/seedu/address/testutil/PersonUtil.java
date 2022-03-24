@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Email;
@@ -94,7 +95,7 @@ public class PersonUtil {
         }
 
         if (descriptor.getNumbers().isPresent()) {
-            Map<String, Phone> numbers = descriptor.getNumbers().get();
+            Map<Label, Phone> numbers = descriptor.getNumbers().get();
             if (numbers.isEmpty()) {
                 sb.append(PREFIX_PHONE + " ");
             } else {
@@ -103,7 +104,7 @@ public class PersonUtil {
         }
 
         if (descriptor.getEmails().isPresent()) {
-            Map<String, Email> emails = descriptor.getEmails().get();
+            Map<Label, Email> emails = descriptor.getEmails().get();
             if (emails.isEmpty()) {
                 sb.append(PREFIX_EMAIL + " ");
             } else {
@@ -112,7 +113,7 @@ public class PersonUtil {
         }
 
         if (descriptor.getAddresses().isPresent()) {
-            Map<String, Address> addresses = descriptor.getAddresses().get();
+            Map<Label, Address> addresses = descriptor.getAddresses().get();
             if (addresses.isEmpty()) {
                 sb.append(PREFIX_ADDRESS + " ");
             } else {

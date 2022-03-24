@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Phone;
 
 /**
@@ -22,10 +23,10 @@ public class NumbersCard extends UiPart<Region> {
     /**
      * Creates a {@code NumbersCard} with the given {@code Map} of numbers and their respective labels.
      */
-    public NumbersCard(Map<String, Phone> numbers) {
+    public NumbersCard(Map<Label, Phone> numbers) {
         super(FXML);
-        for (Map.Entry<String, Phone> number : numbers.entrySet()) {
-            numbersContainer.getChildren().add(new InfoBox(number.getKey(), number.getValue().phone).getRoot());
+        for (Map.Entry<Label, Phone> number : numbers.entrySet()) {
+            numbersContainer.getChildren().add(new InfoBox(number.getKey().label, number.getValue().phone).getRoot());
         }
     }
 }
