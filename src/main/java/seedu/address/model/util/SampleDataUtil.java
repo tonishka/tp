@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.LabelUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.label.Label;
@@ -127,7 +127,7 @@ public class SampleDataUtil {
                                 : new Label(addressLabelPair[1], false),
                     addressLabelPair -> new Address(addressLabelPair[0])));
 
-        return ParserUtil.replacePlaceholdersInMap(addresses);
+        return LabelUtil.replaceAddressPlaceholders(addresses);
     }
 
     /**
@@ -141,7 +141,7 @@ public class SampleDataUtil {
                                 : new Label(emailLabelPair[1], false),
                     emailLabelPair -> new Email(emailLabelPair[0])));
 
-        return ParserUtil.replacePlaceholdersInMap(emails);
+        return LabelUtil.replaceEmailPlaceholders(emails);
     }
 
     /**
@@ -155,7 +155,7 @@ public class SampleDataUtil {
                                 : new Label(phoneLabelPair[1], false),
                     phoneLabelPair -> new Phone(phoneLabelPair[0])));
 
-        return ParserUtil.replacePlaceholdersInMap(numbers);
+        return LabelUtil.replacePhonePlaceholders(numbers);
     }
 
     /**

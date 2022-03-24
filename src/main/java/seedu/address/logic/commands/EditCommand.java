@@ -14,8 +14,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.logic.LabelUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
@@ -103,15 +103,15 @@ public class EditCommand extends Command {
         //New HashMaps are created to remove Unmodifiable Map's limitation
         Map<Label, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
         updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
-        updatedPhones = ParserUtil.replacePlaceholdersInMap(updatedPhones);
+        updatedPhones = LabelUtil.replacePhonePlaceholders(updatedPhones);
 
         Map<Label, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
         updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
-        updatedEmails = ParserUtil.replacePlaceholdersInMap(updatedEmails);
+        updatedEmails = LabelUtil.replaceEmailPlaceholders(updatedEmails);
 
         Map<Label, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
         updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
-        updatedAddresses = ParserUtil.replacePlaceholdersInMap(updatedAddresses);
+        updatedAddresses = LabelUtil.replaceAddressPlaceholders(updatedAddresses);
 
         Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
         updatedPronouns.addAll(editPersonDescriptor.getPronouns().orElse(new HashSet<>()));
