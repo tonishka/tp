@@ -182,11 +182,49 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Cons: System crashes will not save the edits.
 
 ### Delete fields feature
-The **delete fields** feature can be used to delete fields stored for the contacts. This feature is also restricted to the Contact Details screen (in _edit_ mode), which can be accessed after the `add` or `view` commands. It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
-Note: This feature is different from the **delete contacts** feature, which is only accessible on the Person Details screen (in _default_ mode).
+The **delete fields** feature can be used to delete fields stored for the contacts. 
+This feature is also restricted to the Contact Details screen (in _edit_ mode), 
+which can be accessed after the _add_ or _view_ commands. 
+It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+
+<ins>Note</ins>: This feature is different from the **delete contacts** feature, 
+which is only accessible on the Person Details screen (in _default_ mode).
+
+The _delete fields_ operation works similar to the _edit_ operation, except for:
+1. the deletion functionality 
+2. the parsing of the command
+
+The deletion functionality sets the fields to return to their initial empty values.
+It is illustrated in the code snippets below:
+
+```java
+    // Single-valued fields
+    if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+        deleteFieldDescriptor.setCompany(null);
+    }
+```
+```java
+    // Multi-valued fields
+    if (deleteFieldDescriptor.getNumbers().isPresent()) {
+        Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
+    
+        requireNonNull(numbersToBeDeleted);
+    
+        if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
+            deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
+        } else {
+            Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers()
+                    .orElse(new HashMap<>()));
+            numbersToBeDeleted.forEach(numbers::remove);
+            deleteFieldDescriptor.setNumbers(numbers);
+        }
+    }
+```
 
 #### Design considerations:
-Since certain fields allow for multiple values to be stored, the user needs to specify the label of the value (or the value itself for non-labelled fields) they want to delete along with the field to be deleted for such fields.
+Since certain fields allow for multiple values to be stored, 
+the user needs to specify the label of the value (or the value itself for non-labelled fields) 
+they want to delete along with the field to be deleted for such fields.
 
 **Aspect: What happens when the user does not specify a label or value:**
 
@@ -205,6 +243,22 @@ Since certain fields allow for multiple values to be stored, the user needs to s
       * Slower to execute command.
       * Difficult to implement, since the current implementation does not store command history.
 
+We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be very helpful for executing other commands.
+
+### Clear address book feature
+The **clear address book** feature can be used to delete all the contacts stored by the user 
+and to start with a new address book. Since deleted data cannot be recovered, 
+the app opens a pop-up window asking for confirmation that 
+the user wants to delete all of their stored contacts.
+
+The following sequence diagram shows how the clear operation works:
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+This activity diagram summarises the possible paths of executing the _clear_ command:
+
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
+
 ### View person feature
 
 The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
@@ -221,7 +275,7 @@ Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with 
 
 The following sequence diagram shows how the view feature works:
 
-![EditActivityDiagram](images/ViewCommandSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -386,6 +440,8 @@ c) they do not remember which field they want to search.
 - Cons: Useless for scenario b) and c).
 
   
+### Manage meetings
+[Coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
