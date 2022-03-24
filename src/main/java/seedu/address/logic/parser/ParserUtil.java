@@ -5,9 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;

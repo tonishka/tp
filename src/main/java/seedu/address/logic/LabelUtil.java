@@ -1,12 +1,12 @@
 package seedu.address.logic;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
-
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Contains utility methods for processing placeholder labels.
