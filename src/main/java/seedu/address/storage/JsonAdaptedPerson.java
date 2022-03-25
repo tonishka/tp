@@ -6,12 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -73,20 +75,20 @@ class JsonAdaptedPerson {
         jobTitle = source.getJobTitle().map(j -> j.jobTitle).orElse(null);
 
         HashMap<String, JsonAdaptedPhone> numbersMap = new HashMap<String, JsonAdaptedPhone>();
-        for (String key : source.getNumbers().keySet()) {
-            numbersMap.put(key, new JsonAdaptedPhone(source.getNumbers().get(key)));
+        for (Label key : source.getNumbers().keySet()) {
+            numbersMap.put(key.label, new JsonAdaptedPhone(source.getNumbers().get(key)));
         }
         numbers = numbersMap;
 
         HashMap<String, JsonAdaptedEmail> emailsMap = new HashMap<String, JsonAdaptedEmail>();
-        for (String key : source.getEmails().keySet()) {
-            emailsMap.put(key, new JsonAdaptedEmail(source.getEmails().get(key)));
+        for (Label key : source.getEmails().keySet()) {
+            emailsMap.put(key.label, new JsonAdaptedEmail(source.getEmails().get(key)));
         }
         emails = emailsMap;
 
         HashMap<String, JsonAdaptedAddress> addressesMap = new HashMap<String, JsonAdaptedAddress>();
-        for (String key : source.getAddresses().keySet()) {
-            addressesMap.put(key, new JsonAdaptedAddress(source.getAddresses().get(key)));
+        for (Label key : source.getAddresses().keySet()) {
+            addressesMap.put(key.label, new JsonAdaptedAddress(source.getAddresses().get(key)));
         }
         addresses = addressesMap;
         pronouns.addAll(source.getPronouns().stream()
@@ -124,27 +126,27 @@ class JsonAdaptedPerson {
 
         final JobTitle modelJobTitle = jobTitle != null ? new JobTitle(jobTitle) : null;
 
-        HashMap<String, Phone> modelNumbers = new HashMap<String, Phone>();
+        TreeMap<Label, Phone> modelNumbers = new TreeMap<>();
         if (numbers != null) {
             for (Map.Entry<String, JsonAdaptedPhone> mapElement : numbers.entrySet()) {
                 String key = mapElement.getKey();
-                modelNumbers.put(key, mapElement.getValue().toModelType());
+                modelNumbers.put(new Label(key, false), mapElement.getValue().toModelType());
             }
         }
 
-        HashMap<String, Email> modelEmails = new HashMap<String, Email>();
+        TreeMap<Label, Email> modelEmails = new TreeMap<>();
         if (emails != null) {
             for (Map.Entry<String, JsonAdaptedEmail> mapElement : emails.entrySet()) {
                 String key = mapElement.getKey();
-                modelEmails.put(key, mapElement.getValue().toModelType());
+                modelEmails.put(new Label(key, false), mapElement.getValue().toModelType());
             }
         }
 
-        HashMap<String, Address> modelAddresses = new HashMap<String, Address>();
+        TreeMap<Label, Address> modelAddresses = new TreeMap<>();
         if (addresses != null) {
             for (Map.Entry<String, JsonAdaptedAddress> mapElement : addresses.entrySet()) {
                 String key = mapElement.getKey();
-                modelAddresses.put(key, mapElement.getValue().toModelType());
+                modelAddresses.put(new Label(key, false), mapElement.getValue().toModelType());
             }
         }
 
@@ -153,14 +155,14 @@ class JsonAdaptedPerson {
             personPronouns.add(pronoun.toModelType());
         }
 
-        final Set<Pronoun> modelPronouns = new HashSet<Pronoun>(personPronouns);
+        final Set<Pronoun> modelPronouns = new HashSet<>(personPronouns);
 
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
 
-        final Set<Tag> modelTags = new HashSet<Tag>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelNumbers, modelEmails, modelAddresses,
                 modelCompany, modelJobTitle, modelPronouns, modelTags);

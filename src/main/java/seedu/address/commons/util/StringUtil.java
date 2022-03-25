@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import seedu.address.model.label.Label;
+
 /**
  * Helper functions for handling strings.
  */
@@ -75,7 +77,7 @@ public class StringUtil {
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCaseInMap(HashMap<String, ? extends Object> sentence, String word) {
+    public static boolean containsWordIgnoreCaseInMap(HashMap<Label, ? extends Object> sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
