@@ -34,7 +34,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Notes about the command format: <br>
+#### Notes about the command format:
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
 - Items in square brackets are optional. <br>
