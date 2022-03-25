@@ -42,7 +42,8 @@ Reache is a desktop app that helps busy working professionals manage their large
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 - Parameters can be in any order.
-- `l/` is used to label parameters. They are optional. 
+- `l/` is used to label parameters. They are optional.
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
