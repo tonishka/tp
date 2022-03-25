@@ -29,6 +29,7 @@ public class Person implements Comparable<Person> {
     private final JobTitle jobTitle;
     private final HashSet<Pronoun> pronouns = new HashSet<>();
     private final HashSet<Tag> tags = new HashSet<>();
+    //private final HashSet<Meeting> meetings = new HashSet<>();
 
     /**
      * Name, numbers, emails, addresses, pronouns, and tags must be present and not null.

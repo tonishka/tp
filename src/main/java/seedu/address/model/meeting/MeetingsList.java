@@ -7,6 +7,18 @@ import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * TODO update javadoc
+ * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
+ * A meeting is considered unique by comparing using {@code Meeting#isSameMeeting(Meeting)}. As such, adding and updating of
+ * meetings uses Meeting#isSameMeeting(Meeting) for equality so as to ensure that the meeting being added or updated is
+ * unique in terms of identity in the MeetingsList. However, the removal of a meeting uses Meeting#equals(Object) so
+ * as to ensure that the meeting with ..... will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Meeting#isSameMeeting(Meeting)
+ */
 public class MeetingsList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
@@ -31,6 +43,10 @@ public class MeetingsList implements Iterable<Meeting> {
         }
         internalList.add(toAdd);
     }
+
+    /*
+    TODO: Add more methods if applicable
+     */
 
     @Override
     public Iterator<Meeting> iterator() {
