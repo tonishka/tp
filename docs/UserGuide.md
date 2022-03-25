@@ -45,7 +45,6 @@ Reache is a desktop app that helps busy working professionals manage their large
 - `l/` is used to label parameters. They are optional.
  
 --------------------------------------------------------------------------------------------------------------------
-
 ## 2. Features
 ### 2.1 Managing Contacts
 #### 2.1.1 Adding a contact: `add`
