@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Email;
 
 /**
@@ -22,10 +23,10 @@ public class EmailsCard extends UiPart<Region> {
     /**
      * Creates an {@code EmailsCard} with the given {@code Map} of emails and their associated labels.
      */
-    public EmailsCard(Map<String, Email> emails) {
+    public EmailsCard(Map<Label, Email> emails) {
         super(FXML);
-        for (Map.Entry<String, Email> email : emails.entrySet()) {
-            emailsContainer.getChildren().add(new InfoBox(email.getKey(), email.getValue().email).getRoot());
+        for (Map.Entry<Label, Email> email : emails.entrySet()) {
+            emailsContainer.getChildren().add(new InfoBox(email.getKey().label, email.getValue().email).getRoot());
         }
     }
 }

@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as model MODEL_COLOR
+participant "predicate:FieldContainsKeywordsPredicate"  as FieldContainsKeywordsPredicate MODEL_COLOR
+end box
+
+activate model
+[-> LogicManager : executePersonListCommand(find n/alex)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(find n/alex)
+activate AddressBookParser
+
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+AddressBookParser <-- FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse(n/alex)
+
+activate FieldContainsKeywordsPredicate
+FindCommandParser -> FieldContainsKeywordsPredicate
+
+activate FindCommand
+FindCommandParser -> FindCommand
+FindCommandParser <-- FindCommand :f
+
+AddressBookParser <-- FindCommandParser :f
+deactivate FindCommandParser
+LogicManager <-- AddressBookParser :f
+deactivate AddressBookParser
+LogicManager -> FindCommand : execute(model)
+
+FindCommand -> model : updateFilteredPersonList(predicate)
+loop For each person in address book
+model -> FieldContainsKeywordsPredicate : test(person)
+end
+deactivate FieldContainsKeywordsPredicate
+FindCommand -> model : getFilteredPersonList()
+FindCommand -> CommandResult
+activate CommandResult
+FindCommand <-- CommandResult : c
+deactivate CommandResult
+LogicManager <-- FindCommand :c
+deactivate LogicManager
+@enduml
