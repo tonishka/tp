@@ -14,8 +14,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.logic.LabelUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
@@ -47,7 +49,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "%1$s's information has been updated";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final EditPersonDescriptor editPersonDescriptor;
@@ -77,8 +79,9 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false,
-                false, true, false, editedPerson);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName().fullName),
+                false, false, false, true, false,
+                editedPerson);
     }
 
     /**
@@ -99,14 +102,17 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getJobTitle().orElse(null));
 
         //New HashMaps are created to remove Unmodifiable Map's limitation
-        Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
+        Map<Label, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
         updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
+        updatedPhones = LabelUtil.replacePhonePlaceholders(updatedPhones);
 
-        Map<String, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
+        Map<Label, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
         updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
+        updatedEmails = LabelUtil.replaceEmailPlaceholders(updatedEmails);
 
-        Map<String, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
+        Map<Label, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
         updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
+        updatedAddresses = LabelUtil.replaceAddressPlaceholders(updatedAddresses);
 
         Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
         updatedPronouns.addAll(editPersonDescriptor.getPronouns().orElse(new HashSet<>()));

@@ -22,7 +22,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1\n";
 
-    public static final String SHOWING_CONTACT_INFO = "Showing contact information for person: %1$s";
+    public static final String SHOWING_CONTACT_INFO = "Showing contact information for %1$s";
 
     private final Index index;
 
@@ -46,7 +46,7 @@ public class ViewCommand extends Command {
 
         Person toDisplay = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(String.format(SHOWING_CONTACT_INFO, toDisplay), false, false,
+        return new CommandResult(String.format(SHOWING_CONTACT_INFO, toDisplay.getName().fullName), false, false,
                 false, true, false, toDisplay);
     }
 }

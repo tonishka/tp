@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.label.Label;
 
 
 /**
@@ -67,19 +68,19 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     private boolean testPhone(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
                         person.getNumbers(), keyword));
     }
 
     private boolean testEmail(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
                         person.getEmails(), keyword));
     }
 
     private boolean testAddress(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<String, ? extends Object>)
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
                         person.getAddresses(), keyword));
     }
 
