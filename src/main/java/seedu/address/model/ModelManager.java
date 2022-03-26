@@ -203,7 +203,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {//needs updating
+    public boolean equals(Object obj) {//TODO needs updating
         // short circuit if same object
         if (obj == this) {
             return true;
