@@ -12,7 +12,7 @@ import seedu.address.model.meeting.MeetingsList;
  * Wraps all data at the model-book level
  * Duplicates are not allowed (by .isSameMeeting comparison)
  */
-public class ModelBook implements ReadOnlyModelBook {
+public class MeetingBook implements ReadOnlyMeetingBook {
 
     private final MeetingsList meetings;
 
@@ -27,13 +27,13 @@ public class ModelBook implements ReadOnlyModelBook {
         meetings = new MeetingsList();
     }
 
-    public ModelBook() {
+    public MeetingBook() {
     }
 
     /**
-     * Creates a ModelBook using the Persons in the {@code toBeCopied}
+     * Creates a MeetingBook using the Persons in the {@code toBeCopied}
      */
-    public ModelBook(ReadOnlyModelBook toBeCopied) {
+    public MeetingBook(ReadOnlyMeetingBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class ModelBook implements ReadOnlyModelBook {
     }
 
     /**
-     * Resets the existing data of this {@code ModelBook} with {@code newData}.
+     * Resets the existing data of this {@code MeetingBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyModelBook newData) {
+    public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
 
         setMeetings(newData.getMeetingList());
@@ -86,7 +86,7 @@ public class ModelBook implements ReadOnlyModelBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ModelBook}.
+     * Removes {@code key} from this {@code MeetingBook}.
      * {@code key} must exist in the model book.
      */
     public void removeMeeting(Meeting key) {
@@ -109,8 +109,8 @@ public class ModelBook implements ReadOnlyModelBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModelBook // instanceof handles nulls
-                && meetings.equals(((ModelBook) other).meetings));
+                || (other instanceof MeetingBook // instanceof handles nulls
+                && meetings.equals(((MeetingBook) other).meetings));
     }
 
     @Override

@@ -6,7 +6,7 @@ import seedu.address.model.meeting.Meeting;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyModelBook {
+public interface ReadOnlyMeetingBook {
 
     /**
      * Returns an unmodifiable view of the meetings list.

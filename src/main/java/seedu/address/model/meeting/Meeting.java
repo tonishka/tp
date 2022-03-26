@@ -33,7 +33,7 @@ public class Meeting implements Comparable<Meeting> {
 
     //implementation here is a bit rough
     //any suggestions
-    private Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes, Set<Person> attendees) {
+    public Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes, Set<Person> attendees) {
         this.agenda = agenda;
         this.place = place;
         this.time = time;

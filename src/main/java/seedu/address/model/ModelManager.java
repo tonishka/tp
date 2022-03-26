@@ -21,7 +21,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final ModelBook modelBook;
+    private final MeetingBook meetingBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.modelBook = null;
+        this.meetingBook = null;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = null;
@@ -43,13 +43,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, modelBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyModelBook modelBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook,modelBook, userPrefs);
-        logger.fine("Initializing with address book: " + addressBook + ", model book: " + modelBook
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook,meetingBook, userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", model book: " + meetingBook
                 + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.modelBook = new ModelBook(modelBook);
+        this.meetingBook = new MeetingBook(meetingBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = null;
@@ -132,6 +132,59 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== MeetingBook ================================================================================
+
+    @Override
+    public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
+        this.meetingBook.resetData(meetingBook);
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingBook.hasMeeting(meeting);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting target) {
+        meetingBook.removeMeeting(target);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        meetingBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedMeetingBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings.sorted(Meeting::compareTo);
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -150,7 +203,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) {//needs updating
         // short circuit if same object
         if (obj == this) {
             return true;
@@ -169,7 +222,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String toString() {
+    public String toString() {//needs updating
         return "ModelManager{"
                 + "addressBook=" + addressBook
                 + ", userPrefs=" + userPrefs
