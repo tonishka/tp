@@ -16,11 +16,11 @@ public class CancelCommand extends Command {
     public static final String COMMAND_WORD = "cancel";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the meeting identified by the index number used in the displayed meeting list.\n"
+            + ": Cancels the meeting identified by the index number used in the displayed meeting list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Meeting: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Cancelled Meeting: %1$s";
 
     private final Index targetIndex;
 
