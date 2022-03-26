@@ -2,6 +2,7 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons": [
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Alice Pauline",
       "company": "Tesla",
       "jobTitle": "CEO",
@@ -22,6 +23,7 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Benson Meier",
       "company": "Apple",
       "jobTitle": "Accountant",
@@ -43,6 +45,7 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Carl Kurz",
       "company": "Samsung",
       "jobTitle": "Data Analyst",
@@ -60,6 +63,7 @@
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Daniel Meier",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
@@ -74,6 +78,7 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Elle Meyer",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
@@ -90,6 +95,7 @@
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Fiona Kunz",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
@@ -106,6 +112,7 @@
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "George Best",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
