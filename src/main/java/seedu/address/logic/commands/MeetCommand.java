@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,9 +56,10 @@ public class MeetCommand extends Command {
         Set<Person> attendees = new HashSet<>();
         for (Index index : toMeet.getIndexes()) {
             if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            } else { //only add if valid
+                attendees.add(lastShownList.get(index.getZeroBased()));
             }
-            attendees.add(lastShownList.get(index.getZeroBased()));
         }
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,

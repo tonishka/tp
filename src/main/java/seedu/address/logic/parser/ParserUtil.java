@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,17 +58,17 @@ public class ParserUtil {
      *
      * @param indexes series of indexes to be parsed
      * @return a set of Index
-     * @throws ParseException if invalid index is found
      */
-    public static Set<Index> parseAttendees(String indexes) throws ParseException {
+    public static Set<Index> parseAttendees(String indexes){
         HashSet<Index> indexSet = new HashSet<>();
         String[] arrayOfIndexes = indexes.split("\\s+"); //if indexes are randomly spaced apart
 
         Arrays.stream(arrayOfIndexes).forEach(index -> {
             try {
-                indexSet.add(parseIndex(index.trim())); //creates and add indexes to the hashset
-            } catch (ParseException parseException) {
-                //invalid index
+                int indexIntegerForm = Integer.parseInt(index.trim());
+                indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
+            } catch (NumberFormatException numberFormatException) {
+                LogsCenter.getLogger(ParserUtil.class).info(() -> MESSAGE_INVALID_INDEX);
             }
         });
         return indexSet;
