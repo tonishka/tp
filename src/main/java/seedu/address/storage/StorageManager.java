@@ -75,4 +75,32 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ MeetingBook methods ==============================
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return meetingBookStorage.getMeetingBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyMeetingBook> readMeetingBook() throws DataConversionException, IOException {
+        return readMeetingBook(meetingBookStorage.getMeetingBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyMeetingBook> readMeetingBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return meetingBookStorage.readMeetingBook(filePath);
+    }
+
+    @Override
+    public void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException {
+        saveMeetingBook(meetingBook, meetingBookStorage.getMeetingBookFilePath());
+    }
+
+    @Override
+    public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        meetingBookStorage.saveMeetingBook(meetingBook, filePath);
+    }
 }
