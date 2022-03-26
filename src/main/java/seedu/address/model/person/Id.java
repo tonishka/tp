@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import java.util.UUID;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Person's ID in the address book.
