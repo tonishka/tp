@@ -18,6 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEETING_TIME = new Prefix("at/");
     public static final Prefix PREFIX_MEETING_PLACE = new Prefix("in/");
     public static final Prefix PREFIX_MEETING_AGENDA = new Prefix("for/");
-    public static final Prefix PREFIX_ATTENDEES_INDEX = new Prefix("id/");
+    public static final Prefix PREFIX_ATTENDEES_INDEX = new Prefix("with/");
 
 }
