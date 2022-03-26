@@ -63,8 +63,7 @@ public class MeetCommand extends Command {
         }
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,
-                true,
-                false, false, null);
+                true, false, false, null);
     }
 
     @Override
