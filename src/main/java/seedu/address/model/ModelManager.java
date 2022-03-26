@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,8 +21,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ModelBook modelBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -31,9 +34,28 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.modelBook = null;
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetings = null;
     }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, modelBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyModelBook modelBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook,modelBook, userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", model book: " + modelBook
+                + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.modelBook = new ModelBook(modelBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetings = null;
+    }
+
+
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
