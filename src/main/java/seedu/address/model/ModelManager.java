@@ -222,7 +222,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String toString() {//needs updating
+    public String toString() {//TODO needs updating
         return "ModelManager{"
                 + "addressBook=" + addressBook
                 + ", userPrefs=" + userPrefs
