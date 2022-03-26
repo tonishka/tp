@@ -31,9 +31,18 @@ public class Meeting implements Comparable<Meeting> {
         this.indexes.addAll(indexes);
     }
 
-    //implementation here is a bit rough
-    //any suggestions
+    /**
+     * Constructs a new meeting with the given parameters
+     *
+     * @param agenda  Agenda of the meeting
+     * @param place   Meeting place
+     * @param time    Meeting time and date
+     * @param indexes indexes of attendees
+     * @param attendees attendees of the meeting
+     */
     public Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes, Set<Person> attendees) {
+        //have separate data inside Meeting for indexes and persons/UUID
+        //or just one?
         this.agenda = agenda;
         this.place = place;
         this.time = time;

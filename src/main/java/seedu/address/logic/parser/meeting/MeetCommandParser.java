@@ -22,7 +22,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
 
-public class MeetParser implements Parser<MeetCommand> {
+public class MeetCommandParser implements Parser<MeetCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.

@@ -16,7 +16,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.EditMeetingDescriptor;
 
-public class UpdateParser implements Parser<UpdateCommand> {
+public class UpdateCommandParser implements Parser<UpdateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateCommand
      * and returns a UpdateCommand object for execution.

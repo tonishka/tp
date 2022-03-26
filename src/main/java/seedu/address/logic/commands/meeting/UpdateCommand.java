@@ -84,7 +84,7 @@ public class UpdateCommand extends Command {
      */
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor,
                                                List<Person> lastShownPersonList) {
-        assert meetingToEdit != null;
+        requireNonNull(meetingToEdit);
 
         Agenda updatedAgenda = editMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
         MeetingPlace updatedPlace = editMeetingDescriptor.getMeetingPlace().orElse(meetingToEdit.getPlace());

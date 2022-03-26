@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.LogsCenter;
@@ -25,7 +24,6 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
@@ -60,7 +58,7 @@ public class ParserUtil {
      * @param indexes series of indexes to be parsed
      * @return a set of Index
      */
-    public static Set<Index> parseAttendees(String indexes){
+    public static Set<Index> parseAttendees(String indexes) {
         HashSet<Index> indexSet = new HashSet<>();
         String[] arrayOfIndexes = indexes.split("\\s+"); //if indexes are randomly spaced apart
 

@@ -7,7 +7,7 @@ import seedu.address.logic.commands.meeting.CancelCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class CancelParser {
+public class CancelCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the CancelCommand
      * and returns a CancelCommand object for execution.

@@ -44,7 +44,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, modelBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook,meetingBook, userPrefs);
+        requireAllNonNull(addressBook, meetingBook, userPrefs);
         logger.fine("Initializing with address book: " + addressBook + ", model book: " + meetingBook
                 + " and user prefs " + userPrefs);
 
@@ -203,7 +203,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean equals(Object obj) {//needs updating
+    public boolean equals(Object obj) {
+        //TODO needs updating
+
         // short circuit if same object
         if (obj == this) {
             return true;
@@ -222,7 +224,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String toString() {//needs updating
+    public String toString() {
+        //TODO needs updating
         return "ModelManager{"
                 + "addressBook=" + addressBook
                 + ", userPrefs=" + userPrefs
