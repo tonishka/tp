@@ -99,4 +99,12 @@ public class Meeting implements Comparable<Meeting> {
     public int compareTo(Meeting other) {
         return getTime().dateTime.compareTo((other.getTime().dateTime));
     }
+
+    @Override
+    public String toString() {
+        //Cannot list attendees without Id implementation
+        return "Agenda: " + agenda
+                + "; place: " + place
+                + "; time: " + time;
+    }
 }
