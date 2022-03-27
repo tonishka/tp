@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.label.Label;
+import seedu.address.model.person.Address;
 
 public class StringUtilTest {
 
@@ -86,6 +89,40 @@ public class StringUtilTest {
      */
 
     @Test
+    public void containsWordIgnoreCaseInMap_nullWord_throwsNullPointerException() {
+        HashMap<Label, Address> typicalSentence = new HashMap<>();
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInMap(typicalSentence,
+                null));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInMap_emptyWord_throwsIllegalArgumentException() {
+        HashMap<Label, Address> typicalSentence = new HashMap<>();
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+            -> StringUtil.containsWordIgnoreCaseInMap(typicalSentence, "   "));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInMap_multipleWords_throwsIllegalArgumentException() {
+        HashMap<Label, Address> typicalSentence = new HashMap<>();;
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+            -> StringUtil.containsWordIgnoreCaseInMap(typicalSentence, "aaa BBB"));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInMap_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInMap(null, "abc"));
+    }
+
+    //---------------- Tests for containsWordIgnoreCaseInMap --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
     public void containsWordIgnoreCaseInSet_nullWord_throwsNullPointerException() {
         HashSet<String> typicalSentence = new HashSet<>();
         typicalSentence.add("adam");
@@ -100,7 +137,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "   "));
+                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "   "));
     }
 
     @Test
@@ -109,7 +146,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
+                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
     }
 
     @Test
@@ -117,8 +154,6 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInSet(null, "abc"));
     }
 
-    //---------------- Tests for containsWordIgnoreCaseInMap --------------------------------------
-    
 
     /*
      * Valid equivalence partitions for word:
