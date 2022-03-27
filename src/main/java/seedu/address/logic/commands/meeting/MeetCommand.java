@@ -17,6 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,12 +56,12 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Set<Person> attendees = new HashSet<>();
+        Set<Id> attendees = new HashSet<>();
         for (Index index : toMeet.getIndexes()) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             } else { //only add if valid
-                attendees.add(lastShownList.get(index.getZeroBased()));
+                attendees.add(lastShownList.get(index.getZeroBased()).getId());
             }
         }
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);

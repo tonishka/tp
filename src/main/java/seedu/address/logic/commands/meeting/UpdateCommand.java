@@ -24,6 +24,7 @@ import seedu.address.model.meeting.EditMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 public class UpdateCommand extends Command {
@@ -91,12 +92,12 @@ public class UpdateCommand extends Command {
         MeetingTime updatedTime = editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
         Set<Index> updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
                 .orElse(meetingToEdit.getIndexes());
-        Set<Person> updatedAttendees = new HashSet<>();
+        Set<Id> updatedAttendees = new HashSet<>();
         for (Index index : updatedAttendeesIndexes) {
             if (index.getZeroBased() >= lastShownPersonList.size()) {
                 LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             } else { //only add if valid
-                updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()));
+                updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
             }
         }
         return new Meeting(updatedAgenda, updatedPlace, updatedTime, updatedAttendeesIndexes, updatedAttendees);

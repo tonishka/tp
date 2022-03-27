@@ -53,14 +53,14 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
         }
-        Set<Index> attendees = ParserUtil.parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get());
+        Set<Index> indexes = ParserUtil.parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get());
         //return a Hashset of indexes and not a set of person since the model is only accessible inside the MeetCommand.
         //Inside the meetcommand is where the handling of out of bounds exceptions happens.
         Agenda agenda = ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_MEETING_AGENDA).get());
         MeetingPlace meetingPlace = ParserUtil.parseMeetingPlace(argMultimap.getValue(PREFIX_MEETING_PLACE).get());
         MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
 
-        Meeting createdMeeting = new Meeting(agenda, meetingPlace, meetingTime, attendees);
+        Meeting createdMeeting = new Meeting(agenda, meetingPlace, meetingTime, indexes, null);
         return new MeetCommand(createdMeeting);
     }
 
