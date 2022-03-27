@@ -8,7 +8,7 @@ import seedu.address.model.MeetingBook;
 import seedu.address.model.meeting.Meeting;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Meeting} objects to be used in tests.
  */
 public class TypicalMeetings {
 
@@ -18,7 +18,7 @@ public class TypicalMeetings {
     private TypicalMeetings() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Meetingook} with all the typical meetings.
      */
     public static MeetingBook getTypicalMeetingBook() {
         MeetingBook mb = new MeetingBook();
