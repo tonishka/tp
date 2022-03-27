@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -80,22 +81,42 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMeetingBook> meetingBookOptional;
+        ReadOnlyAddressBook initialAddressBook;
+        ReadOnlyMeetingBook initialMeetingBook;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample AddressBook and MeetingBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. "
+                    + "Will be starting with an empty AddressBook and MeetingBook");
+            initialAddressBook = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. "
+                    + "Will be starting with an empty AddressBook and MeetingBook");
+            initialAddressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            meetingBookOptional = storage.readMeetingBook();
+            if (!meetingBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MeetingBook");
+            }
+            initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. "
+                    + "Will be starting with an empty MeetingBook");
+            initialMeetingBook = new MeetingBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. "
+                    + "Will be starting with an empty MeetingBook");
+            initialMeetingBook = new MeetingBook();
+        }
+
+        return new ModelManager(initialAddressBook, userPrefs);
     }
 
     private void initLogging(Config config) {
