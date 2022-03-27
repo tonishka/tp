@@ -1,35 +1,37 @@
 package seedu.address.storage.meeting;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Id;
 
 /**
  * Jackson-friendly version of {@link Id}.
  */
 class JsonAdaptedAttendee {
 
-    private final int attendeeId;
+    private final String attendeeId;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedAttendee} with the given {@code attendeeId}.
      */
     @JsonCreator
-    public JsonAdaptedAttendee(int attendeeId) {
-        this.attendeeId = attendeeId;
+    public JsonAdaptedAttendee(UUID attendeeId) {
+        this.attendeeId = attendeeId.toString();
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedAttendee(Index source) {
-        this.attendeeId = source.getOneBased();
+    public JsonAdaptedAttendee(Id source) {
+        this.attendeeId = source.id.toString();
     }
 
     @JsonValue
-    public Integer getAttendeeId() {
+    public String getAttendeeId() {
         return attendeeId;
     }
 
@@ -38,11 +40,11 @@ class JsonAdaptedAttendee {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Index toModelType() throws IllegalValueException {
+    public Id toModelType() throws IllegalValueException {
 //        if (!Index.isValidIndex(attendeeId)) {
 //            throw new IllegalValueException(Index.MESSAGE_CONSTRAINTS);
 //        }
-        return Index.fromZeroBased(attendeeId);
+        return new Id(attendeeId);
     }
 
     @Override
