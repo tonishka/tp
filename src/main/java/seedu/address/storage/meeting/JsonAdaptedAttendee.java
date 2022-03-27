@@ -24,7 +24,7 @@ class JsonAdaptedAttendee {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Id} into this class for Jackson use.
      */
     public JsonAdaptedAttendee(Id source) {
         this.attendeeId = source.id.toString();
@@ -36,9 +36,9 @@ class JsonAdaptedAttendee {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted attendee object into the model's {@code Id} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted attendee.
      */
     public Id toModelType() throws IllegalValueException {
         if (!Id.isValidId(attendeeId)) {
