@@ -14,7 +14,8 @@ Reache is a desktop app that helps busy working professionals manage their large
    - [Editing Information](#23-editing-information)
    - [Viewing Help](#24-viewing-help-help)
    - [Exiting the program](#25-exiting-the-program-exit)
-- [Command Summary](#3-command-summary)
+   - <a href="#3-command-summary">Command Summary</a>
+   - [Command Summary](#3-command-summary)
 - [Contact Fields Summary](#4-contact-fields-summary)
 
 --------------------------------------------------------------------------------------------------------------------

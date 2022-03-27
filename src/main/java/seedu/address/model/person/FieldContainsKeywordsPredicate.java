@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -48,7 +49,7 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     private boolean testCompany(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCompany().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCompany().get().company, keyword));
     }
 
     private boolean testName(Person person) {
@@ -58,7 +59,7 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     private boolean testJob(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().get().jobTitle, keyword));
     }
 
     private boolean testTag(Person person) {
@@ -68,20 +69,17 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
 
     private boolean testPhone(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
-                        person.getNumbers(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getNumbers(), keyword));
     }
 
     private boolean testEmail(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
-                        person.getEmails(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getEmails(), keyword));
     }
 
     private boolean testAddress(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap((HashMap<Label, ? extends Object>)
-                        person.getAddresses(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getAddresses(), keyword));
     }
 
     private boolean testAll(Person person) {

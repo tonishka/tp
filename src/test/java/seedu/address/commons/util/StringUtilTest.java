@@ -1,11 +1,11 @@
 package seedu.address.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -116,6 +116,9 @@ public class StringUtilTest {
     public void containsWordIgnoreCaseInSet_nullSentence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInSet(null, "abc"));
     }
+
+    //---------------- Tests for containsWordIgnoreCaseInMap --------------------------------------
+    
 
     /*
      * Valid equivalence partitions for word:
