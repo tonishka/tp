@@ -9,11 +9,18 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.LabelUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.label.Label;
+import seedu.address.model.meeting.Agenda;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingPlace;
+import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -28,6 +35,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
             new Person(
+                    new Id("1ddd72fa-e32e-4ed7-b475-32d4b19f6b70"),
                     new Name("Alex Yeoh"),
                     new HashMap<>() {{
                         put(new Label("Personal", false), new Phone("87438807"));
@@ -47,6 +55,7 @@ public class SampleDataUtil {
                     new HashSet<>(Arrays.asList(new Tag("friend")))
             ),
             new Person(
+                    new Id("2ddd72fa-e32e-4ed7-b475-32d4b19f6b70"),
                     new Name("Bernice Yu"),
                     new HashMap<>() {{
                         put(new Label("Personal", false), new Phone("99272758"));
@@ -67,6 +76,7 @@ public class SampleDataUtil {
                     new HashSet<>(Arrays.asList(new Tag("colleague"), new Tag("friend")))
             ),
             new Person(
+                    new Id("3ddd72fa-e32e-4ed7-b475-32d4b19f6b70"),
                     new Name("David Li"),
                     new HashMap<>() {{
                         put(new Label("Personal", false), new Phone("91031282"));
@@ -90,12 +100,32 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        Person[] samplePersons = getSamplePersons();
+        return new Meeting[]{
+                new Meeting(
+                        new Agenda("Paper supply for Greendale College"),
+                        new MeetingPlace("David's Office"),
+                        new MeetingTime(MeetingTime.formatTime("2022-04-02 13:30")),
+                        new HashSet<>(Arrays.asList(samplePersons[1].getId(), samplePersons[2].getId()))
+                )
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
+        MeetingBook sampleMb = new MeetingBook();
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleMb.addMeeting(sampleMeeting);
+        }
+        return sampleMb;
     }
 
     /**

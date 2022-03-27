@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Person's ID in the address book.
  * Guarantees: immutable
@@ -32,12 +34,9 @@ public class Id {
      * @param id The designated ID.
      * @throws IllegalValueException if the provided ID does not obey the UUID format.
      */
-    public Id(String id) throws IllegalValueException {
-        try {
-            this.id = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
-        }
+    public Id(String id)  {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        this.id = UUID.fromString(id);
     }
 
     /**
