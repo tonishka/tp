@@ -1,10 +1,11 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.UUID;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's ID in the address book.
@@ -34,7 +35,7 @@ public class Id {
      * @param id The designated ID.
      * @throws IllegalValueException if the provided ID does not obey the UUID format.
      */
-    public Id(String id)  {
+    public Id(String id) {
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         this.id = UUID.fromString(id);
     }

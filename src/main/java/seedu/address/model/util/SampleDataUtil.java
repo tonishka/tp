@@ -103,12 +103,12 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         Person[] samplePersons = getSamplePersons();
         return new Meeting[]{
-                new Meeting(
-                        new Agenda("Paper supply for Greendale College"),
-                        new MeetingPlace("David's Office"),
-                        new MeetingTime(MeetingTime.formatTime("02-04-2022 13:30")),
-                        new HashSet<>(Arrays.asList(samplePersons[1].getId(), samplePersons[2].getId()))
-                )
+            new Meeting(
+                    new Agenda("Paper supply for Greendale College"),
+                    new MeetingPlace("David's Office"),
+                    new MeetingTime(MeetingTime.formatTime("02-04-2022 13:30")),
+                    new HashSet<>(Arrays.asList(samplePersons[1].getId(), samplePersons[2].getId()))
+            )
         };
     }
 
