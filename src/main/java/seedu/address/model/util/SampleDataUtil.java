@@ -189,6 +189,15 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns an attendee set containing the list of strings given.
+     */
+    public static Set<Id> getAttendeeSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Id::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
      * Drives sample data util.
      *
      * @param s parameter
