@@ -13,8 +13,9 @@ import java.time.format.DateTimeParseException;
 public class MeetingTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting time must be in the following format: YYYY-MM-dd HH:mm\n Example: 2022-05-25 23:59";
-    public final LocalDateTime dateTime;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+    public final LocalDateTime dateTime;
 
     /**
      * Creates a new meeting time.
@@ -33,7 +34,7 @@ public class MeetingTime {
         try {
             LocalDateTime.parse(test, formatter);
             return true;
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             return false;
         }
     }

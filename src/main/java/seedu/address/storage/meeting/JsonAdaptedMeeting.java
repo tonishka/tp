@@ -95,11 +95,11 @@ class JsonAdaptedMeeting {
 
     @Override
     public String toString() {
-        return "JsonAdaptedMeeting{" +
-                "agenda='" + agenda + '\'' +
-                ", place='" + meetingPlace + '\'' +
-                ", time='" + meetingTime + '\'' +
-                ", attendees=" + attendees +
-                '}';
+        return "JsonAdaptedMeeting{"
+                + "agenda='" + agenda + '\''
+                + ", place='" + meetingPlace + '\''
+                + ", time='" + meetingTime + '\''
+                + ", attendees=" + attendees
+                + '}';
     }
 }

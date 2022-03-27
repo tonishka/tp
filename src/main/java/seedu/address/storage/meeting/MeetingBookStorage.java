@@ -39,7 +39,7 @@ public interface MeetingBookStorage {
     /**
      * @see #saveMeetingBook(ReadOnlyMeetingBook)
      */
-    void saveMeetingBook(ReadOnlyMeetingBook MeetingBook, Path filePath) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException;
 
 
 }

@@ -41,9 +41,9 @@ class JsonAdaptedAttendee {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Id toModelType() throws IllegalValueException {
-//        if (!Index.isValidIndex(attendeeId)) {
-//            throw new IllegalValueException(Index.MESSAGE_CONSTRAINTS);
-//        }
+        if (!Id.isValidId(attendeeId)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
         return new Id(attendeeId);
     }
 

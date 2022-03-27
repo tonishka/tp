@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Id {
 
     /*
-     * The format is quite elaborate and seeing a the user should never be manually creating an ID,
+     * The format is quite elaborate and seeing the user should never be manually creating an ID,
      * the message is kept short for brevity.
      */
     public static final String MESSAGE_CONSTRAINTS =
@@ -37,6 +37,18 @@ public class Id {
             this.id = UUID.fromString(id);
         } catch (IllegalArgumentException e) {
             throw new IllegalValueException(MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid id.
+     */
+    public static boolean isValidId(String test) {
+        try {
+            UUID uuid = UUID.fromString(test);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
         }
     }
 
