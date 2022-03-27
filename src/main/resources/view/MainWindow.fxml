@@ -56,8 +56,11 @@
             </VBox>
           </VBox>
 
-          <VBox minWidth="300">
-
+          <VBox styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
 

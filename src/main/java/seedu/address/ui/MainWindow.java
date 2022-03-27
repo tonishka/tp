@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ConfirmWindow confirmWindow;
+    private MeetingListPanel meetingListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -100,6 +104,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
