@@ -2,15 +2,23 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.label.Label;
+import seedu.address.model.meeting.Agenda;
+import seedu.address.model.meeting.MeetingPlace;
+import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -40,6 +48,83 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parse a series of indexes in a String into a Set of Index.
+     * index in the String can be spaced apart anyhow and if the index
+     * is invalid etc; Not a number, throws a MESSAGE_INVALID_INDEX
+     *
+     * @param indexes series of indexes to be parsed
+     * @return a set of Index
+     */
+    public static Set<Index> parseAttendees(String indexes) {
+        HashSet<Index> indexSet = new HashSet<>();
+        String[] arrayOfIndexes = indexes.split("\\s+"); //if indexes are randomly spaced apart
+
+        Arrays.stream(arrayOfIndexes).forEach(index -> {
+            try {
+                int indexIntegerForm = Integer.parseInt(index.trim());
+                indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
+            } catch (NumberFormatException numberFormatException) {
+                LogsCenter.getLogger(ParserUtil.class).info(() -> MESSAGE_INVALID_INDEX);
+            }
+        });
+        return indexSet;
+    }
+
+    /**
+     * Parses the meeting agenda information from the String to
+     * an MeetingAgenda object.
+     *
+     * @param agenda Meeting agenda
+     * @return MeetingAgenda
+     * @throws ParseException when agenda is invalid
+     */
+    public static Agenda parseAgenda(String agenda) throws ParseException {
+        requireNonNull(agenda);
+        String trimmedAgenda = agenda.trim();
+        if (!Agenda.isValidAgenda(trimmedAgenda)) {
+            throw new ParseException(Agenda.MESSAGE_CONSTRAINTS);
+        }
+        return new Agenda(trimmedAgenda);
+    }
+
+    /**
+     * Parses the meeting place information from the String to
+     * an MeetingPlace object
+     *
+     * @param meetingPlace MeetingPlace
+     * @return MeetingPlace
+     * @throws ParseException when meeting place is invalid
+     */
+    public static MeetingPlace parseMeetingPlace(String meetingPlace) throws ParseException {
+        requireNonNull(meetingPlace);
+        String trimmedMeetingPlace = meetingPlace.trim();
+        if (!MeetingPlace.isValidMeetingPlace(trimmedMeetingPlace)) {
+            throw new ParseException(MeetingPlace.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingPlace(trimmedMeetingPlace);
+    }
+
+    /**
+     * Parses the meeting time information from the String to
+     * an MeetingTime object
+     *
+     * @param meetingTime MeetingTime
+     * @return MeetingTime
+     * @throws ParseException when meeting time is invalid
+     */
+    public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
+        requireNonNull(meetingTime);
+        String trimmedMeetingTime = meetingTime.trim();
+        try {
+            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime,
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            return new MeetingTime(meetingTimeFormatted);
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
