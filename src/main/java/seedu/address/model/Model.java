@@ -92,6 +92,17 @@ public interface Model {
     //--------------------------------------------------------
 
     /**
+     * Returns the user prefs' meeting book file path.
+     */
+    Path getMeetingBookFilePath();
+
+    /**
+     * Sets the user prefs' meeting book file path.
+     */
+    void setMeetingBookFilePath(Path meetingBookFilePath);
+
+
+    /**
      * Replaces meeeting book data with the data in {@code meetingBook}.
      */
     void setMeetingBook(ReadOnlyMeetingBook meetingBook);
