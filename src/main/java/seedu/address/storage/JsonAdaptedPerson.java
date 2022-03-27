@@ -17,6 +17,7 @@ import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String id;
     private final String name;
     private final String company;
     private final String jobTitle;
@@ -44,7 +46,8 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name,
+    public JsonAdaptedPerson(@JsonProperty("id") String id,
+            @JsonProperty("name") String name,
             @JsonProperty("company") String company,
             @JsonProperty("jobTitle") String jobTitle,
             @JsonProperty("numbers") HashMap<String, JsonAdaptedPhone> numbers,
@@ -52,6 +55,7 @@ class JsonAdaptedPerson {
             @JsonProperty("addresses") HashMap<String, JsonAdaptedAddress> addresses,
             @JsonProperty("pronouns") List<JsonAdaptedPronoun> pronouns,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.id = id;
         this.name = name;
         this.company = company;
         this.jobTitle = jobTitle;
@@ -70,6 +74,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        id = source.getId().toString();
         name = source.getName().fullName;
         company = source.getCompany().map(c -> c.company).orElse(null);
         jobTitle = source.getJobTitle().map(j -> j.jobTitle).orElse(null);
@@ -106,6 +111,11 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+        }
+        final Id modelId = new Id(id);
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -164,13 +174,14 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelNumbers, modelEmails, modelAddresses,
+        return new Person(modelId, modelName, modelNumbers, modelEmails, modelAddresses,
                 modelCompany, modelJobTitle, modelPronouns, modelTags);
     }
 
     @Override
     public String toString() {
         return "JsonAdaptedPerson{"
+                + "ID='" + id + '\''
                 + "name='" + name + '\''
                 + ", company='" + company + '\''
                 + ", jobTitle='" + jobTitle + '\''
