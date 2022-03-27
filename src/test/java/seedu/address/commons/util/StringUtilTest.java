@@ -1,14 +1,16 @@
 package seedu.address.commons.util;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 
@@ -80,7 +82,7 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
     }
 
-    //---------------- Tests for containsWordIgnoreCaseInSet --------------------------------------
+    //---------------- Tests for containsWordIgnoreCaseInMap --------------------------------------
 
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
@@ -114,7 +116,7 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInMap(null, "abc"));
     }
 
-    //---------------- Tests for containsWordIgnoreCaseInMap --------------------------------------
+    //---------------- Tests for containsWordIgnoreCaseInSet --------------------------------------
 
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
@@ -137,7 +139,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "   "));
+             -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "   "));
     }
 
     @Test
@@ -146,7 +148,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
+            -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaaa BBB"));
     }
 
     @Test
