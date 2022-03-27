@@ -16,8 +16,11 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.ContactDetailsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -54,6 +57,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveMeetingBook(model.getMeetingBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -85,13 +89,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return model.getMeetingBook();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 
     @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return model.getMeetingBookFilePath();
     }
 
     @Override
@@ -110,5 +129,13 @@ public class LogicManager implements Logic {
     public void clearAddressBook() {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+    }
+
+    /**
+     * Clears the meeting book.
+     */
+    public void clearMeetingBook() {
+        requireNonNull(model);
+        model.setMeetingBook(new MeetingBook());
     }
 }

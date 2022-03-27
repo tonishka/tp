@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  */
 public class MeetingTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting time must be in the following format: YYYY-MM-dd HH:mm\n Example: 2022-05-25 23:59";
+            "Meeting time must be in the following format: dd-MM-yyyy HH:mm\n Example: 25-05-2022 23:59";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public final LocalDateTime dateTime;
@@ -23,7 +23,6 @@ public class MeetingTime {
      */
     public MeetingTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidMeetingTime(String.valueOf(dateTime)), MESSAGE_CONSTRAINTS);
         this.dateTime = dateTime;
     }
 
@@ -31,6 +30,7 @@ public class MeetingTime {
      * Returns true if a given string is a valid meeting time.
      */
     public static boolean isValidMeetingTime(String test) {
+        System.out.print(test);
         try {
             LocalDateTime.parse(test, formatter);
             return true;

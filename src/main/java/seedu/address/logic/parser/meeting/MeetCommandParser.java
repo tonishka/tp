@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -60,7 +61,7 @@ public class MeetCommandParser implements Parser<MeetCommand> {
         MeetingPlace meetingPlace = ParserUtil.parseMeetingPlace(argMultimap.getValue(PREFIX_MEETING_PLACE).get());
         MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
 
-        Meeting createdMeeting = new Meeting(agenda, meetingPlace, meetingTime, indexes, null);
+        Meeting createdMeeting = new Meeting(agenda, meetingPlace, meetingTime, indexes, new HashSet<>());
         return new MeetCommand(createdMeeting);
     }
 
