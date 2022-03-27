@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meeting;
 
 import java.util.ArrayList;
 import java.util.List;

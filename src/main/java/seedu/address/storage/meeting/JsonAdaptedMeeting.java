@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meeting;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -80,7 +80,7 @@ class JsonAdaptedMeeting {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
 
-        final MeetingTime modelTime = meetingTime != null ? new MeetingTime(meetingTime) : null;
+        final MeetingTime modelTime = meetingTime != null ? new MeetingTime(MeetingTime.formatTime(meetingTime)) : null;
 
         final Set<Attendee> modelAttendees = new HashSet<>(attendees);
 

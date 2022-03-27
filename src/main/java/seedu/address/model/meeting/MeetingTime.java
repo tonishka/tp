@@ -38,6 +38,10 @@ public class MeetingTime {
         }
     }
 
+    public static LocalDateTime formatTime(String dateTime) {
+        return LocalDateTime.parse(dateTime, formatter);
+    }
+
     @Override
     public String toString() {
         return dateTime.format(formatter);
