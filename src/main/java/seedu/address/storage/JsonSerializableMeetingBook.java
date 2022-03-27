@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyMeetingBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * An Immutable MeetingBook that is serializable to JSON format.
@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "meetingbook")
 class JsonSerializableMeetingBook {
 
-    public static final String MESSAGE_DUPLICATE_MEETING = "Meeting list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_MEETING = "Meeting list contains duplicate meeting(s).";
 
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 

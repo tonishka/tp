@@ -27,7 +27,7 @@ public interface MeetingBookStorage {
     /**
      * @see #getMeetingBookFilePath()
      */
-    Optional<ReadOnlyMeetingBook> readMeetingsBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMeetingBook> readMeetingBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMeetingBook} to the storage.
