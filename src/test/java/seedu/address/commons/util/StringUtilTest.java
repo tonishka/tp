@@ -100,7 +100,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "  "));
+            -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "   "));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class StringUtilTest {
         typicalSentence.add("adam");
         typicalSentence.add("eve");
         assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
+            -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
     }
 
     @Test
