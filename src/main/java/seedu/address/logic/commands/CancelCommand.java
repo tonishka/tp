@@ -44,7 +44,6 @@ public class CancelCommand extends Command {
 
         // state check
         return targetIndex.equals(((CancelCommand) other).targetIndex);
-
     }
 }
 
