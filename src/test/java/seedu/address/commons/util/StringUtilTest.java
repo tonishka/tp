@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,6 +75,46 @@ public class StringUtilTest {
     @Test
     public void containsWordIgnoreCase_nullSentence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
+    }
+
+    //---------------- Tests for containsWordIgnoreCaseInSet --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsWordIgnoreCaseInSet_nullWord_throwsNullPointerException() {
+        HashSet<String> typicalSentence = new HashSet<>();
+        typicalSentence.add("adam");
+        typicalSentence.add("eve");
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence,
+                null));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInSet_emptyWord_throwsIllegalArgumentException() {
+        HashSet<String> typicalSentence = new HashSet<>();
+        typicalSentence.add("adam");
+        typicalSentence.add("eve");
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "  "));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInSet_multipleWords_throwsIllegalArgumentException() {
+        HashSet<String> typicalSentence = new HashSet<>();
+        typicalSentence.add("adam");
+        typicalSentence.add("eve");
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+                -> StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "aaa BBB"));
+    }
+
+    @Test
+    public void containsWordIgnoreCaseInSet_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCaseInSet(null, "abc"));
     }
 
     /*
