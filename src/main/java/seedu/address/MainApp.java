@@ -117,7 +117,7 @@ public class MainApp extends Application {
             initialMeetingBook = new MeetingBook();
         }
 
-        return new ModelManager(initialAddressBook, userPrefs);
+        return new ModelManager(initialAddressBook, initialMeetingBook, userPrefs);
     }
 
     private void initLogging(Config config) {
