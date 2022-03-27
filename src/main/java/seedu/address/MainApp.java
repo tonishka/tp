@@ -63,7 +63,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        MeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(userPrefs.getAddressBookFilePath());
+        MeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
         storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -104,9 +104,11 @@ public class MainApp extends Application {
         try {
             meetingBookOptional = storage.readMeetingBook();
             if (!meetingBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample MeetingBook");
+                logger.info("Data file not found. Will be starting with an empty MeetingBook");
+                initialMeetingBook = new MeetingBook();
+            } else {
+                initialMeetingBook = meetingBookOptional.get();
             }
-            initialMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. "
                     + "Will be starting with an empty MeetingBook");

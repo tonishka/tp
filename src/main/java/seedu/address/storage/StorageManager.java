@@ -84,6 +84,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getMeetingBookFilePath() {
+        System.out.println(meetingBookStorage.getMeetingBookFilePath() + "hi");
         return meetingBookStorage.getMeetingBookFilePath();
     }
 
