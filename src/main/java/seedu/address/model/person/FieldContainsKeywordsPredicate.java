@@ -1,13 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.label.Label;
-
 
 /**
  * Tests that a {@code Person}'s details matches any of the keywords given for a specified field in {@code Name,
