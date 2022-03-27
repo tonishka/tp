@@ -1,7 +1,6 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +29,6 @@ public class MeetingTime {
      * Returns true if a given string is a valid meeting time.
      */
     public static boolean isValidMeetingTime(String test) {
-        System.out.print(test);
         try {
             LocalDateTime.parse(test, formatter);
             return true;

@@ -1,0 +1,19 @@
+#confirm, #confirmMessage {
+    -fx-text-fill: white;
+}
+
+#confirm {
+    -fx-background-color: dimgray;
+}
+
+#confirm:hover {
+    -fx-background-color: gray;
+}
+
+#confirm:armed {
+    -fx-background-color: darkgray;
+}
+
+#confirmMessageContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}

@@ -27,7 +27,7 @@ class JsonSerializableMeetingBook {
      * Constructs a {@code JsonSerializableMeetingBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableMeetingBook(@JsonProperty("persons") List<JsonAdaptedMeeting> meetings) {
+    public JsonSerializableMeetingBook(@JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         this.meetings.addAll(meetings);
     }
 

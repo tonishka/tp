@@ -50,7 +50,7 @@ class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         agenda = source.getAgenda().description;
         meetingPlace = source.getPlace().place;
-        meetingTime = String.valueOf(source.getTime().dateTime);
+        meetingTime = source.getTime().toString();
 
         attendees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedAttendee::new)
