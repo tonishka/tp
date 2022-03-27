@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
@@ -28,16 +29,16 @@ public class MeetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":Adds a new meeting.\n"
             + "Required Parameters: "
-            + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]..."
+            + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]..."
             + PREFIX_MEETING_AGENDA + "AGENDA "
-
             + PREFIX_MEETING_PLACE + "MEETING PLACE "
             + PREFIX_MEETING_TIME + "MEETING TIME\n"
+
             + "Example: " + COMMAND_WORD + " "
-            + "1 3 5 67 "
+            + PREFIX_ATTENDEES_INDEX + "1 3 5 67 "
             + PREFIX_MEETING_AGENDA + "Product Demo with Client "
             + PREFIX_MEETING_PLACE + "Conference Room 5A "
-            + PREFIX_MEETING_TIME + "2022-04-05 15:44";
+            + PREFIX_MEETING_TIME + "05-04-2022 15:44";
 
     public static final String MESSAGE_SUCCESS = "Created a new meeting: %1$s";
 

@@ -20,9 +20,10 @@ import seedu.address.model.tag.Tag;
 public class Person implements Comparable<Person> {
 
     // Identity fields
-    private final Name name;
+    private final Id id;
 
     // Data fields
+    private final Name name;
     private final Map<Label, Phone> numbers;
     private final Map<Label, Email> emails;
     private final Map<Label, Address> addresses;
@@ -47,6 +48,25 @@ public class Person implements Comparable<Person> {
         this.jobTitle = jobTitle;
         this.pronouns.addAll(pronouns);
         this.tags.addAll(tags);
+        this.id = new Id();
+    }
+
+    /**
+     * Constructs a {@code Person} with a predesignated {@code Id}.
+     */
+    public Person(Id id, Name name, Map<Label, Phone> numbers, Map<Label, Email> emails,
+                  Map<Label, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, numbers, emails, addresses, pronouns, tags);
+        this.name = name;
+        this.numbers = numbers;
+        this.emails = emails;
+        this.addresses = addresses;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.pronouns.addAll(pronouns);
+        this.tags.addAll(tags);
+        this.id = id;
     }
 
     /**
@@ -57,6 +77,10 @@ public class Person implements Comparable<Person> {
     public static Person getEmptyPerson() {
         return new Person(new Name("No name"), new HashMap<>(), new HashMap<>(), new HashMap<>(),
                 new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
+    }
+
+    public Id getId() {
+        return id;
     }
 
     public Name getName() {
@@ -129,6 +153,8 @@ public class Person implements Comparable<Person> {
         }
 
         Person otherPerson = (Person) other;
+
+        //Including ID equality check will cause tests to fail because EmptyPerson is generated with a random ID
         return otherPerson.getName().equals(getName())
                 && otherPerson.getNumbers().equals(getNumbers())
                 && otherPerson.getEmails().equals(getEmails())
