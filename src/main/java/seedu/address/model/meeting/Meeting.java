@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Id;
 
 /**
  * Represents a meeting of which the user is a part.
@@ -14,7 +14,7 @@ public class Meeting implements Comparable<Meeting> {
     private final MeetingPlace place;
     private final MeetingTime time;
     private final HashSet<Index> indexes = new HashSet<>();
-    private final HashSet<Person> attendees = new HashSet<Person>();
+    private final HashSet<Id> attendees = new HashSet<>();
 
     /**
      * Constructs a new meeting with the given parameters
@@ -22,23 +22,29 @@ public class Meeting implements Comparable<Meeting> {
      * @param agenda  Agenda of the meeting
      * @param place   Meeting place
      * @param time    Meeting time and date
-     * @param indexes indexes of attendees
+     * @param indexes  Indexes of attendees in the displayed list
+     * @param attendees Ids of attendees of the meeting
      */
-    public Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes) {
+    public Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes, Set<Id> attendees) {
         this.agenda = agenda;
         this.place = place;
         this.time = time;
         this.indexes.addAll(indexes);
+        this.attendees.addAll(attendees);
     }
 
-    //implementation here is a bit rough
-    //any suggestions
-    private Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Index> indexes, Set<Person> attendees) {
+    /**
+     * Constructs a new meeting with the given parameters
+     *
+     * @param agenda  Agenda of the meeting
+     * @param place   Meeting place
+     * @param time    Meeting time and date
+     * @param attendees Ids of attendees of the meeting
+     */
+    public Meeting(Agenda agenda, MeetingPlace place, MeetingTime time, Set<Id> attendees) {
         this.agenda = agenda;
         this.place = place;
         this.time = time;
-        this.indexes.clear();
-        this.indexes.addAll(indexes);
         this.attendees.addAll(attendees);
     }
 
@@ -47,8 +53,8 @@ public class Meeting implements Comparable<Meeting> {
      *
      * @param attendees Other attendees of the meeting
      */
-    public Meeting setAttendees(Set<Person> attendees) {
-        return new Meeting(agenda, place, time, indexes, attendees);
+    public Meeting setAttendees(Set<Id> attendees) {
+        return new Meeting(agenda, place, time, attendees);
     }
 
     public Agenda getAgenda() {
@@ -67,7 +73,7 @@ public class Meeting implements Comparable<Meeting> {
         return this.indexes;
     }
 
-    public HashSet<Person> getAttendees() {
+    public HashSet<Id> getAttendees() {
         return this.attendees;
     }
 
