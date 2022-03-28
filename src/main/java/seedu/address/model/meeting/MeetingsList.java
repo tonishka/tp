@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 
@@ -73,11 +74,11 @@ public class MeetingsList implements Iterable<Meeting> {
 
     /**
      * Replaces the contents of this list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
+     * {@code meetings} must not contain duplicate or expired meetings.
      */
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
-        if (!meetingsAreUnique(meetings)) {
+        if (!meetingsAreUnique(meetings) && !meetingsAreExpired(meetings)) {
             throw new DuplicateMeetingException();
         }
 
@@ -120,6 +121,17 @@ public class MeetingsList implements Iterable<Meeting> {
             }
         }
         return true;
+    }
+
+    private boolean meetingsAreExpired(List<Meeting> meetings) {
+        for (int i = 0; i < meetings.size() - 1; i++) {
+            for (int j = i + 1; j < meetings.size(); j++) {
+                if (meetings.get(i).getTime().dateTime.isBefore(LocalDateTime.now())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
