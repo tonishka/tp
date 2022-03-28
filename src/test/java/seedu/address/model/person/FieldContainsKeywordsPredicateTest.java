@@ -74,7 +74,6 @@ public class FieldContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new FieldContainsKeywordsPredicate(Arrays.asList("dElL", "AlPhA"), "c");
         assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha").build()));
-
     }
 
     /**
