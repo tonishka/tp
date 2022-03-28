@@ -193,11 +193,6 @@ public class ModelManager implements Model {
         return filteredPersons.sorted(Person::compareTo);
     }
 
-    /*
-    @Override
-    public ObservableList<Meeting> getFilteredMeetingList() {
-        return filteredMeetings.sorted(Meeting::compareTo);
-    }*/
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
