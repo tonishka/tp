@@ -89,6 +89,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Person> getPersonList() {
+        return model.getPersonList();
+    }
+
+    @Override
     public ReadOnlyMeetingBook getMeetingBook() {
         return model.getMeetingBook();
     }
@@ -98,11 +103,10 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
-    /*
     @Override
-    public ObservableList<Meeting> getFilteredMeetingList() {
-        return model.getFilteredMeetingList();
-    }*/
+    public ObservableList<Meeting> getMeetingList() {
+        return model.getMeetingList();
+    }
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
