@@ -2,9 +2,11 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Represents the meeting time for a meeting.
@@ -41,9 +43,38 @@ public class MeetingTime {
         return LocalDateTime.parse(dateTime, formatter);
     }
 
+    /**
+     * Formats the time in a user-friendly 12-hour format.
+     * @param dateTime
+     * @return formatted time
+     */
+    public static String prettyTime(LocalDateTime dateTime) {
+        String time = "11:59 PM"; // To bypass uninitialised string error
+        try {
+            String timeToFormat = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+            SimpleDateFormat twentyFourHrFormat = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat twelveHrFormat = new SimpleDateFormat("hh:mm a");
+            Date dateToFormat = twentyFourHrFormat.parse(timeToFormat);
+            time = twelveHrFormat.format(dateToFormat);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return time;
+    }
+
+    /**
+     * Formats the date in a user-friendly manner.
+     * @param dateTime
+     * @return formatted date
+     */
+    public static String prettyDate(LocalDateTime dateTime) {
+        String date = dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return date;
+    }
+
     @Override
     public String toString() {
-        return dateTime.format(formatter);
+        return prettyDate(dateTime) + ", " + prettyTime(dateTime);
     }
 
     @Override
