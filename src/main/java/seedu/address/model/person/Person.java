@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.label.Label;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,12 +20,13 @@ import seedu.address.model.tag.Tag;
 public class Person implements Comparable<Person> {
 
     // Identity fields
-    private final Name name;
+    private final Id id;
 
     // Data fields
-    private final Map<String, Phone> numbers;
-    private final Map<String, Email> emails;
-    private final Map<String, Address> addresses;
+    private final Name name;
+    private final Map<Label, Phone> numbers;
+    private final Map<Label, Email> emails;
+    private final Map<Label, Address> addresses;
     private final Company company;
     private final JobTitle jobTitle;
     private final HashSet<Pronoun> pronouns = new HashSet<>();
@@ -33,8 +35,8 @@ public class Person implements Comparable<Person> {
     /**
      * Name, numbers, emails, addresses, pronouns, and tags must be present and not null.
      */
-    public Person(Name name, Map<String, Phone> numbers, Map<String, Email> emails,
-                  Map<String, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
+    public Person(Name name, Map<Label, Phone> numbers, Map<Label, Email> emails,
+                  Map<Label, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
                   Set<Tag> tags) {
         requireAllNonNull(name, numbers, emails, addresses, pronouns, tags);
         this.name = name;
@@ -45,6 +47,25 @@ public class Person implements Comparable<Person> {
         this.jobTitle = jobTitle;
         this.pronouns.addAll(pronouns);
         this.tags.addAll(tags);
+        this.id = new Id();
+    }
+
+    /**
+     * Constructs a {@code Person} with a predesignated {@code Id}.
+     */
+    public Person(Id id, Name name, Map<Label, Phone> numbers, Map<Label, Email> emails,
+                  Map<Label, Address> addresses, Company company, JobTitle jobTitle, Set<Pronoun> pronouns,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, numbers, emails, addresses, pronouns, tags);
+        this.name = name;
+        this.numbers = numbers;
+        this.emails = emails;
+        this.addresses = addresses;
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.pronouns.addAll(pronouns);
+        this.tags.addAll(tags);
+        this.id = id;
     }
 
     /**
@@ -57,19 +78,23 @@ public class Person implements Comparable<Person> {
                 new Company("No Company"), new JobTitle("No JobTitle"), new HashSet<>(), new HashSet<>());
     }
 
+    public Id getId() {
+        return id;
+    }
+
     public Name getName() {
         return name;
     }
 
-    public Map<String, Phone> getNumbers() {
+    public Map<Label, Phone> getNumbers() {
         return numbers;
     }
 
-    public Map<String, Email> getEmails() {
+    public Map<Label, Email> getEmails() {
         return emails;
     }
 
-    public Map<String, Address> getAddresses() {
+    public Map<Label, Address> getAddresses() {
         return addresses;
     }
 
@@ -94,7 +119,7 @@ public class Person implements Comparable<Person> {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and tags.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -102,8 +127,14 @@ public class Person implements Comparable<Person> {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+        return otherPerson.getName() != null
+                && otherPerson.getName().equals(this.getName())
+                && otherPerson.getTags() != null
+                && otherPerson.getTags().equals(this.getTags());
     }
 
     /**
@@ -121,6 +152,8 @@ public class Person implements Comparable<Person> {
         }
 
         Person otherPerson = (Person) other;
+
+        //Including ID equality check will cause tests to fail because EmptyPerson is generated with a random ID
         return otherPerson.getName().equals(getName())
                 && otherPerson.getNumbers().equals(getNumbers())
                 && otherPerson.getEmails().equals(getEmails())
@@ -143,21 +176,15 @@ public class Person implements Comparable<Person> {
         builder.append("Name: ")
                 .append(getName());
 
-        if (!(company == null)) {
-            builder.append("; Company: ")
-                    .append(getCompany().get());
-        }
+        getCompany().map(c -> builder.append("; Company: ").append(c));
 
-        if (!(jobTitle == null)) {
-            builder.append("; Job Title: ")
-                    .append(getJobTitle().get());
-        }
+        getJobTitle().map(j -> builder.append("; Job Title: ").append(j));
 
         Set<Pronoun> pronouns = getPronouns();
         if (!pronouns.isEmpty()) {
             builder.append("; Pronouns: ");
             pronouns.stream().limit(1).forEach(builder::append);
-            pronouns.stream().skip(1).forEach(pronoun -> builder.append("/" + pronoun));
+            pronouns.stream().skip(1).forEach(pronoun -> builder.append("/").append(pronoun));
 
         }
 
@@ -167,22 +194,24 @@ public class Person implements Comparable<Person> {
             tags.forEach(tag -> builder.append(tag.prettyString()));
         }
 
-        Map<String, Phone> numbers = getNumbers();
+        Map<Label, Phone> numbers = getNumbers();
         if (!numbers.isEmpty()) {
             builder.append("; Numbers: ");
-            numbers.forEach((label, number) -> builder.append(number.phone + " l/" + label + " "));
+            numbers.forEach((label, number) -> builder.append(number.phone).append(" l/").append(label.label)
+                    .append(" "));
         }
 
-        Map<String, Address> addresses = getAddresses();
+        Map<Label, Address> addresses = getAddresses();
         if (!addresses.isEmpty()) {
             builder.append("; Addresses: ");
-            addresses.forEach((label, address) -> builder.append(address.address + " l/" + label + " "));
+            addresses.forEach((label, address) -> builder.append(address.address).append(" l/")
+                    .append(label.label).append(" "));
         }
 
-        Map<String, Email> emails = getEmails();
+        Map<Label, Email> emails = getEmails();
         if (!emails.isEmpty()) {
             builder.append("; Emails: ");
-            emails.forEach((label, email) -> builder.append(email.email + " l/" + label + " "));
+            emails.forEach((label, email) -> builder.append(email.email).append(" l/").append(label.label).append(" "));
         }
 
         return builder.toString();

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DETAILS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
@@ -65,7 +66,7 @@ public class DeleteFieldCommand extends Command {
         Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(deleteFieldDescriptor);
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);
@@ -99,13 +100,13 @@ public class DeleteFieldCommand extends Command {
         Company updatedCompany = deleteFieldDescriptor.getCompany().orElse(null);
         JobTitle updatedJobTitle = deleteFieldDescriptor.getJobTitle().orElse(null);
 
-        Map<String, Phone> updatedPhones =
+        Map<Label, Phone> updatedPhones =
                 new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
 
-        Map<String, Email> updatedEmails =
+        Map<Label, Email> updatedEmails =
                 new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
 
-        Map<String, Address> updatedAddresses =
+        Map<Label, Address> updatedAddresses =
                 new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
 
         Set<Pronoun> updatedPronouns =
