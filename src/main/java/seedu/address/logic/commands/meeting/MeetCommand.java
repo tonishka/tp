@@ -9,10 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
