@@ -105,7 +105,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList(), logic.getPersonList());
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -180,9 +180,15 @@ public class MainWindow extends UiPart<Stage> {
     private void loadPersonListScreen() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         CommandBox commandBox = new CommandBox(this::executePersonListCommand);
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
     /**
@@ -191,9 +197,15 @@ public class MainWindow extends UiPart<Stage> {
     private void loadContactScreen(Person personToDisplay) {
         contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
     /**
