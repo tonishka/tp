@@ -15,5 +15,5 @@
     </HBox>
     <Label fx:id="time" styleClass="secondary_text"/>
     <Label fx:id="place" styleClass="secondary_text"/>
-    <Label fx:id="attendees" styleClass="secondary_text"/>
+    <Label fx:id="attendees" styleClass="secondary_text" wrapText="true"/>
 </VBox>
