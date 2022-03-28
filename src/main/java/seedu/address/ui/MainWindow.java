@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ConfirmWindow confirmWindow;
+    private MeetingListPanel meetingListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -100,6 +104,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -173,10 +180,17 @@ public class MainWindow extends UiPart<Stage> {
     private void loadPersonListScreen() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         CommandBox commandBox = new CommandBox(this::executePersonListCommand);
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
-        commandBox.setFocussed();
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
+        commandBox.setFocused();
     }
 
     /**
@@ -185,10 +199,17 @@ public class MainWindow extends UiPart<Stage> {
     private void loadContactScreen(Person personToDisplay) {
         contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
-        commandBox.setFocussed();
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
+        commandBox.setFocused();
     }
 
     /**
