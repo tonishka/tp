@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
