@@ -92,6 +92,10 @@ public class Meeting implements Comparable<Meeting> {
                 && otherMeeting.getAttendees().equals(getAttendees());
     }
 
+    public boolean contains(Id attendee) {
+        return attendees.contains(attendee);
+    }
+
     /**
      * Chronological order is enforced on meetings.
      */

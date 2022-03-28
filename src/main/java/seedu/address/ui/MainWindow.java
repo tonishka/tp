@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ConfirmWindow confirmWindow;
     private MeetingListPanel meetingListPanel;
+    private ContactMeetingsPanel contactMeetingsPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -199,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
     private void loadContactScreen(Person personToDisplay) {
         contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
-        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+        contactMeetingsPanel = new ContactMeetingsPanel(logic.getMeetingList(), logic.getPersonList(), personToDisplay);
 
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().removeAll();
@@ -207,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
-        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(contactMeetingsPanel.getRoot());
 
         commandBox.setFocused();
     }
