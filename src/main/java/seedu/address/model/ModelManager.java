@@ -168,6 +168,14 @@ public class ModelManager implements Model {
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
+     * Returns an unmodifiable view of the list of {@code Meeting}
+     */
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetingBook.getMeetingList().sorted(Meeting::compareTo);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
      * {@code versionedMeetingBook}
      */
@@ -183,6 +191,14 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person}
+     */
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return addressBook.getPersonList().sorted(Person::compareTo);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
