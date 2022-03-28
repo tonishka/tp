@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,9 +12,6 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
-import java.util.HashSet;
-import java.util.Iterator;
-
 /**
  * An UI component that displays information of a {@code Meeting}.
  */
@@ -19,8 +19,8 @@ public class MeetingCard extends UiPart<Region> {
 
     private static final String FXML = "MeetingListCard.fxml";
 
-    public final Meeting meeting;
-    ObservableList<Person> personList;
+    private final Meeting meeting;
+    private final ObservableList<Person> personList;
 
     @FXML
     private VBox cardPane;
