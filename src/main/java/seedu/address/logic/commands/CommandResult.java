@@ -39,21 +39,27 @@ public class CommandResult {
     private final boolean loadContactDetails;
 
     /**
-     * The previous command requires confirmation.
+     * The commands clears contacts.
      */
-    private final boolean requiresConfirmation;
+    private final boolean contactsClear;
+
+    /**
+     * The command clears meetings.
+     */
+    private final boolean meetingClear;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean loadPersonList,
-                         boolean loadContactDetails, boolean requiresConfirmation, Person person) {
+                         boolean loadContactDetails, boolean contactsClear, boolean meetingClear, Person person) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.loadPersonList = loadPersonList;
         this.loadContactDetails = loadContactDetails;
-        this.requiresConfirmation = requiresConfirmation;
+        this.contactsClear = contactsClear;
+        this.meetingClear = meetingClear;
         this.person = person;
     }
 
@@ -64,7 +70,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false, null);
+                false, false,false, null);
     }
 
     /**
@@ -73,7 +79,7 @@ public class CommandResult {
      */
     public CommandResult(String feedBackToUser, boolean showHelp, boolean exit) {
         this(feedBackToUser, showHelp, exit, false, false,
-                false, null);
+                false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -96,9 +102,11 @@ public class CommandResult {
         return loadContactDetails;
     }
 
-    public boolean requiresConfirmation() {
-        return requiresConfirmation;
+    public boolean isContactsClear() {
+        return contactsClear;
     }
+
+    public boolean isMeetingClear() { return meetingClear; }
 
     public Person getPerson() {
         return person;

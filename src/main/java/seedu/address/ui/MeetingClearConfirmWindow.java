@@ -14,12 +14,13 @@ import seedu.address.logic.LogicManager;
 /**
  * Controller for a clear confirmation
  */
-public class ConfirmWindow extends UiPart<Stage> {
+public class MeetingClearConfirmWindow extends UiPart<Stage> {
 
-    public static final String CONFIRM_MESSAGE = "Are you sure you want to proceed? Deleted data cannot be recovered";
+    public static final String CONFIRM_MESSAGE = "Are you sure you want to proceed? Deleted data cannot be recovered.\n"
+            + "All meetings will be deleted.";
 
-    private static final Logger logger = LogsCenter.getLogger(ConfirmWindow.class);
-    private static final String FXML = "ConfirmWindow.fxml";
+    private static final Logger logger = LogsCenter.getLogger(MeetingClearConfirmWindow.class);
+    private static final String FXML = "MeetingClearConfirmWindow.fxml";
     private LogicManager logic;
 
     @FXML
@@ -29,19 +30,19 @@ public class ConfirmWindow extends UiPart<Stage> {
     private Label confirmMessage;
 
     /**
-     * Creates a new ConfirmWindow.
+     * Creates a new MeetingClearConfirmWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public ConfirmWindow(Stage root) {
+    public MeetingClearConfirmWindow(Stage root) {
         super(FXML, root);
         confirmMessage.setText(CONFIRM_MESSAGE);
     }
 
     /**
-     * Creates a new ConfirmWindow.
+     * Creates a new MeetingClearConfirmWindow.
      */
-    public ConfirmWindow(Logic logic) {
+    public MeetingClearConfirmWindow(Logic logic) {
         this(new Stage());
         this.logic = (LogicManager) logic;
     }
@@ -97,7 +98,7 @@ public class ConfirmWindow extends UiPart<Stage> {
      */
     @FXML
     private void confirm() {
-        logic.clearAddressBook();
+        logic.clearMeetingBook();
         hide();
     }
 }

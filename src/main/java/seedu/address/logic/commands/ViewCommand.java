@@ -47,6 +47,6 @@ public class ViewCommand extends Command {
         Person toDisplay = lastShownList.get(index.getZeroBased());
 
         return new CommandResult(String.format(SHOWING_CONTACT_INFO, toDisplay.getName().fullName), false, false,
-                false, true, false, toDisplay);
+                false, true, false, false, toDisplay);
     }
 }

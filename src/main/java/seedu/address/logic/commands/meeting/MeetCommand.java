@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
@@ -30,7 +31,7 @@ public class MeetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":Adds a new meeting.\n"
             + "Required Parameters: "
-            + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]..."
+            + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]... "
             + PREFIX_MEETING_AGENDA + "AGENDA "
             + PREFIX_MEETING_PLACE + "MEETING PLACE "
             + PREFIX_MEETING_TIME + "MEETING TIME\n"
@@ -39,6 +40,10 @@ public class MeetCommand extends Command {
             + PREFIX_MEETING_AGENDA + "Product Demo with Client "
             + PREFIX_MEETING_PLACE + "Conference Room 5A "
             + PREFIX_MEETING_TIME + "05-04-2022 15:44";
+
+    public static final String INDEX_CANNOT_BE_EMPTY_MESSAGE = "At least one participant is required!";
+
+    public static final String AGENDA_CANNOT_BE_EMPTY_MESSAGE = "Please add an agenda to the meeting!";
 
     public static final String MESSAGE_SUCCESS = "Created a new meeting: %1$s";
 
@@ -59,7 +64,7 @@ public class MeetCommand extends Command {
         Set<Id> attendees = new HashSet<>();
         for (Index index : toMeet.getIndexes()) {
             if (index.getZeroBased() >= lastShownList.size()) {
-                LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                attendees.add(new Id()); //will result in Unknown Contact
             } else { //only add if valid
                 attendees.add(lastShownList.get(index.getZeroBased()).getId());
             }
@@ -67,7 +72,7 @@ public class MeetCommand extends Command {
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
         model.addMeeting(meetingWithAttendeesAdded);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,
-                true, false, false, null);
+                true, false, false,false, null);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class EmptyCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_SUCCESS, false, false, true, false,
-                true, null);
+                false, true, null);
     }
 
 }
