@@ -13,22 +13,34 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** The person to be displayed in the ContactDetailsPanel. */
+    /**
+     * The person to be displayed in the ContactDetailsPanel.
+     */
     private final Person person;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
 
-    /** The application should display the PersonListPanel. */
+    /**
+     * The application should display the PersonListPanel.
+     */
     private final boolean loadPersonList;
 
-    /** The application should display the ContactDetailsPanel. */
+    /**
+     * The application should display the ContactDetailsPanel.
+     */
     private final boolean loadContactDetails;
 
-    /** The previous command requires confirmation. */
+    /**
+     * The previous command requires confirmation.
+     */
     private final boolean requiresConfirmation;
 
     /**
@@ -45,12 +57,14 @@ public class CommandResult {
         this.person = person;
     }
 
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false, false, null);
+        this(feedbackToUser, false, false, false,
+                false, false, null);
     }
 
     /**
@@ -58,7 +72,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedBackToUser, boolean showHelp, boolean exit) {
-        this(feedBackToUser, showHelp, exit, false, false, false, null);
+        this(feedBackToUser, showHelp, exit, false, false,
+                false, null);
     }
 
     public String getFeedbackToUser() {

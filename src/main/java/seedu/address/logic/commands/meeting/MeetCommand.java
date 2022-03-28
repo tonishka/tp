@@ -34,7 +34,6 @@ public class MeetCommand extends Command {
             + PREFIX_MEETING_AGENDA + "AGENDA "
             + PREFIX_MEETING_PLACE + "MEETING PLACE "
             + PREFIX_MEETING_TIME + "MEETING TIME\n"
-
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTENDEES_INDEX + "1 3 5 67 "
             + PREFIX_MEETING_AGENDA + "Product Demo with Client "
