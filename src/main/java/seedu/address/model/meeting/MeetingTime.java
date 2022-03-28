@@ -39,6 +39,13 @@ public class MeetingTime {
         }
     }
 
+    /**
+     * Returns true if a given meeting has expired.
+     */
+    public boolean isExpiredMeetingTime() {
+        return this.dateTime.isBefore(LocalDateTime.now());
+    }
+
     public static LocalDateTime formatTime(String dateTime) {
         return LocalDateTime.parse(dateTime, formatter);
     }
