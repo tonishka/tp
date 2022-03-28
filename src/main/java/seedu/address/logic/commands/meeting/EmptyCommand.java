@@ -5,7 +5,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 public class EmptyCommand extends Command {
-    public static final String COMMAND_WORD = "clear -m";
+    public static final String COMMAND_WORD = "cancel -a";
     public static final String MESSAGE_SUCCESS = "Opened clearing of meetings confirmation window";
 
 
