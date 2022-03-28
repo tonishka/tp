@@ -3,6 +3,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="HI"/>
+<?import javafx.geometry.Insets?>
+
+<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" prefWidth="275">
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="10" />
+    </padding>
+    <HBox>
+        <Label fx:id="index" styleClass="headline"/>
+        <Label fx:id="agenda" styleClass="headline"/>
+    </HBox>
+    <Label fx:id="time" styleClass="secondary_text"/>
+    <Label fx:id="place" styleClass="secondary_text"/>
+    <Label fx:id="attendees" styleClass="secondary_text"/>
 </VBox>
