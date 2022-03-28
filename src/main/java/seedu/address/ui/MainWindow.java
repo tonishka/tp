@@ -176,6 +176,7 @@ public class MainWindow extends UiPart<Stage> {
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
+        commandBox.setFocussed();
     }
 
     /**
@@ -187,6 +188,7 @@ public class MainWindow extends UiPart<Stage> {
         panelPlaceholder.getChildren().removeAll();
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
+        commandBox.setFocussed();
     }
 
     /**

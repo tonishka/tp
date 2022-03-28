@@ -18,7 +18,7 @@ public class TypicalMeetings {
     private TypicalMeetings() {} // prevents instantiation
 
     /**
-     * Returns an {@code Meetingook} with all the typical meetings.
+     * Returns an {@code MeetingBook} with all the typical meetings.
      */
     public static MeetingBook getTypicalMeetingBook() {
         MeetingBook mb = new MeetingBook();
