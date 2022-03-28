@@ -209,6 +209,7 @@ public class ModelManager implements Model {
         return filteredPersons.sorted(Person::compareTo);
     }
 
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
