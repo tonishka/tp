@@ -105,6 +105,6 @@ public class Meeting implements Comparable<Meeting> {
         //Cannot list attendees without Id implementation
         return "Agenda: " + agenda
                 + "; place: " + place
-                + "; time: " + time;
+                + "; time: " + time.toPrettyString();
     }
 }

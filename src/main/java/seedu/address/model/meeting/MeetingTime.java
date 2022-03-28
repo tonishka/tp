@@ -74,6 +74,10 @@ public class MeetingTime {
 
     @Override
     public String toString() {
+        return dateTime.format(formatter);
+    }
+
+    public String toPrettyString() {
         return prettyDate(dateTime) + ", " + prettyTime(dateTime);
     }
 
