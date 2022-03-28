@@ -70,7 +70,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false,false, null);
+                false, false, false, null);
     }
 
     /**
@@ -106,7 +106,9 @@ public class CommandResult {
         return contactsClear;
     }
 
-    public boolean isMeetingClear() { return meetingClear; }
+    public boolean isMeetingClear() {
+        return meetingClear;
+    }
 
     public Person getPerson() {
         return person;

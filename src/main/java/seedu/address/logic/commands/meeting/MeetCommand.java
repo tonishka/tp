@@ -69,7 +69,7 @@ public class MeetCommand extends Command {
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
         model.addMeeting(meetingWithAttendeesAdded);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,
-                true, false, false,false, null);
+                true, false, false, false, null);
     }
 
     @Override
