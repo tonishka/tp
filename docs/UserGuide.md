@@ -222,17 +222,21 @@ Format: `exit`
 
 ## 3. Command Summary
 
-| **Action** | **Format, Example**                                                                                                                                                                                         |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                    |
-| **Edit**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                           |                                                                                                                                                                                        |
-| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
-| **Clear**  | Format: `clear`                                                                                                                                                                                             |
-| **Find**   | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                        |
-| **View**   | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                               |
-| **Back**   | Format: `back`                                                                                                                                                                                              |
-| **List**   | Format: `list`                                                                                                                                                                                              |
-| **Help**   | Format: `help`                                                                                                                                                                                              |
+| **Action**         | **Format, Example**                                                                                                                                                                                         |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                    |
+| **Edit**           | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                           |                                                                                                                                                                                        |
+| **Delete**         | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
+| **Clear**          | Format: `clear`                                                                                                                                                                                             |
+| **Find**           | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                        |
+| **View**           | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                               |
+| **Back**           | Format: `back`                                                                                                                                                                                              |
+| **List**           | Format: `list`                                                                                                                                                                                              |
+| **Add Meeting**    | Format: `meet <ALL FIELDS IN ANY ORDER` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                 |
+| **Update Meeting** | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                              |
+| **Cancel Meeting** | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel -a`                                                       |
+| **Help**           | Format: `help`                                                                                                                                                                                              |
+| **Exit**           | Format: `exit`                                                                                                                                                                                              |
 
 ## 4. Contact Fields Summary
 
