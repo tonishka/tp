@@ -251,4 +251,14 @@ Format: `exit`
 | **Tags**         | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
 | **Pronouns**     | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
 
+
+## 5. Meeting Fields Summary
+
+| **Field**         | **Mandatory** | **Format, Example**                                                                 |
+|-------------------|---------------|-------------------------------------------------------------------------------------|
+| **Agenda**        | Yes           | Format: `for/<AGENDA>` <br> Example: `for/Project Consulation`                      |
+| **Meeting Place** | Yes           | Format: `in/<MEETING PLACE>` <br> Example: `in/Zoom`                                |
+| **Meeting Time**  | Yes           | Format: `on/<MEETING TIME AS DD-MM-YYYY HH:mm>` <br> Example: `on/14-04-2022 14:00` |
+| **Attendees**     | Yes           | Format: `with/<ATTENDEE 1 INDEX>...` <br> Example: `with/1 3 5`                     |
+
 [Back to top](#table-of-contents)
