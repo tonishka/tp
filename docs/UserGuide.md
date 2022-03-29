@@ -58,10 +58,14 @@ Example: `add n/Alex Dunphy`
 
 <br>
 
-#### 2.1.2 Clearing all contacts: `clear`
-Clears all contacts from the address book.
+#### 2.1.2 Clearing your address book: `clear`
+Clears all contacts and meetings from the address book.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible.
+</div>
 
 <br>
 
@@ -258,6 +262,10 @@ You can cancel a meeting by specifying its index on the meetings list.
 ####2.4.4 Canceling all meetings
 You can clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
 **Format:** `cancel -a`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible.
+</div>
 
 <br>
 
