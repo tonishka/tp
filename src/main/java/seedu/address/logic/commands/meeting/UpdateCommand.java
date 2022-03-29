@@ -38,7 +38,7 @@ public class UpdateCommand extends Command {
             + "[" + PREFIX_MEETING_TIME + "MEETING_TIME] "
             + "[" + PREFIX_MEETING_PLACE + "MEETING PLACE] ";
 
-    public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "%1$s's information has been updated";
+    public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting has been updated";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
