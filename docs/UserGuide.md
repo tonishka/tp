@@ -7,7 +7,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 ## Table of Contents
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,9 +19,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Reache.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-
-<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
 
    ![Ui](images/Ui.png)
 
@@ -34,16 +32,19 @@ Reache is a desktop app that helps busy working professionals manage their large
 **:information_source: Notes about the command format:**<br>
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
+  
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
+  
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
+  
 - Parameters can be in any order.
+  
 - `l/` is used to label parameters. They are optional.
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
 ## 2. Features
 ### 2.1 Managing Contacts
 #### 2.1.1 Adding a contact: `add`
@@ -78,7 +79,7 @@ Example: `del 66`
 
 <br>
 
-#### 2.1.4 Editing a contact: edit
+#### 2.1.4 Editing a contact: `edit`
 Enters editing mode to modify contact details in the address book.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
@@ -90,7 +91,11 @@ Example: `edit n/Alex ph/98765432 t/has kids`
 <br>
 
 #### 2.1.5 Editing the data file
-_Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
+_Reache_ data is saved as JSON files at /data/addressbook.json and /data/meetingbook.json. Advanced users are welcome to update data directly by editing the data file.
+   
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
+</div>
 
 <br>
 
@@ -153,7 +158,7 @@ Format: `back`
 
 <br>
 
-#### 2.3.2 Add/Edit phone numbers: phone
+#### 2.3.2 Add/Edit phone numbers: `phone`
 Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
 Example: `ph/8765432 l/Personal ph/9753468 l/Office`
@@ -225,8 +230,8 @@ Examples:
 
 <br>
 
-###2.4 Managing Meetings
-####2.4.1 Creating a meeting
+### 2.4 Managing Meetings
+#### 2.4.1 Creating a meeting
 Create a meeting by specifying the following information:
 - Agenda
 - Meeting place
@@ -241,7 +246,7 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 
 <br>
 
-####2.4.2 Updating meeting details
+#### 2.4.2 Updating meeting details
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
 - Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
@@ -252,7 +257,7 @@ Example: `update 2 in/COM2 on/29-04-2022 20:00`
 
 <br>
 
-####2.4.3 Canceling a meeting
+#### 2.4.3 Canceling a meeting
 Cancel a meeting by specifying its index on the meetings list.
 
 Format: `cancel <MEETING INDEX>`
@@ -261,7 +266,7 @@ Example: `cancel 2`
 
 <br>
 
-####2.4.4 Canceling all meetings
+#### 2.4.4 Canceling all meetings
 Clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
 
 Format: `cancel -a`
@@ -291,7 +296,7 @@ Format: `exit`
 | **Action**              | **Format, Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
-| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |                                                                                                                                                                                        |
+| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
 | **Delete Contact Info** | **Delete specific contact** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
 | **Clear Address Book**  | Format: `clear`                                                                                                                                                                                                         |
 | **Find Contacts**       | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                                    |
