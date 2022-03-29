@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
@@ -59,16 +60,23 @@ public class MeetCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
         Set<Id> attendees = new HashSet<>();
+        String feedback = "";
         for (Index index : toMeet.getIndexes()) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                attendees.add(new Id()); //will result in Unknown Contact
-            } else { //only add if valid
+            try {
                 attendees.add(lastShownList.get(index.getZeroBased()).getId());
+            } catch (IndexOutOfBoundsException exception) {
+                feedback += " Unknown contact: " + index.getOneBased() + "\n";
+            } finally {
+                continue;
             }
         }
+        feedback += MESSAGE_SUCCESS;
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
+        if (model.hasMeeting(meetingWithAttendeesAdded)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
         model.addMeeting(meetingWithAttendeesAdded);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,
+        return new CommandResult(String.format(feedback, meetingWithAttendeesAdded), false, false,
                 true, false, false, false, null);
     }
 
