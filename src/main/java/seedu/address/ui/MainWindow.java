@@ -144,12 +144,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the confirmation window or focuses on it if it's already opened.
+     * Opens the contacts confirmation window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleConfirmation() {
+    public void handleContactsClearConfirmation(boolean isMeetingClear) {
         if (!confirmWindow.isShowing()) {
-            confirmWindow.show();
+            confirmWindow.show(isMeetingClear);
         } else {
             confirmWindow.focus();
         }
@@ -233,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.requiresConfirmation()) {
-                handleConfirmation();
+                handleContactsClearConfirmation(commandResult.isMeetingClear());
             }
 
             if (commandResult.isLoadPersonList()) {

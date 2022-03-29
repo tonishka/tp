@@ -65,7 +65,7 @@ public class AddCommand extends Command {
         }
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName().fullName), false, false,
-                false, true, false, toAdd);
+                false, true, false, false, toAdd);
     }
 
     @Override

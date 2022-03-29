@@ -65,7 +65,18 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                                 PREFIX_MEETING_TIME);
         if (!checkAllPrefixPresent(argMultimap, PREFIX_MEETING_AGENDA, PREFIX_MEETING_TIME, PREFIX_MEETING_PLACE,
                 PREFIX_ATTENDEES_INDEX)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MeetCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get().equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MeetCommand.INDEX_CANNOT_BE_EMPTY_MESSAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_MEETING_AGENDA).get().equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MeetCommand.AGENDA_CANNOT_BE_EMPTY_MESSAGE));
         }
 
         Set<Index> indexes = ParserUtil.parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get());

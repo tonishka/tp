@@ -39,21 +39,27 @@ public class CommandResult {
     private final boolean loadContactDetails;
 
     /**
-     * The previous command requires confirmation.
+     * The application should display the confirmation window.
      */
-    private final boolean requiresConfirmation;
+    private final boolean loadConfirmWindow;
+
+    /**
+     * The command clears meetings only.
+     */
+    private final boolean meetingClear;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean loadPersonList,
-                         boolean loadContactDetails, boolean requiresConfirmation, Person person) {
+                         boolean loadContactDetails, boolean loadConfirmWindow, boolean meetingClear, Person person) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.loadPersonList = loadPersonList;
         this.loadContactDetails = loadContactDetails;
-        this.requiresConfirmation = requiresConfirmation;
+        this.loadConfirmWindow = loadConfirmWindow;
+        this.meetingClear = meetingClear;
         this.person = person;
     }
 
@@ -64,7 +70,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false, null);
+                false, false, false, null);
     }
 
     /**
@@ -73,7 +79,7 @@ public class CommandResult {
      */
     public CommandResult(String feedBackToUser, boolean showHelp, boolean exit) {
         this(feedBackToUser, showHelp, exit, false, false,
-                false, null);
+                false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -97,7 +103,11 @@ public class CommandResult {
     }
 
     public boolean requiresConfirmation() {
-        return requiresConfirmation;
+        return loadConfirmWindow;
+    }
+
+    public boolean isMeetingClear() {
+        return meetingClear;
     }
 
     public Person getPerson() {

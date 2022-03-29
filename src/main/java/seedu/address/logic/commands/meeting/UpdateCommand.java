@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -84,7 +83,7 @@ public class UpdateCommand extends Command {
      * edited with {@code editMeetingDescriptor}.
      */
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor,
-                                               List<Person> lastShownPersonList) {
+                                               List<Person> lastShownPersonList) throws CommandException {
         requireNonNull(meetingToEdit);
 
         Agenda updatedAgenda = editMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
@@ -95,7 +94,7 @@ public class UpdateCommand extends Command {
         Set<Id> updatedAttendees = new HashSet<>();
         for (Index index : updatedAttendeesIndexes) {
             if (index.getZeroBased() >= lastShownPersonList.size()) {
-                LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             } else { //only add if valid
                 updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
             }

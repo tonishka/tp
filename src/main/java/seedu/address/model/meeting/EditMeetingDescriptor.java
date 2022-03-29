@@ -31,6 +31,7 @@ public class EditMeetingDescriptor {
         setMeetingTime(toCopy.meetingTime);
         setMeetingPlace(toCopy.meetingPlace);
         setAgenda(toCopy.agenda);
+
     }
 
     /**
