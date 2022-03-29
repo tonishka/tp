@@ -19,10 +19,13 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Reache.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds [Disclaimer: Actual GUI not shown]. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+
+<br>
+
    ![Ui](images/Ui.png)
 
-5. Refer to the Features below for details of each command.
+5. Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
