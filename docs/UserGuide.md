@@ -79,7 +79,7 @@ Example: `del 66`
 
 <br>
 
-#### 2.1.4 Editing a contact: edit
+#### 2.1.4 Editing a contact: `edit`
 Enters editing mode to modify contact details in the address book.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
@@ -91,7 +91,11 @@ Example: `edit n/Alex ph/98765432 t/has kids`
 <br>
 
 #### 2.1.5 Editing the data file
-_Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
+_Reache_ data is saved as JSON files at /data/addressbook.json and /data/meetingbook.json. Advanced users are welcome to update data directly by editing the data file.
+   
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
+</div>
 
 <br>
 
@@ -154,7 +158,7 @@ Format: `back`
 
 <br>
 
-#### 2.3.2 Add/Edit phone numbers: phone
+#### 2.3.2 Add/Edit phone numbers: `phone`
 Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
 Example: `ph/8765432 l/Personal ph/9753468 l/Office`
