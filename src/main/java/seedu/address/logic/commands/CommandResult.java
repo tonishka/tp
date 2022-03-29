@@ -39,12 +39,12 @@ public class CommandResult {
     private final boolean loadContactDetails;
 
     /**
-     * The commands clears contacts.
+     * The application should display the confirmation window.
      */
-    private final boolean contactsClear;
+    private final boolean loadConfirmWindow;
 
     /**
-     * The command clears meetings.
+     * The command clears meetings only.
      */
     private final boolean meetingClear;
 
@@ -52,13 +52,13 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean loadPersonList,
-                         boolean loadContactDetails, boolean contactsClear, boolean meetingClear, Person person) {
+                         boolean loadContactDetails, boolean loadConfirmWindow, boolean meetingClear, Person person) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.loadPersonList = loadPersonList;
         this.loadContactDetails = loadContactDetails;
-        this.contactsClear = contactsClear;
+        this.loadConfirmWindow = loadConfirmWindow;
         this.meetingClear = meetingClear;
         this.person = person;
     }
@@ -102,8 +102,8 @@ public class CommandResult {
         return loadContactDetails;
     }
 
-    public boolean isContactsClear() {
-        return contactsClear;
+    public boolean requiresConfirmation() {
+        return loadConfirmWindow;
     }
 
     public boolean isMeetingClear() {

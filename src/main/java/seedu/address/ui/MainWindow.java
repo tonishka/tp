@@ -38,8 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ContactDetailsPanel contactDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private ContactsClearConfirmWindow contactsClearConfirmWindow;
-    private MeetingClearConfirmWindow meetingClearConfirmWindow;
+    private ConfirmWindow confirmWindow;
     private MeetingListPanel meetingListPanel;
 
     @FXML
@@ -76,8 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        contactsClearConfirmWindow = new ContactsClearConfirmWindow(logic);
-        meetingClearConfirmWindow = new MeetingClearConfirmWindow(logic);
+        confirmWindow = new ConfirmWindow(logic);
     }
 
     private void setAccelerators() {
@@ -148,23 +146,11 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the contacts confirmation window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleContactsClearConfirmation() {
-        if (!contactsClearConfirmWindow.isShowing()) {
-            contactsClearConfirmWindow.show();
+    public void handleContactsClearConfirmation(boolean isMeetingClear) {
+        if (!confirmWindow.isShowing()) {
+            confirmWindow.show(isMeetingClear);
         } else {
-            contactsClearConfirmWindow.focus();
-        }
-    }
-
-    /**
-     * Opens the meetings clear confirmation window or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleMeetingsClearConfirmation() {
-        if (!meetingClearConfirmWindow.isShowing()) {
-            meetingClearConfirmWindow.show();
-        } else {
-            meetingClearConfirmWindow.focus();
+            confirmWindow.focus();
         }
     }
 
@@ -245,12 +231,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isContactsClear()) {
-                handleContactsClearConfirmation();
-            }
-
-            if (commandResult.isMeetingClear()) {
-                handleMeetingsClearConfirmation();
+            if (commandResult.requiresConfirmation()) {
+                handleContactsClearConfirmation(commandResult.isMeetingClear());
             }
 
             if (commandResult.isLoadPersonList()) {
