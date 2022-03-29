@@ -29,7 +29,9 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Notes about the command format:
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
 - Items in square brackets are optional. <br>
@@ -38,7 +40,9 @@ Reache is a desktop app that helps busy working professionals manage their large
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 - Parameters can be in any order.
 - `l/` is used to label parameters. They are optional.
- 
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Features
 ### 2.1 Managing Contacts
