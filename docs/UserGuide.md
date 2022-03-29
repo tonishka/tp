@@ -15,14 +15,14 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `reache.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-4/tp/releases).
+2. Download the latest `reache.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Reache.
+3. Copy the file to the folder you want to use as the _home folder_ for your Reache.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds [Disclaimer: Actual GUI not shown]. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds [Disclaimer: Actual GUI not shown]. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Refer to the Features below for details of each command.
+5. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
