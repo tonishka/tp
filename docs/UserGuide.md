@@ -6,16 +6,8 @@ title: User Guide
 Reache is a desktop app that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would like to optimize their contact management by using a Command Line Interface (CLI).
 
 
-## Table of Contents
-- [Quick Start](#1-quick-start)
-- [Features](#2-features)
-   - [Managing Contacts](#21-managing-contacts)
-   - [Finding Contacts](#22-finding-contacts)
-   - [Editing Information](#23-editing-information)
-   - [Viewing Help](#24-viewing-help-help)
-   - [Exiting the program](#25-exiting-the-program-exit)
-- [Command Summary](#3-command-summary)
-- [Contact Fields Summary](#4-contact-fields-summary)
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,18 +15,23 @@ Reache is a desktop app that helps busy working professionals manage their large
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `reache.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-4/tp/releases).
+2. Download the latest `reache.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Reache.
+3. Copy the file to the folder you want to use as the _home folder_ for your Reache.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds [Disclaimer: Actual GUI not shown]. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+
+<br>
+
    ![Ui](images/Ui.png)
 
-1. Refer to the Features below for details of each command.
+5. Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Notes about the command format:
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
 - Items in square brackets are optional. <br>
@@ -43,7 +40,9 @@ Reache is a desktop app that helps busy working professionals manage their large
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 - Parameters can be in any order.
 - `l/` is used to label parameters. They are optional.
- 
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Features
 ### 2.1 Managing Contacts
@@ -57,10 +56,18 @@ From this page, you can edit their contact details using the commands found unde
 
 Example: `add n/Alex Dunphy`
 
-#### 2.1.2 Clearing all contacts: `clear`
-Clears all contacts from the address book.
+<br>
+
+#### 2.1.2 Clearing your address book: `clear`
+Clears all contacts and meetings from the address book.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible.
+</div>
+
+<br>
 
 #### 2.1.3 Deleting a contact: `del`
 Deletes the specified person from the address book.
@@ -68,6 +75,8 @@ Deletes the specified person from the address book.
 Format: `del <INDEX NO>`
 
 Example: `del 66`
+
+<br>
 
 #### 2.1.4 Editing a contact: edit
 Enters editing mode to modify contact details in the address book.
@@ -78,11 +87,17 @@ Information about the details that can be added is found under the [Editing Info
 
 Example: `edit n/Alex ph/98765432 t/has kids`
 
+<br>
+
 #### 2.1.5 Editing the data file
 _Reache_ data is saved as a JSON file at [_Reache_ Jar file location]/data/reache.json. Advanced users are welcome to update data directly by editing the data file.
 
+<br>
+
 #### 2.1.6 Saving changes
 _Reache_ saves to the hard disk automatically after any command is issued that changes the data. There is no need to save manually.
+
+<br>
 
 ### 2.2 Finding Contacts
 #### 2.2.1 Finding contacts: `find`
@@ -98,10 +113,14 @@ Examples:<br>
 
 **Note: `find` expects at least one keyword to match.**
 
+<br>
+
 #### 2.2.2 Listing all contacts: `list`
 Shows a list of all contacts in the address book.
 
 Format: `list`
+
+<br>
 
 #### 2.2.3 Viewing a person's full details: `view`
 Displays the specified person's contact information and allows the contact to be edited.
@@ -110,10 +129,14 @@ Format: `view <INDEX NO>`
 
 Example: `view 34`
 
+<br>
+
 #### 2.2.4 Returning after viewing a person's full details: `back`
 Returns to the list of all contacts after viewing and/or editing a person's contact details.
 
 Format: `back`
+
+<br>
 
 ### 2.3 Editing Information
 *Note:*
@@ -128,15 +151,21 @@ Format: `back`
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
 | <...> | Indicates the argument that the user should provide in that area |
 
+<br>
+
 #### 2.3.2 Add/Edit phone numbers: phone
 Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
 Example: `ph/8765432 l/Personal ph/9753468 l/Office`
 
+<br>
+
 #### 2.3.3 Add/Edit emails: `email`
 Format:  `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...`
 
 Example: `e/alex@reache.com l/Official; e/alex98@gmail.com`
+
+<br>
 
 #### 2.3.4 Add/Edit address: `address`
 
@@ -144,11 +173,15 @@ Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...`
 
 Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home`  
 
+<br>
+
 #### 2.3.5 Add/Edit company: `company`
 
 Format: `c/<COMPANY>`
 
 Example: `c/Tesla`
+
+<br>
 
 #### 2.3.6 Add/Edit job title: `job`
 
@@ -156,17 +189,23 @@ Format: `j/<JOB TITLE>`
 
 Example: `j/Software Engineer` 
 
+<br>
+
 #### 2.3.7 Add/Edit tags: `tag`
 
 Format: `t/<TAG 1> t/<TAG 2>...`
 
 Example: `t/Media Contact t/Has kids`
 
+<br>
+
 #### 2.3.8 Add/Edit pronoun: `pronoun`
 
 Format: `pr/<PRONOUN 1> pr/<PRONOUN 2>...`
 
 Example: `pr/He pr/Him`
+
+<br>
 
 #### 2.3.9 Delete field: `del`
 
@@ -183,30 +222,87 @@ Examples:
 `del a/` -         Deletes all addresses of the contact.
 
 `del e/ Official` -   Deletes the Official email of the contact.
-   
-#### 2.4 Viewing help: `help`
+
+<br>
+
+###2.4 Managing Meetings
+####2.4.1 Creating a meeting
+Create a meeting by specifying the following information:
+- Agenda
+- Meeting place
+- Meeting date and time: in DD-MM-YYYY HH:mm format
+- Attendees: in the form of index numbers of people on the displayed list
+
+_Note:_ All fields are compulsory.
+
+Format: `meet for/<AGENDA> in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
+
+Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
+
+<br>
+
+####2.4.2 Updating meeting details
+Update any of the meeting’s details by indicating the following:
+- Meeting index: The index of the meeting you want to edit on the meetings list
+- Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
+
+Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
+
+Example: `update 2 in/COM2 on/29-04-2022 20:00`
+
+<br>
+
+####2.4.3 Canceling a meeting
+Cancel a meeting by specifying its index on the meetings list.
+
+Format: `cancel <MEETING INDEX>`
+
+Example: `cancel 2`
+
+<br>
+
+####2.4.4 Canceling all meetings
+Clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
+
+Format: `cancel -a`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This action is irreversible.
+</div>
+
+<br>
+
+### 2.5 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
-   
-#### 2.5 Exiting the program: `exit`
+
+<br>
+
+### 2.6 Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
 
+<br>
+
 ## 3. Command Summary
 
-| **Action** | **Format, Example**                                                                                                                                                                                         |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                    |
-| **Edit**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                           |                                                                                                                                                                                        |
-| **Delete** | **Deleting contacts** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Deleting fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
-| **Clear**  | Format: `clear`                                                                                                                                                                                             |
-| **Find**   | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                        |
-| **View**   | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                               |
-| **Back**   | Format: `back`                                                                                                                                                                                              |
-| **List**   | Format: `list`                                                                                                                                                                                              |
-| **Help**   | Format: `help`                                                                                                                                                                                              |
+| **Action**              | **Format, Example**                                                                                                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
+| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |                                                                                                                                                                                        |
+| **Delete Contact Info** | **Delete specific contact** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
+| **Clear Address Book**  | Format: `clear`                                                                                                                                                                                                         |
+| **Find Contacts**       | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                                    |
+| **View Contact**        | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                                           |
+| **Back**                | Format: `back`                                                                                                                                                                                                          |
+| **List**                | Format: `list`                                                                                                                                                                                                          |
+| **Create Meeting**      | Format: `meet <ALL FIELDS IN ANY ORDER` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                             |
+| **Update Meeting**      | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                                          |
+| **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel -a`                                                                   |
+| **Help**                | Format: `help`                                                                                                                                                                                                          |
+| **Exit**                | Format: `exit`                                                                                                                                                                                                          |
 
 ## 4. Contact Fields Summary
 
@@ -220,5 +316,15 @@ Format: `exit`
 | **Job Title**    | No            | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer`                                                                    |
 | **Tags**         | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
 | **Pronouns**     | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
+
+
+## 5. Meeting Fields Summary
+
+| **Field**         | **Mandatory** | **Format, Example**                                                                 |
+|-------------------|---------------|-------------------------------------------------------------------------------------|
+| **Agenda**        | Yes           | Format: `for/<AGENDA>` <br> Example: `for/Project Consulation`                      |
+| **Meeting Place** | Yes           | Format: `in/<MEETING PLACE>` <br> Example: `in/Zoom`                                |
+| **Meeting Time**  | Yes           | Format: `on/<MEETING TIME AS DD-MM-YYYY HH:mm>` <br> Example: `on/14-04-2022 14:00` |
+| **Attendees**     | Yes           | Format: `with/<ATTENDEE 1 INDEX>...` <br> Example: `with/1 3 5`                     |
 
 [Back to top](#table-of-contents)
