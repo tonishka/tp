@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -9,7 +10,6 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-
 
 /**
  * Controller for a clear confirmation
@@ -39,13 +39,12 @@ public class ConfirmWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new ConfirmWindow.
+     * Creates a new Confirm Window
      */
     public ConfirmWindow(Logic logic) {
         this(new Stage());
         this.logic = (LogicManager) logic;
     }
-
 
     /**
      * Shows the confirm window.
@@ -103,12 +102,16 @@ public class ConfirmWindow extends UiPart<Stage> {
      * Returns confirmation.
      */
     @FXML
-    private void confirm() {
+    private void confirm() throws IOException {
         if (isMeetingClear) {
             logic.clearMeetingBook();
+            logic.getStorage().saveMeetingBook(logic.getModel().getMeetingBook());
+
         } else {
             logic.clearAddressBook();
             logic.clearMeetingBook();
+            logic.getStorage().saveAddressBook(logic.getModel().getAddressBook());
+            logic.getStorage().saveMeetingBook(logic.getModel().getMeetingBook());
         }
         hide();
     }

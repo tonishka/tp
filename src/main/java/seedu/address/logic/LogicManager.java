@@ -84,6 +84,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Storage getStorage() {
+        return storage;
+    }
+
+    @Override
+    public Model getModel() {
+        return model;
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
