@@ -227,7 +227,7 @@ Examples:
 
 ###2.4 Managing Meetings
 ####2.4.1 Creating a meeting
-You can create a meeting with the following information:
+Create a meeting by specifying the following information:
 - Agenda
 - Meeting place
 - Meeting date and time: in DD-MM-YYYY HH:mm format
@@ -235,33 +235,36 @@ You can create a meeting with the following information:
 
 _Note:_ All fields are compulsory.
 
-**Format:** `meet for/<AGENDA> in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
+Format: `meet for/<AGENDA> in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
 
-**Example:** `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
+Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 
 <br>
 
 ####2.4.2 Updating meeting details
-You can update any of the meeting’s details by specifying:
+Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
 - Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
 
-**Format:** `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
-**Example:** `update 2 in/COM2 on/29-04-2022 20:00`
+Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
+
+Example: `update 2 in/COM2 on/29-04-2022 20:00`
 
 <br>
 
 ####2.4.3 Canceling a meeting
-You can cancel a meeting by specifying its index on the meetings list.
+Cancel a meeting by specifying its index on the meetings list.
 
-**Format:** `cancel <MEETING INDEX>`
-**Example:** `cancel 2`
+Format: `cancel <MEETING INDEX>`
+
+Example: `cancel 2`
 
 <br>
 
 ####2.4.4 Canceling all meetings
-You can clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
-**Format:** `cancel -a`
+Clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
+
+Format: `cancel -a`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This action is irreversible.
