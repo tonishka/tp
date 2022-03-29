@@ -175,13 +175,47 @@ Examples:
 `del a/` -         Deletes all addresses of the contact.
 
 `del e/ Official` -   Deletes the Official email of the contact.
-   
-#### 2.4 Viewing help: `help`
+
+###2.4 Managing Meetings
+####2.4.1 Creating a meeting
+You can create a meeting with the following information:
+- Agenda
+- Meeting place
+- Meeting date and time: in DD-MM-YYYY HH:mm format
+- Attendees: in the form of index numbers of people on the displayed list
+
+_Note:_ All fields are compulsory.
+
+**Format:** `meet for/<AGENDA> in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
+
+**Example:** `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
+
+####2.4.2 Updating meeting details
+You can update any of the meeting’s details by specifying:
+- Meeting index: The index of the meeting you want to edit on the meetings list
+- Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
+
+**Format:** `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
+**Example:** `update 2 in/COM2 on/29-04-2022 20:00`
+
+
+####2.4.3 Canceling a meeting
+You can cancel a meeting by specifying its index on the meetings list.
+
+**Format:** `cancel <MEETING INDEX>`
+**Example:** `cancel 2`
+
+####2.4.4 Canceling all meetings
+You can clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
+**Format:** `cancel -a`
+
+
+### 2.5 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
    
-#### 2.5 Exiting the program: `exit`
+### 2.6 Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
