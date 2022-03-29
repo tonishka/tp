@@ -266,10 +266,10 @@ Example: `cancel 2`
 
 <br>
 
-#### 2.4.4 Canceling all meetings: `cancel -a`
-Clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
+#### 2.4.4 Canceling all meetings: `cancel-all`
+Clear your meetings list by canceling all meetings.
 
-Format: `cancel -a`
+Format: `cancel-all`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This action is irreversible.
