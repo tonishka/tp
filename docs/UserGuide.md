@@ -231,7 +231,7 @@ Examples:
 <br>
 
 ### 2.4 Managing Meetings
-#### 2.4.1 Creating a meeting
+#### 2.4.1 Creating a meeting: `meet`
 Create a meeting by specifying the following information:
 - Agenda
 - Meeting place
@@ -246,7 +246,7 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 
 <br>
 
-#### 2.4.2 Updating meeting details
+#### 2.4.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
 - Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
@@ -257,7 +257,7 @@ Example: `update 2 in/COM2 on/29-04-2022 20:00`
 
 <br>
 
-#### 2.4.3 Canceling a meeting
+#### 2.4.3 Canceling a meeting: `cancel`
 Cancel a meeting by specifying its index on the meetings list.
 
 Format: `cancel <MEETING INDEX>`
@@ -266,7 +266,7 @@ Example: `cancel 2`
 
 <br>
 
-#### 2.4.4 Canceling all meetings
+#### 2.4.4 Canceling all meetings: `cancel -a`
 Clear your meetings list by canceling all meetings while still retaining all your contacts by using cancel with ‘-a’ (i.e., all).
 
 Format: `cancel -a`
