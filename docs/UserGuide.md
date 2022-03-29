@@ -5,7 +5,7 @@ title: User Guide
 
 Reache is a desktop app that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would like to optimize their contact management by using a Command Line Interface (CLI).
 
-
+## Table of Contents
 * Table of Contents
   {:toc}
 
