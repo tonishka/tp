@@ -104,6 +104,7 @@ public class UpdateCommand extends Command {
                 }
             }
         }
+
         return new Meeting(updatedAgenda, updatedPlace, updatedTime, updatedAttendeesIndexes, updatedAttendees);
     }
 

@@ -51,6 +51,9 @@ public class EditMeetingDescriptor {
         return CollectionUtil.isAnyNonNull(agenda, attendees, meetingPlace, meetingTime);
     }
 
+    /**
+     * Returns true if attendees are edited.
+     */
     public boolean areAttendeesChanged() {
         return attendees != null;
     }
