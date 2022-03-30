@@ -118,7 +118,7 @@ In this tutorial, you will be scheduling a meeting with yourself on your next bi
 ![New Meeting Created](images/Tutorial/new_meeting_created.png)
 4. Let's say you change your mind and want to cancel this meeting.
 5. Type `cancel 1`. The meeting will disappear from the panel, like so:
-![Cancelled Meeting](images/Tutorial/cancelled_meeting.png)
+![Cancelled Meeting](images/Tutorial/cancel_birthday.png)
 
 Now you are all set to manage your contacts and meetings using Reache!
 

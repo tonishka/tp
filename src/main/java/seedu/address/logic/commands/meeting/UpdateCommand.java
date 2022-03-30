@@ -75,7 +75,7 @@ public class UpdateCommand extends Command {
 
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS, meetingToEdit));
     }
 
     /**
