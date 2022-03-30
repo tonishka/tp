@@ -23,7 +23,7 @@ Reache is a desktop app that helps busy working professionals manage their large
 
    ![Ui](images/Ui.png)
 
-5. Refer to the [Features](#2-features) below for details of each command.
+5. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,7 +92,7 @@ Adds a person to the contact list.
 Format: `add n/<NAME> [ph/<PHONE_NUMBER> l/<LABEL>]... [e/<EMAIL> l/<LABEL>]... [a/<ADDRESS> l/LABEL]... [t/TAG]...`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
-From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
+From this page, you can edit their contact details using the commands found under the [Editing Information](#33-editing-information) section.
 
 Example: `add n/Alex Dunphy`
 
@@ -123,7 +123,7 @@ Enters editing mode to modify contact details in the address book.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
-Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
+Information about the details that can be added is found under the [Editing Information](#33-editing-information) section.
 
 Example: `edit n/Alex ph/98765432 t/has kids`
 
@@ -145,7 +145,7 @@ _Reache_ saves to the hard disk automatically after any command is issued that c
 
 ### 3.2 Finding Contacts
 #### 3.2.1 Finding contacts: `find`
-Finds a person based on a search field and keywords provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
+Finds a person based on a search field and keywords provided. Searchable categories can be found in the [Editing Information](#33-editing-information) section.
 
 Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 
@@ -288,7 +288,7 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 #### 3.4.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
-- Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
+- Any of the meeting details given under [2.4.1 Creating a meeting](#341-creating-a-meeting).
 
 Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
 
