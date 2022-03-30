@@ -40,7 +40,7 @@ Reache is a contact manager application that helps you:
 #### 2.2.1 Main Window
 Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
 
-![Ui](images/MainWindow.png)
+![Main Window](images/MainWindow.png)
 
 The Main Window contains the following elements:
 1. **Menu Bar**: Contains Reache's options and help.
@@ -54,7 +54,7 @@ The Main Window contains the following elements:
 #### 2.2.2 Contact Details Window
 The Contact Details Window, which is depicted below, displays all the contact information associated with a specific contact.
 
-![Ui](images/ContactDetailsWindow.png)
+![Contact Details Window](images/ContactDetailsWindow.png)
 
 The Contact Details Window contains many of the same elements as the Main Window, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
 1. **Particulars**: Consists of their name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
