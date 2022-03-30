@@ -51,6 +51,10 @@ public class EditMeetingDescriptor {
         return CollectionUtil.isAnyNonNull(agenda, attendees, meetingPlace, meetingTime);
     }
 
+    public boolean areAttendeesChanged() {
+        return attendees != null;
+    }
+
     //----Single data fields----
     //Agenda
     public void setAgenda(Agenda agenda) {
