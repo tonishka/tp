@@ -23,43 +23,82 @@ Reache is a desktop app that helps busy working professionals manage their large
 
    ![Ui](images/Ui.png)
 
-5. Refer to the [Features](#2-features) below for details of each command.
+5. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## 2. Introduction
+### 2.1 Overview
+Reache is a contact manager application that helps you:
+- Store and organize contacts
+- Easily sort and search through your contact list
+- Plan and keep track of upcoming meetings
+
+<br>
+
+### 2.2 Interface Guide
+#### 2.2.1 Main Window
+Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
+
+![Main Window](images/MainWindow.png)
+
+The Main Window contains the following elements:
+1. **Menu Bar**: Contains Reache's options and help.
+2. **Command Box**: A dialog box from which you can type commands to use Reache.
+3. **Result Display**: When you use the Command Box to enter a command, Reache will show the result of that command here.
+4. **Contact List**: A list of all your contacts, sorted alphabetically. Each contact has a corresponding index number, which you can use to refer to that contact in commands.
+5. **Meeting List**: A list of all your upcoming meetings, sorted chronologically. As with contacts, each meeting has a corresponding index number for use in commands.
+
+<br>
+
+#### 2.2.2 Contact Details Window
+The Contact Details Window, which is depicted below, displays all the contact information associated with a specific contact.
+
+![Contact Details Window](images/ContactDetailsWindow.png)
+
+The Contact Details Window contains many of the same elements as the Main Window, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
+1. **Particulars**: Consists of their name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
+2. **Contact Information**: A contact's phone numbers, email addresses, and physical addresses. Reache lets you assign *custom labels* to these fields to help you organize a contact's information. For example, a person might have a *personal* phone number and an *office* phone number.
+3. **Meetings with Contact**: Whereas the Meeting List in the Main Window displays all your upcoming meetings, the Contact Details Window only displays upcoming meetings that involve the contact being viewed.
+
+Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache]() to begin using the application.
+
+<br>
+
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
-  
+
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
-  
+
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
-  
+
 - Parameters can be in any order.
-  
+
 - `l/` is used to label parameters. They are optional.
 
 </div>
 
-## 2. Features
-### 2.1 Managing Contacts
-#### 2.1.1 Adding a contact: `add`
+### 3.1 Managing Contacts
+#### 3.1.1 Adding a contact: `add`
 Adds a person to the contact list.
 
 Format: `add n/<NAME> [ph/<PHONE_NUMBER> l/<LABEL>]... [e/<EMAIL> l/<LABEL>]... [a/<ADDRESS> l/LABEL]... [t/TAG]...`
 
 After adding a person to the contact list, you will be navigated to their contact details page. 
-From this page, you can edit their contact details using the commands found under the [Editing Information](#23-editing-information) section.
+From this page, you can edit their contact details using the commands found under the [Editing Information](#33-editing-information) section.
 
 Example: `add n/Alex Dunphy`
 
 <br>
 
-#### 2.1.2 Clearing your address book: `clear`
+#### 3.1.2 Clearing your address book: `clear`
 Clears all contacts and meetings from the address book.
 
 Format: `clear`
@@ -70,7 +109,7 @@ This action is irreversible.
 
 <br>
 
-#### 2.1.3 Deleting a contact: `del`
+#### 3.1.3 Deleting a contact: `del`
 Deletes the specified person from the address book.
 
 Format: `del <INDEX NO>`
@@ -79,18 +118,18 @@ Example: `del 66`
 
 <br>
 
-#### 2.1.4 Editing a contact: `edit`
+#### 3.1.4 Editing a contact: `edit`
 Enters editing mode to modify contact details in the address book.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
-Information about the details that can be added is found under the [Editing Information](#23-editing-information) section.
+Information about the details that can be added is found under the [Editing Information](#33-editing-information) section.
 
 Example: `edit n/Alex ph/98765432 t/has kids`
 
 <br>
 
-#### 2.1.5 Editing the data file
+#### 3.1.5 Editing the data file
 _Reache_ data is saved as JSON files at /data/addressbook.json and /data/meetingbook.json. Advanced users are welcome to update data directly by editing the data file.
    
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -99,14 +138,14 @@ If your changes to the data file makes its format invalid, _Reache_ will discard
 
 <br>
 
-#### 2.1.6 Saving changes
+#### 3.1.6 Saving changes
 _Reache_ saves to the hard disk automatically after any command is issued that changes the data. There is no need to save manually.
 
 <br>
 
-### 2.2 Finding Contacts
-#### 2.2.1 Finding contacts: `find`
-Finds a person based on a search field and keywords provided. Searchable categories can be found in the [Editing Information](#23-editing-information) section.
+### 3.2 Finding Contacts
+#### 3.2.1 Finding contacts: `find`
+Finds a person based on a search field and keywords provided. Searchable categories can be found in the [Editing Information](#33-editing-information) section.
 
 Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 
@@ -120,14 +159,14 @@ Examples:<br>
 
 <br>
 
-#### 2.2.2 Listing all contacts: `list`
+#### 3.2.2 Listing all contacts: `list`
 Shows a list of all contacts in the address book.
 
 Format: `list`
 
 <br>
 
-#### 2.2.3 Viewing a person's full details: `view`
+#### 3.2.3 Viewing a person's full details: `view`
 Displays the specified person's contact information and allows the contact to be edited.
 
 Format: `view <INDEX NO>`
@@ -136,19 +175,19 @@ Example: `view 34`
 
 <br>
 
-#### 2.2.4 Returning after viewing a person's full details: `back`
+#### 3.2.4 Returning after viewing a person's full details: `back`
 Returns to the list of all contacts after viewing and/or editing a person's contact details.
 
 Format: `back`
 
 <br>
 
-### 2.3 Editing Information
+### 3.3 Editing Information
 *Note:*
 1. To edit existing information, adding a new entry with the same category/label as the existing entry will overwrite it with the new one. 
 2. Difference between tags and labels: Labels distinguish multiple entries in the same field whereas tags group together any number of contacts based on some criterion.
 
-#### 2.3.1 Symbols Legend
+#### 3.3.1 Symbols Legend
 
 | Symbol | Meaning |
 | --- | --- | 
@@ -158,21 +197,21 @@ Format: `back`
 
 <br>
 
-#### 2.3.2 Add/Edit phone numbers: `phone`
+#### 3.3.2 Add/Edit phone numbers: `phone`
 Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...`
 
 Example: `ph/8765432 l/Personal ph/9753468 l/Office`
 
 <br>
 
-#### 2.3.3 Add/Edit emails: `email`
+#### 3.3.3 Add/Edit emails: `email`
 Format:  `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...`
 
 Example: `e/alex@reache.com l/Official; e/alex98@gmail.com`
 
 <br>
 
-#### 2.3.4 Add/Edit address: `address`
+#### 3.3.4 Add/Edit address: `address`
 
 Format: `a/<ADDRESS 1> l/<LABEL>; a/<ADDRESS 2> l/<LABEL>...`
 
@@ -180,7 +219,7 @@ Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home`
 
 <br>
 
-#### 2.3.5 Add/Edit company: `company`
+#### 3.3.5 Add/Edit company: `company`
 
 Format: `c/<COMPANY>`
 
@@ -188,7 +227,7 @@ Example: `c/Tesla`
 
 <br>
 
-#### 2.3.6 Add/Edit job title: `job`
+#### 3.3.6 Add/Edit job title: `job`
 
 Format: `j/<JOB TITLE>`
 
@@ -196,7 +235,7 @@ Example: `j/Software Engineer`
 
 <br>
 
-#### 2.3.7 Add/Edit tags: `tag`
+#### 3.3.7 Add/Edit tags: `tag`
 
 Format: `t/<TAG 1> t/<TAG 2>...`
 
@@ -204,7 +243,7 @@ Example: `t/Media Contact t/Has kids`
 
 <br>
 
-#### 2.3.8 Add/Edit pronoun: `pronoun`
+#### 3.3.8 Add/Edit pronoun: `pronoun`
 
 Format: `pr/<PRONOUN 1> pr/<PRONOUN 2>...`
 
@@ -212,7 +251,7 @@ Example: `pr/He pr/Him`
 
 <br>
 
-#### 2.3.9 Delete field: `del`
+#### 3.3.9 Delete field: `del`
 
 Format: `del <TYPE 1> <LABEL 1> <TYPE 2> <LABEL 2>...`
 
@@ -230,8 +269,8 @@ Examples:
 
 <br>
 
-### 2.4 Managing Meetings
-#### 2.4.1 Creating a meeting: `meet`
+### 3.4 Managing Meetings
+#### 3.4.1 Creating a meeting: `meet`
 Create a meeting by specifying the following information:
 - Agenda
 - Meeting place
@@ -246,10 +285,10 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 
 <br>
 
-#### 2.4.2 Updating meeting details: `update`
+#### 3.4.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
-- Any of the meeting details given under [2.4.1 Creating a meeting](#241-creating-a-meeting).
+- Any of the meeting details given under [2.4.1 Creating a meeting](#341-creating-a-meeting).
 
 Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
 
@@ -257,7 +296,7 @@ Example: `update 2 in/COM2 on/29-04-2022 20:00`
 
 <br>
 
-#### 2.4.3 Canceling a meeting: `cancel`
+#### 3.4.3 Canceling a meeting: `cancel`
 Cancel a meeting by specifying its index on the meetings list.
 
 Format: `cancel <MEETING INDEX>`
@@ -266,7 +305,7 @@ Example: `cancel 2`
 
 <br>
 
-#### 2.4.4 Canceling all meetings: `cancel-all`
+#### 3.4.4 Canceling all meetings: `cancel-all`
 Clear your meetings list by canceling all meetings.
 
 Format: `cancel-all`
@@ -277,21 +316,21 @@ This action is irreversible.
 
 <br>
 
-### 2.5 Viewing help: `help`
+### 3.5 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 <br>
 
-### 2.6 Exiting the program: `exit`
+### 3.6 Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
 
 <br>
 
-## 3. Command Summary
+## 4. Command Summary
 
 | **Action**              | **Format, Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -309,7 +348,7 @@ Format: `exit`
 | **Help**                | Format: `help`                                                                                                                                                                                                          |
 | **Exit**                | Format: `exit`                                                                                                                                                                                                          |
 
-## 4. Contact Fields Summary
+## 5. Contact Fields Summary
 
 | **Field**        | **Mandatory** | **Format, Example**                                                                                                            |
 |------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -323,7 +362,7 @@ Format: `exit`
 | **Pronouns**     | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
 
 
-## 5. Meeting Fields Summary
+## 6. Meeting Fields Summary
 
 | **Field**         | **Mandatory** | **Format, Example**                                                                 |
 |-------------------|---------------|-------------------------------------------------------------------------------------|
