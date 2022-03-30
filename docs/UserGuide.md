@@ -305,7 +305,7 @@ Format: `exit`
 | **List**                | Format: `list`                                                                                                                                                                                                          |
 | **Create Meeting**      | Format: `meet <ALL FIELDS IN ANY ORDER` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                             |
 | **Update Meeting**      | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                                          |
-| **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel -a`                                                                   |
+| **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel-all`                                                                  |
 | **Help**                | Format: `help`                                                                                                                                                                                                          |
 | **Exit**                | Format: `exit`                                                                                                                                                                                                          |
 
