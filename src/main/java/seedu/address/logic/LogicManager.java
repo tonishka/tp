@@ -84,16 +84,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Storage getStorage() {
-        return storage;
-    }
-
-    @Override
-    public Model getModel() {
-        return model;
-    }
-
-    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -146,16 +136,18 @@ public class LogicManager implements Logic {
     /**
      * Clears the address book.
      */
-    public void clearAddressBook() {
+    public void clearAddressBook() throws IOException {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+        storage.saveAddressBook(model.getAddressBook());
     }
 
     /**
      * Clears the meeting book.
      */
-    public void clearMeetingBook() {
+    public void clearMeetingBook() throws IOException {
         requireNonNull(model);
         model.setMeetingBook(new MeetingBook());
+        storage.saveMeetingBook(model.getMeetingBook());
     }
 }

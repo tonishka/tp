@@ -105,13 +105,9 @@ public class ConfirmWindow extends UiPart<Stage> {
     private void confirm() throws IOException {
         if (isMeetingClear) {
             logic.clearMeetingBook();
-            logic.getStorage().saveMeetingBook(logic.getModel().getMeetingBook());
-
         } else {
             logic.clearAddressBook();
             logic.clearMeetingBook();
-            logic.getStorage().saveAddressBook(logic.getModel().getAddressBook());
-            logic.getStorage().saveMeetingBook(logic.getModel().getMeetingBook());
         }
         hide();
     }

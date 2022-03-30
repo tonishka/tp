@@ -38,18 +38,6 @@ public interface Logic {
             throws CommandException, ParseException;
 
     /**
-     * This method was created for ConfirmWindow to change the data.
-     * @return storage
-     */
-    Storage getStorage();
-
-    /**
-     * This method was created for ConfirmWindow to change the data.
-     * @return model
-     */
-    Model getModel();
-
-    /**
      * Returns the AddressBook.
      *
      * @see seedu.address.model.Model#getAddressBook()
