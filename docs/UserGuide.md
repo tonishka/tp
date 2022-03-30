@@ -70,9 +70,9 @@ Now that you are familiar with Reache's interface, we recommend visiting [Gettin
 If you are a first time user of Reache, we highly recommend following these two step-by-step tutorials to get familiar 
 with the product. 
 
-In the [first tutorial](#231-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
+In the [contacts tutorial](#231-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
 
-In the [second tutorial](#232-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
+In the [meetings tutorial](#232-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
 
 Experienced users should skip this section.
 
