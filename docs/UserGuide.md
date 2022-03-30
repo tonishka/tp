@@ -106,7 +106,23 @@ In this tutorial we will be adding your personal contact information to Reache.
 
 #### 2.3.2 Tutorial 2: Managing Meetings with Reache
 
+Let’s see how you can manage your meetings with Reache. 
 
+In this tutorial, you will be scheduling a meeting with yourself on your next birthday at 12:01 AM.
+
+**Note**: You must have completed [Tutorial 1: Managing Contacts with Reache](#231-tutorial-1-managing-contacts-with-reache).
+
+1. In the command box, type `find t/me` to find yourself in the contacts list. If you followed [Tutorial 1](#231-tutorial-1-managing-contacts-with-reache) correctly you should see your name as the first search result. <br><br>
+2. Now, type `meet for/Birthday in/Office on/<YOUR BIRTHDAY IN DD-MM-YYYY> 00:01 with/1`. <br><br>
+3. You will see your newly created meeting in the right panel, like so: 
+![New Meeting Created](images/Tutorial/new_meeting_created.png)
+4. Let's say you change your mind and want to cancel this meeting.
+5. Type `cancel 1`. The meeting will disappear from the panel, like so:
+![Cancelled Meeting](images/Tutorial/cancelled_meeting.png)
+
+Now you are all set to manage your contacts and meetings using Reache!
+
+<hr>
 
 ## 3. Features
 
