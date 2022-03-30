@@ -133,7 +133,7 @@ _Note_: Editing a field with the same category/label as an existing entry will o
 <br>
 
 #### 3.1.3 Deleting a field: `del <FIELDS>`
-On the contact details page, delete any specific contact information of the person by specifying the field (and label) you want to delete. The fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the contact details page, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 `<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
 Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
