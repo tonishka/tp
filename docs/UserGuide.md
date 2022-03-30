@@ -113,6 +113,7 @@ Add a person to your contact list by specifying details such as:
 _Note_: 
 - When adding contacts, 'name' is the only compulsory field. 
 - You can add optional labels to your contact's phone numbers, email ids and physical addresses.
+- Command words for the fields that can be added are given under the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `add n/<NAME> [ph/<PHONE_NUMBER> l/<LABEL>]... [e/<EMAIL> l/<LABEL>]... [a/<ADDRESS> l/LABEL]... [t/TAG]...`
 
