@@ -41,6 +41,7 @@ public class DeleteFieldCommand extends Command {
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Person after Field Delete: %1$s";
 
     public static final String MESSAGE_DELETE_NAME_FAILURE = "Name cannot be deleted";
+    public static final String MESSAGE_NOT_DELETED_FIELD = "At least one field to delete must be provided.";
 
     private final EditPersonDescriptor deleteFieldDescriptor;
     private final Person personToDeleteField;
@@ -67,6 +68,10 @@ public class DeleteFieldCommand extends Command {
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
+        }
+
+        if (personToDeleteField.isSamePerson(updatedPerson)) {
+            throw new CommandException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);
