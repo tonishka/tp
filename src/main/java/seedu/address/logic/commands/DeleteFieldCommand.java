@@ -9,9 +9,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
