@@ -253,6 +253,12 @@ _Note_:
 
 Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 
+- The search is case-insensitive. e.g `bella` will match `BeLLa`.
+- The order of the keywords does not matter. e.g. `Bella Hadid` will match `Hadid Bella`.
+- Only full words will be matched e.g. `Bell` will not match `Bella`.
+- Persons matching at least one keyword will be returned, e.g. `Bella Hadid` will return `Gigi Hadid`, `Bella Swann`.
+- In case the field is not specified, all field are searched.
+
 Examples:<br>
 `find c/Tesla SpaceX` Finds all contacts who work in `Tesla` or `SpaceX`.<br>
 `find n/Katy Cathy Cate` Finds all contacts with the name `Katy` or `Cathy` or `Cate`.<br>
