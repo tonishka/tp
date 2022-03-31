@@ -64,9 +64,68 @@ The Contact Details Window contains many of the same elements as the Main Window
 
 3. **Meetings with Contact**: Whereas the Meeting List in the Main Window displays all your upcoming meetings, the Contact Details Window only displays upcoming meetings that involve the contact being viewed.
 
-Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache]() to begin using the application.
+Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache](#23-getting-started-with-reache) to begin using the application.
 
 <br>
+
+### 2.3 Getting Started with Reache
+
+If you are a first time user of Reache, we highly recommend following these two step-by-step tutorials to get familiar 
+with the product. 
+
+In the [contacts tutorial](#231-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
+
+In the [meetings tutorial](#232-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
+
+Experienced users should skip this section.
+
+<hr> 
+
+#### 2.3.1 Tutorial 1: Managing Contacts with Reache
+
+In this tutorial we will be adding your personal contact information to Reache.
+
+1. Launch Reache from the folder in which it is located by double clicking on it. You will see the window shown below with some sample contacts. <br>
+![Sample Contacts](images/Tutorial/sample_contacts_screen.png)
+   Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts stored. Let’s start storing some real contacts in it. <br><br>
+2. Firstly, we have to clear the sample data first. Type `clear` in the command box and press Enter/Return. Press 'Yes’ when Reache asks for confirmation. <br><br>
+3. Now that the sample data has been cleared, we can start adding some real contacts to it. <br><br>
+4. Begin by typing `add n/<YOUR NAME>` in the command box. Press enter/return. <br><br>
+5. You will be redirected to the **Contacts Details Window** as shown below: 
+![Contact Details Window](images/Tutorial/contact_details_page.png)
+6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
+![Company & Job Added](images/Tutorial/company_job_edited_screen.png)
+7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
+![Email Added](images/Tutorial/email_edited_screen.png)
+8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
+9. Finally tag yourself using `edit t/me`. Your final contact details window should look like this:
+![Full Contact Details](images/Tutorial/tag_added.png)
+10. Now type `back` in the command box to return to the main window. Your **Main Window** should look like this:
+![Main Window](images/Tutorial/main_window.png)
+11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
+12. Use more `edit` commands to add/edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window.
+
+<hr>
+
+#### 2.3.2 Tutorial 2: Managing Meetings with Reache
+
+Let’s see how you can manage your meetings with Reache. 
+
+In this tutorial, you will be scheduling a meeting with yourself on your next birthday at 12:01 AM.
+
+**Note**: You must have completed [Tutorial 1: Managing Contacts with Reache](#231-tutorial-1-managing-contacts-with-reache).
+
+1. In the command box, type `find t/me` to find yourself in the contacts list. If you followed [Tutorial 1](#231-tutorial-1-managing-contacts-with-reache) correctly you should see your name as the first search result. <br><br>
+2. Now, type `meet for/Birthday in/Office on/<YOUR BIRTHDAY IN DD-MM-YYYY> 00:01 with/1`. <br><br>
+3. You will see your newly created meeting in the right panel, like so: 
+![New Meeting Created](images/Tutorial/new_meeting_created.png)
+4. Let's say you change your mind and want to cancel this meeting.
+5. Type `cancel 1`. The meeting will disappear from the panel, like so:
+![Cancelled Meeting](images/Tutorial/cancel_birthday.png)
+
+Now you are all set to manage your contacts and meetings using Reache!
+
+<hr>
 
 ## 3. Features
 

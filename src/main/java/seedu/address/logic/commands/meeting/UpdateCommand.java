@@ -89,16 +89,22 @@ public class UpdateCommand extends Command {
         Agenda updatedAgenda = editMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
         MeetingPlace updatedPlace = editMeetingDescriptor.getMeetingPlace().orElse(meetingToEdit.getPlace());
         MeetingTime updatedTime = editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
-        Set<Index> updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
-                .orElse(meetingToEdit.getIndexes());
-        Set<Id> updatedAttendees = new HashSet<>();
-        for (Index index : updatedAttendeesIndexes) {
-            if (index.getZeroBased() >= lastShownPersonList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            } else { //only add if valid
-                updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
+        Set<Index> updatedAttendeesIndexes = meetingToEdit.getIndexes();
+        Set<Id> updatedAttendees = meetingToEdit.getAttendees();
+
+        if (editMeetingDescriptor.areAttendeesChanged()) {
+            updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
+                    .orElse(meetingToEdit.getIndexes());
+            updatedAttendees = new HashSet<>();
+            for (Index index : updatedAttendeesIndexes) {
+                if (index.getZeroBased() >= lastShownPersonList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                } else { //only add if valid
+                    updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
+                }
             }
         }
+
         return new Meeting(updatedAgenda, updatedPlace, updatedTime, updatedAttendeesIndexes, updatedAttendees);
     }
 
