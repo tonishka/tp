@@ -88,7 +88,7 @@ Now that you are familiar with Reache's interface, we recommend visiting [Gettin
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
 
 - Items with ... after them can be used multiple times including zero times.
-  e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be used as ` `(i.e. 0 times), `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
+  e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
 - Parameters can be in any order.
 
