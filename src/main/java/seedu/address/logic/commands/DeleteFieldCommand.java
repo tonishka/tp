@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -69,6 +70,10 @@ public class DeleteFieldCommand extends Command {
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
+        }
+
+        if (personToDeleteField.isSamePerson(updatedPerson)) {
+            throw new CommandException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);

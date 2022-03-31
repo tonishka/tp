@@ -159,10 +159,6 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             }
         }
 
-        if (!deleteFieldDescriptor.isAnyFieldDeleted()) {
-            throw new ParseException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
-        }
-
         return new DeleteFieldCommand(deleteFieldDescriptor, personToDeleteField);
     }
 }
