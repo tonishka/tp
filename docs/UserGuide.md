@@ -81,8 +81,6 @@ Now that you are familiar with Reache's interface, we recommend visiting [Gettin
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
 | <...> | Indicates the argument that the user should provide in that area |
 
-<br>
-
 - Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
 
@@ -107,7 +105,7 @@ Add a person to your contact list by specifying details such as:
 - Tag(s)
 - Pronoun(s)
 - Phone number(s) 
-- Email id(s)
+- Email address(es)
 - Physical address(es)
 
 _Note_: 
@@ -122,7 +120,7 @@ Example: `add n/Alex Dunphy t/friend`
 <br>
 
 #### 3.1.2 Editing a contact: `edit`
-On the contact details page, modify contact details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Window, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
@@ -133,7 +131,7 @@ _Note_: Editing a field with the same category/label as an existing entry will o
 <br>
 
 #### 3.1.3 Deleting a field: `del <FIELDS>`
-On the contact details page, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Window, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 `<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
 Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
@@ -212,7 +210,7 @@ Format: `list`
 <br>
 
 #### 3.2.3 Viewing a person's full details: `view`
-View a certain contact's information and your meetings with them by specifying their index in the displayed contacts list. This will take you to their contact details page and allow you to edit their fields as well.
+View a certain contact's information and your meetings with them by specifying their index in the displayed contacts list. This will take you to the Contact Details Window and allow you to edit their fields as well.
 
 Format: `view <INDEX NO>`
 
@@ -221,7 +219,7 @@ Example: `view 34`
 <br>
 
 #### 3.2.4 Returning after viewing a person's full details: `back`
-Return to the list of all contacts after viewing and/or editing a person's contact details.
+Return to the Main Window after viewing and/or editing a person's details from the Contact Details Window.
 
 Format: `back`
 
