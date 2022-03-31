@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain English alphabetic characters, special characters . (period) ' (apostrophe) and " +
+            "Names should only contain English alphabetic characters, special characters . (period) ' (apostrophe) " +
                     "- (dash) and spaces, " +
                     "and it should not be blank";
 
