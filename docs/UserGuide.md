@@ -306,16 +306,16 @@ Format: `exit`
 
 ## 5. Contact Fields Summary
 
-| **Field**         | **Mandatory** | **Format, Example**                                                                                                            |
-|-------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Name**          | Yes           | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy`                                                                               |
-| **Phone Number**  | No            | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office`        |
-| **Email Address** | No            | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com`       |
-| **Address**       | No            | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
-| **Company**       | No            | Format: `c/<COMPANY>` <br> Example: `c/Tesla`                                                                                  |
-| **Job Title**     | No            | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer`                                                                    |
-| **Tags**          | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
-| **Pronouns**      | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
+| **Field**            | **Mandatory** | **Format, Example**                                                                                                            |
+|----------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Name**             | Yes           | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy`                                                                               |
+| **Phone Number**     | No            | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office`        |
+| **Email Address**    | No            | Format: `e/<EMAIL 1> l/<LABEL> e/<EMAIL 2> l/<LABEL>...` <br> Example: `e/alex@reache.com l/Official e/alex98@gmail.com`       |
+| **Physical Address** | No            | Format: `a/<ADDRESS 1> l/<LABEL> a/<ADDRESS 2> l/<LABEL>...` <br> Example: `a/28 Francis Mine, Sacramento, CA - 654321 l/Home` |
+| **Company**          | No            | Format: `c/<COMPANY>` <br> Example: `c/Tesla`                                                                                  |
+| **Job Title**        | No            | Format: `j/<JOB TITLE>` <br> Example: `j/Software Engineer`                                                                    |
+| **Tags**             | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
+| **Pronouns**         | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
 
 
 ## 6. Meeting Fields Summary
