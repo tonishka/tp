@@ -31,10 +31,17 @@ public class LabelUtil {
             }
         }
 
-        int i = labelledEntries.size() + 1;
+        int i = 1;
 
         for (Label label : placeholderEntries.keySet()) {
-            labelledEntries.put(new Label("Phone #" + i, false), placeholderEntries.get(label));
+            Label replacement = new Label("Phone #" + i, false);
+
+            while (labelledEntries.containsKey(replacement)) {
+                i++;
+                replacement = new Label("Phone #" + i, false);
+            }
+
+            labelledEntries.put(replacement, placeholderEntries.get(label));
             i++;
         }
         return labelledEntries;
@@ -58,10 +65,17 @@ public class LabelUtil {
             }
         }
 
-        int i = labelledEntries.size() + 1;
+        int i = 1;
 
         for (Label label : placeholderEntries.keySet()) {
-            labelledEntries.put(new Label("Email #" + i, false), placeholderEntries.get(label));
+            Label replacement = new Label("Email #" + i, false);
+
+            while (labelledEntries.containsKey(replacement)) {
+                i++;
+                replacement = new Label("Email #" + i, false);
+            }
+
+            labelledEntries.put(replacement, placeholderEntries.get(label));
             i++;
         }
         return labelledEntries;
@@ -85,10 +99,17 @@ public class LabelUtil {
             }
         }
 
-        int i = labelledEntries.size() + 1;
+        int i = 1;
 
         for (Label label : placeholderEntries.keySet()) {
-            labelledEntries.put(new Label("Address #" + i, false), placeholderEntries.get(label));
+            Label replacement = new Label("Address #" + i, false);
+
+            while (labelledEntries.containsKey(replacement)) {
+                i++;
+                replacement = new Label("Address #" + i, false);
+            }
+
+            labelledEntries.put(replacement, placeholderEntries.get(label));
             i++;
         }
         return labelledEntries;
