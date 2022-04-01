@@ -203,6 +203,62 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    /*
+     * Valid equivalence partitions for word:
+     *   - any word
+     *   - word containing symbols/numbers
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for sentence:
+     *   - empty set
+     *   - one string in set
+     *   - multiple strings in set
+     *   - strings with extra spaces in set
+     *   - empty string in set
+     *
+     * Possible scenarios returning true:
+     *   - matches first word in sentence
+     *   - last word in sentence
+     *   - middle word in sentence
+     *   - matches multiple words
+     *
+     * Possible scenarios returning false:
+     *   - query word matches part of a sentence word
+     *   - sentence word matches part of the query word
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void containsWordIgnoreCaseInSet_validInputs_correctResult() {
+        HashSet<String> typicalSentence = new HashSet<>();
+
+        // Empty sentence
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "abc")); // Boundary case
+        typicalSentence.add("        ");
+        assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
+
+        // Matches a partial word only
+        typicalSentence.clear();
+        typicalSentence.add("Gigi Hadid");
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gig"));
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gigigigi")); // Query word bigger than sentence word
+
+        // Matches word in the sentence, different upper/lower case letters
+        typicalSentence.add("Bella");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "bElLa")); // Mixed case
+        typicalSentence.add(" Lola    Charlie");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "Lola")); // String in sentence has extra spaces
+        typicalSentence.clear();
+        typicalSentence.add("gigi");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "GiGi")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "  gigi  ")); // Leading/trailing spaces
+
+        // Matches multiple words in sentence
+        typicalSentence.add("gigi hadid");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gigi"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
