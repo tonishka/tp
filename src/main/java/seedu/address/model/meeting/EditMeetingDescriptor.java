@@ -31,6 +31,7 @@ public class EditMeetingDescriptor {
         setMeetingTime(toCopy.meetingTime);
         setMeetingPlace(toCopy.meetingPlace);
         setAgenda(toCopy.agenda);
+
     }
 
     /**
@@ -48,6 +49,13 @@ public class EditMeetingDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(agenda, attendees, meetingPlace, meetingTime);
+    }
+
+    /**
+     * Returns true if attendees are edited.
+     */
+    public boolean areAttendeesChanged() {
+        return attendees != null;
     }
 
     //----Single data fields----

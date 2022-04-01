@@ -27,38 +27,24 @@ public class ModelManager implements Model {
     private final FilteredList<Meeting> filteredMeetings;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.meetingBook = null;
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = null;
-    }
-
-    /**
      * Initializes a ModelManager with the given addressBook, modelBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, meetingBook, userPrefs);
-        logger.fine("Initializing with address book: " + addressBook + ", model book: " + meetingBook
+        logger.fine("Initializing with address book: " + addressBook + ", meeting book: " + meetingBook
                 + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.meetingBook = new MeetingBook(meetingBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = null;
+        filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
     }
 
 
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -94,6 +80,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return userPrefs.getMeetingBookFilePath();
+    }
+
+    @Override
+    public void setMeetingBookFilePath(Path meetingBookFilePath) {
+        requireNonNull(meetingBookFilePath);
+        userPrefs.setMeetingBookFilePath(meetingBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -171,6 +168,14 @@ public class ModelManager implements Model {
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
+     * Returns an unmodifiable view of the list of {@code Meeting}
+     */
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetingBook.getMeetingList().sorted(Meeting::compareTo);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
      * {@code versionedMeetingBook}
      */
@@ -188,6 +193,14 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
+     * Returns an unmodifiable view of the list of {@code Person}
+     */
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return addressBook.getPersonList().sorted(Person::compareTo);
+    }
+
+    /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
@@ -195,6 +208,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons.sorted(Person::compareTo);
     }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {

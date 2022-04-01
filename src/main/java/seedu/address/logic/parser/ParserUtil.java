@@ -5,13 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -58,18 +56,18 @@ public class ParserUtil {
      * @param indexes series of indexes to be parsed
      * @return a set of Index
      */
-    public static Set<Index> parseAttendees(String indexes) {
-        HashSet<Index> indexSet = new HashSet<>();
+    public static Set<Index> parseAttendees(String indexes) throws ParseException {
+        Set<Index> indexSet = new HashSet<>();
         String[] arrayOfIndexes = indexes.split("\\s+"); //if indexes are randomly spaced apart
 
-        Arrays.stream(arrayOfIndexes).forEach(index -> {
+        for (String index : arrayOfIndexes) {
             try {
                 int indexIntegerForm = Integer.parseInt(index.trim());
                 indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
             } catch (NumberFormatException numberFormatException) {
-                LogsCenter.getLogger(ParserUtil.class).info(() -> MESSAGE_INVALID_INDEX);
+                throw new ParseException(MESSAGE_INVALID_INDEX);
             }
-        });
+        }
         return indexSet;
     }
 

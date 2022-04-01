@@ -1,8 +1,11 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.UUID;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+
 
 /**
  * Represents a Person's ID in the address book.
@@ -11,7 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Id {
 
     /*
-     * The format is quite elaborate and seeing a the user should never be manually creating an ID,
+     * The format is quite elaborate and seeing the user should never be manually creating an ID,
      * the message is kept short for brevity.
      */
     public static final String MESSAGE_CONSTRAINTS =
@@ -32,11 +35,20 @@ public class Id {
      * @param id The designated ID.
      * @throws IllegalValueException if the provided ID does not obey the UUID format.
      */
-    public Id(String id) throws IllegalValueException {
+    public Id(String id) {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        this.id = UUID.fromString(id);
+    }
+
+    /**
+     * Returns true if a given string is a valid id.
+     */
+    public static boolean isValidId(String test) {
         try {
-            this.id = UUID.fromString(id);
+            UUID uuid = UUID.fromString(test);
+            return true;
         } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
+            return false;
         }
     }
 

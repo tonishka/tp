@@ -18,8 +18,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.meeting.CancelAllCommand;
 import seedu.address.logic.commands.meeting.CancelCommand;
-import seedu.address.logic.commands.meeting.EmptyCommand;
 import seedu.address.logic.commands.meeting.MeetCommand;
 import seedu.address.logic.commands.meeting.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -80,8 +80,8 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case EmptyCommand.COMMAND_WORD:
-            return new EmptyCommand();
+        case CancelAllCommand.COMMAND_WORD:
+            return new CancelAllCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -46,9 +46,9 @@ public class StringUtil {
      * Returns true if one or more of entries in the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase(["ABc def", "pqr", "wst"], "abc") == true
-     *       containsWordIgnoreCase(["def", "aBc", "bnm"], "DEF") == true
-     *       containsWordIgnoreCase(["ABc def", "pqr"], "AB") == false //not a full word match
+     *       containsWordIgnoreCaseInSet(["ABc def", "pqr", "wst"], "abc") == true
+     *       containsWordIgnoreCaseInSet(["def", "aBc", "bnm"], "DEF") == true
+     *       containsWordIgnoreCaseInSet(["ABc def", "pqr"], "AB") == false //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word

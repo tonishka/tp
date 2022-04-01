@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -24,6 +23,7 @@ import seedu.address.model.meeting.EditMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 public class UpdateCommand extends Command {
@@ -38,7 +38,7 @@ public class UpdateCommand extends Command {
             + "[" + PREFIX_MEETING_TIME + "MEETING_TIME] "
             + "[" + PREFIX_MEETING_PLACE + "MEETING PLACE] ";
 
-    public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "%1$s's information has been updated";
+    public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting has been updated";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
@@ -83,22 +83,28 @@ public class UpdateCommand extends Command {
      * edited with {@code editMeetingDescriptor}.
      */
     private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor,
-                                               List<Person> lastShownPersonList) {
+                                               List<Person> lastShownPersonList) throws CommandException {
         requireNonNull(meetingToEdit);
 
         Agenda updatedAgenda = editMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
         MeetingPlace updatedPlace = editMeetingDescriptor.getMeetingPlace().orElse(meetingToEdit.getPlace());
         MeetingTime updatedTime = editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
-        Set<Index> updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
-                .orElse(meetingToEdit.getIndexes());
-        Set<Person> updatedAttendees = new HashSet<>();
-        for (Index index : updatedAttendeesIndexes) {
-            if (index.getZeroBased() >= lastShownPersonList.size()) {
-                LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            } else { //only add if valid
-                updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()));
+        Set<Index> updatedAttendeesIndexes = meetingToEdit.getIndexes();
+        Set<Id> updatedAttendees = meetingToEdit.getAttendees();
+
+        if (editMeetingDescriptor.areAttendeesChanged()) {
+            updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
+                    .orElse(meetingToEdit.getIndexes());
+            updatedAttendees = new HashSet<>();
+            for (Index index : updatedAttendeesIndexes) {
+                if (index.getZeroBased() >= lastShownPersonList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                } else { //only add if valid
+                    updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
+                }
             }
         }
+
         return new Meeting(updatedAgenda, updatedPlace, updatedTime, updatedAttendeesIndexes, updatedAttendees);
     }
 

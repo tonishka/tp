@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
@@ -10,14 +11,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,16 +29,19 @@ public class MeetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":Adds a new meeting.\n"
             + "Required Parameters: "
-            + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]..."
+            + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]... "
             + PREFIX_MEETING_AGENDA + "AGENDA "
             + PREFIX_MEETING_PLACE + "MEETING PLACE "
             + PREFIX_MEETING_TIME + "MEETING TIME\n"
-
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTENDEES_INDEX + "1 3 5 67 "
             + PREFIX_MEETING_AGENDA + "Product Demo with Client "
             + PREFIX_MEETING_PLACE + "Conference Room 5A "
             + PREFIX_MEETING_TIME + "05-04-2022 15:44";
+
+    public static final String INDEX_CANNOT_BE_EMPTY_MESSAGE = "At least one participant is required!";
+
+    public static final String AGENDA_CANNOT_BE_EMPTY_MESSAGE = "Please add an agenda to the meeting!";
 
     public static final String MESSAGE_SUCCESS = "Created a new meeting: %1$s";
 
@@ -56,17 +59,25 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
-        Set<Person> attendees = new HashSet<>();
+        Set<Id> attendees = new HashSet<>();
+        String feedback = "";
         for (Index index : toMeet.getIndexes()) {
-            if (index.getZeroBased() >= lastShownList.size()) {
-                LogsCenter.getLogger(MeetCommand.class).info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            } else { //only add if valid
-                attendees.add(lastShownList.get(index.getZeroBased()));
+            try {
+                attendees.add(lastShownList.get(index.getZeroBased()).getId());
+            } catch (IndexOutOfBoundsException exception) {
+                feedback += " Unknown contact: " + index.getOneBased() + "\n";
+            } finally {
+                continue;
             }
         }
+        feedback += MESSAGE_SUCCESS;
         Meeting meetingWithAttendeesAdded = toMeet.setAttendees(attendees);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingWithAttendeesAdded), false, false,
-                true, false, false, null);
+        if (model.hasMeeting(meetingWithAttendeesAdded)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+        model.addMeeting(meetingWithAttendeesAdded);
+        return new CommandResult(String.format(feedback, meetingWithAttendeesAdded), false, false,
+                true, false, false, false, null);
     }
 
     @Override

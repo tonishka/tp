@@ -80,6 +80,9 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /** Returns an unmodifiable view of the list of persons */
+    ObservableList<Person> getPersonList();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -90,6 +93,17 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     //--------------------------------------------------------
+
+    /**
+     * Returns the user prefs' meeting book file path.
+     */
+    Path getMeetingBookFilePath();
+
+    /**
+     * Sets the user prefs' meeting book file path.
+     */
+    void setMeetingBookFilePath(Path meetingBookFilePath);
+
 
     /**
      * Replaces meeeting book data with the data in {@code meetingBook}.
@@ -123,6 +137,9 @@ public interface Model {
      * same as another existing meeting in the meeting book.
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /** Returns an unmodifiable view of the list of meetings */
+    ObservableList<Meeting> getMeetingList();
 
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();

@@ -44,8 +44,16 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean testCompany(Person person) {
+<<<<<<< HEAD
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCompany().get().company, keyword));
+=======
+        if (person.getCompany().isPresent()) {
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCompany().get().company, keyword));
+        }
+        return false;
+>>>>>>> 74955dd0b626183fbc54bc0ddc24e6dc8e04cd97
     }
 
     private boolean testName(Person person) {
@@ -54,26 +62,46 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean testJob(Person person) {
+<<<<<<< HEAD
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getJobTitle().get().jobTitle, keyword));
+=======
+        if (person.getJobTitle().isPresent()) {
+            return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                    person.getJobTitle().get().jobTitle, keyword));
+        }
+        return false;
+>>>>>>> 74955dd0b626183fbc54bc0ddc24e6dc8e04cd97
     }
 
     private boolean testTag(Person person) {
+        if (person.getTagSet().isEmpty()) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInSet(person.getTagSet(), keyword));
     }
 
     private boolean testPhone(Person person) {
+        if (person.getNumbers().isEmpty()) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getNumbers(), keyword));
     }
 
     private boolean testEmail(Person person) {
+        if (person.getEmails().isEmpty()) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getEmails(), keyword));
     }
 
     private boolean testAddress(Person person) {
+        if (person.getAddresses().isEmpty()) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCaseInMap(person.getAddresses(), keyword));
     }
