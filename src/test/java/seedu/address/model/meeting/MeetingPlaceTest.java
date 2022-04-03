@@ -31,6 +31,6 @@ public class MeetingPlaceTest {
         assertTrue(MeetingPlace.isValidMeetingPlace("conference room")); // alphabets only
         assertTrue(MeetingPlace.isValidMeetingPlace("conference, room!!!")); // alphabets with symbols
         assertTrue(MeetingPlace.isValidMeetingPlace("3 conference rooms")); // alphanumeric characters
-        assertTrue(MeetingPlace.isValidMeetingPlace("Conference room")); // with capital letters
+        assertTrue(MeetingPlace.isValidMeetingPlace("Conference Room")); // with capital letters
     }
 }
