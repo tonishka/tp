@@ -173,7 +173,7 @@ public class ParserUtil {
         requireNonNull(company);
         String trimmedCompany = company.trim();
         if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
     }
@@ -188,7 +188,7 @@ public class ParserUtil {
         requireNonNull(jobTitle);
         String trimmedJobTitle = jobTitle.trim();
         if (!JobTitle.isValidJobTitle(trimmedJobTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         return new JobTitle(trimmedJobTitle);
     }
