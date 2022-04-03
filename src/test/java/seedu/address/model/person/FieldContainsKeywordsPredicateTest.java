@@ -18,14 +18,17 @@ public class FieldContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FieldContainsKeywordsPredicate firstPredicate = new FieldContainsKeywordsPredicate(firstPredicateKeywordList, "all");
-        FieldContainsKeywordsPredicate secondPredicate = new FieldContainsKeywordsPredicate(secondPredicateKeywordList, "all");
+        FieldContainsKeywordsPredicate firstPredicate = new FieldContainsKeywordsPredicate(firstPredicateKeywordList,
+                "all");
+        FieldContainsKeywordsPredicate secondPredicate = new FieldContainsKeywordsPredicate(secondPredicateKeywordList,
+                "all");
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FieldContainsKeywordsPredicate firstPredicateCopy = new FieldContainsKeywordsPredicate(firstPredicateKeywordList, "all");
+        FieldContainsKeywordsPredicate firstPredicateCopy = new FieldContainsKeywordsPredicate(firstPredicateKeywordList,
+                "all");
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,8 +44,9 @@ public class FieldContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.singletonList("Alice"), "n");
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.singletonList("Alex"),
+                "n");
+        assertTrue(predicate.test(new PersonBuilder().withName("Alex Bob").build()));
 
         // Multiple keywords
         predicate = new FieldContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"), "n");
@@ -60,7 +64,8 @@ public class FieldContainsKeywordsPredicateTest {
     @Test
     public void test_companyContainsKeywords_returnsTrue() {
         // One keyword
-        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.singletonList("Tesla"), "c");
+        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.
+                singletonList("Tesla"), "c");
         assertTrue(predicate.test(new PersonBuilder().withCompany("Tesla").build()));
 
         // Multiple keywords
