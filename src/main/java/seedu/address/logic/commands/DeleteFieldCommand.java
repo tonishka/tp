@@ -70,7 +70,7 @@ public class DeleteFieldCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
-        if (personToDeleteField.isSamePerson(updatedPerson)) {
+        if (personToDeleteField.equals(updatedPerson)) {
             throw new CommandException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
         }
 
