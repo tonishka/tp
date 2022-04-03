@@ -55,6 +55,10 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
                     DeleteFieldCommand.MESSAGE_USAGE));
         }
 
+        if (argMultimap.isEmpty()) {
+            throw new ParseException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
+        }
+
         EditPersonDescriptor deleteFieldDescriptor = new EditPersonDescriptor(personToDeleteField);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

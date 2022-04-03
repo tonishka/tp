@@ -70,10 +70,6 @@ public class DeleteFieldCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
-        if (personToDeleteField.equals(updatedPerson)) {
-            throw new CommandException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
-        }
-
         model.setPerson(personToDeleteField, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, updatedPerson), false, false,
