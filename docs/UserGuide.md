@@ -36,7 +36,13 @@ Reache is a contact manager application that helps you:
 <br>
 
 ### 2.2 Interface Guide
-Reache uses **two windows**, the [Main Window](#221-main-window) and the [Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for contact identification, while the `Contact Details Window` displays the more detailed information inside a specific contact. You could imagine this layout as **resembling looking through a folder with small identification tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help to save space on the main window as well as preventing information overload.
+Reache uses **two windows**, the [Main Window](#221-main-window) and the 
+[Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. 
+The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for 
+contact identification, while the `Contact Details Window` displays the more detailed information inside a 
+specific contact. You could imagine this layout as **resembling looking through a folder with small identification 
+tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help 
+to save space on the main window as well as preventing information overload.
 
 
 #### 2.2.1 Main Window
@@ -358,35 +364,37 @@ Format: `exit`
 
 <br>   
    
-### Main Window 
-   
-| **Action**              | **Format & Example**                                                                                                                                                                                                     |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
-| **Delete Contact Info** | **Delete specific contact** <br> Format: `del <INDEX NO>` <br> Example: `del 88`    |
-| **Clear Address Book**  | Format: `clear`                                                                                                                                                                                                         |
-| **Find Contacts**       | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                                    |
-| **View Contact**        | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                                           |
-| **List**                | Format: `list`                                                                                                                                                                                                          |
-| **Create Meeting**      | Format: `meet <ALL FIELDS IN ANY ORDER>` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                             |
-| **Update Meeting**      | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER>` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                                          |
-| **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel-all`                                                                  |
-| **Help**                | Format: `help`                                                                                                                                                                                                          |
-| **Exit**                | Format: `exit`                                                                                                                                                                                                          |
-### Contact Details Window
-   
-| **Action**              | **Format & Example**                                                                                                                                                                                                     |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
-| **Delete Contact Info** | **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/` |
-| **Back**                | Format: `back`            |                                                                                                                                                                                             
-| **Help**                | Format: `help`        |                                                                                                                                                                                                 
-| **Exit**                | Format: `exit`              |                                                                                                                                                                                            
-<br>   
+### Main Window  
+
+| **Action**             | **Format & Example**                                                                                                                                   |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Contact**        | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                               |
+| **Delete Contact**     | Format: `del <INDEX NO>` <br> Example: `del 88`                                                                                                        |
+| **Clear Address Book** | Format: `clear`                                                                                                                                        |
+| **Find Contacts**      | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                   |
+| **View Contact**       | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                          |
+| **List**               | Format: `list`                                                                                                                                         |
+| **Create Meeting**     | Format: `meet <ALL FIELDS IN ANY ORDER>` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                           |
+| **Update Meeting**     | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER>` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                        |
+| **Cancel Meeting**     | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel-all` |
+| **Help**               | Format: `help`                                                                                                                                         |
+| **Exit**               | Format: `exit`                                                                                                                                         |
+
+### Contact Details Window 
   
+| **Action**              | **Format & Example**                                                                                                                                              |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
+| **Delete Contact Info** | Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/`                                                                    |
+| **Back**                | Format: `back`                                                                                                                                                    |
+| **Help**                | Format: `help`                                                                                                                                                    |
+| **Exit**                | Format: `exit`                                                                                                                                                    |
+
+<br>
+
 ## 5. Contact Fields Summary
 
-| **Field**            | **Mandatory** | **Format & Example**                                                                                                            |
+| **Field**            | **Mandatory** | **Format & Example**                                                                                                           |
 |----------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
 | **Name**             | Yes           | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy`                                                                               |
 | **Phone Number**     | No            | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office`        |
@@ -401,7 +409,7 @@ Format: `exit`
    
 ## 6. Meeting Fields Summary
 
-| **Field**         | **Mandatory** | **Format & Example**                                                                 |
+| **Field**         | **Mandatory** | **Format & Example**                                                                |
 |-------------------|---------------|-------------------------------------------------------------------------------------|
 | **Agenda**        | Yes           | Format: `for/<AGENDA>` <br> Example: `for/Project Consulation`                      |
 | **Meeting Place** | Yes           | Format: `in/<MEETING PLACE>` <br> Example: `in/Zoom`                                |
