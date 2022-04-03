@@ -359,6 +359,7 @@ Format: `exit`
 <br>   
    
 ### Main Window  
+
 | **Action**              | **Format & Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
@@ -373,6 +374,7 @@ Format: `exit`
 | **Help**                | Format: `help`                                                                                                                                                                                                          |
 | **Exit**                | Format: `exit`                                                                                                                                                                                                          |
 ### Contact Details Window 
+  
 | **Action**              | **Format & Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
