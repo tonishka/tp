@@ -356,25 +356,37 @@ Format: `exit`
 
 ## 4. Command Summary
 
-| **Action**              | **Format, Example**                                                                                                                                                                                                     |
+<br>   
+   
+### Main Window  
+
+| **Action**              | **Format & Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
-| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
-| **Delete Contact Info** | **Delete specific contact** <br> Format: `del <INDEX NO>` <br> Example: `del 88` <br> <br> **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del p/ personal e/` |
+| **Delete Contact Info** | **Delete specific contact** <br> Format: `del <INDEX NO>` <br> Example: `del 88`    |
 | **Clear Address Book**  | Format: `clear`                                                                                                                                                                                                         |
 | **Find Contacts**       | Format: `find <FIELD> <VALUE>` <br> Example: `find n/ Michael Scott`                                                                                                                                                    |
 | **View Contact**        | Format: `view <INDEX>` <br> Example: `view 5`                                                                                                                                                                           |
-| **Back**                | Format: `back`                                                                                                                                                                                                          |
 | **List**                | Format: `list`                                                                                                                                                                                                          |
-| **Create Meeting**      | Format: `meet <ALL FIELDS IN ANY ORDER` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                             |
-| **Update Meeting**      | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                                          |
+| **Create Meeting**      | Format: `meet <ALL FIELDS IN ANY ORDER>` <br> Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`                                                                                             |
+| **Update Meeting**      | Format: `update <MEETING INDEX> <ANY FIELDS IN ANY ORDER>` <br> Example: `update 2 in/COM2 on/29-04-2022 20:00`                                                                                                          |
 | **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel-all`                                                                  |
 | **Help**                | Format: `help`                                                                                                                                                                                                          |
 | **Exit**                | Format: `exit`                                                                                                                                                                                                          |
-
+### Contact Details Window 
+  
+| **Action**              | **Format & Example**                                                                                                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
+| **Delete Contact Info** | **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/` |
+| **Back**                | Format: `back`            |                                                                                                                                                                                             
+| **Help**                | Format: `help`        |                                                                                                                                                                                                 
+| **Exit**                | Format: `exit`              |                                                                                                                                                                                            
+<br>   
+  
 ## 5. Contact Fields Summary
 
-| **Field**            | **Mandatory** | **Format, Example**                                                                                                            |
+| **Field**            | **Mandatory** | **Format & Example**                                                                                                            |
 |----------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
 | **Name**             | Yes           | Format: `n/<NAME>` <br> Example: `n/Alex Dunphy`                                                                               |
 | **Phone Number**     | No            | Format: `ph/<NUMBER 1> l/<LABEL> ph/<NUMBER 2> l/<LABEL>...` <br> Example: `ph/98765432 l/Personal ph/9753468 l/Office`        |
@@ -385,10 +397,11 @@ Format: `exit`
 | **Tags**             | No            | Format: `t/<TAG 1> t/<TAG 2>...` <br> Example: `t/MediaContact t/HasKids`                                                      |
 | **Pronouns**         | No            | Format: `pr/<PRONOUNS>` <br> Example: `pr/They pr/Them`                                                                        |
 
-
+<br>
+   
 ## 6. Meeting Fields Summary
 
-| **Field**         | **Mandatory** | **Format, Example**                                                                 |
+| **Field**         | **Mandatory** | **Format & Example**                                                                 |
 |-------------------|---------------|-------------------------------------------------------------------------------------|
 | **Agenda**        | Yes           | Format: `for/<AGENDA>` <br> Example: `for/Project Consulation`                      |
 | **Meeting Place** | Yes           | Format: `in/<MEETING PLACE>` <br> Example: `in/Zoom`                                |
