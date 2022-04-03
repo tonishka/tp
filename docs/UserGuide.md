@@ -358,7 +358,8 @@ Format: `exit`
 
 <br>   
    
-### Main Window  
+### Main Window 
+   
 | **Action**              | **Format & Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Contact**         | Format: `add n/<NAME>` <br> Example: `add n/Alex Dunphy`                                                                                                                                                                |
@@ -372,7 +373,8 @@ Format: `exit`
 | **Cancel Meeting**      | **Cancel specific meeting** <br> Format: `cancel <MEETING INDEX>` <br> Example: `cancel 2` <br> <br> **Cancel all meetings** <br> Format: `cancel-all`                                                                  |
 | **Help**                | Format: `help`                                                                                                                                                                                                          |
 | **Exit**                | Format: `exit`                                                                                                                                                                                                          |
-### Contact Details Window 
+### Contact Details Window
+   
 | **Action**              | **Format & Example**                                                                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456`                                                       |
