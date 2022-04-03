@@ -36,6 +36,9 @@ Reache is a contact manager application that helps you:
 <br>
 
 ### 2.2 Interface Guide
+Reache uses **two windows**, the [Main Window](#221-main-window) and the [Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for contact identification, while the `Contact Details Window` displays the more detailed information inside a specific contact. You could imagine this layout as **resembling looking through a folder with small identification tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help to save space on the main window as well as preventing information overload.
+
+
 #### 2.2.1 Main Window
 Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
 
