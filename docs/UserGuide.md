@@ -386,11 +386,12 @@ Format: `exit`
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
 | **Delete Contact Info** | **Delete contact fields** <br> Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/`                                     |
-| **Back**                | Format: `back`                                                                                                                                                    |                                                                                                                                                                                             
-| **Help**                | Format: `help`                                                                                                                                                    |                                                                                                                                                                                                 
-| **Exit**                | Format: `exit`                                                                                                                                                    |                                                                                                                                                                                            
-<br>   
-  
+| **Back**                | Format: `back`                                                                                                                                                    |
+| **Help**                | Format: `help`                                                                                                                                                    |
+| **Exit**                | Format: `exit`                                                                                                                                                    |
+
+<br>
+
 ## 5. Contact Fields Summary
 
 | **Field**            | **Mandatory** | **Format & Example**                                                                                                           |
