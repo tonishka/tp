@@ -123,6 +123,10 @@ public class ParserUtil {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
                     .withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
+            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
+            if (mt.isExpiredMeetingTime()) {
+                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+            }
             return new MeetingTime(meetingTimeFormatted);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
