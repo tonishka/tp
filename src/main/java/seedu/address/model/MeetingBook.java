@@ -103,7 +103,7 @@ public class MeetingBook implements ReadOnlyMeetingBook {
 
     @Override
     public ObservableList<Meeting> getMeetingList() {
-        return meetings.asUnmodifiableObservableList().filtered(m -> !m.getTime().isExpiredMeetingTime());
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override
