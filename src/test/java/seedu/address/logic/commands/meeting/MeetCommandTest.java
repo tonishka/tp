@@ -35,7 +35,7 @@ public class MeetCommandTest {
         // null -> returns false
         assertFalse(meetAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different meeting -> returns false
         assertFalse(meetAliceCommand.equals(meetBobCommand));
     }
 }
