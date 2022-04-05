@@ -2,6 +2,7 @@ package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
@@ -11,7 +12,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -63,7 +63,8 @@ public class MeetCommand extends Command {
         Set<Id> attendees = new HashSet<>();
         for (Index index : toMeet.getIndexes()) {
             if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                        index.getOneBased()));
             }
             attendees.add(lastShownList.get(index.getZeroBased()).getId());
         }
