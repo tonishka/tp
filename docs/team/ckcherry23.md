@@ -15,16 +15,34 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 
 * **Enhancements Implemented**: 
   * Implemented a new feature to `delete` specific fields of a contact
-  * Enhanced the `clear` command by asking for user confirmation
-    * Created a new `ConfirmWindow` with reusability in mind for any future commands that require user confirmation.
-  * Implemented storage functionality for the persons list and meetings list.
+  [#81](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/81).
+
+  * Enhanced the `clear` command by asking for user confirmation. Created a new `ConfirmWindow` with reusability in 
+  mind for any future commands that require user confirmation.
+  [#82](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/82).
+
+  * Implemented storage functionality for the persons list and meetings list:
+  [#44](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/44), 
+  [#122](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/122).
+
   * Enhanced the `help` command by opening the user guide directly from the _Help Window_ rather than allowing the user 
-  to copy the user guide URL to improve UX.
+  to copy the user guide URL to improve UX:
+  [#36](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/36).
+  
   * Implemented changes to allow creation of contacts with the same name as long as tags are different. This takes into 
-  consideration that multiple contacts may have the same full name, but still helps us keep our persons list unique.
-  * Implemented setting focus to the command box after navigation to decrease number of mouse clicks and improve UX.
-  * Implemented the `back` command that takes the user back to the _MainWindow_ from the _Contact Details Window_.
-  * Fixed tests after the implementation of multiple fields for phones, addresses and emails.
+  consideration that multiple contacts may have the same full name, but still helps us keep our persons list unique:
+  [#96](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/96).
+  
+  * Implemented setting focus to the command box after navigation to decrease number of mouse clicks and improve UX:
+  [#131](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/131).
+  
+  * Implemented the `back` command that takes the user back to the _MainWindow_ from the _Contact Details Window_:
+  [#76](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/76).
+  
+  * Fixed tests after the implementation of multiple fields for phones, addresses and emails: 
+  [#39](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/39),
+  [#46](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/46).
+  
   * Updated the GUI color scheme: [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
 
 <br>
