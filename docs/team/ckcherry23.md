@@ -14,11 +14,11 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 <br>
 
 * **Enhancements Implemented**: 
-  * Implemented a new feature to `delete` specific fields of a contact
+  * Implemented a new feature to `delete` specific fields of a contact:
   [#81](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/81).
 
   * Enhanced the `clear` command by asking for user confirmation. Created a new `ConfirmWindow` with reusability in 
-  mind for any future commands that require user confirmation.
+  mind for any future commands that require user confirmation:
   [#82](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/82).
 
   * Implemented storage functionality for the persons list and meetings list:
@@ -30,7 +30,7 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   [#36](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/36).
   
   * Implemented changes to allow creation of contacts with the same name as long as tags are different. This takes into 
-  consideration that multiple contacts may have the same full name, but still helps us keep our persons list unique:
+  consideration that multiple contacts may have the same full name, but still helps us keep our contacts unique:
   [#96](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/96).
   
   * Implemented setting focus to the command box after navigation to decrease number of mouse clicks and improve UX:
@@ -58,31 +58,39 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 <br>
 
 * **Contributions to the DG**: 
-  * Added the `Delete fields feature` under `Implementation` along with its design decisions.
-  * Added the `Clear address book feature` under `Implementation` along with its sequence diagram and activity diagram.
-  * Mentioned the `Non-functional requirements` of the project.
-  * Added a `Glossary` for better user readability.
+  * Added the `Delete fields feature` under `Implementation` along with its design decisions:
+  [#104](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/104).
+  
+  * Added the `Clear address book feature` under `Implementation` along with its sequence diagram and activity diagram:
+  [#111](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/111).
+  
+  * Mentioned the `Non-functional requirements` of the project and added a `Glossary` for better user readability:
+  [#21](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/21).
 
 <br>
 
 * **Contributions to the team-based tasks**:
   * Managed [labels](https://github.com/AY2122S2-CS2103T-W12-4/tp/labels) for issue-tracking and PRs.
+  
   * Set up milestones [v1.1](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/1), 
   [v1.2](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/2), 
   [v1.2b](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/3), 
   [v1.3b](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/5) and 
   [v1.4](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/6) on the issue-tracker.
+  
   * Set up GitHub Project boards with the _automated kanban with reviews_ template for 
   [v1.1](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/1),
   [v1.2](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/3),
   [v1.3](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/4),
   [v1.4](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/6).
+  
   * Updated the product scope in the UG, website home page and README.md.
 
 <br>
 
 * **Review/mentoring contributions**: 
   * [tP Comments Link](https://nus-cs2103-ay2122s2.github.io/dashboards/contents/tp-comments.html#13-charisma-kausar-ckcherry23-70-comments)
+  
   * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
 
 <br>
