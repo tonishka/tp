@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,9 +33,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -62,14 +60,7 @@ public class ParserUtil {
         String[] arrayOfIndexes = indexes.trim().split("\\s+"); //if indexes are randomly spaced apart
 
         for (String index : arrayOfIndexes) {
-            try {
-                int indexIntegerForm = Integer.parseInt(index);
-                indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
-            } catch (NumberFormatException numberFormatException) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            } catch (Exception exception) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            }
+            indexSet.add(parseIndex(index));
         }
         return indexSet;
     }
