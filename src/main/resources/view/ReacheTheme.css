@@ -5,6 +5,7 @@
     -lightblue: #75c7fb;
     -blue: #0048cd;
 }
+
 .background {
     -fx-background-color: derive(-lightgrey, 100%);
     background-color: white; /* Used in the default.html file */
