@@ -85,7 +85,8 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   [v1.3](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/4),
   [v1.4](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/6).
   
-  * Updated the product scope in the UG, website home page and README.md.
+  * Updated the product scope in the UG, website home page and README.md:
+  [#9](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/9).
 
 <br>
 
