@@ -132,10 +132,15 @@ In this tutorial, you will be scheduling a meeting with yourself on your next bi
 2. Now, type `meet for/Birthday in/Office on/<YOUR BIRTHDAY IN DD-MM-YYYY> 00:01 with/1`. <br><br>
 3. You will see your newly created meeting in the right panel, like so: 
 ![New Meeting Created](images/Tutorial/new_meeting_created.png)
-4. Let's say you change your mind and want to cancel this meeting.
-5. Type `cancel 1`. The meeting will disappear from the panel, like so:
+4. Let's say you want to update your meeting to invite your best friend. Add their contact if you have not done so. <br><br>
+5. Type `list` to see a list of all you contacts. 
+![List View](images/Tutorial/list_view.png)
+As you can see, for this particular user, their best friend `Barry Ng` is at index position `2`. Similarly, find the position of yourself and your best friend. <br><br>
+6. Type `update <BIRTHDAY MEETING INDEX> with/<YOUR INDEX> <YOUR BEST FRIEND'S INDEX>`. For example, this user would type `update 1 with/1 2`. The updated meeting panel should look like this: <br><br>
+![Updated Meeting](images/Tutorial/updated_meeting.png)
+7. Let's say you change your mind and want to cancel this meeting. <br><br>
+8. Type `cancel 1`. The meeting will disappear from the panel, like so:
 ![Cancelled Meeting](images/Tutorial/cancel_birthday.png)
-
 Now you are all set to manage your contacts and meetings using Reache!
 
 <hr>
