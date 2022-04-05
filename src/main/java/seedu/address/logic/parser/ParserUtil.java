@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -119,8 +120,13 @@ public class ParserUtil {
         requireNonNull(meetingTime);
         String trimmedMeetingTime = meetingTime.trim();
         try {
-            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime,
-                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
+            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
+            if (mt.isExpiredMeetingTime()) {
+                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+            }
             return new MeetingTime(meetingTimeFormatted);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
