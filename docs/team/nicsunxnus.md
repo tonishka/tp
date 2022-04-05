@@ -29,6 +29,6 @@ _Reache_ is a desktop address book application used for teaching Software Engine
   - Created the collaborative project document 
   - Fixed bug where cancel-all and clear commands does not update the data in the JSON file, PR [\#149](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/149)
 * **Contributions to the Developer Guide (Extracts)**:
-   - Edit Sequence Diagram: <br> ![EditCommandSD](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/docs/images/EditCommandSequenceDiagram.png)
-   - Edit detailed parsing Sequence Diagram: <br> ![Parsing SD](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/docs/images/DetailedParsingForEditSequenceDiagram.png)
-   - Edit Activity Diagram: <br> ![ActivityDiagram](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/docs/images/EditActivityDiagram.png)
+   - Edit Sequence Diagram: <br> ![EditCommandSD](../images/EditCommandSequenceDiagram.png)
+   - Edit detailed parsing Sequence Diagram: <br> ![Parsing SD](../images/DetailedParsingForEditSequenceDiagram.png)
+   - Edit Activity Diagram: <br> ![ActivityDiagram](../images/EditActivityDiagram.png)
