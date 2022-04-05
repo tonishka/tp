@@ -48,8 +48,12 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 <br>
 
 * **Contributions to the UG**: 
-  * Added the `Managing Meetings` section under `Features`
-  * Created the tables for `Commands Summary`, `Contact Fields Summary` and `Meeting Fields Summary`
+  * Added the `Managing Meetings` section under `Features`: 
+  [#146](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/146).
+  
+  * Created the tables for `Commands Summary`, `Contact Fields Summary` and `Meeting Fields Summary`:
+  [#10](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/10),
+  [#146](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/146).
 
 <br>
 
