@@ -149,8 +149,8 @@ Now you are all set to manage your contacts and meetings using Reache!
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
 | <...> | Indicates the argument that the user should provide in that area |
 
-- Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
-  e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
+- Words in `<UPPER_CASE>` are the fields to be supplied by the user. <br>
+  e.g. in `add n/<NAME>`, `NAME` is a field which can be used as `add n/Alex Dunphy`.
 
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
@@ -158,9 +158,9 @@ Now you are all set to manage your contacts and meetings using Reache!
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
-- Parameters can be in any order.
+- Fields can be in any order.
 
-- `l/` is used to label parameters. They are optional.
+- `l/` is used to label fields. They are optional.
 
 </div>
 
