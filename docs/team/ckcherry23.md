@@ -31,7 +31,10 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Glossary
 
 
-* **Contributions to the team-based tasks**: `to be added soon`
+* **Contributions to the team-based tasks**:
+  * Managed labels for issue-tracking and PRs
+  * Set up milestones `v1.2`, `v1.2b`, `v1.3b` and `v1.4` on the issue-tracker
+  * Set up GitHub Project boards with the _automated kanban with reviews_ template for milestone management
 
 
 * **Review/mentoring contributions**: `to be added soon`
