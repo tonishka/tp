@@ -11,6 +11,7 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 
 * **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=ckcherry23&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+<br>
 
 * **Enhancements Implemented**: 
   * Implemented a new feature to `delete` specific fields of a contact
@@ -26,11 +27,13 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Fixed tests after the implementation of multiple fields for phones, addresses and emails.
   * Updated the GUI color scheme: [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
 
+<br>
 
 * **Contributions to the UG**: 
   * Added the `Managing Meetings` section under `Features`
   * Created the tables for `Commands Summary`, `Contact Fields Summary` and `Meeting Fields Summary`
 
+<br>
 
 * **Contributions to the DG**: 
   * Added the `Delete fields feature` under `Implementation` along with its design decisions.
@@ -38,6 +41,7 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Mentioned the `Non-functional requirements` of the project.
   * Added a `Glossary` for better user readability.
 
+<br>
 
 * **Contributions to the team-based tasks**:
   * Managed [labels](https://github.com/AY2122S2-CS2103T-W12-4/tp/labels) for issue-tracking and PRs.
@@ -53,16 +57,19 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   [v1.4](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/6).
   * Updated the product scope in the UG, website home page and README.md.
 
+<br>
 
 * **Review/mentoring contributions**: 
   * [tP Comments Link](https://nus-cs2103-ay2122s2.github.io/dashboards/contents/tp-comments.html#13-charisma-kausar-ckcherry23-70-comments)
   * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
 
+<br>
 
 * **Contributions beyond the project team**: 
   * Posted [14 issues](https://github.com/ckcherry23/ped/issues) 
   for [LinkyTime](https://github.com/AY2122S2-CS2103T-T13-3/tp) during the PE-D
 
+<br>
 
 * **Contributions to the Developer Guide (Extracts)**:
 
@@ -82,6 +89,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 ![ClearActivityDiagram](../images/ClearActivityDiagram.png)
 ```
 
+<br>
 
 * **Contributions to the User Guide (Extracts)**: 
 
