@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,9 +33,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -61,14 +60,7 @@ public class ParserUtil {
         String[] arrayOfIndexes = indexes.trim().split("\\s+"); //if indexes are randomly spaced apart
 
         for (String index : arrayOfIndexes) {
-            try {
-                int indexIntegerForm = Integer.parseInt(index);
-                indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
-            } catch (NumberFormatException numberFormatException) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            } catch (Exception exception) {
-                throw new ParseException(MESSAGE_INVALID_INDEX);
-            }
+            indexSet.add(parseIndex(index));
         }
         return indexSet;
     }
@@ -119,8 +111,13 @@ public class ParserUtil {
         requireNonNull(meetingTime);
         String trimmedMeetingTime = meetingTime.trim();
         try {
-            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime,
-                    DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
+            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
+            if (mt.isExpiredMeetingTime()) {
+                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+            }
             return new MeetingTime(meetingTimeFormatted);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);

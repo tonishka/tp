@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Date;
 
 /**
@@ -15,7 +16,11 @@ public class MeetingTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting time must be in the following format: dd-MM-yyyy HH:mm\n Example: 25-05-2022 23:59";
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public static final String MESSAGE_FUTURE_CONSTRAINT =
+            "Meeting time must be in the future, not in past";
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public final LocalDateTime dateTime;
 
     /**
@@ -75,7 +80,7 @@ public class MeetingTime {
      * @return formatted date
      */
     public static String prettyDate(LocalDateTime dateTime) {
-        String date = dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String date = dateTime.format(DateTimeFormatter.ofPattern("MMM dd uuuu"));
         return date;
     }
 
