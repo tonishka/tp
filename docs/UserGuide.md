@@ -149,7 +149,7 @@ Now you are all set to manage your contacts and meetings using Reache!
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
-| <...> | Indicates the argument that the user should provide in that area |
+| <...> | Indicates the field that the user should provide in that area |
 
 - Words in `<UPPER_CASE>` are the fields to be supplied by the user. <br>
   e.g. in `add n/<NAME>`, `NAME` is a field which can be used as `add n/Alex Dunphy`.
