@@ -35,5 +35,7 @@ meetings.
 
 * **Contributions to the team-based tasks**:
   * Documented the purpose of the user guide in the UG.
+  
+  
 * **Review/mentoring contributions**:
   * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
