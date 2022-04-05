@@ -11,7 +11,7 @@ meetings.
 
 ## Summary of Contributions
 
-* **Code Contributed**: [tP Code Dashboard Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=muraddurrani&tabRepo=AY2122S2-CS2103T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+* **Code Contributed**: [tP Code Dashboard Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=muraddurrani&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * **Enhancements Implemented**:
   * Added classes for new types of information to be associated with a person (i.e. `Company`, `JobTitle`, etc.), and integrated them into the Model component.
   * Implemented having a unique `Id` for a `Person`, which was used for all `Meeting` related functionality.
