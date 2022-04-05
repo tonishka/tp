@@ -57,14 +57,16 @@ public class ParserUtil {
      * @return a set of Index
      */
     public static Set<Index> parseAttendees(String indexes) throws ParseException {
-        Set<Index> indexSet = new HashSet<>();
-        String[] arrayOfIndexes = indexes.split("\\s+"); //if indexes are randomly spaced apart
+        final Set<Index> indexSet = new HashSet<>();
+        String[] arrayOfIndexes = indexes.trim().split("\\s+"); //if indexes are randomly spaced apart
 
         for (String index : arrayOfIndexes) {
             try {
-                int indexIntegerForm = Integer.parseInt(index.trim());
+                int indexIntegerForm = Integer.parseInt(index);
                 indexSet.add(Index.fromOneBased(indexIntegerForm)); //creates and add indexes to the hashset
             } catch (NumberFormatException numberFormatException) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            } catch (Exception exception) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);
             }
         }
@@ -171,7 +173,7 @@ public class ParserUtil {
         requireNonNull(company);
         String trimmedCompany = company.trim();
         if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
     }
@@ -186,7 +188,7 @@ public class ParserUtil {
         requireNonNull(jobTitle);
         String trimmedJobTitle = jobTitle.trim();
         if (!JobTitle.isValidJobTitle(trimmedJobTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         return new JobTitle(trimmedJobTitle);
     }

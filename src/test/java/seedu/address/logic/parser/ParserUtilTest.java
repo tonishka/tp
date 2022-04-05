@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.ParserUtil.parseLabel;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,6 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.label.Label;
+import seedu.address.model.meeting.Agenda;
+import seedu.address.model.meeting.MeetingPlace;
+import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -27,6 +32,7 @@ import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+    //-------------------------Person--------------------------------------------------------
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_PRONOUN = " ";
@@ -63,7 +69,24 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS_WITH_LABEL = "123 Main Street #0505 l/home";
     private static final String VALID_EMAIL_WITH_LABEL = "rachel@example.com l/friend";
     private static final String VALID_PHONE_WITH_LABEL = "123456 l/home";
+    //--------------------------------------Meeting---------------------------------------------
+    private static final String VALID_AGENDA = "Important meeting with client.";
+    private static final String VALID_MEETING_PLACE = "Inside the conference room.";
+    private static final String VALID_MEETING_TIME_1 = "22-08-2022 10:00";
+    private static final String VALID_MEETING_TIME_2 = "29-08-2024 23:59";
+    private static final String VALID_MEETING_ATTENDEE_1 = "1";
+    private static final String VALID_MEETING_ATTENDEE_2 = "999";
 
+    private static final String INVALID_AGENDA_1 = "";
+    private static final String INVALID_AGENDA_2 = "    ";
+    private static final String INVALID_MEETING_PLACE_1 = "";
+    private static final String INVALID_MEETING_PLACE_2 = "   ";
+    private static final String INVALID_MEETING_TIME_1 = "2024-08-29 23:59";
+    private static final String INVALID_MEETING_TIME_2 = "32-08-2025 23:59";
+    private static final String INVALID_MEETING_ATTENDEE_1 = "0";
+    private static final String INVALID_MEETING_ATTENDEE_2 = "-1";
+    private static final String INVALID_MEETING_ATTENDEE_3 = "+1";
+    private static final String INVALID_MEETING_ATTENDEE_4 = "one";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -85,6 +108,114 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void parseAgenda_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAgenda(null));
+    }
+
+    @Test
+    public void parseAgenda_invalidValue_throwsParseException() {
+        //emptyString
+        assertThrows(ParseException.class, () -> ParserUtil.parseAgenda(INVALID_AGENDA_1));
+    }
+
+    @Test
+    public void parseAgenda_invalidValue2_throwsParseException() {
+        //space
+        assertThrows(ParseException.class, () -> ParserUtil.parseAgenda(INVALID_AGENDA_2));
+    }
+
+    @Test
+    public void parseAgenda_validValueWithoutWhitespace_returnsAgenda() throws Exception {
+        Agenda expectedAgenda = new Agenda(VALID_AGENDA);
+        assertEquals(expectedAgenda, ParserUtil.parseAgenda(VALID_AGENDA));
+    }
+
+    @Test
+    public void parseAgenda_validValueWithWhitespace_returnsTrimmedAgenda() throws Exception {
+        String agendaWithWhitespace = WHITESPACE + VALID_AGENDA + WHITESPACE;
+        Agenda expectedAgenda = new Agenda(VALID_AGENDA);
+        assertEquals(expectedAgenda, ParserUtil.parseAgenda(agendaWithWhitespace));
+    }
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void parseMeetingPlace_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMeetingPlace(null));
+    }
+
+    @Test
+    public void parseMeetingPlace_invalidValue_throwsParseException() {
+        //emptyString
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingPlace(INVALID_MEETING_PLACE_1));
+    }
+
+    @Test
+    public void parseMeetingPlace_invalidValue2_throwsParseException() {
+        //space
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingPlace(INVALID_MEETING_PLACE_2));
+    }
+
+    @Test
+    public void parseMeetingPlace_validValueWithoutWhitespace_returnsMeetingPlace() throws Exception {
+        MeetingPlace expectedPlace = new MeetingPlace(VALID_MEETING_PLACE);
+        assertEquals(expectedPlace, ParserUtil.parseMeetingPlace(VALID_MEETING_PLACE));
+    }
+
+    @Test
+    public void parseMeetingPlace_validValueWithWhitespace_returnsTrimmedMeetingPlace() throws Exception {
+        String meetingPlaceWithWhitespace = WHITESPACE + VALID_MEETING_PLACE + WHITESPACE;
+        MeetingPlace expectedPlace = new MeetingPlace(VALID_MEETING_PLACE);
+        assertEquals(expectedPlace, ParserUtil.parseMeetingPlace(meetingPlaceWithWhitespace));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void parseMeetingTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMeetingTime(null));
+    }
+
+    @Test
+    public void parseMeetingTime_invalidValue_throwsParseException() {
+        //wrong date format
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingTime(INVALID_MEETING_TIME_1));
+    }
+
+    @Test
+    public void parseMeetingTime_invalidValue2_throwsParseException() {
+        //invalid date
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingTime(INVALID_MEETING_TIME_2));
+    }
+
+    @Test
+    public void parseMeetingTime_validValueWithWhitespace_returnsTrimmedMeetingTime() throws Exception {
+        String meetingTimeWithWhitespace = WHITESPACE + VALID_MEETING_TIME_2 + WHITESPACE;
+        LocalDateTime meetingTimeFormatted = LocalDateTime.parse(VALID_MEETING_TIME_2,
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        MeetingTime expectedTime = new MeetingTime(meetingTimeFormatted);
+        assertEquals(expectedTime, ParserUtil.parseMeetingTime(meetingTimeWithWhitespace));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void parseMeetingAttendees_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendees(null));
+    }
+
+    @Test
+    public void parseMeetingAttendees_invalidValues_throwsParseException() {
+        //negative index
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendees(INVALID_MEETING_ATTENDEE_2));
+        //zero index
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendees(INVALID_MEETING_ATTENDEE_1));
+        //non-number index
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendees(INVALID_MEETING_ATTENDEE_4));
     }
 
     //------------------------------------------------------------------------------------------------------------------
@@ -129,13 +260,11 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseJobTitle(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE));
@@ -143,14 +272,12 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseJobTitle(INVALID_JOBTITLE_3));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_validValueWithoutWhitespace_returnsName() throws Exception {
         JobTitle expectedJobTitle = new JobTitle(VALID_JOBTITLE);
         assertEquals(expectedJobTitle, ParserUtil.parseJobTitle(VALID_JOBTITLE));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseJobTitle_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String jobtitleWithWhitespace = WHITESPACE + VALID_JOBTITLE + WHITESPACE;
@@ -160,26 +287,22 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseCompany_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseCompany_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_COMPANY));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseCompany_validValueWithoutWhitespace_returnsName() throws Exception {
         Company expectedCompany = new Company(VALID_COMPANY);
         assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_COMPANY));
     }
 
-    //***PLEASE DOUBLE CHECK THIS***
     @Test
     public void parseCompany_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String companyWithWhitespace = WHITESPACE + VALID_COMPANY + WHITESPACE;
@@ -189,25 +312,21 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePhone_invalidValueWithoutLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parsePhone_invalidValueWithLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE_LABEL_1));
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parsePhone_validValueWithoutLabelWithWhiteSpace_returnsPhone() throws Exception {
         String phoneWithWhiteSpace = WHITESPACE + VALID_PHONE + WHITESPACE;
@@ -216,7 +335,6 @@ public class ParserUtilTest {
         assertEquals(expectedPhone, parsedPhone);
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parsePhone_validValueWithWhitespaceWithLabel_returnsPhone() throws Exception {
         String phoneWithWhiteSpace = WHITESPACE + VALID_PHONE_WITH_LABEL + WHITESPACE;
@@ -225,13 +343,11 @@ public class ParserUtilTest {
         assertEquals(expectedPhone, parsedPhone);
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseNumbers(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_collectionWithInvalidNumbers_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
@@ -239,7 +355,6 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE)));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_collectionWithInvalidNumbersPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE)));
@@ -249,13 +364,11 @@ public class ParserUtilTest {
                 .parseNumbers(Arrays.asList(VALID_PHONE, INVALID_PHONE_LABEL_2)));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseNumbers(Collections.emptyList()).isEmpty());
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseNumbers_collectionWithValidNumbers_returnsNumberMap() throws Exception {
         HashMap<Label, Phone> actualNumbersMap = ParserUtil
@@ -270,19 +383,16 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseAddress_validValueWithoutLabelWithWhiteSpace_returnsAddress() throws Exception {
         String addressWithWhiteSpace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
@@ -291,7 +401,6 @@ public class ParserUtilTest {
         assertEquals(expectedAddressContent, parsedAddress);
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseAddress_validValueWithWhitespaceWithLabel_returnaAddress() throws Exception {
         String addressWithWhiteSpace = WHITESPACE + VALID_ADDRESS_WITH_LABEL + WHITESPACE;
@@ -300,7 +409,6 @@ public class ParserUtilTest {
         assertEquals(expectedAddressContent, parsedAddress);
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddresses_collectionWithValidAddresses_returnsAddressesMap() throws Exception {
         HashMap<Label, Address> actualAddressesMap = ParserUtil
@@ -313,7 +421,6 @@ public class ParserUtilTest {
         assertEquals(expectedAddressesMap, actualAddressesMap);
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseAddresses_collectionWithInvalidAddressesPlusLabel_throwsParseException() throws ParseException {
         assertThrows(ParseException.class, () -> ParserUtil
@@ -328,20 +435,17 @@ public class ParserUtilTest {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         HashMap<String, Email> testEmailMap = new HashMap<>();
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_validValueWithoutLabel_returnsEmail() throws Exception {
         Email parsedEmail = ParserUtil.parseEmail(VALID_EMAIL);
@@ -349,7 +453,6 @@ public class ParserUtilTest {
         assertEquals(expectedEmailContent, parsedEmail);
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_validValueWithLabel_returnsEmail() throws Exception {
         Email parsedEmail = ParserUtil.parseEmail(VALID_EMAIL_WITH_LABEL);
@@ -357,7 +460,6 @@ public class ParserUtilTest {
         assertEquals(expectedEmailContent, parsedEmail);
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_validValueWithWhitespace_returnsEmail() throws Exception {
         String emailWithWhiteSpace = WHITESPACE + VALID_EMAIL + WHITESPACE;
@@ -366,7 +468,6 @@ public class ParserUtilTest {
         assertEquals(expectedEmailContent, parsedEmail);
     }
 
-    //***PLEASE DOUBLE CHECK THESE***
     @Test
     public void parseEmail_validValueWithWhitespaceWithLabel_returnsEmail() throws Exception {
         String emailWithWhiteSpace = WHITESPACE + VALID_EMAIL_WITH_LABEL + WHITESPACE;
@@ -375,7 +476,6 @@ public class ParserUtilTest {
         assertEquals(expectedEmailContent, parsedEmail);
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseEmails_collectionWithValidEmails_returnsEmailsMap() throws Exception {
         HashMap<Label, Email> actualEmailsMap = ParserUtil
@@ -388,7 +488,6 @@ public class ParserUtilTest {
         assertEquals(expectedEmailsMap, actualEmailsMap);
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parseEmails_collectionWithInvalidEmailsPlusLabel_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseEmails(Arrays.asList(VALID_EMAIL, INVALID_EMAIL)));
@@ -447,26 +546,22 @@ public class ParserUtilTest {
     }
 
     //-------------------------------------------------------------------------------------------------------
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronoun_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePronoun(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronoun_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePronoun(INVALID_PRONOUN));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronoun_validValueWithoutWhitespace_returnsPronoun() throws Exception {
         Pronoun expectedPronoun = new Pronoun(VALID_PRONOUN);
         assertEquals(expectedPronoun, ParserUtil.parsePronoun(VALID_PRONOUN));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronoun_validValueWithWhitespace_returnsTrimmedPronoun() throws Exception {
         String pronounWithWhitespace = WHITESPACE + VALID_PRONOUN + WHITESPACE;
@@ -474,26 +569,22 @@ public class ParserUtilTest {
         assertEquals(expectedPronoun, ParserUtil.parsePronoun(pronounWithWhitespace));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronouns_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePronouns(null));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronouns_collectionWithInvalidPronouns_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
                 .parsePronouns(Arrays.asList(VALID_PRONOUN, INVALID_PRONOUN)));
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronouns_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parsePronouns(Collections.emptyList()).isEmpty());
     }
 
-    //***PLEASE DOUBLE CHECK THIS****
     @Test
     public void parsePronouns_collectionWithValidPronouns_returnsPronounSet() throws Exception {
         Set<Pronoun> actualPronounSet = ParserUtil.parsePronouns(Arrays.asList(VALID_PRONOUN, VALID_PRONOUN_2));
