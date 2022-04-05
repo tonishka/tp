@@ -15,7 +15,16 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 * **Enhancements Implemented**: 
   * Implemented a new feature to `delete` specific fields of a contact
   * Enhanced the `clear` command by asking for user confirmation
-    * Created a new 'ConfirmWindow' with reusability in mind for any future commands that require user confirmation.
+    * Created a new `ConfirmWindow` with reusability in mind for any future commands that require user confirmation.
+  * Implemented storage functionality for the persons list and meetings list.
+  * Enhanced the `help` command by opening the user guide directly from the _Help Window_ rather than allowing the user 
+  to copy the user guide URL to improve UX.
+  * Implemented changes to allow creation of contacts with the same name as long as tags are different. This takes into 
+  consideration that multiple contacts may have the same full name, but still helps us keep our persons list unique.
+  * Implemented setting focus to the command box after navigation to decrease number of mouse clicks and improve UX.
+  * Implemented the `back` command that takes the user back to the _MainWindow_ from the _Contact Details Window_.
+  * Fixed tests after the implementation of multiple fields for phones, addresses and emails.
+  * Updated the GUI color scheme: [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
 
 
 * **Contributions to the UG**: 
@@ -26,12 +35,12 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 * **Contributions to the DG**: 
   * Added the `Delete fields feature` under `Implementation` along with its design decisions.
   * Added the `Clear address book feature` under `Implementation` along with its sequence diagram and activity diagram.
-  * Mentioned the `Non-functional requirements`.
+  * Mentioned the `Non-functional requirements` of the project.
   * Added a `Glossary` for better user readability.
 
 
 * **Contributions to the team-based tasks**:
-  * Managed [labels](https://github.com/AY2122S2-CS2103T-W12-4/tp/labels) for issue-tracking and PRs
+  * Managed [labels](https://github.com/AY2122S2-CS2103T-W12-4/tp/labels) for issue-tracking and PRs.
   * Set up milestones [v1.1](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/1), 
   [v1.2](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/2), 
   [v1.2b](https://github.com/AY2122S2-CS2103T-W12-4/tp/milestone/3), 
@@ -42,12 +51,17 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   [v1.2](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/3),
   [v1.3](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/4),
   [v1.4](https://github.com/AY2122S2-CS2103T-W12-4/tp/projects/6).
+  * Updated the product scope in the UG, website home page and README.md.
 
 
-* **Review/mentoring contributions**: `to be added soon`
+* **Review/mentoring contributions**: 
+  * [tP Comments Link](https://nus-cs2103-ay2122s2.github.io/dashboards/contents/tp-comments.html#13-charisma-kausar-ckcherry23-70-comments)
+  * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
 
 
-* **Contributions beyond the project team**: `to be added soon`
+* **Contributions beyond the project team**: 
+  * Posted [14 issues](https://github.com/ckcherry23/ped/issues) 
+  for [LinkyTime](https://github.com/AY2122S2-CS2103T-T13-3/tp) during the PE-D
 
 
 * **Contributions to the Developer Guide (Extracts)**:
