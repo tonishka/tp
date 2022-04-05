@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Charisma Kausar's Project Portfolio Page
 ---
 
@@ -44,7 +44,8 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   [#39](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/39),
   [#46](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/46).
   
-  * Updated the GUI color scheme: [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
+  * Updated the GUI color scheme: 
+  [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
 
 <br>
 
