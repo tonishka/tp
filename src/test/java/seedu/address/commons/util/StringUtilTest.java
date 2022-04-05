@@ -261,6 +261,38 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gigi"));
     }
 
+    @Test
+    public void containsWordIgnoreCaseInMap_validInputs_correctResult() {
+        HashMap<Label, Address> typicalSentence = new HashMap<>();
+        typicalSentence.add()
+        // Empty sentence
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "abc")); // Boundary case
+        typicalSentence.add("        ");
+        assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
+
+        // Matches a partial word only
+        typicalSentence.clear();
+        typicalSentence.add("Gigi Hadid");
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gig"));
+        assertFalse(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gigigigi"));
+
+        // Matches word in the sentence, different upper/lower case letters
+        typicalSentence.add("Bella");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "bElLa")); // Mixed case
+        typicalSentence.add(" Lola    Charlie");
+        // String in sentence has extra spaces
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "Lola"));
+        typicalSentence.clear();
+        typicalSentence.add("gigi");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "GiGi")); // Only one word in sentence
+        // (boundary case)
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "  gigi  ")); // Leading/trailing spaces
+
+        // Matches multiple words in sentence
+        typicalSentence.add("gigi hadid");
+        assertTrue(StringUtil.containsWordIgnoreCaseInSet(typicalSentence, "gigi"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
