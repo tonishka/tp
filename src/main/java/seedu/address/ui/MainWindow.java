@@ -39,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ConfirmWindow confirmWindow;
+    private MeetingListPanel meetingListPanel;
+    private ContactMeetingsPanel contactMeetingsPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -101,6 +106,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -136,12 +144,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the confirmation window or focuses on it if it's already opened.
+     * Opens the contacts confirmation window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleConfirmation() {
+    public void handleContactsClearConfirmation(boolean isMeetingClear) {
         if (!confirmWindow.isShowing()) {
-            confirmWindow.show();
+            confirmWindow.show(isMeetingClear);
         } else {
             confirmWindow.focus();
         }
@@ -173,9 +181,17 @@ public class MainWindow extends UiPart<Stage> {
     private void loadPersonListScreen() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         CommandBox commandBox = new CommandBox(this::executePersonListCommand);
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(personListPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
+        commandBox.setFocused();
     }
 
     /**
@@ -184,9 +200,17 @@ public class MainWindow extends UiPart<Stage> {
     private void loadContactScreen(Person personToDisplay) {
         contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
         CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
+        contactMeetingsPanel = new ContactMeetingsPanel(logic.getMeetingList(), logic.getPersonList(), personToDisplay);
+
         panelPlaceholder.getChildren().removeAll();
+        commandBoxPlaceholder.getChildren().removeAll();
+        meetingListPanelPlaceholder.getChildren().removeAll();
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         panelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(contactMeetingsPanel.getRoot());
+
+        commandBox.setFocused();
     }
 
     /**
@@ -209,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.requiresConfirmation()) {
-                handleConfirmation();
+                handleContactsClearConfirmation(commandResult.isMeetingClear());
             }
 
             if (commandResult.isLoadPersonList()) {

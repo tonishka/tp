@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class JobTitle implements Comparable<JobTitle> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "JobTitle can take any values, and it should not be blank";
+            "Job title should start with an alphabet, can take any alphanumeric values with spaces, "
+                    + "and it should not be blank";
 
     /*
      * The first character of the job title must not be a whitespace,

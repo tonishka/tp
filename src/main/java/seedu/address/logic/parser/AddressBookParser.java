@@ -18,7 +18,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.meeting.CancelAllCommand;
+import seedu.address.logic.commands.meeting.CancelCommand;
+import seedu.address.logic.commands.meeting.MeetCommand;
+import seedu.address.logic.commands.meeting.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meeting.CancelCommandParser;
+import seedu.address.logic.parser.meeting.MeetCommandParser;
+import seedu.address.logic.parser.meeting.UpdateCommandParser;
 
 /**
  * Parses user input entered from the PersonList screen.
@@ -50,19 +57,31 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case MeetCommand.COMMAND_WORD:
+            return new MeetCommandParser().parse(arguments);
+
         case BackCommand.COMMAND_WORD:
 
         case EditCommand.COMMAND_WORD:
             throw new ParseException(MESSAGE_INVALID_VIEW);
 
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case CancelCommand.COMMAND_WORD:
+            return new CancelCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case CancelAllCommand.COMMAND_WORD:
+            return new CancelAllCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

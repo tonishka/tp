@@ -13,6 +13,7 @@ public class ClearCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, true, null);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false,
+                true, false, null);
     }
 }

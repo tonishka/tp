@@ -2,11 +2,12 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons": [
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Alice Pauline",
       "company": "Tesla",
       "jobTitle": "CEO",
       "numbers": {
-        "": "94351253"
+        "Phone #1": "94351253"
       },
       "emails": {
         "business": "alice@example.com"
@@ -22,17 +23,18 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Benson Meier",
       "company": "Apple",
       "jobTitle": "Accountant",
       "numbers": {
-        "": "98765432"
+        "Phone #1": "98765432"
       },
       "emails": {
-        "": "johnd@example.com"
+        "Email #1": "johnd@example.com"
       },
       "addresses": {
-        "": "311, Clementi Ave 2, #02-25"
+        "Address #1": "311, Clementi Ave 2, #02-25"
       },
       "pronouns": [
         "him"
@@ -43,6 +45,7 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Carl Kurz",
       "company": "Samsung",
       "jobTitle": "Data Analyst",
@@ -54,17 +57,18 @@
         "work": "heinzWork@example.com"
       },
       "addresses": {
-        "": "wall street"
+        "Address #1": "wall street"
       },
       "pronouns": [],
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Daniel Meier",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
       "numbers": {
-        "": "87652533"
+        "Phone #1": "87652533"
       },
       "emails": {},
       "addresses": {},
@@ -74,49 +78,52 @@
       ]
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Elle Meyer",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
       "numbers": {
-        "": "9482224"
+        "Phone #1": "9482224"
       },
       "emails": {
-        "": "werner@example.com"
+        "Email #1": "werner@example.com"
       },
       "addresses": {
-        "": "michegan ave"
+        "Address #1": "michegan ave"
       },
       "pronouns": [],
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "Fiona Kunz",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
       "numbers": {
-        "": "9482427"
+        "Phone #1": "9482427"
       },
       "emails": {
-        "": "lydia@example.com"
+        "Email #1": "lydia@example.com"
       },
       "addresses": {
-        "": "little tokyo"
+        "Address #1": "little tokyo"
       },
       "pronouns": [],
       "tagged": []
     },
     {
+      "id" : "9ddd72fa-e32e-4ed7-b475-32d4b19f6b70",
       "name": "George Best",
       "company": "exampleCompany",
       "jobTitle": "exampleJob",
       "numbers": {
-        "": "9482442"
+        "Phone #1": "9482442"
       },
       "emails": {
-        "": "anna@example.com"
+        "Email #1": "anna@example.com"
       },
       "addresses": {
-        "": "4th street"
+        "Address #1": "4th street"
       },
       "pronouns": [],
       "tagged": []

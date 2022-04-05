@@ -1,16 +1,24 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
+import seedu.address.model.meeting.Agenda;
+import seedu.address.model.meeting.MeetingPlace;
+import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -25,9 +33,6 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -43,17 +48,100 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String userInput} into an {@code Optional<String>} and returns the label.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parse a series of indexes in a String into a Set of Index.
+     * index in the String can be spaced apart anyhow and if the index
+     * is invalid etc; Not a number, throws a MESSAGE_INVALID_INDEX
+     *
+     * @param indexes series of indexes to be parsed
+     * @return a set of Index
      */
-    public static Optional<String> parseLabel(String userInput) {
+    public static Set<Index> parseAttendees(String indexes) throws ParseException {
+        final Set<Index> indexSet = new HashSet<>();
+        String[] arrayOfIndexes = indexes.trim().split("\\s+"); //if indexes are randomly spaced apart
+
+        for (String index : arrayOfIndexes) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
+    }
+
+    /**
+     * Parses the meeting agenda information from the String to
+     * an MeetingAgenda object.
+     *
+     * @param agenda Meeting agenda
+     * @return MeetingAgenda
+     * @throws ParseException when agenda is invalid
+     */
+    public static Agenda parseAgenda(String agenda) throws ParseException {
+        requireNonNull(agenda);
+        String trimmedAgenda = agenda.trim();
+        if (!Agenda.isValidAgenda(trimmedAgenda)) {
+            throw new ParseException(Agenda.MESSAGE_CONSTRAINTS);
+        }
+        return new Agenda(trimmedAgenda);
+    }
+
+    /**
+     * Parses the meeting place information from the String to
+     * an MeetingPlace object
+     *
+     * @param meetingPlace MeetingPlace
+     * @return MeetingPlace
+     * @throws ParseException when meeting place is invalid
+     */
+    public static MeetingPlace parseMeetingPlace(String meetingPlace) throws ParseException {
+        requireNonNull(meetingPlace);
+        String trimmedMeetingPlace = meetingPlace.trim();
+        if (!MeetingPlace.isValidMeetingPlace(trimmedMeetingPlace)) {
+            throw new ParseException(MeetingPlace.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingPlace(trimmedMeetingPlace);
+    }
+
+    /**
+     * Parses the meeting time information from the String to
+     * an MeetingTime object
+     *
+     * @param meetingTime MeetingTime
+     * @return MeetingTime
+     * @throws ParseException when meeting time is invalid
+     */
+    public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
+        requireNonNull(meetingTime);
+        String trimmedMeetingTime = meetingTime.trim();
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
+            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
+            if (mt.isExpiredMeetingTime()) {
+                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+            }
+            return new MeetingTime(meetingTimeFormatted);
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code String userInput} into an {@code Label}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the {@code trimmedLabel} is invalid.
+     */
+    public static Label parseLabel(String userInput) throws ParseException {
         requireNonNull(userInput);
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.contains(" l/")) {
-            String[] inputWithTag = trimmedUserInput.split(" l/");
-            return Optional.of(inputWithTag[1].trim());
+            String[] inputWithTag = trimmedUserInput.split(" l/", 2);
+            String trimmedLabel = inputWithTag[1].trim();
+            if (!Label.isValidLabel(trimmedLabel)) {
+                throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+            }
+            return new Label(trimmedLabel, false);
         } else {
-            return Optional.empty();
+            return new Label(userInput, true);
         }
     }
 
@@ -82,7 +170,7 @@ public class ParserUtil {
         requireNonNull(company);
         String trimmedCompany = company.trim();
         if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
     }
@@ -97,7 +185,7 @@ public class ParserUtil {
         requireNonNull(jobTitle);
         String trimmedJobTitle = jobTitle.trim();
         if (!JobTitle.isValidJobTitle(trimmedJobTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         return new JobTitle(trimmedJobTitle);
     }
@@ -121,20 +209,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> addresses} into pairs of {@code Address} and its label.
+     * Parses a collection of {@code Collection<String> addresses} into pairs of {@code Address} and its {@code Label}.
      * The Address object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given address is invalid.
+     * @throws ParseException if the given address or label is invalid.
      */
-    public static HashMap<String, Address> parseAddresses(Collection<String> addresses) throws ParseException {
+    public static HashMap<Label, Address> parseAddresses(Collection<String> addresses) throws ParseException {
         requireNonNull(addresses);
-        final HashMap<String, Address> addressesMap = new HashMap<>();
+        final HashMap<Label, Address> addressesMap = new HashMap<>();
         for (String address : addresses) {
             Address parsedAddress = parseAddress(address);
-            // Helps in manual testing:
-            // String label = parseLabel(address).orElseGet(() -> "Address #" + parsedAddress.hashCode());
-            String label = parseLabel(address).orElseGet(() -> "");
+            Label label = parseLabel(address);
             addressesMap.put(label, parsedAddress);
         }
         return addressesMap;
@@ -159,18 +245,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> numbers} into pairs of {@code Phone} and its label.
+     * Parses a collection of {@code Collection<String> numbers} into pairs of {@code Phone} and its {@code Label}.
      * The Phone object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given phone is invalid.
+     * @throws ParseException if the given phone or label is invalid.
      */
-    public static HashMap<String, Phone> parseNumbers(Collection<String> numbers) throws ParseException {
+    public static HashMap<Label, Phone> parseNumbers(Collection<String> numbers) throws ParseException {
         requireNonNull(numbers);
-        final HashMap<String, Phone> numbersMap = new HashMap<>();
+        final HashMap<Label, Phone> numbersMap = new HashMap<>();
         for (String phone : numbers) {
             Phone parsedPhone = parsePhone(phone);
-            String label = parseLabel(phone).orElseGet(() -> "");
+            Label label = parseLabel(phone);
             numbersMap.put(label, parsedPhone);
         }
         return numbersMap;
@@ -195,18 +281,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a collection of {@code Collection<String> emails} into pairs of {@code Email} and its label.
+     * Parses a collection of {@code Collection<String> emails} into pairs of {@code Email} and its {@code Label}.
      * The Email object-label pairs are then added into a HashMap.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given email is invalid.
+     * @throws ParseException if the given email or label is invalid.
      */
-    public static HashMap<String, Email> parseEmails(Collection<String> emails) throws ParseException {
+    public static HashMap<Label, Email> parseEmails(Collection<String> emails) throws ParseException {
         requireNonNull(emails);
-        final HashMap<String, Email> emailMap = new HashMap<>();
+        final HashMap<Label, Email> emailMap = new HashMap<>();
         for (String email : emails) {
             Email parsedEmail = parseEmail(email);
-            String label = parseLabel(email).orElseGet(() -> "");
+            Label label = parseLabel(email);
             emailMap.put(label, parsedEmail);
         }
         return emailMap;

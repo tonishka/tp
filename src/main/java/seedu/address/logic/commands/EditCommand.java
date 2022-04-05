@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,12 +14,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.logic.LabelUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -34,20 +37,20 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the newly added person "
+            + " or an existing person being viewed in the displayed contact details list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters (Any Order):"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "%1$s's information has been updated";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final EditPersonDescriptor editPersonDescriptor;
@@ -72,13 +75,15 @@ public class EditCommand extends Command {
         Person editedPerson = createUpdatedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false,
-                false, true, false, editedPerson);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson.getName().fullName),
+                false, false, false, true, false, false,
+                editedPerson);
     }
 
     /**
@@ -91,6 +96,7 @@ public class EditCommand extends Command {
     public static Person createUpdatedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(personToEdit);
 
+        Id id = personToEdit.getId();
         Name updatedName = editPersonDescriptor.getName()
                 .orElse(personToEdit.getName());
         Company updatedCompany = editPersonDescriptor.getCompany()
@@ -99,14 +105,17 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getJobTitle().orElse(null));
 
         //New HashMaps are created to remove Unmodifiable Map's limitation
-        Map<String, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
+        Map<Label, Phone> updatedPhones = new HashMap<>(personToEdit.getNumbers());
         updatedPhones.putAll(editPersonDescriptor.getNumbers().orElse(new HashMap<>()));
+        updatedPhones = LabelUtil.replacePhonePlaceholders(updatedPhones);
 
-        Map<String, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
+        Map<Label, Email> updatedEmails = new HashMap<>(personToEdit.getEmails());
         updatedEmails.putAll(editPersonDescriptor.getEmails().orElse(new HashMap<>()));
+        updatedEmails = LabelUtil.replaceEmailPlaceholders(updatedEmails);
 
-        Map<String, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
+        Map<Label, Address> updatedAddresses = new HashMap<>(personToEdit.getAddresses());
         updatedAddresses.putAll(editPersonDescriptor.getAddresses().orElse(new HashMap<>()));
+        updatedAddresses = LabelUtil.replaceAddressPlaceholders(updatedAddresses);
 
         Set<Pronoun> updatedPronouns = new HashSet<>(personToEdit.getPronouns());
         updatedPronouns.addAll(editPersonDescriptor.getPronouns().orElse(new HashSet<>()));
@@ -114,7 +123,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
         updatedTags.addAll(editPersonDescriptor.getTags().orElse(new HashSet<>()));
 
-        return new Person(updatedName, updatedPhones, updatedEmails, updatedAddresses,
+        return new Person(id, updatedName, updatedPhones, updatedEmails, updatedAddresses,
                 updatedCompany, updatedJobTitle, updatedPronouns, updatedTags);
     }
 

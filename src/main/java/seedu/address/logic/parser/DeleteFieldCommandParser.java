@@ -21,6 +21,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.DeleteFieldCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Email;
@@ -54,6 +55,10 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
                     DeleteFieldCommand.MESSAGE_USAGE));
         }
 
+        if (argMultimap.isEmpty()) {
+            throw new ParseException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
+        }
+
         EditPersonDescriptor deleteFieldDescriptor = new EditPersonDescriptor(personToDeleteField);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -75,10 +80,16 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             requireNonNull(numbersToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
-                deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
+                deleteFieldDescriptor.setNumbers(new HashMap<>());
             } else {
-                Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
-                numbersToBeDeleted.forEach(numbers::remove);
+                Map<Label, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
+
+                for (String number : numbersToBeDeleted) {
+                    if (!Label.isValidLabel(number)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    numbers.remove(new Label(number, false));
+                }
                 deleteFieldDescriptor.setNumbers(numbers);
             }
         }
@@ -89,10 +100,16 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             requireNonNull(emailsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(emailsToBeDeleted)) {
-                deleteFieldDescriptor.setEmails(new HashMap<String, Email>());
+                deleteFieldDescriptor.setEmails(new HashMap<>());
             } else {
-                Map<String, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
-                emailsToBeDeleted.forEach(emails::remove);
+                Map<Label, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
+
+                for (String email : emailsToBeDeleted) {
+                    if (!Label.isValidLabel(email)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    emails.remove(new Label(email, false));
+                }
                 deleteFieldDescriptor.setEmails(emails);
             }
         }
@@ -103,11 +120,17 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             requireNonNull(addressesToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(addressesToBeDeleted)) {
-                deleteFieldDescriptor.setAddresses(new HashMap<String, Address>());
+                deleteFieldDescriptor.setAddresses(new HashMap<>());
             } else {
-                Map<String, Address> addresses =
+                Map<Label, Address> addresses =
                         new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
-                addressesToBeDeleted.forEach(addresses::remove);
+
+                for (String address : addressesToBeDeleted) {
+                    if (!Label.isValidLabel(address)) {
+                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                    }
+                    addresses.remove(new Label(address, false));
+                }
                 deleteFieldDescriptor.setAddresses(addresses);
             }
         }
@@ -118,7 +141,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             requireNonNull(tagsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(tagsToBeDeleted)) {
-                deleteFieldDescriptor.setTags(new HashSet<Tag>());
+                deleteFieldDescriptor.setTags(new HashSet<>());
             } else {
                 Set<Tag> tags = new HashSet<>(deleteFieldDescriptor.getTags().orElse(new HashSet<>()));
                 tagsToBeDeleted.forEach(tag -> tags.remove(new Tag(tag)));
@@ -132,7 +155,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             requireNonNull(pronounsToBeDeleted);
 
             if (CollectionUtil.hasEmptyString(pronounsToBeDeleted)) {
-                deleteFieldDescriptor.setPronouns(new HashSet<Pronoun>());
+                deleteFieldDescriptor.setPronouns(new HashSet<>());
             } else {
                 Set<Pronoun> pronouns = new HashSet<>(deleteFieldDescriptor.getPronouns().orElse(new HashSet<>()));
                 pronounsToBeDeleted.forEach(pronoun -> pronouns.remove(new Pronoun(pronoun)));

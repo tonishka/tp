@@ -19,6 +19,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.Email;
@@ -30,18 +31,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
-
-    /**
-     * Dummy Code
-     *
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public EditCommand parse(String args) throws ParseException {
-        //Dummy Code
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        return new EditCommand(editPersonDescriptor, Person.getEmptyPerson());
-    }
+public class EditCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -86,7 +76,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(editPersonDescriptor, personToEdit);
     }
 
-    private Optional<HashMap<String, Email>> parseEmailsForEdit(Collection<String> emails) throws ParseException {
+    private Optional<HashMap<Label, Email>> parseEmailsForEdit(Collection<String> emails) throws ParseException {
         assert emails != null;
 
         if (emails.isEmpty()) {
@@ -97,7 +87,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseEmails(emailCollection));
     }
 
-    private Optional<HashMap<String, Phone>> parseNumbersForEdit(Collection<String> numbers) throws ParseException {
+    private Optional<HashMap<Label, Phone>> parseNumbersForEdit(Collection<String> numbers) throws ParseException {
         assert numbers != null;
 
         if (numbers.isEmpty()) {
@@ -108,7 +98,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseNumbers(numberCollection));
     }
 
-    private Optional<HashMap<String, Address>> parseAddressesForEdit(Collection<String> addresses)
+    private Optional<HashMap<Label, Address>> parseAddressesForEdit(Collection<String> addresses)
             throws ParseException {
         assert addresses != null;
 

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DETAILS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.label.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.EditPersonDescriptor;
@@ -40,6 +41,7 @@ public class DeleteFieldCommand extends Command {
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Person after Field Delete: %1$s";
 
     public static final String MESSAGE_DELETE_NAME_FAILURE = "Name cannot be deleted";
+    public static final String MESSAGE_NOT_DELETED_FIELD = "At least one field to delete must be provided.";
 
     private final EditPersonDescriptor deleteFieldDescriptor;
     private final Person personToDeleteField;
@@ -65,13 +67,13 @@ public class DeleteFieldCommand extends Command {
         Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(deleteFieldDescriptor);
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS, updatedPerson), false, false,
-                false, true, false, updatedPerson);
+                false, true, false, false, updatedPerson);
     }
 
     @Override
@@ -99,13 +101,13 @@ public class DeleteFieldCommand extends Command {
         Company updatedCompany = deleteFieldDescriptor.getCompany().orElse(null);
         JobTitle updatedJobTitle = deleteFieldDescriptor.getJobTitle().orElse(null);
 
-        Map<String, Phone> updatedPhones =
+        Map<Label, Phone> updatedPhones =
                 new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
 
-        Map<String, Email> updatedEmails =
+        Map<Label, Email> updatedEmails =
                 new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
 
-        Map<String, Address> updatedAddresses =
+        Map<Label, Address> updatedAddresses =
                 new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
 
         Set<Pronoun> updatedPronouns =

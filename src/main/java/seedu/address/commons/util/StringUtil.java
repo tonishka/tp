@@ -6,8 +6,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+
+import seedu.address.model.label.Label;
 
 /**
  * Helper functions for handling strings.
@@ -44,9 +46,9 @@ public class StringUtil {
      * Returns true if one or more of entries in the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase(["ABc def", "pqr", "wst"], "abc") == true
-     *       containsWordIgnoreCase(["def", "aBc", "bnm"], "DEF") == true
-     *       containsWordIgnoreCase(["ABc def", "pqr"], "AB") == false //not a full word match
+     *       containsWordIgnoreCaseInSet(["ABc def", "pqr", "wst"], "abc") == true
+     *       containsWordIgnoreCaseInSet(["def", "aBc", "bnm"], "DEF") == true
+     *       containsWordIgnoreCaseInSet(["ABc def", "pqr"], "AB") == false //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -68,14 +70,14 @@ public class StringUtil {
      * Returns true if one or more entries in the value set of {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase({a="ABc def", b="pqr", c="wst"}, "abc") == true
-     *       containsWordIgnoreCase({d="def", e="aBc", f="bnm"}, "DEF") == true
-     *       containsWordIgnoreCase({g="ABc def", h="pqr"}, "AB") == false //not a full word match
+     *       containsWordIgnoreCaseInMap({a="ABc def", b="pqr", c="wst"}, "abc") == true
+     *       containsWordIgnoreCaseInMap({d="def", e="aBc", f="bnm"}, "DEF") == true
+     *       containsWordIgnoreCaseInMap({g="ABc def", h="pqr"}, "AB") == false //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCaseInMap(HashMap<String, ? extends Object> sentence, String word) {
+    public static boolean containsWordIgnoreCaseInMap(Map<Label, ? extends Object> sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
