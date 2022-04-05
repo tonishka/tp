@@ -40,7 +40,8 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 * **Contributions beyond the project team**: `to be added soon`
 
 
-* **Contributions to the Developer Guide (Extracts)**: `to be added soon`
+* **Contributions to the Developer Guide (Extracts)**:
+
 ```markdown
 ### Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
@@ -59,6 +60,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 
 * **Contributions to the User Guide (Extracts)**: 
+
 ```markdown
 #### 3.3.1 Creating a meeting: `meet`
 Create a meeting by specifying the following information:
