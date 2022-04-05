@@ -5,6 +5,8 @@ title: User Guide
 
 Reache is a desktop app that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would like to optimize their contact management by using a Command Line Interface (CLI).
 
+
+This guide will familiarize you with Reache's interface and features, and provide you all the information you need to begin using Reache.
 * Table of Contents
 {:toc}
 
@@ -82,9 +84,9 @@ Now that you are familiar with Reache's interface, we recommend visiting [Gettin
 If you are a first time user of Reache, we highly recommend following these two step-by-step tutorials to get familiar 
 with the product. 
 
-In the [contacts tutorial](#231-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
+In the [contacts tutorial](#231-tutorial-1-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
 
-In the [meetings tutorial](#232-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
+In the [meetings tutorial](#232-tutorial-2-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
 
 Experienced users should skip this section.
 
@@ -147,10 +149,10 @@ Now you are all set to manage your contacts and meetings using Reache!
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
-| <...> | Indicates the argument that the user should provide in that area |
+| <...> | Indicates the field that the user should provide in that area |
 
-- Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
-  e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
+- Words in `<UPPER_CASE>` are the fields to be supplied by the user. <br>
+  e.g. in `add n/<NAME>`, `NAME` is a field which can be used as `add n/Alex Dunphy`.
 
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
@@ -158,9 +160,9 @@ Now you are all set to manage your contacts and meetings using Reache!
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
-- Parameters can be in any order.
+- Fields can be in any order.
 
-- `l/` is used to label parameters. They are optional.
+- `l/` is used to label fields. They are optional.
 
 </div>
 

@@ -28,6 +28,8 @@ public class MeetingTimeTest {
         assertFalse(MeetingTime.isValidMeetingTime(invalidDate));
         String invalidTime = "01-01-2022 34:56"; // Time is invalid
         assertFalse(MeetingTime.isValidMeetingTime(invalidTime));
+        invalidDate = "31-02-2022 12:30";
+        assertFalse(MeetingTime.isValidMeetingTime(invalidDate));
 
         // valid time
         String validTime = "01-01-2022 12:30";
