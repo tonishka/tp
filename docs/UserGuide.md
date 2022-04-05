@@ -104,6 +104,7 @@ In this tutorial we will be adding your personal contact information to Reache.
 4. Begin by typing `add n/<YOUR NAME>` in the command box. Press enter/return. <br><br>
 5. You will be redirected to the **Contacts Details Window** as shown below: 
 ![Contact Details Window](images/Tutorial/contact_details_page.png)
+**Note**: `edit` commands can only be issued in the **Contacts Details Window.** <br><br>
 6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
 ![Company & Job Added](images/Tutorial/company_job_edited_screen.png)
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
@@ -114,7 +115,8 @@ In this tutorial we will be adding your personal contact information to Reache.
 10. Now type `back` in the command box to return to the main window. Your **Main Window** should look like this:
 ![Main Window](images/Tutorial/main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
-12. Use more `edit` commands to add/edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window.
+12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window. <br><br>
+13. As additional practice, try adding more contacts using `add` and `edit`. When you are done, type `list` to view all saved contacts.
 
 <hr>
 
