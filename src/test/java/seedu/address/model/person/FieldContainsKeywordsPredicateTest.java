@@ -27,8 +27,8 @@ public class FieldContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FieldContainsKeywordsPredicate firstPredicateCopy = new FieldContainsKeywordsPredicate(firstPredicateKeywordList,
-                "all");
+        FieldContainsKeywordsPredicate firstPredicateCopy = new FieldContainsKeywordsPredicate(
+                firstPredicateKeywordList, "all");
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -75,8 +75,8 @@ public class FieldContainsKeywordsPredicateTest {
     @Test
     public void test_companyContainsKeywords_returnsTrue() {
         // One keyword
-        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.
-                singletonList("Tesla"), "c");
+        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections
+                .singletonList("Tesla"), "c");
         assertTrue(predicate.test(new PersonBuilder().withCompany("Tesla").build()));
 
         // Multiple keywords
@@ -95,8 +95,8 @@ public class FieldContainsKeywordsPredicateTest {
     @Test
     public void test_jobContainsKeywords_returnsTrue() {
         // One keyword
-        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections.
-                singletonList("Engineer"), "j");
+        FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections
+                .singletonList("Engineer"), "j");
         assertTrue(predicate.test(new PersonBuilder().withJobTitle("Engineer").build()));
 
         // Multiple keywords
@@ -149,7 +149,7 @@ public class FieldContainsKeywordsPredicateTest {
     public void test_emailContainsKeywords_returnsTrue() {
         // One keyword
         FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections
-                .singletonList("test@gmail.com"),"e");
+                .singletonList("test@gmail.com"), "e");
         assertTrue(predicate.test(new PersonBuilder().withEmails("test@gmail.com").build()));
 
         // Multiple keywords
@@ -167,7 +167,7 @@ public class FieldContainsKeywordsPredicateTest {
     public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
         FieldContainsKeywordsPredicate predicate = new FieldContainsKeywordsPredicate(Collections
-                .singletonList("Alexandra"),"a");
+                .singletonList("Alexandra"), "a");
         assertTrue(predicate.test(new PersonBuilder().withAddresses("#123 Alexandra Rd").build()));
 
         // Multiple keywords
