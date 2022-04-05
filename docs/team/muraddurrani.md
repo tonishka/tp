@@ -16,14 +16,24 @@ meetings.
   * Added classes for new types of information to be associated with a person (i.e. `Company`, `JobTitle`, etc.), and integrated them into the Model component.
   * Implemented having a unique `Id` for a `Person`, which was used for all `Meeting` related functionality.
   * Added `Label`, which is used to label a `Person`'s contact information. In addition, implemented functionality for automatically creating default labels when none are provided by the user, and for ensuring that duplicate labels are not created in `LabelUtil`.
+  * Implemented `ContactDetailsParser`, which is responsible for parsing user input in the `ContactDetailsWindow`.
   * Created the `ContactDetailsWindow` and its UI components (`ContactDetailsPanel`, `ParticularsCard`, etc.), which are responsible for displaying all a person's contact details, and implemented the necessary navigation logic to change screens.
   * Created `MeetingListPanel` and `ContactMeetingsPanel` and their UI components, which are responsible for displaying all the user's meetings, and the meetings associated with a specific contact, respectively.
-  * Implemented `AddCommand` to add new contacts to the Address Book.
-  * Implemented `ViewCommand` to view a specific `Person`'s complete contact information.
-* **Contributions to the UG**: `to be added soon`
-* **Contributions to the DG**: `to be added soon`
-* **Contributions to the team-based tasks**: `to be added soon`
-* **Review/mentoring contributions**: `to be added soon`
-* **Contributions beyond the project team**: `to be added soon`
-* **Contributions to the Developer Guide (Extracts)**: `to be added soon`
-* **Contributions to the User Guide (Extracts)**: `to be added soon` 
+  * Implemented `AddCommand` to add a new `Person` to the Address Book.
+  * Implemented `ViewCommand` to navigate to the `ContactDetailsWindow` to view a specific `Person`'s complete contact information.
+    
+
+* **Contributions to the UG**:
+  * Added documentation for the features `edit`, `delete contact`, `clear`, `find`, `list`, and `view`.
+  * Added the Overview and Interface Guide sections as part of the Introduction.
+
+
+* **Contributions to the DG**:
+  * Added the table of user stories.
+  * Added implementation details of the `view` feature.
+
+
+* **Contributions to the team-based tasks**:
+  * Documented the purpose of the user guide in the UG.
+* **Review/mentoring contributions**:
+  * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
