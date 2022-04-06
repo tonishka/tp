@@ -15,11 +15,11 @@
 }
 
 #openButton:hover {
-    -fx-background-color: -lightblue;
+    /*-fx-background-color: -lightblue;*/
 }
 
 #openButton:armed {
-    -fx-background-color: -darkgrey;
+    -fx-background-color: -lightblue;
 }
 
 #helpMessageContainer {
