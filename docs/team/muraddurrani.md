@@ -37,17 +37,11 @@ meetings.
 
 
 * **Contributions to the team-based tasks**:
-<<<<<<< HEAD
   * Documented the purpose of the user guide in the UG: [#216](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/216)
   * Maintained issues in issue tracker, for example: [#51](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/51), [#53](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/53), [#54](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/54)
   * Updated Reache's responses to the user: [#124](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/124)
   
-
-=======
-  * Documented the purpose of the user guide in the UG.
   
-  
->>>>>>> ea2440ca7ddd5d9aecccbb406809f32e3a5b54dd
 * **Review/mentoring contributions**:
   * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
 
