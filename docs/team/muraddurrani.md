@@ -10,9 +10,8 @@ of contacts by providing an easy-to-use interface to store contacts and organize
 meetings.
 
 ## Summary of Contributions
+* **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=muraddurrani&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=muraddurrani&tabRepo=AY2122S2-CS2103T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
-  
 
 * **Enhancements Implemented**:
   * Added classes for new types of information to be associated with a person (i.e. `Company`, `JobTitle`, etc.), and integrated them into the Model component: [#30](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/30)
@@ -38,11 +37,17 @@ meetings.
 
 
 * **Contributions to the team-based tasks**:
+<<<<<<< HEAD
   * Documented the purpose of the user guide in the UG: [#216](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/216)
   * Maintained issues in issue tracker, for example: [#51](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/51), [#53](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/53), [#54](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/54)
   * Updated Reache's responses to the user: [#124](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/124)
   
 
+=======
+  * Documented the purpose of the user guide in the UG.
+  
+  
+>>>>>>> ea2440ca7ddd5d9aecccbb406809f32e3a5b54dd
 * **Review/mentoring contributions**:
   * PRs reviewed with meaningful comments: [#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33), [#57](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/57), [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
 
