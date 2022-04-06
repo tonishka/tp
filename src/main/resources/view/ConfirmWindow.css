@@ -1,19 +1,27 @@
+.root {
+    -darkgrey: #383838;
+    -yellow: #f2d16a;
+    -lightgrey: #e9e9e9;
+    -lightblue: #75c7fb;
+    -blue: #0048cd;
+}
+
 #confirm, #confirmMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: -darkgrey;
 }
 
 #confirm {
-    -fx-background-color: dimgray;
+    /*-fx-background-color: dimgray;*/
 }
 
 #confirm:hover {
-    -fx-background-color: gray;
+    -fx-background-color: -lightblue;
 }
 
 #confirm:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: -darkgrey;
 }
 
 #confirmMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: -lightgrey;
 }

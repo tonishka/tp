@@ -5,7 +5,9 @@ title: Nicholas Sun's Project Portfolio Page
 
 ### Project: Reache
 
-_Reache_ is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+_Reache_ is a desktop app that helps busy working professionals manage their large list
+of contacts by providing an easy-to-use interface to store contacts and organize
+meetings.
 
 ## Summary of Contribution
 * **Responsibilities**: In charge of updating `Parser` and `Commands`
@@ -13,6 +15,7 @@ _Reache_ is a desktop address book application used for teaching Software Engine
 * **Enhancements Implemented**:
   - Enhanced `ParserUtil` to parse new person fields: company, jobtitle, pronouns
   - Enhanced AB3's `ParserUtil` methods for emails, phone numbers and addresses to take in a set of values instead of just one
+  - Enhanced EditCommandParser class to fit v1.3
   - Added the command and parser classes for adding, editing, deleting and clearing meetings
   - Added more tests to increase coverage from ?? to ?? in PRs (...) (coming soon)
 * **Contributions to the UG**:
