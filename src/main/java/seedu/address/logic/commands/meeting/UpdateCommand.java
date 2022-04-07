@@ -2,6 +2,8 @@ package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
@@ -12,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -63,7 +64,7 @@ public class UpdateCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownMeetingList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Meeting meetingToEdit = lastShownMeetingList.get(targetIndex.getZeroBased());
@@ -75,7 +76,7 @@ public class UpdateCommand extends Command {
 
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS, meetingToEdit));
+        return new CommandResult(MESSAGE_UPDATE_MEETING_SUCCESS);
     }
 
     /**
@@ -98,7 +99,8 @@ public class UpdateCommand extends Command {
             updatedAttendees = new HashSet<>();
             for (Index index : updatedAttendeesIndexes) {
                 if (index.getZeroBased() >= lastShownPersonList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                    throw new CommandException(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                            index.getOneBased()));
                 } else { //only add if valid
                     updatedAttendees.add(lastShownPersonList.get(index.getZeroBased()).getId());
                 }
