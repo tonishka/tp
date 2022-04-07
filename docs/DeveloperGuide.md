@@ -5,11 +5,20 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+## **Introduction**
+
+Reache is a desktop application that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings.
+
+This Developer Guide is intended for the future software developers and designers of Reache, and serves to describe the software architecture of Reache and explain decisions made in the implementation of its features.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Reache, as well as its User Guide and Developer Guide, has been adapted from AddressBook Level-3 (AB3).
+  * [AB3 Repository](https://github.com/nus-cs2103-AY2122S2/tp)
+  * [AB3 Product Website](https://se-education.org/addressbook-level3/)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)    
 
 --------------------------------------------------------------------------------------------------------------------
 
