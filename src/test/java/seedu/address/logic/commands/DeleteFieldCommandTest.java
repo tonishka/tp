@@ -28,56 +28,23 @@ public class DeleteFieldCommandTest {
 
     @Test
     public void execute_deleteSingleFieldUnfilteredList_success() {
-        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0)).withoutJobTitle().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptor(fieldsDeletedPerson);
-        Person personToDeleteFields = model.getFilteredPersonList().get(0);
-        DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(descriptor, personToDeleteFields);
-
-        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(descriptor);
-
-        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_FIELD_SUCCESS,
-                updatedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new MeetingBook(model.getMeetingBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);
-        assertCommandSuccess(deleteFieldCommand, model, expectedMessage, expectedModel);
+        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0))
+                .withoutJobTitle().build();
+        testDeleteFieldCommandSuccess(fieldsDeletedPerson);
     }
 
     @Test
     public void execute_deleteAllValuesInMapUnfilteredList_success() {
-        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0)).withoutEmails().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptor(fieldsDeletedPerson);
-        Person personToDeleteFields = model.getFilteredPersonList().get(0);
-        DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(descriptor, personToDeleteFields);
-
-        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(descriptor);
-
-        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_FIELD_SUCCESS,
-                updatedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new MeetingBook(model.getMeetingBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);
-        assertCommandSuccess(deleteFieldCommand, model, expectedMessage, expectedModel);
+        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0))
+                .withoutEmails().build();
+        testDeleteFieldCommandSuccess(fieldsDeletedPerson);
     }
 
     @Test
     public void execute_deleteSomeValuesInMapUnfilteredList_success() {
-        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0)).withEmails().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptor(fieldsDeletedPerson);
-        Person personToDeleteFields = model.getFilteredPersonList().get(0);
-        DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(descriptor, personToDeleteFields);
-
-        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(descriptor);
-
-        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_FIELD_SUCCESS,
-                updatedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new MeetingBook(model.getMeetingBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);
-        assertCommandSuccess(deleteFieldCommand, model, expectedMessage, expectedModel);
+        Person fieldsDeletedPerson = new PersonBuilder(model.getFilteredPersonList().get(0))
+                .withEmails().build();
+        testDeleteFieldCommandSuccess(fieldsDeletedPerson);
     }
 
     @Test
@@ -102,4 +69,19 @@ public class DeleteFieldCommandTest {
         assertNotEquals(standardCommand, new DeleteFieldCommand(DESC_BOB, Person.getEmptyPerson()));
     }
 
+    public void testDeleteFieldCommandSuccess(Person fieldsDeletedPerson) {
+        EditPersonDescriptor descriptor = new EditPersonDescriptor(fieldsDeletedPerson);
+        Person personToDeleteFields = model.getFilteredPersonList().get(0);
+        DeleteFieldCommand deleteFieldCommand = new DeleteFieldCommand(descriptor, personToDeleteFields);
+
+        Person updatedPerson = DeleteFieldCommand.createUpdatedPerson(descriptor);
+
+        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_FIELD_SUCCESS,
+                updatedPerson);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), updatedPerson);
+        assertCommandSuccess(deleteFieldCommand, model, expectedMessage, expectedModel);
+    }
 }
