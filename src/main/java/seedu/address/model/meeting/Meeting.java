@@ -86,10 +86,7 @@ public class Meeting implements Comparable<Meeting> {
         }
 
         return otherMeeting != null
-                && otherMeeting.getAgenda().equals(getAgenda())
-                && otherMeeting.getTime().equals(getTime())
-                && otherMeeting.getPlace().equals(getPlace())
-                && otherMeeting.getAttendees().equals(getAttendees());
+                && otherMeeting.getTime().equals(getTime());
     }
 
     public boolean contains(Id attendee) {

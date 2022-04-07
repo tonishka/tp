@@ -264,19 +264,21 @@ The following sequence diagram shows how the view feature works:
 * **Alternative 1:** Display all contact information in the person list screen.
   * Pros:
     * Easy to implement
-    * Does not require the user to navigate to a new screen, which speeds up program use
+    * Requires fewer commands from the user as they do not need to navigate to a new screen to view a contact's information
   * Cons:
-    * Clutters the person list screen with a lot of information for each person
+    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the person list screen would add a lot of clutter
     
 * **Alternative 2 (current choice):** Navigate to a new screen to for contact information
   * Pros:
     * Greatly reduces clutter in the person list screen
-    * Reduces the size of the person list, making it easier to scroll through
+    * Reduces the length of the person list, making it easier and faster to scroll through
   * Cons:
-    * Difficult to implement
-    * Slower program use due to the addition of an additional navigation step
+    * More difficult to implement
+    * Requires an additional command from the user to both view a contact's information and return to the person list after
     
-We chose alternative 2 because its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step.
+We chose alternative 2 for two reasons:
+* Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
+* Given the quantity of information a contact can have associated with it, having to scroll through a cluttered and much longer list could take the user more time than simply navigating to a new page
 
 ### \[Proposed\] Undo/redo feature
 
