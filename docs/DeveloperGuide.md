@@ -9,7 +9,7 @@ title: Developer Guide
 
 Reache is a desktop application that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings.
 
-This Developer Guide is intended for the software developers and designers of Reache, and serves to describe the software architecture of Reache and explain decisions made in the implementation of its features.
+This Developer Guide is intended for the future software developers and designers of Reache, and serves to describe the software architecture of Reache and explain decisions made in the implementation of its features.
 
 --------------------------------------------------------------------------------------------------------------------
 
