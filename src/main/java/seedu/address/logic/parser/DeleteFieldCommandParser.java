@@ -108,7 +108,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         Map<Label, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
         requireNonNull(emailsToBeDeleted);
 
-            // delete all if no label provided
+        // delete all if no label provided
         if (CollectionUtil.hasEmptyString(emailsToBeDeleted)) {
             deleteFieldDescriptor.setEmails(new HashMap<>());
         } else { // delete each email with label provided
@@ -143,7 +143,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
 
     void parseTagsForDelete(Collection<String> tagsToBeDeleted,
                                  EditPersonDescriptor deleteFieldDescriptor) {
-        Set<Tag> tags =new HashSet<>(deleteFieldDescriptor.getTags().orElse(new HashSet<>()));
+        Set<Tag> tags = new HashSet<>(deleteFieldDescriptor.getTags().orElse(new HashSet<>()));
         requireNonNull(tagsToBeDeleted);
 
         // delete all if no value provided
@@ -157,7 +157,7 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
 
     void parsePronounsForDelete(Collection<String> pronounsToBeDeleted,
                             EditPersonDescriptor deleteFieldDescriptor) {
-        Set<Pronoun> pronouns =new HashSet<>(deleteFieldDescriptor.getPronouns().orElse(new HashSet<>()));
+        Set<Pronoun> pronouns = new HashSet<>(deleteFieldDescriptor.getPronouns().orElse(new HashSet<>()));
         requireNonNull(pronounsToBeDeleted);
 
         // delete all if no value provided

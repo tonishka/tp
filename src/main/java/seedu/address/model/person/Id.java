@@ -4,9 +4,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.UUID;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
-
 /**
  * Represents a Person's ID in the address book.
  * Guarantees: immutable
