@@ -5,6 +5,8 @@ title: User Guide
 
 Reache is a desktop app that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would like to optimize their contact management by using a Command Line Interface (CLI).
 
+
+This guide will familiarize you with Reache's interface and features, and provide you all the information you need to begin using Reache.
 * Table of Contents
 {:toc}
 
@@ -82,9 +84,9 @@ Now that you are familiar with Reache's interface, we recommend visiting [Gettin
 If you are a first time user of Reache, we highly recommend following these two step-by-step tutorials to get familiar 
 with the product. 
 
-In the [contacts tutorial](#231-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
+In the [contacts tutorial](#231-tutorial-1-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
 
-In the [meetings tutorial](#232-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
+In the [meetings tutorial](#232-tutorial-2-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
 
 Experienced users should skip this section.
 
@@ -102,6 +104,7 @@ In this tutorial we will be adding your personal contact information to Reache.
 4. Begin by typing `add n/<YOUR NAME>` in the command box. Press enter/return. <br><br>
 5. You will be redirected to the **Contacts Details Window** as shown below: 
 ![Contact Details Window](images/Tutorial/contact_details_page.png)
+**Note**: `edit` commands can only be issued in the **Contacts Details Window.** <br><br>
 6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
 ![Company & Job Added](images/Tutorial/company_job_edited_screen.png)
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
@@ -112,7 +115,8 @@ In this tutorial we will be adding your personal contact information to Reache.
 10. Now type `back` in the command box to return to the main window. Your **Main Window** should look like this:
 ![Main Window](images/Tutorial/main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
-12. Use more `edit` commands to add/edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window.
+12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window. <br><br>
+13. As additional practice, try adding more contacts using `add` and `edit`. When you are done, type `list` to view all saved contacts.
 
 <hr>
 
@@ -128,10 +132,15 @@ In this tutorial, you will be scheduling a meeting with yourself on your next bi
 2. Now, type `meet for/Birthday in/Office on/<YOUR BIRTHDAY IN DD-MM-YYYY> 00:01 with/1`. <br><br>
 3. You will see your newly created meeting in the right panel, like so: 
 ![New Meeting Created](images/Tutorial/new_meeting_created.png)
-4. Let's say you change your mind and want to cancel this meeting.
-5. Type `cancel 1`. The meeting will disappear from the panel, like so:
+4. Let's say you want to update your meeting to invite your best friend. Add their contact if you have not done so. <br><br>
+5. Type `list` to see a list of all you contacts. 
+![List View](images/Tutorial/list_view.png)
+As you can see, for this particular user, their best friend `Barry Ng` is at index position `2`. Similarly, find the position of yourself and your best friend. <br><br>
+6. Type `update <BIRTHDAY MEETING INDEX> with/<YOUR INDEX> <YOUR BEST FRIEND'S INDEX>`. For example, this user would type `update 1 with/1 2`. The updated meeting panel should look like this: <br><br>
+![Updated Meeting](images/Tutorial/updated_meeting.png)
+7. Let's say you change your mind and want to cancel this meeting. <br><br>
+8. Type `cancel 1`. The meeting will disappear from the panel, like so:
 ![Cancelled Meeting](images/Tutorial/cancel_birthday.png)
-
 Now you are all set to manage your contacts and meetings using Reache!
 
 <hr>
@@ -147,10 +156,10 @@ Now you are all set to manage your contacts and meetings using Reache!
 | --- | --- | 
 | ... | Indicates that the preceding entry can be provided multiple times. |
 | / | Used to indicate a label for the preceding field. <br> Labels are optional and if not provided, a default label will be assigned. <br> E.g. `ph/ 12345678 l/personal` labels the given number as "personal". |
-| <...> | Indicates the argument that the user should provide in that area |
+| <...> | Indicates the field that the user should provide in that area |
 
-- Words in `<UPPER_CASE>` are the parameters to be supplied by the user. <br>
-  e.g. in `add n/<NAME>`, `NAME` is a parameter which can be used as `add n/Alex Dunphy`.
+- Words in `<UPPER_CASE>` are the fields to be supplied by the user. <br>
+  e.g. in `add n/<NAME>`, `NAME` is a field which can be used as `add n/Alex Dunphy`.
 
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
@@ -158,9 +167,9 @@ Now you are all set to manage your contacts and meetings using Reache!
 - Items with ... after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
-- Parameters can be in any order.
+- Fields can be in any order.
 
-- `l/` is used to label parameters. They are optional.
+- `l/` is used to label fields. They are optional.
 
 </div>
 
