@@ -32,7 +32,7 @@ public class DeleteFieldCommand extends Command {
     public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified field from the contact being displayed."
+            + ": Deletes the specified field from the contact being displayed. "
             + "If a label is provided, deletes information for only that label.\n"
             + "Parameters: FIELD [LABEL]\n"
             + "Example: " + COMMAND_WORD + " c/\n"
