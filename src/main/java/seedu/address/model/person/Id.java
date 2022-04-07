@@ -33,7 +33,6 @@ public class Id {
      * Constructs an {@code Id} from a predesignated {@code String} ID.
      *
      * @param id The designated ID.
-     * @throws IllegalValueException if the provided ID does not obey the UUID format.
      */
     public Id(String id) {
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
