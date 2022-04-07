@@ -105,23 +105,19 @@ public class ParserUtil {
      *
      * @param meetingTime MeetingTime
      * @return MeetingTime
-     * @throws ParseException when meeting time is invalid
+     * @throws ParseException when meeting time is in an invalid format or in the past
      */
     public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
         requireNonNull(meetingTime);
         String trimmedMeetingTime = meetingTime.trim();
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
-            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
-            if (mt.isExpiredMeetingTime()) {
-                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
-            }
-            return new MeetingTime(meetingTimeFormatted);
-        } catch (DateTimeParseException dateTimeParseException) {
+
+        if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+        if (!MeetingTime.isFutureMeetingTime(trimmedMeetingTime)) {
+            throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+        }
+        return new MeetingTime(trimmedMeetingTime);
     }
 
     /**

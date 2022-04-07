@@ -50,7 +50,7 @@ public class MeetingTime {
     /**
      * Returns true if a given meeting has expired.
      */
-    public boolean isFutureMeetingTime(String test) {
+    public static boolean isFutureMeetingTime(String test) {
         LocalDateTime time = formatTime(test);
         return time.isAfter(LocalDateTime.now());
     }
