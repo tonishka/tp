@@ -107,12 +107,6 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
     -fx-background-color: derive(-lightgrey, 20%);
-    -fx-border-radius: 5px;
-}
-
-.list-cell:filled {
-    /*-fx-border-insets: 4px;*/
-    -fx-border-color: derive(-lightgrey, 10%);
 }
 
 .list-cell:filled:even {
@@ -129,7 +123,6 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: -lightblue;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -236,14 +229,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(-lightgrey, 20%);
+    -fx-background-color: -blue;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-text-fill: -blue;
-    -fx-opacity: 0.9;
+    -fx-text-fill: white;
 }
 
 .menu .left-container {
