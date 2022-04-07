@@ -80,6 +80,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Company} of the {@code Person} that we are building to null.
+     */
+    public PersonBuilder withoutCompany() {
+        this.company = null;
+        return this;
+    }
+
+    /**
      * Sets the {@code JobTitle} of the {@code Person} that we are building.
      */
     public PersonBuilder withJobTitle(String jobTitle) {
@@ -88,10 +96,26 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code JobTitle} of the {@code Person} that we are building to null.
+     */
+    public PersonBuilder withoutJobTitle() {
+        this.jobTitle = null;
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Creates an empty {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withoutTags() {
+        this.tags = new HashSet<>();
         return this;
     }
 
@@ -124,6 +148,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmails(String... emails) {
         this.emails = SampleDataUtil.getEmailMap(emails);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Emails} of the {@code Person} that we are building to an empty map.
+     */
+    public PersonBuilder withoutEmails() {
+        this.emails = new HashMap<Label, Email>();
         return this;
     }
 

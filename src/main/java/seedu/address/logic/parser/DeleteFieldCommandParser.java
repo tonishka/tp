@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -30,12 +29,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
-public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
-    @Override
-    public DeleteFieldCommand parse(String userInput) throws ParseException {
-        throw new ParseException(MESSAGE_INVALID_VIEW);
-    }
-
+public class DeleteFieldCommandParser {
     /**
      * Parses the user input to delete desired fields.
      *
