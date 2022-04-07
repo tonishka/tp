@@ -19,6 +19,7 @@ public class Index {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
+
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
