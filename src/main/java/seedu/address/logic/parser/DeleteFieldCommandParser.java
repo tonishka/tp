@@ -56,7 +56,8 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         }
 
         if (argMultimap.isEmpty()) {
-            throw new ParseException(DeleteFieldCommand.MESSAGE_NO_PROVIDED_FIELD);
+            throw new ParseException(DeleteFieldCommand.MESSAGE_NO_PROVIDED_FIELD + "\n"
+                    + DeleteFieldCommand.MESSAGE_USAGE);
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

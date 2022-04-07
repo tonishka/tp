@@ -668,12 +668,10 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS:** Windows, MacOS, Linux
-* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
-* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
-* **'Default' mode:** Allows the user to view their list of contacts
-* **'Edit' mode:** Allows the user to edit contact details
-
-*{More to be added}*
+* **Busy working professionals:** Someone who has to manage a large number of 
+interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, 
+co-workers, clients, mentors, mentees
 
 --------------------------------------------------------------------------------------------------------------------
 
