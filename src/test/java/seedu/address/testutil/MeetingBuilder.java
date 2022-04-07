@@ -17,7 +17,7 @@ public class MeetingBuilder {
 
     public static final String DEFAULT_AGENDA = "Paper supply for Greendale College";
     public static final String DEFAULT_PLACE = "David's Office";
-    public static final String DEFAULT_TIME = "02-04-2022 13:30";
+    public static final String DEFAULT_TIME = "02-04-2023 13:30";
 
     private Agenda agenda;
     private MeetingPlace meetingPlace;
