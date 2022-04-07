@@ -52,7 +52,7 @@ public class JsonAdaptedPersonTest {
         assertEquals(BENSON, person.toModelType());
     }
 
-//@@author muraddurrani
+    //@@author muraddurrani
     @Test
     public void toModelType_invalidId_throwsIllegalValueException() {
         HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
@@ -71,7 +71,7 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
     }
 
-//@@author ckcherry23
+    //@@author ckcherry23
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
