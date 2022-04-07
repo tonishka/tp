@@ -3,9 +3,9 @@ package seedu.address.logic.parser.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.UpdateCommand;
@@ -26,8 +26,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ATTENDEES_INDEX, PREFIX_MEETING_TIME,
-                        PREFIX_MEETING_PLACE, PREFIX_MEETING_AGENDA);
+                ArgumentTokenizer.tokenize(args, PREFIX_ATTENDEES_INDEX, PREFIX_TIME,
+                        PREFIX_PLACE, PREFIX_AGENDA);
 
         Index index;
         try {
@@ -41,16 +41,16 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             editMeetingDescriptor.setAttendees(ParserUtil
                     .parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_AGENDA).isPresent()) {
-            editMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_MEETING_AGENDA).get()));
+        if (argMultimap.getValue(PREFIX_AGENDA).isPresent()) {
+            editMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_AGENDA).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             editMeetingDescriptor.setMeetingTime(ParserUtil
-                    .parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get()));
+                    .parseMeetingTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_PLACE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_PLACE).isPresent()) {
             editMeetingDescriptor.setMeetingPlace(ParserUtil
-                    .parseMeetingPlace(argMultimap.getValue(PREFIX_MEETING_PLACE).get()));
+                    .parseMeetingPlace(argMultimap.getValue(PREFIX_PLACE).get()));
         }
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {

@@ -2,9 +2,9 @@ package seedu.address.logic.parser.meeting;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -61,9 +61,9 @@ public class MeetCommandParser implements Parser<MeetCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
                         .tokenize(args,
-                                PREFIX_ATTENDEES_INDEX, PREFIX_MEETING_AGENDA, PREFIX_MEETING_PLACE,
-                                PREFIX_MEETING_TIME);
-        if (!checkAllPrefixPresent(argMultimap, PREFIX_MEETING_AGENDA, PREFIX_MEETING_TIME, PREFIX_MEETING_PLACE,
+                                PREFIX_ATTENDEES_INDEX, PREFIX_AGENDA, PREFIX_PLACE,
+                                PREFIX_TIME);
+        if (!checkAllPrefixPresent(argMultimap, PREFIX_AGENDA, PREFIX_TIME, PREFIX_PLACE,
                 PREFIX_ATTENDEES_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MeetCommand.MESSAGE_USAGE));
@@ -74,7 +74,7 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                     MeetCommand.INDEX_CANNOT_BE_EMPTY_MESSAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_MEETING_AGENDA).get().equals("")) {
+        if (argMultimap.getValue(PREFIX_AGENDA).get().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MeetCommand.AGENDA_CANNOT_BE_EMPTY_MESSAGE));
         }
@@ -82,9 +82,9 @@ public class MeetCommandParser implements Parser<MeetCommand> {
         Set<Index> indexes = ParserUtil.parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get());
         //return a Hashset of indexes and not a set of person since the model is only accessible inside the MeetCommand.
         //Inside the meet command is where the handling of out of bounds exceptions happens.
-        Agenda agenda = ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_MEETING_AGENDA).get());
-        MeetingPlace meetingPlace = ParserUtil.parseMeetingPlace(argMultimap.getValue(PREFIX_MEETING_PLACE).get());
-        MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
+        Agenda agenda = ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_AGENDA).get());
+        MeetingPlace meetingPlace = ParserUtil.parseMeetingPlace(argMultimap.getValue(PREFIX_PLACE).get());
+        MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_TIME).get());
 
         Meeting createdMeeting = new Meeting(agenda, meetingPlace, meetingTime, indexes, new HashSet<>());
         return new MeetCommand(createdMeeting);

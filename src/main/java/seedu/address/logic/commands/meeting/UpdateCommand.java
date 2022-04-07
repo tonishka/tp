@@ -5,9 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.HashSet;
@@ -35,9 +35,9 @@ public class UpdateCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ATTENDEES_INDEX + "LIST_OF_ATTENDEES_INDEX] "
-            + "[" + PREFIX_MEETING_AGENDA + "AGENDA] "
-            + "[" + PREFIX_MEETING_TIME + "MEETING_TIME] "
-            + "[" + PREFIX_MEETING_PLACE + "MEETING PLACE] ";
+            + "[" + PREFIX_AGENDA + "AGENDA] "
+            + "[" + PREFIX_TIME + "MEETING_TIME] "
+            + "[" + PREFIX_PLACE + "MEETING PLACE] ";
 
     public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting has been updated";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
