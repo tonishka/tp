@@ -46,6 +46,31 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
+    private static final HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
+    private static final HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
+    private static final HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
+
+    private static final HashMap<String, JsonAdaptedPhone> invalidNumbers = new HashMap<>();
+    private static final HashMap<String, JsonAdaptedEmail> invalidEmails = new HashMap<>();
+    private static final HashMap<String, JsonAdaptedAddress> invalidAddresses = new HashMap<>();
+    private static final List<JsonAdaptedPronoun> invalidPronouns = new ArrayList<>(VALID_PRONOUNS);
+    private static final List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+
+    static {
+        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
+        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
+        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
+
+        invalidNumbers.put("phone#1", new JsonAdaptedPhone(INVALID_PHONE));
+        invalidEmails.put("email#1", new JsonAdaptedEmail(INVALID_EMAIL));
+        invalidAddresses.put("address#1", new JsonAdaptedAddress(INVALID_ADDRESS));
+        invalidPronouns.add(new JsonAdaptedPronoun(INVALID_PRONOUN));
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+    }
+
+
+
+
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
@@ -55,15 +80,6 @@ public class JsonAdaptedPersonTest {
     //@@author muraddurrani
     @Test
     public void toModelType_invalidId_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(INVALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE, validNumbers,
                         validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
@@ -74,15 +90,6 @@ public class JsonAdaptedPersonTest {
     //@@author ckcherry23
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_ID, INVALID_NAME, VALID_COMPANY, VALID_JOBTITLE, validNumbers,
                         validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
@@ -92,15 +99,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, null, VALID_COMPANY, VALID_JOBTITLE,
                 validNumbers, validEmails,
                 validAddresses, VALID_PRONOUNS, VALID_TAGS);
@@ -110,15 +108,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidCompany_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_ID, VALID_NAME, INVALID_COMPANY, VALID_JOBTITLE, validNumbers,
                         validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
@@ -128,15 +117,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidJobTitle_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, INVALID_JOBTITLE, validNumbers,
                         validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
@@ -147,15 +127,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> invalidNumbers = new HashMap<>();
-        invalidNumbers.put("phone#1", new JsonAdaptedPhone(INVALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                 invalidNumbers, validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
@@ -164,15 +135,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> invalidEmails = new HashMap<>();
-        invalidEmails.put("email#1", new JsonAdaptedEmail(INVALID_EMAIL));
-
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                 validNumbers, invalidEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
@@ -181,15 +143,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        HashMap<String, JsonAdaptedAddress> invalidAddresses = new HashMap<>();
-        invalidAddresses.put("address#1", new JsonAdaptedAddress(INVALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                 validNumbers, validEmails, invalidAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
@@ -198,18 +151,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidPronouns_throwsIllegalValueException() {
-        List<JsonAdaptedPronoun> invalidPronouns = new ArrayList<>(VALID_PRONOUNS);
-        invalidPronouns.add(new JsonAdaptedPronoun(INVALID_PRONOUN));
-
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                         validNumbers, validEmails, validAddresses, invalidPronouns, VALID_TAGS);
@@ -218,18 +159,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-
-        HashMap<String, JsonAdaptedAddress> validAddresses = new HashMap<>();
-        validAddresses.put("address#1", new JsonAdaptedAddress(VALID_ADDRESS));
-
-        HashMap<String, JsonAdaptedPhone> validNumbers = new HashMap<>();
-        validNumbers.put("phone#1", new JsonAdaptedPhone(VALID_PHONE));
-
-        HashMap<String, JsonAdaptedEmail> validEmails = new HashMap<>();
-        validEmails.put("email#1", new JsonAdaptedEmail(VALID_EMAIL));
-
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE,
                         validNumbers, validEmails, validAddresses, VALID_PRONOUNS, invalidTags);
