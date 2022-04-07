@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.meeting.MeetingsList;
 
 /**
@@ -103,7 +104,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
 
     @Override
     public ObservableList<Meeting> getMeetingList() {
-        return meetings.asUnmodifiableObservableList().filtered(m -> !m.getTime().isExpiredMeetingTime());
+        return meetings.asUnmodifiableObservableList()
+                .filtered(m -> MeetingTime.isFutureMeetingTime(m.getTime().dateTime));
     }
 
     @Override

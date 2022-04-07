@@ -195,9 +195,7 @@ public class ParserUtilTest {
     @Test
     public void parseMeetingTime_validValueWithWhitespace_returnsTrimmedMeetingTime() throws Exception {
         String meetingTimeWithWhitespace = WHITESPACE + VALID_MEETING_TIME_2 + WHITESPACE;
-        LocalDateTime meetingTimeFormatted = LocalDateTime.parse(VALID_MEETING_TIME_2,
-                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-        MeetingTime expectedTime = new MeetingTime(meetingTimeFormatted);
+        MeetingTime expectedTime = new MeetingTime(VALID_MEETING_TIME_2);
         assertEquals(expectedTime, ParserUtil.parseMeetingTime(meetingTimeWithWhitespace));
     }
 

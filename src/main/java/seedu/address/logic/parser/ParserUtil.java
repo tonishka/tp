@@ -114,7 +114,8 @@ public class ParserUtil {
         if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
-        if (!MeetingTime.isFutureMeetingTime(trimmedMeetingTime)) {
+        LocalDateTime parsedMeetingTime = MeetingTime.formatTime(trimmedMeetingTime);
+        if (!MeetingTime.isFutureMeetingTime(parsedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
         }
         return new MeetingTime(trimmedMeetingTime);

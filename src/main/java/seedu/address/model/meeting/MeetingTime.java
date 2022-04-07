@@ -31,7 +31,8 @@ public class MeetingTime {
     public MeetingTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidMeetingTime(dateTime), MESSAGE_CONSTRAINTS);
-        checkArgument(isFutureMeetingTime(dateTime), MESSAGE_FUTURE_CONSTRAINT);
+        LocalDateTime parsedTime = formatTime(dateTime);
+        checkArgument(isFutureMeetingTime(parsedTime), MESSAGE_FUTURE_CONSTRAINT);
         this.dateTime = formatTime(dateTime);
     }
 
@@ -50,9 +51,8 @@ public class MeetingTime {
     /**
      * Returns true if a given meeting has expired.
      */
-    public static boolean isFutureMeetingTime(String test) {
-        LocalDateTime time = formatTime(test);
-        return time.isAfter(LocalDateTime.now());
+    public static boolean isFutureMeetingTime(LocalDateTime test) {
+        return test.isAfter(LocalDateTime.now());
     }
 
     public static LocalDateTime formatTime(String dateTime) {
