@@ -51,9 +51,9 @@ meetings.
 
 
 * **Contributions to the Developer Guide (Extracts)**:
+
 ```markdown
 ### View person feature
-
 The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, 
 `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
@@ -69,10 +69,13 @@ Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with 
 
 The following sequence diagram shows how the view feature works:
 
-![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
+![ViewSequenceDiagram](/images/ViewCommandSequenceDiagram.png)
 ```
+
+
 * **Contributions to the User Guide (Extracts)**:
-```markdown  
+
+```markdown
 Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
 
 ![Main Window](/images/MainWindow.png)
