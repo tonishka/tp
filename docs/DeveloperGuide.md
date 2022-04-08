@@ -82,7 +82,18 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that comprises several UI parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The specific UI parts that make up the `MainWindow` depend on which page of the application is being displayed. Reache contains two pages:
+* **The Home Page**: Displays lists of the user's contacts and the user's upcoming meetings. The below diagram depicts the `MainWindow` when the Home Page is being displayed.
+
+![Home Page UI Parts](images/HomePageDiagram.png)
+
+* **The Contact Details Page**: Displays the details of a specific contact, as well as upcoming meetings associated with that contact. The below diagram depicts the `MainWindow` when the Contact Details page is being displayed.
+
+![Contact Details Page UI Parts](images/ContactDetailsPageDiagram.png)
+
+Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details page is displayed.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 

@@ -49,6 +49,7 @@ MeetingListPanel --|> UiPart
 ContactMeetingsPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+MainWindow --|> UiPart
 
 PersonListPanel ..> Model
 MeetingListPanel ..> Model
@@ -68,4 +69,6 @@ StatusBarFooter -[hidden]down- PersonListPanel
 PersonListPanel -[hidden]down- ContactDetailsPanel
 ContactDetailsPanel -[hidden]down- MeetingListPanel
 MeetingListPanel -[hidden]down- ContactMeetingsPanel
+
+MainWindow -[hidden]-|> UiPart
 @enduml
