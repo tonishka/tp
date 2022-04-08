@@ -270,7 +270,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ### View person feature
 
-The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the Main Window, and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
 * `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
 
@@ -278,7 +278,7 @@ Given below is an example usage scenario and how the view mechanism behaves at e
 
 Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
-Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
 Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
 
@@ -402,7 +402,7 @@ The find command is used to search for people based on certain criteria.
 
 Below is a sequence diagram summarising the mechanism of find command:
 
-![FindSequencdDiagaram](images/FindSequenceDiagram.png)
+![FindSequenceDiagaram](images/FindSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for a find command:
 
