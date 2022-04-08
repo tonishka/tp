@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.meeting.Agenda;
 import seedu.address.model.meeting.EditMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
 
 /**
@@ -38,5 +39,25 @@ public class EditMeetingDescriptorBuilder {
     public EditMeetingDescriptorBuilder withAgenda(String agenda) {
         descriptor.setAgenda(new Agenda(agenda));
         return this;
+    }
+
+    /**
+     * Sets the {@code MeetingTime} of the {@code EditPMeetingDescriptor} that we are building.
+     */
+    public EditMeetingDescriptorBuilder withTime(String meetingTime) {
+        descriptor.setMeetingTime(new MeetingTime(meetingTime));
+        return this;
+    }
+
+    /**
+     * Sets the {@code MeetingPlace} of the {@code EditPMeetingDescriptor} that we are building.
+     */
+    public EditMeetingDescriptorBuilder withPlace(String meetingPlace) {
+        descriptor.setMeetingPlace(new MeetingPlace(meetingPlace));
+        return this;
+    }
+
+    public EditMeetingDescriptor build() {
+        return descriptor;
     }
 }
