@@ -251,7 +251,7 @@ This action is irreversible.
 _Reache_ data is saved as JSON files at `/data/addressbook.json` and `/data/meetingbook.json`. Advanced users are welcome to update data directly by editing the data file.
    
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
+If your changes to any data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
 </div>
 
 <br>
