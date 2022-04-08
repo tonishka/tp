@@ -79,7 +79,7 @@ public class CommandParserTestUtil {
 
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
-     * equals to {@code expectedMessage}. Only for editCommandParser.
+     * equals to {@code expectedMessage}. Only for deleteFieldCommandParser.
      */
     public static void assertParseFailure(DeleteFieldCommandParser parser, String userInput, String expectedMessage) {
         try {
