@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.ParserUtil.parseLabel;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -195,9 +193,7 @@ public class ParserUtilTest {
     @Test
     public void parseMeetingTime_validValueWithWhitespace_returnsTrimmedMeetingTime() throws Exception {
         String meetingTimeWithWhitespace = WHITESPACE + VALID_MEETING_TIME_2 + WHITESPACE;
-        LocalDateTime meetingTimeFormatted = LocalDateTime.parse(VALID_MEETING_TIME_2,
-                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
-        MeetingTime expectedTime = new MeetingTime(meetingTimeFormatted);
+        MeetingTime expectedTime = new MeetingTime(VALID_MEETING_TIME_2);
         assertEquals(expectedTime, ParserUtil.parseMeetingTime(meetingTimeWithWhitespace));
     }
 

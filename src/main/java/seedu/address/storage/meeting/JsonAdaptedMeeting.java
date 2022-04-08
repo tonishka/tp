@@ -81,7 +81,7 @@ class JsonAdaptedMeeting {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
 
-        final MeetingTime modelTime = meetingTime != null ? new MeetingTime(MeetingTime.formatTime(meetingTime)) : null;
+        final MeetingTime modelTime = meetingTime != null ? new MeetingTime(meetingTime) : null;
 
         final List<Id> attendeeIds = new ArrayList<>();
         for (JsonAdaptedAttendee attendee : attendees) {
