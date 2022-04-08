@@ -20,10 +20,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Agenda;
-import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
