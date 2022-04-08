@@ -4,6 +4,7 @@
 box UI UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
 participant ":ContactDetailsPanel" as ContactDetailsPanel UI_COLOR
+participant ":ContactMeetingsPanel" as ContactMeetingsPanel UI_COLOR
 end box
 
 box Logic LOGIC_COLOR_T1
@@ -49,6 +50,13 @@ activate ContactDetailsPanel
 
 ContactDetailsPanel --> MainWindow
 deactivate ContactDetailsPanel
+
+create ContactMeetingsPanel
+MainWindow -> ContactMeetingsPanel
+activate ContactMeetingsPanel
+
+ContactMeetingsPanel --> MainWindow
+deactivate ContactMeetingsPanel
 
 MainWindow --> MainWindow
 deactivate MainWindow

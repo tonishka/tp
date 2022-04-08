@@ -279,11 +279,11 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### View person feature
+### View feature
 
-The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the Main Window, and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
@@ -291,7 +291,7 @@ Step 1. From the person list window, the user executes `view 2` to view the cont
 
 Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
 The following sequence diagram shows how the view feature works:
 
