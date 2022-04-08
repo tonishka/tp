@@ -54,18 +54,23 @@ meetings.
 
 ```markdown
 ### View person feature
-The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, 
-`ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The view feature allows the user to view the full contact details of a specified person in the address book. The command 
+is only available from the person list window,and is thus facilitated by the `AddressBookParser`,`ViewCommandParser`,
+and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which 
+  displays the full details of the `Person` provided as argument.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the 
+address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
-Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the 
+`MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument,
+which constructs and displays the respective `ContactDetailsPanel`.
 
 The following sequence diagram shows how the view feature works:
 
@@ -76,7 +81,8 @@ The following sequence diagram shows how the view feature works:
 * **Contributions to the User Guide (Extracts)**:
 
 ```markdown
-Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
+Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact
+list as well as all upcoming meetings you have planned.
 
 ![Main Window](/images/MainWindow.png)
 
@@ -84,6 +90,8 @@ The Main Window contains the following elements:
 1. **Menu Bar**: Contains Reache's options and help.
 2. **Command Box**: A dialog box from which you can type commands to use Reache.
 3. **Result Display**: When you use the Command Box to enter a command, Reache will show the result of that command here.
-4. **Contact List**: A list of all your contacts, sorted alphabetically. Each contact has a corresponding index number, which you can use to refer to that contact in commands.
-5. **Meeting List**: A list of all your upcoming meetings, sorted chronologically. As with contacts, each meeting has a corresponding index number for use in commands.
+4. **Contact List**: A list of all your contacts, sorted alphabetically. Each contact has a corresponding index number, 
+   which you can use to refer to that contact in commands.
+5. **Meeting List**: A list of all your upcoming meetings, sorted chronologically. As with contacts, each meeting has a 
+   corresponding index number for use in commands.
 ```
