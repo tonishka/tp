@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,6 +13,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.label.Label;
 import seedu.address.model.tag.Tag;
 
+/* This class was refactored from EditCommand into a separate file for reuse in multiple classes by @ckcherry23.
+   It was slightly modified by the team members of 'Reache' (AY2122S2-CS2103T-W12-4) to suit our product */
+
+//@@author
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -47,6 +53,8 @@ public class EditPersonDescriptor {
      * Person constructor.
      */
     public EditPersonDescriptor(Person toCopy) {
+        requireNonNull(toCopy);
+
         setName(toCopy.getName());
         setNumbers(toCopy.getNumbers());
         setEmails(toCopy.getEmails());
