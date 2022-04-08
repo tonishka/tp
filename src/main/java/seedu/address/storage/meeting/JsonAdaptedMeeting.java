@@ -87,7 +87,7 @@ class JsonAdaptedMeeting {
 
         final Agenda modelAgenda = new Agenda(agenda);
         final MeetingPlace modelPlace = new MeetingPlace(meetingPlace);
-        final MeetingTime modelTime = new MeetingTime(MeetingTime.formatTime(meetingTime));
+        final MeetingTime modelTime = new MeetingTime(meetingTime);
 
         final List<Id> attendeeIds = new ArrayList<>();
         for (JsonAdaptedAttendee attendee : attendees) {

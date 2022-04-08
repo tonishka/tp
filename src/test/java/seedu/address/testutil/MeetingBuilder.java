@@ -17,7 +17,7 @@ public class MeetingBuilder {
 
     public static final String DEFAULT_AGENDA = "Paper supply for Greendale College";
     public static final String DEFAULT_PLACE = "David's Office";
-    public static final String DEFAULT_TIME = "02-04-2022 13:30";
+    public static final String DEFAULT_TIME = "02-04-2023 13:30";
 
     private Agenda agenda;
     private MeetingPlace meetingPlace;
@@ -30,7 +30,7 @@ public class MeetingBuilder {
     public MeetingBuilder() {
         agenda = new Agenda(DEFAULT_AGENDA);
         meetingPlace = new MeetingPlace(DEFAULT_PLACE);
-        meetingTime = new MeetingTime(MeetingTime.formatTime(DEFAULT_TIME));
+        meetingTime = new MeetingTime(DEFAULT_TIME);
         attendees = new HashSet<>();
     }
 
@@ -64,7 +64,7 @@ public class MeetingBuilder {
      * Sets the {@code MeetingTime} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withTime(String time) {
-        this.meetingTime = new MeetingTime(MeetingTime.formatTime(time));
+        this.meetingTime = new MeetingTime(time);
         return this;
     }
 
