@@ -192,43 +192,12 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 ### Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
-This feature is also restricted to the Contact Details screen (in _edit_ mode), 
+This feature is also restricted to the Contact Details Window, 
 which can be accessed after the _add_ or _view_ commands. 
 It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
 
 <ins>Note</ins>: This feature is different from the **delete contacts** feature, 
-which is only accessible on the Person Details screen (in _default_ mode).
-
-The _delete fields_ operation works similar to the _edit_ operation, except for:
-1. the deletion functionality 
-2. the parsing of the command
-
-The deletion functionality sets the fields to return to their initial empty values.
-It is illustrated in the code snippets below:
-
-```java
-    // Single-valued fields
-    if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-        deleteFieldDescriptor.setCompany(null);
-    }
-```
-```java
-    // Multi-valued fields
-    if (deleteFieldDescriptor.getNumbers().isPresent()) {
-        Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
-    
-        requireNonNull(numbersToBeDeleted);
-    
-        if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
-            deleteFieldDescriptor.setNumbers(new HashMap<String, Phone>());
-        } else {
-            Map<String, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers()
-                    .orElse(new HashMap<>()));
-            numbersToBeDeleted.forEach(numbers::remove);
-            deleteFieldDescriptor.setNumbers(numbers);
-        }
-    }
-```
+which is only accessible on the Main Window.
 
 #### Design considerations:
 Since certain fields allow for multiple values to be stored, 
@@ -252,7 +221,9 @@ they want to delete along with the field to be deleted for such fields.
       * Slower to execute command.
       * Difficult to implement, since the current implementation does not store command history.
 
-We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be very helpful for executing other commands.
+We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. 
+Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
+very helpful for executing other commands.
 
 ### Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
@@ -293,19 +264,21 @@ The following sequence diagram shows how the view feature works:
 * **Alternative 1:** Display all contact information in the person list screen.
   * Pros:
     * Easy to implement
-    * Does not require the user to navigate to a new screen, which speeds up program use
+    * Requires fewer commands from the user as they do not need to navigate to a new screen to view a contact's information
   * Cons:
-    * Clutters the person list screen with a lot of information for each person
+    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the person list screen would add a lot of clutter
     
 * **Alternative 2 (current choice):** Navigate to a new screen to for contact information
   * Pros:
     * Greatly reduces clutter in the person list screen
-    * Reduces the size of the person list, making it easier to scroll through
+    * Reduces the length of the person list, making it easier and faster to scroll through
   * Cons:
-    * Difficult to implement
-    * Slower program use due to the addition of an additional navigation step
+    * More difficult to implement
+    * Requires an additional command from the user to both view a contact's information and return to the person list after
     
-We chose alternative 2 because its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step.
+We chose alternative 2 for two reasons:
+* Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
+* Given the quantity of information a contact can have associated with it, having to scroll through a cluttered and much longer list could take the user more time than simply navigating to a new page
 
 ### \[Proposed\] Undo/redo feature
 
@@ -697,12 +670,10 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS:** Windows, MacOS, Linux
-* **Busy working professionals:** Someone who has to manage a large number of interpersonal relationships for success at work and life
-* **Personal and professional network:** Friends, family, neighbors, acquaintances, co-workers, clients, mentors, mentees
-* **'Default' mode:** Allows the user to view their list of contacts
-* **'Edit' mode:** Allows the user to edit contact details
-
-*{More to be added}*
+* **Busy working professionals:** Someone who has to manage a large number of 
+interpersonal relationships for success at work and life
+* **Personal and professional network:** Friends, family, neighbors, acquaintances, 
+co-workers, clients, mentors, mentees
 
 --------------------------------------------------------------------------------------------------------------------
 
