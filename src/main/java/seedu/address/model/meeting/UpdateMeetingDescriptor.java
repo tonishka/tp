@@ -13,20 +13,20 @@ import seedu.address.commons.util.CollectionUtil;
  * Stores the details to edit the meeting with. Each non-empty field value will replace the
  * corresponding field value of the person.
  */
-public class EditMeetingDescriptor {
+public class UpdateMeetingDescriptor {
     private Agenda agenda;
     private MeetingPlace meetingPlace;
     private MeetingTime meetingTime;
     private HashSet<Index> attendees;
 
-    public EditMeetingDescriptor() {
+    public UpdateMeetingDescriptor() {
     }
 
     /**
      * Copy constructor.
      * A defensive copy of {@code attendees} is used internally.
      */
-    public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
+    public UpdateMeetingDescriptor(UpdateMeetingDescriptor toCopy) {
         setAttendees(toCopy.attendees);
         setMeetingTime(toCopy.meetingTime);
         setMeetingPlace(toCopy.meetingPlace);
@@ -37,7 +37,7 @@ public class EditMeetingDescriptor {
     /**
      * Meeting constructor.
      */
-    public EditMeetingDescriptor(Meeting toCopy) {
+    public UpdateMeetingDescriptor(Meeting toCopy) {
         setAgenda(toCopy.getAgenda());
         setMeetingPlace(toCopy.getPlace());
         setMeetingTime(toCopy.getTime());
@@ -111,12 +111,12 @@ public class EditMeetingDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditMeetingDescriptor)) {
+        if (!(other instanceof UpdateMeetingDescriptor)) {
             return false;
         }
 
         // state check
-        EditMeetingDescriptor e = (EditMeetingDescriptor) other;
+        UpdateMeetingDescriptor e = (UpdateMeetingDescriptor) other;
 
         return getAgenda().equals(e.getAgenda())
                 && getMeetingPlace().equals(e.getMeetingPlace())
@@ -127,7 +127,7 @@ public class EditMeetingDescriptor {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("EditMeetingDescriptor: [");
+        builder.append("UpdateMeetingDescriptor: [");
         Set<Index> attendees = getAttendees().get();
         builder.append("Attendees: ");
         attendees.forEach(index -> builder.append(index).append(" "));

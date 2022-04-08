@@ -25,12 +25,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.EditMeetingDescriptor;
+import seedu.address.model.meeting.AgendaContainsKeywordsPredicate;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.UpdateMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -112,8 +113,8 @@ public class CommandTestUtil {
 
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
-    public static final EditMeetingDescriptor DESC_QUARTERLY;
-    public static final EditMeetingDescriptor DESC_PROJECT;
+    public static final UpdateMeetingDescriptor DESC_QUARTERLY;
+    public static final UpdateMeetingDescriptor DESC_PROJECT;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -126,9 +127,9 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withPronouns(VALID_PRONOUN_THEY, VALID_PRONOUN_HIM).build();
 
-        DESC_QUARTERLY = new EditMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
+        DESC_QUARTERLY = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
                 .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
-        DESC_PROJECT = new EditMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT).withTime(VALID_TIME_PROJECT)
+        DESC_PROJECT = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT).withTime(VALID_TIME_PROJECT)
                 .withPlace(VALID_PLACE_PROJECT).build();
     }
 
@@ -190,5 +191,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered meeting list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s meeting book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitAgenda = meeting.getAgenda().description.split("\\s+");
+        model.updateFilteredMeetingList(new AgendaContainsKeywordsPredicate(Arrays.asList(splitAgenda[0])));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 }

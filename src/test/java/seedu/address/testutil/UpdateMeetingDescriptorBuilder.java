@@ -1,31 +1,31 @@
 package seedu.address.testutil;
 
 import seedu.address.model.meeting.Agenda;
-import seedu.address.model.meeting.EditMeetingDescriptor;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
 
 /**
- * A utility class to help with building EditMeetingDescriptor objects.
+ * A utility class to help with building UpdateMeetingDescriptor objects.
  */
-public class EditMeetingDescriptorBuilder {
+public class UpdateMeetingDescriptorBuilder {
 
-    private EditMeetingDescriptor descriptor;
+    private UpdateMeetingDescriptor descriptor;
 
-    public EditMeetingDescriptorBuilder() {
-        descriptor = new EditMeetingDescriptor();
+    public UpdateMeetingDescriptorBuilder() {
+        descriptor = new UpdateMeetingDescriptor();
     }
 
-    public EditMeetingDescriptorBuilder(EditMeetingDescriptor descriptor) {
-        this.descriptor = new EditMeetingDescriptor(descriptor);
+    public UpdateMeetingDescriptorBuilder(UpdateMeetingDescriptor descriptor) {
+        this.descriptor = new UpdateMeetingDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditMeetingDescriptor} with fields containing {@code meeting}'s details
+     * Returns an {@code UpdateMeetingDescriptor} with fields containing {@code meeting}'s details
      */
-    public EditMeetingDescriptorBuilder(Meeting meeting) {
-        descriptor = new EditMeetingDescriptor();
+    public UpdateMeetingDescriptorBuilder(Meeting meeting) {
+        descriptor = new UpdateMeetingDescriptor();
 
         descriptor.setAgenda(meeting.getAgenda());
         descriptor.setMeetingTime(meeting.getTime());
@@ -36,7 +36,7 @@ public class EditMeetingDescriptorBuilder {
     /**
      * Sets the {@code Agenda} of the {@code EditPMeetingDescriptor} that we are building.
      */
-    public EditMeetingDescriptorBuilder withAgenda(String agenda) {
+    public UpdateMeetingDescriptorBuilder withAgenda(String agenda) {
         descriptor.setAgenda(new Agenda(agenda));
         return this;
     }
@@ -44,7 +44,7 @@ public class EditMeetingDescriptorBuilder {
     /**
      * Sets the {@code MeetingTime} of the {@code EditPMeetingDescriptor} that we are building.
      */
-    public EditMeetingDescriptorBuilder withTime(String meetingTime) {
+    public UpdateMeetingDescriptorBuilder withTime(String meetingTime) {
         descriptor.setMeetingTime(new MeetingTime(meetingTime));
         return this;
     }
@@ -52,12 +52,12 @@ public class EditMeetingDescriptorBuilder {
     /**
      * Sets the {@code MeetingPlace} of the {@code EditPMeetingDescriptor} that we are building.
      */
-    public EditMeetingDescriptorBuilder withPlace(String meetingPlace) {
+    public UpdateMeetingDescriptorBuilder withPlace(String meetingPlace) {
         descriptor.setMeetingPlace(new MeetingPlace(meetingPlace));
         return this;
     }
 
-    public EditMeetingDescriptor build() {
+    public UpdateMeetingDescriptor build() {
         return descriptor;
     }
 }
