@@ -111,7 +111,7 @@ public class LogicManagerTest {
         String backCommand = "back";
         expectedModel = new ModelManager();
         expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure_ContactDetailsWindow(backCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure_contactDetailsWindow(backCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
