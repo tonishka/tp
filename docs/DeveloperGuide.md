@@ -103,9 +103,10 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. If the view or add command is executed, in addition to the `AddressBookParser` class, next `Logic` uses the `ContactDetailsParser` class to parse the user command. 
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the ContactDetailsParser are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. On the other hand, the `AddCommmand`, `ListCommand`, `ViewCommand`, `DeleteCommand`, `FindCommand`, `ClearCommand`, `MeetCommand`, `UpdateCommand`, `CancelCommand` and `CancelAllCommand` classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -119,7 +120,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` or `ContactDetailsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -166,6 +167,8 @@ This section describes some noteworthy details on how certain features are imple
 ### Edit feature
 The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsParser`, `EditCommandParser` and `EditCommand` classes.
 
+
+
 The following sequence diagram shows how the edit operation works:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
@@ -177,6 +180,10 @@ The following sequence diagram shows how the edit operation works:
 Below is an activity diagram summarising the possible paths for an edit command:
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Similar to adding a contact, the contact edited cannot have the same **Name** and **Tags** as an existing contact in the addressbook. This is meant to protect against duplicate contacts which may result in confusion for the user in managing their contacts. Attempting to do so will result in a warning message to the user which reads "A person with these details already exists. Please do add tags that differentiate between them!"
+
+</div>
 
 #### Design considerations:
 
