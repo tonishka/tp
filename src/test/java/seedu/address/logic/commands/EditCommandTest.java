@@ -79,19 +79,6 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        editCommand = editCommand.parsePerson(editedPerson);
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-    */
 
     @Test
     public void execute_filteredList_success() {
@@ -136,31 +123,6 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_DETAILS);
     }
 
-    //Should be changed to suit ViewCommand
-    /*@Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(descriptor);
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }*/
-
-    /**
-     * Should be changed to suit ViewCommand
-     */
-    /*@Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
-        EditCommand editCommand = new EditCommand(
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }*/
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(DESC_AMY, Person.getEmptyPerson());
