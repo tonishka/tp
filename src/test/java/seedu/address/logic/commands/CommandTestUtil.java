@@ -26,13 +26,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.AgendaContainsKeywordsPredicate;
-import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.UpdateMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.UpdateMeetingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -129,7 +129,8 @@ public class CommandTestUtil {
 
         DESC_QUARTERLY = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
                 .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
-        DESC_PROJECT = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT).withTime(VALID_TIME_PROJECT)
+        DESC_PROJECT = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT)
+                .withTime(VALID_TIME_PROJECT)
                 .withPlace(VALID_PLACE_PROJECT).build();
     }
 
@@ -139,7 +140,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -154,7 +155,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -179,6 +180,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredPersonList, actualModel.getFilteredPersonList());
         assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
+
     /**
      * Updates {@code model}'s filtered person list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

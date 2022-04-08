@@ -22,11 +22,12 @@ public class TypicalMeetings {
     public static final Meeting GREENDALE = new MeetingBuilder().withAgenda("Paper supply for Greendale College")
             .withPlace("David's Office").withTime("02-04-2023 13:30").build();
     public static final Meeting QUARTERLY = new MeetingBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
-    .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
+            .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
     public static final Meeting PROJECT = new MeetingBuilder().withAgenda(VALID_AGENDA_PROJECT)
             .withTime(VALID_TIME_PROJECT).withPlace(VALID_PLACE_PROJECT).build();
 
-    private TypicalMeetings() {} // prevents instantiation
+    private TypicalMeetings() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code MeetingBook} with all the typical meetings.

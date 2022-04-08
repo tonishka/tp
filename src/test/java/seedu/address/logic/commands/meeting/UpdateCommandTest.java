@@ -80,7 +80,8 @@ public class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new MeetingBook(model.getMeetingBook()),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingBook(model.getMeetingBook()),
                 new UserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -97,7 +98,8 @@ public class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new MeetingBook(model.getMeetingBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingBook(model.getMeetingBook()), new UserPrefs());
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

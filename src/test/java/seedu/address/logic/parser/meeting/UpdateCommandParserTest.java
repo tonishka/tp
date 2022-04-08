@@ -22,7 +22,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEETING;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -80,8 +79,8 @@ public class UpdateCommandParserTest {
         assertParseFailure(parser, "1" + PLACE_DESC_QUARTERLY + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TIME_DESC + INVALID_PLACE_DESC + AGENDA_DESC_QUARTERLY +
-                        AGENDA_DESC_PROJECT,
+        assertParseFailure(parser, "1" + INVALID_TIME_DESC + INVALID_PLACE_DESC + AGENDA_DESC_QUARTERLY
+                        + AGENDA_DESC_PROJECT,
                 MeetingTime.MESSAGE_CONSTRAINTS);
     }
 

@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.model.meeting.Agenda;
-import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 
 /**
  * A utility class to help with building UpdateMeetingDescriptor objects.
