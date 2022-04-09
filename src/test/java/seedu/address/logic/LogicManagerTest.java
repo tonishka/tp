@@ -72,13 +72,13 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validCommand_mainWindow_success() throws Exception {
+    public void execute_validCommandMainWindow_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertMainWindowCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
-    public void execute_validCommand_ContactDetailsWindow_success() throws Exception {
+    public void execute_validCommandContactDetailsWindow_success() throws Exception {
         String backCommand = BackCommand.COMMAND_WORD;
         assertContactDetailsWindowCommandSuccess(backCommand, Person.getEmptyPerson(),
                 BackCommand.MESSAGE_SUCCESS, model);
@@ -111,7 +111,8 @@ public class LogicManagerTest {
         String backCommand = "back";
         expectedModel = new ModelManager();
         expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailureForContactDetailsWindow(backCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailureForContactDetailsWindow(backCommand, CommandException.class,
+                expectedMessage, expectedModel);
     }
 
     @Test
@@ -191,7 +192,7 @@ public class LogicManagerTest {
     }
 
     private void assertCommandFailureForContactDetailsWindow(String input, Class<? extends Throwable> exception,
-                                                           String msg, Model model) {
+                                                             String msg, Model model) {
         assertThrows(exception, msg, () -> logic.executeContactDetailsCommand(input, Person.getEmptyPerson()));
         assertEquals(model, this.model);
     }
