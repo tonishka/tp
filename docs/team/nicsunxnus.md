@@ -17,9 +17,9 @@ meetings.
   - Enhanced `ParserUtil` to parse new person fields: company, jobtitle, pronouns
   - Enhanced `ParserUtil` methods for emails, phone numbers and addresses to take in a set of values instead of just one
   - Enhanced `ParserUtil` methods for meeting fields, PR [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files)
-  - Enhanced EditCommandParser class to fit v1.3, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
+  - Enhanced `EditCommandParser` class to fit v1.3, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
   - Added the command and parser classes for adding, editing, deleting and clearing meetings, PRs [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files), [\#137](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/137) and [\#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
-  - Implemented more tests to increase code coverage from 53.49% to 61.29%, PR [#\234](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/234)
+  - Implemented more tests to increase code coverage from 53.49% to 61.29%, PR [\#234](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/234)
 
 * **Contributions to the UG**:
   - Partitioning the `command summary` into the Main Window section and Contact Detail Window section, PR [\#206](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/206)
@@ -43,6 +43,23 @@ meetings.
 * **Contributions beyond the project team**: 
   * Posted [8 issues](https://github.com/nicsunxnus/ped/issues) 
   for [Trackermon](https://github.com/AY2122S2-CS2103T-T09-3/tp) during the PE-D  
+
+* **Contributions to the User Guide (Extracts)**:
+```markdown
+...
+## 2. Introduction
+...
+### 2.2 Interface Guide
+Reache uses **two windows**, the [Main Window](#221-main-window) and the 
+[Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. 
+The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for 
+contact identification, while the `Contact Details Window` displays the more detailed information inside a 
+specific contact. You could imagine this layout as **resembling looking through a folder with small identification 
+tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help 
+to save space on the main window as well as preventing information overload.
+...
+```
+_Note that this does not show all changes as previous changes made by me were removed in favor of brevity_
 
 * **Contributions to the Developer Guide (Extracts)**:
 
