@@ -5,7 +5,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Id;
-import seedu.address.model.person.Person;
 
 /**
  * Represents a meeting of which the user is a part.
