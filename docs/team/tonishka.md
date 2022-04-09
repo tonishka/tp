@@ -44,9 +44,9 @@ fast typers.
   * Opened [24 issues](https://github.com/tonishka/ped/issues) for [UniGenda](https://github.com/AY2122S2-CS2103T-W09-1/tp/releases) during `PE-D`
 <br><br>
 * **Contributions to the Developer Guide (extracts)**:
+
 ```markdown
 #### Design Considerations
-
 #### Aspect: What happens when user does not specify a field
 
 **Note:** <br>
@@ -67,7 +67,8 @@ c) they do not remember which field they want to search.
     never match any name).
 
 **Alternative 2:** Use name as the default search field
-- Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this command, this is likely to produce a useful result.
+- Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this 
+  command, this is likely to produce a useful result.
 - Cons: Useless for scenario b) and c).
 
 **Alternative 3:** Produce a command syntax error and ask user to enter field
@@ -76,15 +77,18 @@ c) they do not remember which field they want to search.
 ```
 
 * **Contributions to the User Guide (extracts)**:
+
 ```markdown
 ### 2.3 Getting Started with Reache
 
 If you are a first time user of Reache, we highly recommend following these two step-by-step tutorials to get familiar 
 with the product. 
 
-In the [contacts tutorial](#231-tutorial-1-managing-contacts-with-reache), you will learn how to add your contact information to Reache. 
+In the [contacts tutorial](#231-tutorial-1-managing-contacts-with-reache), you will learn how to add your contact 
+information to Reache. 
 
-In the [meetings tutorial](#232-tutorial-2-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
+In the [meetings tutorial](#232-tutorial-2-managing-meetings-with-reache), you will learn how to schedule and track 
+your meetings using Reache.
 
 Experienced users should skip this section.
 
@@ -94,7 +98,10 @@ Experienced users should skip this section.
 
 In this tutorial we will be adding your personal contact information to Reache.
 
-1. Launch Reache from the folder in which it is located by double clicking on it. You will see the window shown below with some sample contacts. <br>
+1. Launch Reache from the folder in which it is located by double clicking on it. You will see the window shown 
+   below with some sample contacts. <br>
 ![Sample Contacts](images/Tutorial/sample_contacts_screen.png)
-   Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts stored. Let’s start storing some real contacts in it. <br><br>
+   
+   Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts 
+   stored. Let’s start storing some real contacts in it.
 ```
