@@ -58,7 +58,7 @@
           <VBox fx:id="meetingListPane" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
             <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS" styleClass="pane-secondary">
               <padding>
-                <Insets top="10" right="20" left="20" />
+                <Insets top="10" right="10" bottom="20" left="20" />
               </padding>
             </StackPane>
           </VBox>

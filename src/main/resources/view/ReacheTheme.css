@@ -7,15 +7,16 @@
     -border: #d4dae6;
     -background_primary: #fafcfe;
     -background_secondary: #f4f6f9;
-    -text_primary: #555555;
-    -text_secondary: #8a8a8a;
+    -text_primary: #404040;
+    -text_secondary: #555555;
+    -grey: #686F7C;
 }
 
 .background {
     -fx-background-color: -background_primary;
 }
 
-/*
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
@@ -41,8 +42,8 @@
     -fx-font-size: 12pt;
     -fx-font-family: "Helvetica", Arial, sans-serif;
 }
-*/
-/*
+
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
     -fx-background-color: -background_primary;
@@ -101,15 +102,19 @@
     -fx-border-width: 1;
     -fx-background-color: derive(-background_primary, 20%);
 }
-*/
 
-.list-view {
+#personListView {
     -fx-background-color: -background_primary;
     -fx-padding: 0;
 }
 
+#meetingListView {
+    -fx-background-color: -background_secondary;
+    -fx-padding: 0;
+}
+
 .list-cell:filled {
-    -fx-background-color: red;
+    -fx-background-color: white;
     -fx-background-insets: 4px 0px 0px 0px;
     -fx-border-color: transparent transparent -accent transparent;
     -fx-border-width: 1px;
@@ -130,7 +135,7 @@
 .headline {
     -fx-font-family: "Helvetica Bold", Arial, sans-serif;
     -fx-font-size: 16px;
-    -fx-text-fill: -primary;
+    -fx-text-fill: -text_primary;
 }
 
 .primary_text {
@@ -141,8 +146,8 @@
 
 .secondary_text {
     -fx-font-family: "Helvetica", Arial, sans-serif;
-    -fx-font-size: 13px;
-    -fx-text-fill: -primary;
+    -fx-font-size: 14px;
+    -fx-text-fill: -text_secondary;
 }
 
 .pane-primary {
@@ -193,7 +198,7 @@
 .status-bar-with-border .label {
     -fx-text-fill: -primary;
 }
-/*
+
 .grid-pane {
     -fx-background-color: derive(-background_primary, 30%);
     -fx-border-color: derive(-background_primary, 30%);
@@ -203,7 +208,7 @@
 .grid-pane .stack-pane {
     -fx-background-color: derive(-background_primary, 30%);
 }
-*/
+
 .menu-bar {
     -fx-background-color: -primary;
 }
@@ -314,11 +319,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(-background_secondary, 100%);
+    -fx-background-color: #EDF0F3;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(-background_secondary, 50%);
+    -fx-background-color: -grey;
     -fx-background-insets: 3;
 }
 
@@ -358,10 +363,6 @@
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-font-size: 14px;
     -fx-text-fill: -text_primary;
-}
-
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
 #resultDisplay .content {
