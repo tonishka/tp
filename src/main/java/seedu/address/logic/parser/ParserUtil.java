@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -105,23 +102,20 @@ public class ParserUtil {
      *
      * @param meetingTime MeetingTime
      * @return MeetingTime
-     * @throws ParseException when meeting time is invalid
+     * @throws ParseException when meeting time is in an invalid format or in the past
      */
     public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
         requireNonNull(meetingTime);
         String trimmedMeetingTime = meetingTime.trim();
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime meetingTimeFormatted = LocalDateTime.parse(trimmedMeetingTime, dtf);
-            MeetingTime mt = new MeetingTime(meetingTimeFormatted);
-            if (mt.isExpiredMeetingTime()) {
-                throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
-            }
-            return new MeetingTime(meetingTimeFormatted);
-        } catch (DateTimeParseException dateTimeParseException) {
+
+        if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+        LocalDateTime parsedMeetingTime = MeetingTime.formatTime(trimmedMeetingTime);
+        if (!MeetingTime.isFutureMeetingTime(parsedMeetingTime)) {
+            throw new ParseException(MeetingTime.MESSAGE_FUTURE_CONSTRAINT);
+        }
+        return new MeetingTime(trimmedMeetingTime);
     }
 
     /**

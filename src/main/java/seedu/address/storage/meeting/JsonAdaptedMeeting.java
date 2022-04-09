@@ -69,25 +69,33 @@ class JsonAdaptedMeeting {
         if (!Agenda.isValidAgenda(agenda)) {
             throw new IllegalValueException(Agenda.MESSAGE_CONSTRAINTS);
         }
-        final Agenda modelAgenda = new Agenda(agenda);
-
-        if (!(meetingPlace == null || MeetingPlace.isValidMeetingPlace(meetingPlace))) {
+        if (meetingPlace == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "meeting place"));
+        }
+        if (!MeetingPlace.isValidMeetingPlace(meetingPlace)) {
             throw new IllegalValueException(MeetingPlace.MESSAGE_CONSTRAINTS);
         }
-
-        final MeetingPlace modelPlace = meetingPlace != null ? new MeetingPlace(meetingPlace) : null;
-
-        if (!(meetingTime == null || MeetingTime.isValidMeetingTime(meetingTime))) {
+        if (meetingTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "meeting time"));
+        }
+        if (!MeetingTime.isValidMeetingTime(meetingTime)) {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+        if (!MeetingTime.isFutureMeetingTime(MeetingTime.formatTime(meetingTime))) {
+            return null;
+        }
+        if (attendees.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "attendees"));
+        }
 
-        final MeetingTime modelTime = meetingTime != null ? new MeetingTime(MeetingTime.formatTime(meetingTime)) : null;
+        final Agenda modelAgenda = new Agenda(agenda);
+        final MeetingPlace modelPlace = new MeetingPlace(meetingPlace);
+        final MeetingTime modelTime = new MeetingTime(meetingTime);
 
         final List<Id> attendeeIds = new ArrayList<>();
         for (JsonAdaptedAttendee attendee : attendees) {
             attendeeIds.add(attendee.toModelType());
         }
-
         final Set<Id> modelAttendees = new HashSet<>(attendeeIds);
 
         return new Meeting(modelAgenda, modelPlace, modelTime, modelAttendees);

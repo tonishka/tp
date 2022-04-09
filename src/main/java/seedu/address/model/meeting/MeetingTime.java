@@ -1,6 +1,7 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -12,12 +13,12 @@ import java.util.Date;
 /**
  * Represents the meeting time for a meeting.
  */
-public class MeetingTime {
+public class MeetingTime implements Comparable<MeetingTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting time must be in the following format: dd-MM-yyyy HH:mm\n Example: 25-05-2022 23:59";
 
     public static final String MESSAGE_FUTURE_CONSTRAINT =
-            "Meeting time must be in the future, not in past";
+            "Meeting time must be in the future, not in the past";
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
             .withResolverStyle(ResolverStyle.STRICT);
@@ -27,9 +28,12 @@ public class MeetingTime {
      * Creates a new meeting time.
      * @param dateTime Meeting date and time.
      */
-    public MeetingTime(LocalDateTime dateTime) {
+    public MeetingTime(String dateTime) {
         requireNonNull(dateTime);
-        this.dateTime = dateTime;
+        checkArgument(isValidMeetingTime(dateTime), MESSAGE_CONSTRAINTS);
+        LocalDateTime parsedTime = formatTime(dateTime);
+        checkArgument(isFutureMeetingTime(parsedTime), MESSAGE_FUTURE_CONSTRAINT);
+        this.dateTime = formatTime(dateTime);
     }
 
     /**
@@ -45,10 +49,10 @@ public class MeetingTime {
     }
 
     /**
-     * Returns true if a given meeting has expired.
+     * Returns true if a given meeting is in the future.
      */
-    public boolean isExpiredMeetingTime() {
-        return this.dateTime.isBefore(LocalDateTime.now());
+    public static boolean isFutureMeetingTime(LocalDateTime test) {
+        return test.isAfter(LocalDateTime.now());
     }
 
     public static LocalDateTime formatTime(String dateTime) {
@@ -103,5 +107,10 @@ public class MeetingTime {
     @Override
     public int hashCode() {
         return dateTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(MeetingTime other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 }

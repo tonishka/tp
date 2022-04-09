@@ -49,6 +49,9 @@ class JsonSerializableMeetingBook {
         MeetingBook meetingBook = new MeetingBook();
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
             Meeting meeting = jsonAdaptedMeeting.toModelType();
+            if (meeting == null) {
+                continue;
+            }
             if (meetingBook.hasMeeting(meeting)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }

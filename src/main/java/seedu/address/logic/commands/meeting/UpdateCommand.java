@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.HashSet;
@@ -20,10 +20,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Agenda;
-import seedu.address.model.meeting.EditMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
@@ -35,26 +35,26 @@ public class UpdateCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_ATTENDEES_INDEX + "LIST_OF_ATTENDEES_INDEX] "
-            + "[" + PREFIX_MEETING_AGENDA + "AGENDA] "
-            + "[" + PREFIX_MEETING_TIME + "MEETING_TIME] "
-            + "[" + PREFIX_MEETING_PLACE + "MEETING PLACE] ";
+            + "[" + PREFIX_AGENDA + "AGENDA] "
+            + "[" + PREFIX_TIME + "MEETING_TIME] "
+            + "[" + PREFIX_PLACE + "MEETING PLACE] ";
 
     public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting has been updated";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
-    private final EditMeetingDescriptor editMeetingDescriptor;
+    private final UpdateMeetingDescriptor updateMeetingDescriptor;
 
     /**
      * @param targetIndex of the meeting in the filtered meeting list to edit
-     * @param editMeetingDescriptor details to edit the meeting with
+     * @param updateMeetingDescriptor details to edit the meeting with
      */
-    public UpdateCommand(Index targetIndex, EditMeetingDescriptor editMeetingDescriptor) {
+    public UpdateCommand(Index targetIndex, UpdateMeetingDescriptor updateMeetingDescriptor) {
         requireNonNull(targetIndex);
-        requireNonNull(editMeetingDescriptor);
+        requireNonNull(updateMeetingDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editMeetingDescriptor = new EditMeetingDescriptor(editMeetingDescriptor);
+        this.updateMeetingDescriptor = new UpdateMeetingDescriptor(updateMeetingDescriptor);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class UpdateCommand extends Command {
         }
 
         Meeting meetingToEdit = lastShownMeetingList.get(targetIndex.getZeroBased());
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, lastShownPersonList);
+        Meeting editedMeeting = createEditedMeeting(meetingToEdit, updateMeetingDescriptor, lastShownPersonList);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -81,20 +81,20 @@ public class UpdateCommand extends Command {
 
     /**
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
-     * edited with {@code editMeetingDescriptor}.
+     * edited with {@code updateMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor,
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, UpdateMeetingDescriptor updateMeetingDescriptor,
                                                List<Person> lastShownPersonList) throws CommandException {
         requireNonNull(meetingToEdit);
 
-        Agenda updatedAgenda = editMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
-        MeetingPlace updatedPlace = editMeetingDescriptor.getMeetingPlace().orElse(meetingToEdit.getPlace());
-        MeetingTime updatedTime = editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
+        Agenda updatedAgenda = updateMeetingDescriptor.getAgenda().orElse(meetingToEdit.getAgenda());
+        MeetingPlace updatedPlace = updateMeetingDescriptor.getMeetingPlace().orElse(meetingToEdit.getPlace());
+        MeetingTime updatedTime = updateMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
         Set<Index> updatedAttendeesIndexes = meetingToEdit.getIndexes();
         Set<Id> updatedAttendees = meetingToEdit.getAttendees();
 
-        if (editMeetingDescriptor.areAttendeesChanged()) {
-            updatedAttendeesIndexes = editMeetingDescriptor.getAttendees()
+        if (updateMeetingDescriptor.areAttendeesChanged()) {
+            updatedAttendeesIndexes = updateMeetingDescriptor.getIndexes()
                     .orElse(meetingToEdit.getIndexes());
             updatedAttendees = new HashSet<>();
             for (Index index : updatedAttendeesIndexes) {
@@ -122,6 +122,8 @@ public class UpdateCommand extends Command {
         }
 
         // state check
-        return targetIndex.equals(((UpdateCommand) other).targetIndex);
+        UpdateCommand u = (UpdateCommand) other;
+        return targetIndex.equals(u.targetIndex)
+                && updateMeetingDescriptor.equals(u.updateMeetingDescriptor);
     }
 }

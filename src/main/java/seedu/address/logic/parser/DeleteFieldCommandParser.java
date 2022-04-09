@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -30,12 +29,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Pronoun;
 import seedu.address.model.tag.Tag;
 
-public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
-    @Override
-    public DeleteFieldCommand parse(String userInput) throws ParseException {
-        throw new ParseException(MESSAGE_INVALID_VIEW);
-    }
-
+public class DeleteFieldCommandParser {
     /**
      * Parses the user input to delete desired fields.
      *
@@ -56,15 +50,15 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
         }
 
         if (argMultimap.isEmpty()) {
-            throw new ParseException(DeleteFieldCommand.MESSAGE_NOT_DELETED_FIELD);
+            throw new ParseException(DeleteFieldCommand.MESSAGE_NO_PROVIDED_FIELD + "\n"
+                    + DeleteFieldCommand.MESSAGE_USAGE);
+        }
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            throw new ParseException(DeleteFieldCommand.MESSAGE_DELETE_NAME_FAILURE);
         }
 
         EditPersonDescriptor deleteFieldDescriptor = new EditPersonDescriptor(personToDeleteField);
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            throw new ParseException(MESSAGE_INVALID_VIEW + "\n"
-                    + DeleteFieldCommand.MESSAGE_DELETE_NAME_FAILURE);
-        }
 
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             deleteFieldDescriptor.setCompany(null);
@@ -74,95 +68,98 @@ public class DeleteFieldCommandParser implements Parser<DeleteFieldCommand> {
             deleteFieldDescriptor.setJobTitle(null);
         }
 
-        if (deleteFieldDescriptor.getNumbers().isPresent()) {
-            Collection<String> numbersToBeDeleted = argMultimap.getAllValues(PREFIX_PHONE);
-
-            requireNonNull(numbersToBeDeleted);
-
-            if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
-                deleteFieldDescriptor.setNumbers(new HashMap<>());
-            } else {
-                Map<Label, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
-
-                for (String number : numbersToBeDeleted) {
-                    if (!Label.isValidLabel(number)) {
-                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
-                    }
-                    numbers.remove(new Label(number, false));
-                }
-                deleteFieldDescriptor.setNumbers(numbers);
-            }
-        }
-
-        if (deleteFieldDescriptor.getEmails().isPresent()) {
-            Collection<String> emailsToBeDeleted = argMultimap.getAllValues(PREFIX_EMAIL);
-
-            requireNonNull(emailsToBeDeleted);
-
-            if (CollectionUtil.hasEmptyString(emailsToBeDeleted)) {
-                deleteFieldDescriptor.setEmails(new HashMap<>());
-            } else {
-                Map<Label, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
-
-                for (String email : emailsToBeDeleted) {
-                    if (!Label.isValidLabel(email)) {
-                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
-                    }
-                    emails.remove(new Label(email, false));
-                }
-                deleteFieldDescriptor.setEmails(emails);
-            }
-        }
-
-        if (deleteFieldDescriptor.getAddresses().isPresent()) {
-            Collection<String> addressesToBeDeleted = argMultimap.getAllValues(PREFIX_ADDRESS);
-
-            requireNonNull(addressesToBeDeleted);
-
-            if (CollectionUtil.hasEmptyString(addressesToBeDeleted)) {
-                deleteFieldDescriptor.setAddresses(new HashMap<>());
-            } else {
-                Map<Label, Address> addresses =
-                        new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
-
-                for (String address : addressesToBeDeleted) {
-                    if (!Label.isValidLabel(address)) {
-                        throw new ParseException(Label.MESSAGE_CONSTRAINTS);
-                    }
-                    addresses.remove(new Label(address, false));
-                }
-                deleteFieldDescriptor.setAddresses(addresses);
-            }
-        }
-
-        if (deleteFieldDescriptor.getTags().isPresent()) {
-            Collection<String> tagsToBeDeleted = argMultimap.getAllValues(PREFIX_TAG);
-
-            requireNonNull(tagsToBeDeleted);
-
-            if (CollectionUtil.hasEmptyString(tagsToBeDeleted)) {
-                deleteFieldDescriptor.setTags(new HashSet<>());
-            } else {
-                Set<Tag> tags = new HashSet<>(deleteFieldDescriptor.getTags().orElse(new HashSet<>()));
-                tagsToBeDeleted.forEach(tag -> tags.remove(new Tag(tag)));
-                deleteFieldDescriptor.setTags(tags);
-            }
-        }
-
-        if (deleteFieldDescriptor.getPronouns().isPresent()) {
-            Collection<String> pronounsToBeDeleted = argMultimap.getAllValues(PREFIX_PRONOUN);
-
-            requireNonNull(pronounsToBeDeleted);
-
-            if (CollectionUtil.hasEmptyString(pronounsToBeDeleted)) {
-                deleteFieldDescriptor.setPronouns(new HashSet<>());
-            } else {
-                Set<Pronoun> pronouns = new HashSet<>(deleteFieldDescriptor.getPronouns().orElse(new HashSet<>()));
-                pronounsToBeDeleted.forEach(pronoun -> pronouns.remove(new Pronoun(pronoun)));
-                deleteFieldDescriptor.setPronouns(pronouns);
-            }
-        }
+        parseNumbersForDelete(argMultimap.getAllValues(PREFIX_PHONE), deleteFieldDescriptor);
+        parseEmailsForDelete(argMultimap.getAllValues(PREFIX_EMAIL), deleteFieldDescriptor);
+        parseAddressesForDelete(argMultimap.getAllValues(PREFIX_ADDRESS), deleteFieldDescriptor);
+        parseTagsForDelete(argMultimap.getAllValues(PREFIX_TAG), deleteFieldDescriptor);
+        parsePronounsForDelete(argMultimap.getAllValues(PREFIX_PRONOUN), deleteFieldDescriptor);
 
         return new DeleteFieldCommand(deleteFieldDescriptor, personToDeleteField);
+    }
+
+    void parseNumbersForDelete(Collection<String> numbersToBeDeleted,
+            EditPersonDescriptor deleteFieldDescriptor) throws ParseException {
+        Map<Label, Phone> numbers = new HashMap<>(deleteFieldDescriptor.getNumbers().orElse(new HashMap<>()));
+        requireNonNull(numbersToBeDeleted);
+
+        // delete all if no label provided
+        if (CollectionUtil.hasEmptyString(numbersToBeDeleted)) {
+            deleteFieldDescriptor.setNumbers(new HashMap<>());
+        } else { // delete each number with label provided
+            for (String label : numbersToBeDeleted) {
+                if (!Label.isValidLabel(label)) {
+                    throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                }
+                numbers.remove(new Label(label, false));
+            }
+            deleteFieldDescriptor.setNumbers(numbers);
+        }
+
+    }
+
+    void parseEmailsForDelete(Collection<String> emailsToBeDeleted,
+                               EditPersonDescriptor deleteFieldDescriptor) throws ParseException {
+        Map<Label, Email> emails = new HashMap<>(deleteFieldDescriptor.getEmails().orElse(new HashMap<>()));
+        requireNonNull(emailsToBeDeleted);
+
+        // delete all if no label provided
+        if (CollectionUtil.hasEmptyString(emailsToBeDeleted)) {
+            deleteFieldDescriptor.setEmails(new HashMap<>());
+        } else { // delete each email with label provided
+            for (String label : emailsToBeDeleted) {
+                if (!Label.isValidLabel(label)) {
+                    throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                }
+                emails.remove(new Label(label, false));
+            }
+            deleteFieldDescriptor.setEmails(emails);
+        }
+    }
+
+    void parseAddressesForDelete(Collection<String> addressesToBeDeleted,
+                              EditPersonDescriptor deleteFieldDescriptor) throws ParseException {
+        Map<Label, Address> addresses = new HashMap<>(deleteFieldDescriptor.getAddresses().orElse(new HashMap<>()));
+        requireNonNull(addressesToBeDeleted);
+
+        // delete all if no label provided
+        if (CollectionUtil.hasEmptyString(addressesToBeDeleted)) {
+            deleteFieldDescriptor.setAddresses(new HashMap<>());
+        } else { // delete each address with label provided
+            for (String label : addressesToBeDeleted) {
+                if (!Label.isValidLabel(label)) {
+                    throw new ParseException(Label.MESSAGE_CONSTRAINTS);
+                }
+                addresses.remove(new Label(label, false));
+            }
+            deleteFieldDescriptor.setAddresses(addresses);
+        }
+    }
+
+    void parseTagsForDelete(Collection<String> tagsToBeDeleted,
+                                 EditPersonDescriptor deleteFieldDescriptor) {
+        Set<Tag> tags = new HashSet<>(deleteFieldDescriptor.getTags().orElse(new HashSet<>()));
+        requireNonNull(tagsToBeDeleted);
+
+        // delete all if no value provided
+        if (CollectionUtil.hasEmptyString(tagsToBeDeleted)) {
+            deleteFieldDescriptor.setTags(new HashSet<>());
+        } else { // delete each tag with value provided
+            tagsToBeDeleted.forEach(tag -> tags.remove(new Tag(tag)));
+            deleteFieldDescriptor.setTags(tags);
+        }
+    }
+
+    void parsePronounsForDelete(Collection<String> pronounsToBeDeleted,
+                            EditPersonDescriptor deleteFieldDescriptor) {
+        Set<Pronoun> pronouns = new HashSet<>(deleteFieldDescriptor.getPronouns().orElse(new HashSet<>()));
+        requireNonNull(pronounsToBeDeleted);
+
+        // delete all if no value provided
+        if (CollectionUtil.hasEmptyString(pronounsToBeDeleted)) {
+            deleteFieldDescriptor.setPronouns(new HashSet<>());
+        } else { // delete each pronoun with value provided
+            pronounsToBeDeleted.forEach(pronoun -> pronouns.remove(new Pronoun(pronoun)));
+            deleteFieldDescriptor.setPronouns(pronouns);
+        }
     }
 }

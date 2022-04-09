@@ -13,21 +13,21 @@ import seedu.address.commons.util.CollectionUtil;
  * Stores the details to edit the meeting with. Each non-empty field value will replace the
  * corresponding field value of the person.
  */
-public class EditMeetingDescriptor {
+public class UpdateMeetingDescriptor {
     private Agenda agenda;
     private MeetingPlace meetingPlace;
     private MeetingTime meetingTime;
-    private HashSet<Index> attendees;
+    private HashSet<Index> indexes;
 
-    public EditMeetingDescriptor() {
+    public UpdateMeetingDescriptor() {
     }
 
     /**
      * Copy constructor.
      * A defensive copy of {@code attendees} is used internally.
      */
-    public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
-        setAttendees(toCopy.attendees);
+    public UpdateMeetingDescriptor(UpdateMeetingDescriptor toCopy) {
+        setIndexes(toCopy.indexes);
         setMeetingTime(toCopy.meetingTime);
         setMeetingPlace(toCopy.meetingPlace);
         setAgenda(toCopy.agenda);
@@ -37,25 +37,25 @@ public class EditMeetingDescriptor {
     /**
      * Meeting constructor.
      */
-    public EditMeetingDescriptor(Meeting toCopy) {
+    public UpdateMeetingDescriptor(Meeting toCopy) {
         setAgenda(toCopy.getAgenda());
         setMeetingPlace(toCopy.getPlace());
         setMeetingTime(toCopy.getTime());
-        setAttendees(toCopy.getIndexes());
+        setIndexes(toCopy.getIndexes());
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(agenda, attendees, meetingPlace, meetingTime);
+        return CollectionUtil.isAnyNonNull(agenda, indexes, meetingPlace, meetingTime);
     }
 
     /**
      * Returns true if attendees are edited.
      */
     public boolean areAttendeesChanged() {
-        return attendees != null;
+        return indexes != null;
     }
 
     //----Single data fields----
@@ -90,8 +90,8 @@ public class EditMeetingDescriptor {
      * Sets {@code attendees} to this object's {@code attendees}.
      * A defensive copy of {@code attendees} is used internally.
      */
-    public void setAttendees(Set<Index> attendees) {
-        this.attendees = (attendees != null) ? new HashSet<>(attendees) : null;
+    public void setIndexes(Set<Index> indexes) {
+        this.indexes = (indexes != null) ? new HashSet<>(indexes) : null;
     }
 
     /**
@@ -99,8 +99,8 @@ public class EditMeetingDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code attendees} is null.
      */
-    public Optional<Set<Index>> getAttendees() {
-        return (attendees != null) ? Optional.of(Collections.unmodifiableSet(attendees)) : Optional.empty();
+    public Optional<Set<Index>> getIndexes() {
+        return (indexes != null) ? Optional.of(Collections.unmodifiableSet(indexes)) : Optional.empty();
     }
 
     @Override
@@ -111,24 +111,24 @@ public class EditMeetingDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditMeetingDescriptor)) {
+        if (!(other instanceof UpdateMeetingDescriptor)) {
             return false;
         }
 
         // state check
-        EditMeetingDescriptor e = (EditMeetingDescriptor) other;
+        UpdateMeetingDescriptor e = (UpdateMeetingDescriptor) other;
 
         return getAgenda().equals(e.getAgenda())
                 && getMeetingPlace().equals(e.getMeetingPlace())
                 && getMeetingTime().equals(e.getMeetingTime())
-                && getAttendees().equals(e.getAttendees());
+                && getIndexes().equals(e.getIndexes());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("EditMeetingDescriptor: [");
-        Set<Index> attendees = getAttendees().get();
+        builder.append("UpdateMeetingDescriptor: [");
+        Set<Index> attendees = getIndexes().get();
         builder.append("Attendees: ");
         attendees.forEach(index -> builder.append(index).append(" "));
 

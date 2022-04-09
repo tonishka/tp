@@ -2,10 +2,10 @@ package seedu.address.logic.parser.meeting;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.UpdateCommand;
@@ -14,7 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.EditMeetingDescriptor;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
     /**
@@ -26,8 +26,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ATTENDEES_INDEX, PREFIX_MEETING_TIME,
-                        PREFIX_MEETING_PLACE, PREFIX_MEETING_AGENDA);
+                ArgumentTokenizer.tokenize(args, PREFIX_ATTENDEES_INDEX, PREFIX_TIME,
+                        PREFIX_PLACE, PREFIX_AGENDA);
 
         Index index;
         try {
@@ -36,26 +36,26 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);
         }
-        EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
+        UpdateMeetingDescriptor updateMeetingDescriptor = new UpdateMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_ATTENDEES_INDEX).isPresent()) {
-            editMeetingDescriptor.setAttendees(ParserUtil
+            updateMeetingDescriptor.setIndexes(ParserUtil
                     .parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_AGENDA).isPresent()) {
-            editMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_MEETING_AGENDA).get()));
+        if (argMultimap.getValue(PREFIX_AGENDA).isPresent()) {
+            updateMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_AGENDA).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
-            editMeetingDescriptor.setMeetingTime(ParserUtil
-                    .parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get()));
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            updateMeetingDescriptor.setMeetingTime(ParserUtil
+                    .parseMeetingTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_PLACE).isPresent()) {
-            editMeetingDescriptor.setMeetingPlace(ParserUtil
-                    .parseMeetingPlace(argMultimap.getValue(PREFIX_MEETING_PLACE).get()));
+        if (argMultimap.getValue(PREFIX_PLACE).isPresent()) {
+            updateMeetingDescriptor.setMeetingPlace(ParserUtil
+                    .parseMeetingPlace(argMultimap.getValue(PREFIX_PLACE).get()));
         }
 
-        if (!editMeetingDescriptor.isAnyFieldEdited()) {
+        if (!updateMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }
-        return new UpdateCommand(index, editMeetingDescriptor);
+        return new UpdateCommand(index, updateMeetingDescriptor);
     }
 }

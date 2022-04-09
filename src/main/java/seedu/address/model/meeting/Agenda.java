@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the agenda for the meeting
  */
-public class Agenda {
+public class Agenda implements Comparable<Agenda> {
     public static final String MESSAGE_CONSTRAINTS =
             "Agenda can contain any character, and it should not be blank";
 
@@ -52,5 +52,10 @@ public class Agenda {
     @Override
     public int hashCode() {
         return description.hashCode();
+    }
+
+    @Override
+    public int compareTo(Agenda other) {
+        return this.description.compareTo(other.description);
     }
 }
