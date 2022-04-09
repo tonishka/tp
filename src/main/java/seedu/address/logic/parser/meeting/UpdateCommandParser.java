@@ -38,7 +38,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
         UpdateMeetingDescriptor updateMeetingDescriptor = new UpdateMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_ATTENDEES_INDEX).isPresent()) {
-            updateMeetingDescriptor.setAttendees(ParserUtil
+            updateMeetingDescriptor.setIndexes(ParserUtil
                     .parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get()));
         }
         if (argMultimap.getValue(PREFIX_AGENDA).isPresent()) {

@@ -94,7 +94,7 @@ public class UpdateCommand extends Command {
         Set<Id> updatedAttendees = meetingToEdit.getAttendees();
 
         if (updateMeetingDescriptor.areAttendeesChanged()) {
-            updatedAttendeesIndexes = updateMeetingDescriptor.getAttendees()
+            updatedAttendeesIndexes = updateMeetingDescriptor.getIndexes()
                     .orElse(meetingToEdit.getIndexes());
             updatedAttendees = new HashSet<>();
             for (Index index : updatedAttendeesIndexes) {

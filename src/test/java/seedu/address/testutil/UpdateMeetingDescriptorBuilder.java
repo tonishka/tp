@@ -30,7 +30,7 @@ public class UpdateMeetingDescriptorBuilder {
         descriptor.setAgenda(meeting.getAgenda());
         descriptor.setMeetingTime(meeting.getTime());
         descriptor.setMeetingPlace(meeting.getPlace());
-        descriptor.setAttendees(meeting.getIndexes());
+        descriptor.setIndexes(meeting.getIndexes());
     }
 
     /**
