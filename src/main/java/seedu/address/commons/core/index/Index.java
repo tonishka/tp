@@ -10,7 +10,6 @@ package seedu.address.commons.core.index;
  */
 public class Index {
     private int zeroBasedIndex;
-    private long longZeroBasedIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
@@ -20,7 +19,7 @@ public class Index {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
-        this.longZeroBasedIndex = (long)zeroBasedIndex;
+
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
@@ -51,10 +50,6 @@ public class Index {
         return other == this // short circuit if same object
                 || (other instanceof Index // instanceof handles nulls
                 && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
-    }
-
-    public boolean isOverflow() {
-        return longZeroBasedIndex > Integer.MAX_VALUE - 1;
     }
 
     @Override
