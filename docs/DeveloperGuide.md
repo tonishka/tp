@@ -104,7 +104,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. If the view or add command is executed, in addition to the `AddressBookParser` class, next `Logic` uses the `ContactDetailsParser` class to parse the user command. 
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. On the other hand, the `AddCommmand`, `ListCommand`, `ViewCommand`, `DeleteCommand`, `FindCommand`, `ClearCommand`, `MeetCommand`, `UpdateCommand`, `CancelCommand` and `CancelAllCommand` classes are specific to the `AddressBookParser` class. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -523,9 +523,11 @@ Use case ends.
 &emsp; Use case resumes from step 1. <br>
 </p>
 <p>
-2a. Reache informs that the contact name already exists. <br>
+2a. Reache informs that the contact name already exists <br>
 Use case resumes at step 1. <br>
 </p>
+
+<br>
 
 **Use case: UC2 - Edit contact details**
 
@@ -545,15 +547,19 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes from step 1.
 </p>
+<p>
+2a. Reache informs that the contact name already exists <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
 
 **Use case: UC3 - Delete a contact**
 
 **MSS:**
 <p>
 1. User requests to delete a contact. <br>
-2. Reache asks for confirmation. <br>
-3. User confirms deletion. <br>
-4. Reache deletes the contact. <br>
+2. Reache deletes the contact. <br>
 Use case ends.
 </p>
 
@@ -563,11 +569,8 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes at step 1.
 </p>
-<p>
-3a.  User chooses to cancel the deletion. <br>
-&emsp; 3a1. Reache cancels the deletion. <br>
-&emsp; Use case ends.
-</p>
+
+<br>
 
 **Use case: UC4 - Find contacts by field**
 
@@ -587,6 +590,8 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
+<br>
+
 **Use case: UC5 - View contact's full details**
 
 **MSS:**
@@ -602,6 +607,8 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes at step 1.
 </p>
+
+<br>
 
 **Use case: UC6 - List all contacts**
 
@@ -619,23 +626,106 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
-**Use case: UC7 - Clear all contacts**
+<br>
+
+**Use case: UC7 - Clear all contacts and meetings**
 
 **MSS:**
 <p>
-1. User requests to see a list of all contacts. <br>
+1. User requests to clear the contacts. <br>
 2. Reache asks for confirmation. <br>
 3. User confirms the action. <br>
-4. Reache clears all contacts. <br>
+4. Reache clears all contacts and meetings. <br>
 Use case ends.
 </p>
 
 **Extensions:**
 <p>
-1a. There are no contacts. <br>
-&emsp; 1a1. Reache alerts that contact list is empty. <br>
+1a. User requests to list all contacts. <br>
+&emsp; 1a1. Use case resumes from step 1. <br> 
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
 &emsp; Use case ends.
 </p>
+
+<br>
+
+**Use case: UC8 - Add a meeting**
+
+**MSS:**
+<p>
+1. User requests to add a meeting with details. <br>
+2. Reache displays the newly added meeting in the list of meetings. <br>
+Use case ends.
+</p>
+
+**Extensions:** <br>
+<p>
+1a. User inputs using the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1. <br>
+</p>
+<p>
+2a. Reache informs that the meeting with a same date and time already exists. <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
+
+**Use case: UC9 - Edit meeting details**
+
+**MSS:**
+<p>
+1. User requests to add details for specific field(s) of the meeting. <br>
+2. Reache saves the specified details along with their respective field(s). <br>
+Use case ends.
+</p>
+
+**Extensions:** <br>
+<p>
+1a. User inputs the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
+</p>
+<p>
+2a. Reache informs that the meeting with a same date and time already exists. <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
+
+**Use case: UC10 - Delete a meeting**
+
+**MSS:**
+<p>
+1. User requests to delete a meeting. <br>
+4. Reache deletes the meeting. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested meeting does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+
+<br>
+
+**Use case: UC11 - Clear all meetings**
+
+**MSS:**
+<p>
+1. User requests to clear all meetings
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all meetings. <br>
+Use case ends.
+</p>
+
+**Extensions:**
 <p>
 3a.  User chooses to cancel clearing contacts. <br>
 &emsp; 3a1. Reache cancels the clearing. <br>
