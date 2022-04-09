@@ -32,7 +32,7 @@ public class DeleteFieldCommand extends Command {
     public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified field from the contact being displayed."
+            + ": Deletes the specified field from the contact being displayed. "
             + "If a label is provided, deletes information for only that label.\n"
             + "Parameters: FIELD [LABEL]\n"
             + "Example: " + COMMAND_WORD + " c/\n"
@@ -41,7 +41,8 @@ public class DeleteFieldCommand extends Command {
     public static final String MESSAGE_DELETE_FIELD_SUCCESS = "Person after Field Delete: %1$s";
 
     public static final String MESSAGE_DELETE_NAME_FAILURE = "Name cannot be deleted";
-    public static final String MESSAGE_NOT_DELETED_FIELD = "At least one field to delete must be provided.";
+    public static final String MESSAGE_NO_PROVIDED_FIELD = "At least one field to delete must be provided.";
+    public static final String MESSAGE_EMPTY_FIELD = "The provided field to delete is empty or does not exist.";
 
     private final EditPersonDescriptor deleteFieldDescriptor;
     private final Person personToDeleteField;
@@ -68,6 +69,10 @@ public class DeleteFieldCommand extends Command {
 
         if (!personToDeleteField.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_DETAILS);
+        }
+
+        if (personToDeleteField.equals(updatedPerson)) {
+            throw new CommandException(MESSAGE_EMPTY_FIELD);
         }
 
         model.setPerson(personToDeleteField, updatedPerson);
