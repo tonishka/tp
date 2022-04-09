@@ -4,6 +4,7 @@
     -lightgrey: #e9e9e9;
     -lightblue: #75c7fb;
     -blue: #0048cd;
+    -darkblue: #00379c;
 }
 
 .background {
@@ -220,14 +221,6 @@
     -fx-background-color: derive(-lightgrey, 30%);
 }
 
-.context-menu {
-    -fx-background-color: derive(-lightgrey, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: -blue;
-}
-
 .menu-bar {
     -fx-background-color: -blue;
 }
@@ -238,8 +231,28 @@
     -fx-text-fill: white;
 }
 
-.menu .left-container {
-    -fx-background-color: -lightgrey;
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: -darkblue;
+    -fx-text-fill: white;
+}
+
+.context-menu {
+    -fx-background-color: -blue;
+    -fx-padding: 0px;
+}
+
+.menu-item {
+    -fx-background-color: -blue;
+}
+
+.menu-item:hover {
+    -fx-background-color: -darkblue;
+}
+
+.menu-item .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Helvetica", Arial, sans-serif;
+    -fx-text-fill: white;
 }
 
 /*
@@ -247,6 +260,7 @@
  * Author: Pedro Duque Vieira
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
+
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
