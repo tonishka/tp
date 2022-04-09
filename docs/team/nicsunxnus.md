@@ -14,8 +14,8 @@ meetings.
 * **Code Contributed**: [My reposense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=NICSUNXNUS&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-02-18&tabOpen=true&tabType=authorship&tabAuthor=NicsunXnus&tabRepo=AY2122S2-CS2103T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code&authorshipIsBinaryFileTypeChecked=false)
  
 * **Enhancements Implemented**:
-  - Enhanced `ParserUtil` to parse new person fields: company, jobtitle, pronouns
-  - Enhanced `ParserUtil` methods for emails, phone numbers and addresses to take in a set of values instead of just one
+  - Enhanced `ParserUtil` to parse new person fields: company, jobtitle, pronouns, PR [\#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33/files)
+  - Enhanced `ParserUtil` methods for emails, phone numbers and addresses to take in a set of values instead of just one, PR [\#33](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/33/files)
   - Enhanced `ParserUtil` methods for meeting fields, PR [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files)
   - Enhanced `EditCommandParser` class to fit v1.3, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
   - Added the command and parser classes for adding, editing, deleting and clearing meetings, PRs [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files), [\#137](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/137) and [\#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
@@ -38,7 +38,7 @@ meetings.
   - Created the team repository
   - Created the collaborative project document 
   - Fixed bug where cancel-all and clear commands does not update the data in the JSON file, PR [\#149](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/149)
-  - Reduced number of failing tests after implemenation of new edit command, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
+  - Reduced number of failing tests after implemenation of new edit command, PRs [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79) and [\#38](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/38).
 
 * **Contributions beyond the project team**: 
   * Posted [8 issues](https://github.com/nicsunxnus/ped/issues) 
