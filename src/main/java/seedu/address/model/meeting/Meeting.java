@@ -1,11 +1,10 @@
 package seedu.address.model.meeting;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Id;
-
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Id;
 
 /**
  * Represents a meeting of which the user is a part.
