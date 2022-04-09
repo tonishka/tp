@@ -24,8 +24,12 @@ import seedu.address.model.meeting.Meeting;
  * {@code CancelCommand}.
  */
 public class CancelCommandtest {
+
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), new UserPrefs());
 
+    /**
+     * Tests for valid indexes for unfiltered meeting list
+     */
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Meeting meetingToDelete = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
@@ -39,6 +43,9 @@ public class CancelCommandtest {
         assertCommandSuccess(cancelCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Tests for invalid index for unfiltered meeting list
+     */
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
@@ -48,6 +55,9 @@ public class CancelCommandtest {
                 model.getFilteredMeetingList().size() + 1));
     }
 
+    /**
+     * Tests for valid index for filtered meeting list
+     */
     @Test
     public void execute_validIndexFilteredList_success() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
@@ -64,6 +74,9 @@ public class CancelCommandtest {
         assertCommandSuccess(cancelCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Tests for invalid indexes for filtered meeting list
+     */
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
@@ -78,6 +91,9 @@ public class CancelCommandtest {
                 outOfBoundIndex.getOneBased()));
     }
 
+    /**
+     * Tests for equal methods
+     */
     @Test
     public void equals() {
         CancelCommand cancelFirstCommand = new CancelCommand(INDEX_FIRST_MEETING);
