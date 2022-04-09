@@ -68,9 +68,9 @@ public class UpdateCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_AGENDA_DESC, Agenda.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PLACE_DESC, MeetingPlace.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_AGENDA_DESC, Agenda.MESSAGE_CONSTRAINTS); // invalid agenda
+        assertParseFailure(parser, "1" + EMPTY_PLACE_DESC, MeetingPlace.MESSAGE_CONSTRAINTS); // invalid place
+        assertParseFailure(parser, "1" + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS); // invalid time
 
         // invalid agenda followed by valid meeting place
         assertParseFailure(parser, "1" + INVALID_TIME_DESC + PLACE_DESC_QUARTERLY, MeetingTime.MESSAGE_CONSTRAINTS);
