@@ -85,37 +85,31 @@ public class MainApp extends Application {
         Optional<ReadOnlyMeetingBook> meetingBookOptional;
         ReadOnlyAddressBook initialAddressBook;
         ReadOnlyMeetingBook initialMeetingBook;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook and MeetingBook");
-            }
-            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. "
-                    + "Will be starting with an empty AddressBook and MeetingBook");
-            initialAddressBook = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. "
-                    + "Will be starting with an empty AddressBook and MeetingBook");
-            initialAddressBook = new AddressBook();
-        }
 
         try {
+            addressBookOptional = storage.readAddressBook();
             meetingBookOptional = storage.readMeetingBook();
-            if (!meetingBookOptional.isPresent()) {
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook and MeetingBook");
+                initialAddressBook = SampleDataUtil.getSampleAddressBook();
+                initialMeetingBook = SampleDataUtil.getSampleMeetingBook();
+            } else if (!meetingBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with an empty MeetingBook");
+                initialAddressBook = addressBookOptional.get();
                 initialMeetingBook = new MeetingBook();
             } else {
+                initialAddressBook = addressBookOptional.get();
                 initialMeetingBook = meetingBookOptional.get();
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. "
-                    + "Will be starting with an empty MeetingBook");
+                    + "Will be starting with an empty AddressBook and MeetingBook");
+            initialAddressBook = new AddressBook();
             initialMeetingBook = new MeetingBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. "
-                    + "Will be starting with an empty MeetingBook");
+                    + "Will be starting with an empty AddressBook and MeetingBook");
+            initialAddressBook = new AddressBook();
             initialMeetingBook = new MeetingBook();
         }
 

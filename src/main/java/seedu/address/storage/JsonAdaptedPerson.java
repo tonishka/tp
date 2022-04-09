@@ -114,26 +114,22 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
-        final Id modelId = new Id(id);
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
-
         if (!(company == null || Company.isValidCompany(company))) {
             throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         }
-
-        final Company modelCompany = company != null ? new Company(company) : null;
-
         if (!(jobTitle == null || JobTitle.isValidJobTitle(jobTitle))) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
 
+        final Id modelId = new Id(id);
+        final Name modelName = new Name(name);
+        final Company modelCompany = company != null ? new Company(company) : null;
         final JobTitle modelJobTitle = jobTitle != null ? new JobTitle(jobTitle) : null;
 
         TreeMap<Label, Phone> modelNumbers = new TreeMap<>();
@@ -164,14 +160,12 @@ class JsonAdaptedPerson {
         for (JsonAdaptedPronoun pronoun : pronouns) {
             personPronouns.add(pronoun.toModelType());
         }
-
         final Set<Pronoun> modelPronouns = new HashSet<>(personPronouns);
 
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelId, modelName, modelNumbers, modelEmails, modelAddresses,
