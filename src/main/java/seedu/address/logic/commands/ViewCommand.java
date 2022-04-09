@@ -10,6 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+import javax.swing.text.View;
+
 /**
  * Views the full contact details of the specified person.
  */
@@ -49,5 +51,20 @@ public class ViewCommand extends Command {
 
         return new CommandResult(String.format(SHOWING_CONTACT_INFO, toDisplay.getName().fullName), false, false,
                 false, true, false, false, toDisplay);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof ViewCommand)) {
+            return false;
+        }
+
+        // state check
+        return index.equals(((ViewCommand) other).index);
     }
 }
