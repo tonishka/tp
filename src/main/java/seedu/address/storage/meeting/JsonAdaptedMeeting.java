@@ -81,6 +81,9 @@ class JsonAdaptedMeeting {
         if (!MeetingTime.isValidMeetingTime(meetingTime)) {
             throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+        if (!MeetingTime.isFutureMeetingTime(MeetingTime.formatTime(meetingTime))) {
+            return null;
+        }
         if (attendees.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "attendees"));
         }
