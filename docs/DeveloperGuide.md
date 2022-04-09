@@ -496,7 +496,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
 | `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
 | `* * *`  | user                    | save my data automatically                                          | reduce the risk of my data being lost                                                 |
+| `* * *`  | user                    | create a meeting with my contacts                                   | plan and keep track of meetings I have with my contacts                               |
+| `* * *`  | user                    | store the agenda of a meeting                                       | remember what the purpose of the meeting is                                           |
+| `* * *`  | user                    | store the time of a meeting                                         | remember when the meeting is taking place                                             |
+| `* * *`  | user                    | store the location of a meeting                                     | remember where the meeting is taking place                                            |
+| `* * *`  | user                    | cancel a meeting                                                    | remove meetings I no longer need to track                                             |
+| `* * *`  | user                    | update a meeting                                                    | change details about the meeting without having to delete it and create a new one     |
+| `* * *`  | user                    | view all my meetings as a list                                      | scroll the list to view all my meetings                                               |
+| `* * *`  | user                    | view my meetings in chronological order                             | see my most urgent meetings first                                                     |
 | `* * *`  | advanced user           | save all my contacts in an editable file                            | edit my contacts directly from the data file                                          |
+| `* *`    | user                    | find meetings I have with a specific contact                        | know what meetings I have with that person                                            |
 | `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
 | `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
 | `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
