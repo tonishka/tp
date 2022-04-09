@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Agenda;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.meeting.UpdateMeetingDescriptor;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A utility class to help with building UpdateMeetingDescriptor objects.
@@ -39,7 +39,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Agenda} of the {@code EditPMeetingDescriptor} that we are building.
+     * Sets the {@code Agenda} of the {@code UpdatePMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withAgenda(String agenda) {
         descriptor.setAgenda(new Agenda(agenda));
@@ -47,7 +47,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code MeetingTime} of the {@code EditPMeetingDescriptor} that we are building.
+     * Sets the {@code MeetingTime} of the {@code UpdatePMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withTime(String meetingTime) {
         descriptor.setMeetingTime(new MeetingTime(meetingTime));
@@ -55,13 +55,16 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code MeetingPlace} of the {@code EditPMeetingDescriptor} that we are building.
+     * Sets the {@code MeetingPlace} of the {@code UpdatePMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withPlace(String meetingPlace) {
         descriptor.setMeetingPlace(new MeetingPlace(meetingPlace));
         return this;
     }
 
+    /**
+     * Sets the {@code attendees} of the {@code UpdatePMeetingDescriptor} that we are building.
+     */
     public UpdateMeetingDescriptorBuilder withAttendees(String... attendees) {
         Set<Index> indexes = Stream.of(attendees).map(a -> Index.fromOneBased(Integer.parseInt(a)))
                 .collect(Collectors.toSet());
