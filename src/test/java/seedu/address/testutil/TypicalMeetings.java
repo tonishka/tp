@@ -13,7 +13,7 @@ import seedu.address.model.meeting.Meeting;
 public class TypicalMeetings {
 
     public static final Meeting MEETING_1 = new MeetingBuilder().withAgenda("Paper supply for Greendale College")
-            .withPlace("David's Office").withTime("02-04-2022 13:30").build();
+            .withPlace("David's Office").withTime("02-04-2023 13:30").build();
 
     private TypicalMeetings() {} // prevents instantiation
 

@@ -106,7 +106,7 @@ public class SampleDataUtil {
             new Meeting(
                     new Agenda("Paper supply for Greendale College"),
                     new MeetingPlace("David's Office"),
-                    new MeetingTime(MeetingTime.formatTime("02-04-2022 13:30")),
+                    new MeetingTime("02-04-2023 13:30"),
                     new HashSet<>(Arrays.asList(samplePersons[1].getId(), samplePersons[2].getId()))
             )
         };

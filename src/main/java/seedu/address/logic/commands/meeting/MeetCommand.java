@@ -3,10 +3,10 @@ package seedu.address.logic.commands.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_MEETING;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_AGENDA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PLACE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.HashSet;
 import java.util.List;
@@ -31,14 +31,14 @@ public class MeetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":Adds a new meeting.\n"
             + "Required Parameters: "
             + PREFIX_ATTENDEES_INDEX + "[INDEX OF PERSON IN REACHE] [MORE INDICES OF PEOPLE IN REACHE]... "
-            + PREFIX_MEETING_AGENDA + "AGENDA "
-            + PREFIX_MEETING_PLACE + "MEETING PLACE "
-            + PREFIX_MEETING_TIME + "MEETING TIME\n"
+            + PREFIX_AGENDA + "AGENDA "
+            + PREFIX_PLACE + "MEETING PLACE "
+            + PREFIX_TIME + "MEETING TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ATTENDEES_INDEX + "1 3 5 67 "
-            + PREFIX_MEETING_AGENDA + "Product Demo with Client "
-            + PREFIX_MEETING_PLACE + "Conference Room 5A "
-            + PREFIX_MEETING_TIME + "05-04-2022 15:44";
+            + PREFIX_AGENDA + "Product Demo with Client "
+            + PREFIX_PLACE + "Conference Room 5A "
+            + PREFIX_TIME + "05-04-2022 15:44";
 
     public static final String INDEX_CANNOT_BE_EMPTY_MESSAGE = "At least one participant is required!";
 
