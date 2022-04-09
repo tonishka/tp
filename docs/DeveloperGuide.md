@@ -82,7 +82,18 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that comprises several UI parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The specific UI parts that make up the `MainWindow` depend on which page of the application is being displayed. Reache contains two pages:
+* **The Home Page**: Displays lists of the user's contacts and the user's upcoming meetings. The below diagram depicts the `MainWindow` when the Home Page is being displayed.
+
+![Home Page UI Parts](images/HomePageDiagram.png)
+
+* **The Contact Details Page**: Displays the details of a specific contact, as well as upcoming meetings associated with that contact. The below diagram depicts the `MainWindow` when the Contact Details page is being displayed.
+
+![Contact Details Page UI Parts](images/ContactDetailsPageDiagram.png)
+
+Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details page is displayed.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -244,19 +255,19 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### View person feature
+### View feature
 
-The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
 Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
-Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
 The following sequence diagram shows how the view feature works:
 
@@ -378,7 +389,7 @@ The find command is used to search for people based on certain criteria.
 
 Below is a sequence diagram summarising the mechanism of find command:
 
-![FindSequencdDiagaram](images/FindSequenceDiagram.png)
+![FindSequenceDiagaram](images/FindSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for a find command:
 
