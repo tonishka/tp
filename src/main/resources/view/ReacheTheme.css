@@ -386,9 +386,11 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, white, transparent, white;
-    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-border-color: -border;
 }
+
+/*
 
 #tags {
     -fx-hgap: 7;
