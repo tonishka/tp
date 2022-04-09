@@ -165,6 +165,6 @@ public class MeetingListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> meetingList.asUnmodifiableObservableList().remove(0));
+            -> meetingList.asUnmodifiableObservableList().remove(0));
     }
 }
