@@ -35,20 +35,20 @@
 
         <HBox VBox.vgrow="ALWAYS">
           <VBox HBox.hgrow="ALWAYS">
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-primary">
               <padding>
                 <Insets top="20" right="20" bottom="15" left="20" />
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-primary"
                        minHeight="100" prefHeight="100" maxHeight="100">
               <padding>
                 <Insets top="0" right="20" bottom="20" left="20" />
               </padding>
             </StackPane>
 
-            <StackPane fx:id="panelPlaceholder" VBox.vgrow="ALWAYS" styleClass="pane-with-border">
+            <StackPane fx:id="panelPlaceholder" VBox.vgrow="ALWAYS" styleClass="pane-primary">
               <padding>
                 <Insets top="0" right="20" bottom="20" left="20" />
               </padding>
