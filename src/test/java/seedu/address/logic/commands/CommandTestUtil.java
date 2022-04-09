@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
@@ -101,6 +102,7 @@ public class CommandTestUtil {
 
     public static final String AGENDA_DESC_QUARTERLY = " " + PREFIX_AGENDA + VALID_AGENDA_QUARTERLY;
     public static final String AGENDA_DESC_PROJECT = " " + PREFIX_AGENDA + VALID_AGENDA_PROJECT;
+    public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + "1";
     public static final String TIME_DESC_QUARTERLY = " " + PREFIX_TIME + VALID_TIME_QUARTERLY;
     public static final String TIME_DESC_PROJECT = " " + PREFIX_TIME + VALID_TIME_PROJECT;
     public static final String PLACE_DESC_QUARTERLY = " " + PREFIX_PLACE + VALID_PLACE_QUARTERLY;
