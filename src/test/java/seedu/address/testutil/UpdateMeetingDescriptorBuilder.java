@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Agenda;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingPlace;
 import seedu.address.model.meeting.MeetingTime;
 import seedu.address.model.meeting.UpdateMeetingDescriptor;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A utility class to help with building UpdateMeetingDescriptor objects.
@@ -56,6 +61,15 @@ public class UpdateMeetingDescriptorBuilder {
         descriptor.setMeetingPlace(new MeetingPlace(meetingPlace));
         return this;
     }
+
+    public UpdateMeetingDescriptorBuilder withAttendees(String... attendees) {
+        Set<Index> indexes = Stream.of(attendees).map(a -> Index.fromOneBased(Integer.parseInt(a)))
+                .collect(Collectors.toSet());
+        descriptor.setIndexes(indexes);
+        return this;
+    }
+
+
 
     public UpdateMeetingDescriptor build() {
         return descriptor;

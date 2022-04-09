@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_QUARTERLY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGENDA_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDEE_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PLACE_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_PROJECT;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.testutil.UpdateMeetingDescriptorBuilder;
-
-import org.junit.jupiter.api.Test;
 
 public class UpdateMeetingDescriptorTest {
 
@@ -46,6 +47,11 @@ public class UpdateMeetingDescriptorTest {
         // different meeting place -> returns false
         editedQuarterly = new UpdateMeetingDescriptorBuilder(DESC_QUARTERLY)
                 .withPlace(VALID_PLACE_PROJECT).build();
+        assertFalse(DESC_QUARTERLY.equals(editedQuarterly));
+
+        // different attendees -> returns false
+        editedQuarterly = new UpdateMeetingDescriptorBuilder(DESC_QUARTERLY)
+                .withAttendees(VALID_ATTENDEE_PROJECT).build();
         assertFalse(DESC_QUARTERLY.equals(editedQuarterly));
     }
 }
