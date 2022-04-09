@@ -10,8 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import javax.swing.text.View;
-
 /**
  * Views the full contact details of the specified person.
  */
