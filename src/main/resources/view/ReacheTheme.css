@@ -109,7 +109,7 @@
 }
 
 .list-cell:filled {
-    -fx-background-color: white;
+    -fx-background-color: red;
     -fx-background-insets: 4px 0px 0px 0px;
     -fx-border-color: transparent transparent -accent transparent;
     -fx-border-width: 1px;
@@ -147,6 +147,10 @@
 
 .pane-primary {
      -fx-background-color: -background_primary;
+}
+
+.pane-secondary {
+     -fx-background-color: -background_secondary;
 }
 
 .info-box {
@@ -379,3 +383,10 @@
     -fx-font-size: 12;
 }
 
+#contactListPane {
+    -fx-border-color: transparent -border -border transparent;
+}
+
+#meetingListPane {
+    -fx-border-color: transparent transparent -border transparent;
+}

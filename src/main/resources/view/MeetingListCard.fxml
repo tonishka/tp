@@ -6,7 +6,7 @@
 <?import javafx.geometry.Insets?>
 
 <VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      prefWidth="375">
+      prefWidth="360">
     <padding>
         <Insets top="5" right="5" bottom="5" left="10" />
     </padding>
