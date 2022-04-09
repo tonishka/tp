@@ -17,6 +17,7 @@ Class Meeting
 Class MeetingPlace
 Class Agenda
 Class MeetingTime
+Class Id
 Class Person
 }
 
@@ -37,7 +38,9 @@ MeetingsList --> "~* all" Meeting
 Meeting *--> "1" MeetingPlace
 Meeting *--> "1" MeetingTime
 Meeting *--> "1" Agenda
-Meeting *--> "1..*" Person
+Meeting *--> "1..*" Id : Meeting Attendees
+
+Id "1" --> "1" Person
 
 ModelManager -->"~* filtered" Meeting
 @enduml
