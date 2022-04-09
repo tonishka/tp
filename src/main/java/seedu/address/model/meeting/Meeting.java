@@ -78,7 +78,7 @@ public class Meeting implements Comparable<Meeting> {
     }
 
     /**
-     * Returns true if both meetings have the same agenda, time, place and attendees.
+     * Returns true if both meetings have the same time.
      */
     public boolean isSameMeeting(Meeting otherMeeting) {
         if (otherMeeting == this) {
