@@ -82,7 +82,18 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that comprises several UI parts. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The specific UI parts that make up the `MainWindow` depend on which page of the application is being displayed. Reache contains two pages:
+* **The Home Page**: Displays lists of the user's contacts and the user's upcoming meetings. The below diagram depicts the `MainWindow` when the Home Page is being displayed.
+
+![Home Page UI Parts](images/HomePageDiagram.png)
+
+* **The Contact Details Page**: Displays the details of a specific contact, as well as upcoming meetings associated with that contact. The below diagram depicts the `MainWindow` when the Contact Details page is being displayed.
+
+![Contact Details Page UI Parts](images/ContactDetailsPageDiagram.png)
+
+Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details page is displayed.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -103,9 +114,10 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. if a command is entered from the Home Page, it goes to the AddressBookParser and if it is entered from the Contact Details Page it goes to the ContactDetailsParser.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -119,7 +131,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` or `ContactDetailsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -146,11 +158,15 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
+
+![JsonAdapedPersonDiagram](images/JsonAdaptedPerson.png)
+
+![JsonAdaptedMeetingDiagram](images/JsonAdaptedMeeting.png)
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book, meeting book and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `MeetingBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -177,6 +193,10 @@ The following sequence diagram shows how the edit operation works:
 Below is an activity diagram summarising the possible paths for an edit command:
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Similar to adding a contact, the contact edited cannot have the same **Name** and **Tags** as an existing contact in the addressbook. This is meant to protect against duplicate contacts which may result in confusion for the user in managing their contacts. Attempting to do so will result in a warning message to the user which reads "A person with these details already exists. Please do add tags that differentiate between them!"
+
+</div>
 
 #### Design considerations:
 
@@ -239,19 +259,19 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### View person feature
+### View feature
 
-The view feature allows the user to view the full contact details of a specified person in the address book. The command is only available from the person list window,and is thus facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which displays the full details of the `Person` provided as argument.
+* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
 Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
-Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the `MainWindow` inside a `CommandResult`.
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel`.
+Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
 The following sequence diagram shows how the view feature works:
 
@@ -373,7 +393,7 @@ The find command is used to search for people based on certain criteria.
 
 Below is a sequence diagram summarising the mechanism of find command:
 
-![FindSequencdDiagaram](images/FindSequenceDiagram.png)
+![FindSequenceDiagaram](images/FindSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for a find command:
 
@@ -480,7 +500,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | delete all contacts from the contact list                           | remove all contacts when I no longer require them and start with a fresh contact list |
 | `* * *`  | user                    | view all my contacts as a list                                      | scroll the list to view all contacts or find the one I want                           |
 | `* * *`  | user                    | save my data automatically                                          | reduce the risk of my data being lost                                                 |
+| `* * *`  | user                    | create a meeting with my contacts                                   | plan and keep track of meetings I have with my contacts                               |
+| `* * *`  | user                    | store the agenda of a meeting                                       | remember what the purpose of the meeting is                                           |
+| `* * *`  | user                    | store the time of a meeting                                         | remember when the meeting is taking place                                             |
+| `* * *`  | user                    | store the location of a meeting                                     | remember where the meeting is taking place                                            |
+| `* * *`  | user                    | cancel a meeting                                                    | remove meetings I no longer need to track                                             |
+| `* * *`  | user                    | update a meeting                                                    | change details about the meeting without having to delete it and create a new one     |
+| `* * *`  | user                    | view all my meetings as a list                                      | scroll the list to view all my meetings                                               |
+| `* * *`  | user                    | view my meetings in chronological order                             | see my most urgent meetings first                                                     |
 | `* * *`  | advanced user           | save all my contacts in an editable file                            | edit my contacts directly from the data file                                          |
+| `* *`    | user                    | find meetings I have with a specific contact                        | know what meetings I have with that person                                            |
 | `* *`    | new user                | be provided suggested commands when I am adding contact information | know what kind of information I am able to add                                        |
 | `* *`    | new user                | view sample contacts when I first launch the application            | see how the application looks when in use                                             |
 | `* *`    | new user                | easily remove existing sample contact information                   | begin adding my own contacts without confusion                                        |
@@ -516,9 +545,11 @@ Use case ends.
 &emsp; Use case resumes from step 1. <br>
 </p>
 <p>
-2a. Reache informs that the contact name already exists. <br>
+2a. Reache informs that the contact name already exists <br>
 Use case resumes at step 1. <br>
 </p>
+
+<br>
 
 **Use case: UC2 - Edit contact details**
 
@@ -538,15 +569,19 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes from step 1.
 </p>
+<p>
+2a. Reache informs that the contact name already exists <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
 
 **Use case: UC3 - Delete a contact**
 
 **MSS:**
 <p>
 1. User requests to delete a contact. <br>
-2. Reache asks for confirmation. <br>
-3. User confirms deletion. <br>
-4. Reache deletes the contact. <br>
+2. Reache deletes the contact. <br>
 Use case ends.
 </p>
 
@@ -556,11 +591,8 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes at step 1.
 </p>
-<p>
-3a.  User chooses to cancel the deletion. <br>
-&emsp; 3a1. Reache cancels the deletion. <br>
-&emsp; Use case ends.
-</p>
+
+<br>
 
 **Use case: UC4 - Find contacts by field**
 
@@ -580,6 +612,8 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
+<br>
+
 **Use case: UC5 - View contact's full details**
 
 **MSS:**
@@ -595,6 +629,8 @@ Use case ends.
 &emsp; 1a1. Reache displays an error message. <br>
 &emsp; Use case resumes at step 1.
 </p>
+
+<br>
 
 **Use case: UC6 - List all contacts**
 
@@ -612,23 +648,106 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
-**Use case: UC7 - Clear all contacts**
+<br>
+
+**Use case: UC7 - Clear all contacts and meetings**
 
 **MSS:**
 <p>
-1. User requests to see a list of all contacts. <br>
+1. User requests to clear the contacts. <br>
 2. Reache asks for confirmation. <br>
 3. User confirms the action. <br>
-4. Reache clears all contacts. <br>
+4. Reache clears all contacts and meetings. <br>
 Use case ends.
 </p>
 
 **Extensions:**
 <p>
-1a. There are no contacts. <br>
-&emsp; 1a1. Reache alerts that contact list is empty. <br>
+1a. User requests to list all contacts. <br>
+&emsp; 1a1. Use case resumes from step 1. <br> 
+</p>
+<p>
+3a.  User chooses to cancel clearing contacts. <br>
+&emsp; 3a1. Reache cancels the clearing. <br>
 &emsp; Use case ends.
 </p>
+
+<br>
+
+**Use case: UC8 - Add a meeting**
+
+**MSS:**
+<p>
+1. User requests to add a meeting with details. <br>
+2. Reache displays the newly added meeting in the list of meetings. <br>
+Use case ends.
+</p>
+
+**Extensions:** <br>
+<p>
+1a. User inputs using the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1. <br>
+</p>
+<p>
+2a. Reache informs that the meeting with a same date and time already exists. <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
+
+**Use case: UC9 - Edit meeting details**
+
+**MSS:**
+<p>
+1. User requests to add details for specific field(s) of the meeting. <br>
+2. Reache saves the specified details along with their respective field(s). <br>
+Use case ends.
+</p>
+
+**Extensions:** <br>
+<p>
+1a. User inputs the wrong format. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes from step 1.
+</p>
+<p>
+2a. Reache informs that the meeting with a same date and time already exists. <br>
+Use case resumes at step 1. <br>
+</p>
+
+<br>
+
+**Use case: UC10 - Delete a meeting**
+
+**MSS:**
+<p>
+1. User requests to delete a meeting. <br>
+4. Reache deletes the meeting. <br>
+Use case ends.
+</p>
+
+**Extensions:**
+<p>
+1a.  The requested meeting does not exist. <br>
+&emsp; 1a1. Reache displays an error message. <br>
+&emsp; Use case resumes at step 1.
+</p>
+
+<br>
+
+**Use case: UC11 - Clear all meetings**
+
+**MSS:**
+<p>
+1. User requests to clear all meetings
+2. Reache asks for confirmation. <br>
+3. User confirms the action. <br>
+4. Reache clears all meetings. <br>
+Use case ends.
+</p>
+
+**Extensions:**
 <p>
 3a.  User chooses to cancel clearing contacts. <br>
 &emsp; 3a1. Reache cancels the clearing. <br>
@@ -719,6 +838,28 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Adding a meeting
+
+1. Adding a meeting
+   
+   1. Prerequisites: Have an empty meeting list and 1 contact in the contacts list. The list of test cases have to be followed in order for the testing to work.
+   2. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+      Expected: The added meeting is shown on the list of meetings at the side and a success message is displayed
+   3. Test case: `meet with/2 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+      Expected: No meeting is added and an error message is shown in the status box.
+   4. Test case: `meet with/1 for/Quarterly Announcement in/Conference Room 6B on/05-04-2025 15:44` <br>
+      Expected: No meeting is added and an error message is shown in the status box.
+   5. Test case: `meet with/ for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+      Expected: No meeting is added and an error message is shown in the status box.
+   6. Test case: `meet with/1 for/ in/Conference Room 5A on/05-04-2025 15:44` <br>
+      Expected: No meeting is added and an error message is shown in the status box
+   7. Test case: `meet with/1 for/Product Demo with Client in/ on/05-04-2025 15:44` <br>
+      Expected: No meeting is added and an error message is shown in the status box
+   8. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/` <br>
+      Expected: No meeting is added and an error message is shown in the status box
+   9. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/2025-05-04 15:44`
+      Expected: No meeting is added and an error message is shown in the status box
 
 ### Saving data
 

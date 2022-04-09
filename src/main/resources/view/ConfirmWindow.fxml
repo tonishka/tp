@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Confirm" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Confirm" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
+         xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png" />
     </icons>
@@ -19,14 +20,14 @@
                 <URL value="@ConfirmWindow.css" />
             </stylesheets>
 
-            <HBox alignment="CENTER" fx:id="confirmMessageContainer">
+            <HBox alignment="CENTER" fx:id="confirmMessageContainer" prefHeight="80" prefWidth="600">
                 <children>
-                    <Label fx:id="confirmMessage" text="Label">
+                    <Label fx:id="confirmMessage" text="Label" wrapText="true">
                         <HBox.margin>
-                            <Insets right="5.0" />
+                            <Insets right="15.0" />
                         </HBox.margin>
                     </Label>
-                    <Button fx:id="confirm" mnemonicParsing="false" onAction="#confirm" text="Yes">
+                    <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirm" text="Yes" minWidth="120">
                         <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>
@@ -36,7 +37,7 @@
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </opaqueInsets>
                 <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="1.0" />
                 </padding>
             </HBox>
         </Scene>
