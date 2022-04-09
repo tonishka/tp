@@ -183,6 +183,9 @@ public class EditPersonDescriptor {
         EditPersonDescriptor e = (EditPersonDescriptor) other;
 
         return getName().equals(e.getName())
+                && getCompany().equals(e.getCompany())
+                && getJobTitle().equals(e.getJobTitle())
+                && getPronouns().equals(e.getPronouns())
                 && getNumbers().equals(e.getNumbers())
                 && getEmails().equals(e.getEmails())
                 && getAddresses().equals(e.getAddresses())

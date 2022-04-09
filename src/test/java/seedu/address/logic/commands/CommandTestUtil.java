@@ -96,6 +96,8 @@ public class CommandTestUtil {
 
     public static final String VALID_AGENDA_QUARTERLY = "Quarterly meeting";
     public static final String VALID_AGENDA_PROJECT = "Project meeting";
+    public static final String VALID_ATTENDEE_QUARTERLY = "1";
+    public static final String VALID_ATTENDEE_PROJECT = "2";
     public static final String VALID_TIME_QUARTERLY = "01-01-2023 10:00";
     public static final String VALID_TIME_PROJECT = "28-05-2023 15:00";
     public static final String VALID_PLACE_QUARTERLY = "Conference Room #03-26";
@@ -103,7 +105,8 @@ public class CommandTestUtil {
 
     public static final String AGENDA_DESC_QUARTERLY = " " + PREFIX_AGENDA + VALID_AGENDA_QUARTERLY;
     public static final String AGENDA_DESC_PROJECT = " " + PREFIX_AGENDA + VALID_AGENDA_PROJECT;
-    public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + "1";
+    public static final String ATTENDEE_DESC_QUARTERLY = " " + PREFIX_ATTENDEES_INDEX + VALID_ATTENDEE_QUARTERLY;
+    public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + VALID_ATTENDEE_PROJECT;
     public static final String TIME_DESC_QUARTERLY = " " + PREFIX_TIME + VALID_TIME_QUARTERLY;
     public static final String TIME_DESC_PROJECT = " " + PREFIX_TIME + VALID_TIME_PROJECT;
     public static final String PLACE_DESC_QUARTERLY = " " + PREFIX_PLACE + VALID_PLACE_QUARTERLY;
@@ -133,9 +136,10 @@ public class CommandTestUtil {
                 .withPronouns(VALID_PRONOUN_THEY, VALID_PRONOUN_HIM).build();
 
         DESC_QUARTERLY = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
-                .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
+                .withAttendees(VALID_ATTENDEE_QUARTERLY).withTime(VALID_TIME_QUARTERLY)
+                .withPlace(VALID_PLACE_QUARTERLY).build();
         DESC_PROJECT = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT)
-                .withTime(VALID_TIME_PROJECT)
+                .withAttendees(VALID_ATTENDEE_QUARTERLY).withTime(VALID_TIME_PROJECT)
                 .withPlace(VALID_PLACE_PROJECT).build();
     }
 
