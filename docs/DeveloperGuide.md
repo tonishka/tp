@@ -160,6 +160,8 @@ The `Model` component,
 
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
+Here are the other classes that were omitted from the diagram above but are useful to take note of:
+
 ![JsonAdapedPersonDiagram](images/JsonAdaptedPerson.png)
 
 ![JsonAdaptedMeetingDiagram](images/JsonAdaptedMeeting.png)
