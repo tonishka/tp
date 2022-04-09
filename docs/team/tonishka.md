@@ -44,19 +44,20 @@ fast typers.
     * Opened [24 issues](https://github.com/tonishka/ped/issues) for [UniGenda](https://github.com/AY2122S2-CS2103T-W09-1/tp/releases) during `PE-D`
       <br><br>
 * **Contributions to the Developer Guide (extracts)**:
+
 ```markdown
 #### Design Considerations
 
 #### Aspect: What happens when user does not specify a field
 
-**Note:** <br>
+**Note:** 
 For evaluating the usefulness of the alternatives these are the assumptions made as to why the user does not specify
-the field: <br>
-a) they forgot, <br>
-b) they do not want to restrict their search to one field, or <br>
+the field: 
+a) they forgot, 
+b) they do not want to restrict their search to one field, or 
 c) they do not remember which field they want to search.
 
-**Alternative 1 (Current Choice):** Search all fields for the keyword <br>
+**Alternative 1 (Current Choice):** Search all fields for the keyword 
 - Pros:
   - This is the most intuitive approach.
   - For all above mentioned scenarios a-c, this alternative is will produce the most useful result.
@@ -76,6 +77,7 @@ c) they do not remember which field they want to search.
 ```
 
 * **Contributions to the User Guide (extracts)**:
+
 ```markdown
 ### 2.3 Getting Started with Reache
 
@@ -87,8 +89,6 @@ In the [contacts tutorial](#231-tutorial-1-managing-contacts-with-reache), you w
 In the [meetings tutorial](#232-tutorial-2-managing-meetings-with-reache), you will learn how to schedule and track your meetings using Reache.
 
 Experienced users should skip this section.
-
-<hr> 
 
 #### 2.3.1 Tutorial 1: Managing Contacts with Reache
 
