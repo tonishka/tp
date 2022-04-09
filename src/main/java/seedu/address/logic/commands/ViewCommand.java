@@ -44,9 +44,6 @@ public class ViewCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
                     index.getOneBased()));
         }
-        if (index.isOverflow()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
 
         Person toDisplay = lastShownList.get(index.getZeroBased());
 

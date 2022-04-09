@@ -117,15 +117,4 @@ public class StringUtil {
             return false;
         }
     }
-
-    public static boolean isNonZeroUnsignedLong(String s) {
-        requireNonNull(s);
-
-        try {
-            long value = Long.parseLong(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
 }
