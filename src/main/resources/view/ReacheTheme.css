@@ -159,8 +159,8 @@
 }
 
 .info-box {
-     -fx-background-color: derive(-background_primary, 100%);
-     -fx-border-color: derive(-background_primary, 10%);
+     -fx-background-color: -background_primary;
+     -fx-border-color: -border;
      -fx-border-top-width: 1px;
      -fx-border-insets: 4px;
      -fx-padding: 5px;
@@ -214,7 +214,7 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-text-fill: white;
 }
@@ -238,7 +238,7 @@
 }
 
 .menu-item .label {
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-font-family: "Helvetica", Arial, sans-serif;
     -fx-text-fill: white;
 }
