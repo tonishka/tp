@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * Represents the meeting time for a meeting.
  */
-public class MeetingTime {
+public class MeetingTime implements Comparable<MeetingTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting time must be in the following format: dd-MM-yyyy HH:mm\n Example: 25-05-2022 23:59";
 
@@ -107,5 +107,10 @@ public class MeetingTime {
     @Override
     public int hashCode() {
         return dateTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(MeetingTime other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 }
