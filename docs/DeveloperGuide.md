@@ -848,7 +848,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The added meeting is shown on the list of meetings at the side and a success message is displayed
    3. Test case: `meet with/2 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
-   4. Test case: `meet with/1 for/Quarterly Announcement in/Conference Room 6B on/05-04-2025 15:44` <br>
+   4. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
    5. Test case: `meet with/ for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
