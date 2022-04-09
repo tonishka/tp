@@ -19,6 +19,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code CancelCommand}.
+ */
 public class CancelCommandtest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), new UserPrefs());
 
