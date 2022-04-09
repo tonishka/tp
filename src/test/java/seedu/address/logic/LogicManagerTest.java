@@ -111,7 +111,7 @@ public class LogicManagerTest {
         String backCommand = "back";
         expectedModel = new ModelManager();
         expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure_ContactDetailsWindow(backCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailureForContactDetailsWindow(backCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
@@ -190,7 +190,7 @@ public class LogicManagerTest {
         assertEquals(expectedModel, model);
     }
 
-    private void assertCommandFailure_ContactDetailsWindow(String input, Class<? extends Throwable> exception,
+    private void assertCommandFailureForContactDetailsWindow(String input, Class<? extends Throwable> exception,
                                                            String msg, Model model) {
         assertThrows(exception, msg, () -> logic.executeContactDetailsCommand(input, Person.getEmptyPerson()));
         assertEquals(model, this.model);
