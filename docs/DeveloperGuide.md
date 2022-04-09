@@ -125,7 +125,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-We have divide the class diagram of the `Model` component into two parts for better understandability. <br>
+We have divided the class diagram of the `Model` component into two parts for better understandability. <br>
 The first diagram below illustrates the `Model` component's structure for storing `Person` objects.
 
 ![Person Model Class Diagram](images/ModelClassDiagram.png)
