@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Id;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a meeting of which the user is a part.
@@ -86,7 +87,10 @@ public class Meeting implements Comparable<Meeting> {
         }
 
         return otherMeeting != null
-                && otherMeeting.getTime().equals(getTime());
+                && otherMeeting.getTime().equals(getTime())
+                && otherMeeting.getAgenda().equals(getAgenda())
+                && otherMeeting.getPlace().equals(getPlace())
+                && otherMeeting.getAttendees().equals(getAttendees());
     }
 
     public boolean contains(Id attendee) {
@@ -107,5 +111,19 @@ public class Meeting implements Comparable<Meeting> {
         return "Agenda: " + agenda
                 + "; place: " + place
                 + "; time: " + time.toPrettyString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Meeting)) {
+            return false;
+        }
+
+        Meeting otherMeeting = (Meeting) other;
+        return isSameMeeting(otherMeeting);
     }
 }
