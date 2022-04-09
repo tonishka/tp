@@ -39,7 +39,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Agenda} of the {@code UpdatePMeetingDescriptor} that we are building.
+     * Sets the {@code Agenda} of the {@code UpdateMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withAgenda(String agenda) {
         descriptor.setAgenda(new Agenda(agenda));
@@ -47,7 +47,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code MeetingTime} of the {@code UpdatePMeetingDescriptor} that we are building.
+     * Sets the {@code MeetingTime} of the {@code UpdateMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withTime(String meetingTime) {
         descriptor.setMeetingTime(new MeetingTime(meetingTime));
@@ -55,7 +55,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code MeetingPlace} of the {@code UpdatePMeetingDescriptor} that we are building.
+     * Sets the {@code MeetingPlace} of the {@code UpdateMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withPlace(String meetingPlace) {
         descriptor.setMeetingPlace(new MeetingPlace(meetingPlace));
@@ -63,7 +63,7 @@ public class UpdateMeetingDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code attendees} of the {@code UpdatePMeetingDescriptor} that we are building.
+     * Sets the {@code attendees} of the {@code UpdateMeetingDescriptor} that we are building.
      */
     public UpdateMeetingDescriptorBuilder withAttendees(String... attendees) {
         Set<Index> indexes = Stream.of(attendees).map(a -> Index.fromOneBased(Integer.parseInt(a)))
