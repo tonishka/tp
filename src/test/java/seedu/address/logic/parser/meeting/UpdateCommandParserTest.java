@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.AGENDA_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.AGENDA_DESC_QUARTERLY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AGENDA_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLACE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_PLACE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PLACE_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.PLACE_DESC_QUARTERLY;
@@ -68,9 +68,9 @@ public class UpdateCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_AGENDA_DESC, Agenda.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PLACE_DESC, MeetingPlace.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_AGENDA_DESC, Agenda.MESSAGE_CONSTRAINTS); // invalid agenda
+        assertParseFailure(parser, "1" + EMPTY_PLACE_DESC, MeetingPlace.MESSAGE_CONSTRAINTS); // invalid place
+        assertParseFailure(parser, "1" + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS); // invalid time
 
         // invalid agenda followed by valid meeting place
         assertParseFailure(parser, "1" + INVALID_TIME_DESC + PLACE_DESC_QUARTERLY, MeetingTime.MESSAGE_CONSTRAINTS);
@@ -79,7 +79,7 @@ public class UpdateCommandParserTest {
         assertParseFailure(parser, "1" + PLACE_DESC_QUARTERLY + INVALID_TIME_DESC, MeetingTime.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TIME_DESC + INVALID_PLACE_DESC + AGENDA_DESC_QUARTERLY
+        assertParseFailure(parser, "1" + INVALID_TIME_DESC + EMPTY_PLACE_DESC + AGENDA_DESC_QUARTERLY
                         + AGENDA_DESC_PROJECT,
                 MeetingTime.MESSAGE_CONSTRAINTS);
     }
@@ -157,7 +157,7 @@ public class UpdateCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + TIME_DESC_QUARTERLY + INVALID_PLACE_DESC + AGENDA_DESC_QUARTERLY
+        userInput = targetIndex.getOneBased() + TIME_DESC_QUARTERLY + EMPTY_PLACE_DESC + AGENDA_DESC_QUARTERLY
                 + PLACE_DESC_QUARTERLY;
         descriptor = new UpdateMeetingDescriptorBuilder().withTime(VALID_TIME_QUARTERLY)
                 .withAgenda(VALID_AGENDA_QUARTERLY)

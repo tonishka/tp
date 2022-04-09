@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
@@ -102,6 +103,7 @@ public class CommandTestUtil {
 
     public static final String AGENDA_DESC_QUARTERLY = " " + PREFIX_AGENDA + VALID_AGENDA_QUARTERLY;
     public static final String AGENDA_DESC_PROJECT = " " + PREFIX_AGENDA + VALID_AGENDA_PROJECT;
+    public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + "1";
     public static final String TIME_DESC_QUARTERLY = " " + PREFIX_TIME + VALID_TIME_QUARTERLY;
     public static final String TIME_DESC_PROJECT = " " + PREFIX_TIME + VALID_TIME_PROJECT;
     public static final String PLACE_DESC_QUARTERLY = " " + PREFIX_PLACE + VALID_PLACE_QUARTERLY;
@@ -109,7 +111,10 @@ public class CommandTestUtil {
 
     public static final String INVALID_AGENDA_DESC = " " + PREFIX_AGENDA + " "; // Agenda cannot be empty
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "15:00 01-01-2023"; //Wrong order of date & time
-    public static final String INVALID_PLACE_DESC = " " + PREFIX_PLACE + " "; //Place cannot be empty
+    public static final String EMPTY_TIME_DESC = " " + PREFIX_TIME + " ";
+    public static final String EMPTY_PLACE_DESC = " " + PREFIX_PLACE + " ";
+    public static final String EMPTY_ATTENDEE_DESC = " " + PREFIX_ATTENDEES_INDEX + " ";
+    public static final String PAST_TIME_DESC = " " + PREFIX_TIME + "22-08-2021 12:30";
 
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
