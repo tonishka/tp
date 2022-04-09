@@ -40,7 +40,7 @@ Meeting *--> "1" MeetingTime
 Meeting *--> "1" Agenda
 Meeting *--> "1..*" Id : Meeting Attendees
 
-Id "1" --> "1" Person
+Id "1" <-- "1" Person
 
 ModelManager -->"~* filtered" Meeting
 @enduml

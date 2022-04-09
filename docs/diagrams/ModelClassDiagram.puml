@@ -22,6 +22,7 @@ Class Tag
 Class Pronoun
 Class Company
 Class Job
+Class Id
 }
 
 Class HiddenOutside #FFFFFF
@@ -46,6 +47,7 @@ Person *--> "0..1" Company
 Person *--> "*" Pronoun
 Person *--> "0..1" Job
 Person --> "*" Tag
+Person *--> "1" Id
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
