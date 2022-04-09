@@ -122,4 +122,22 @@ public class Meeting implements Comparable<Meeting> {
                 + "; place: " + place
                 + "; time: " + time.toPrettyString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Meeting)) {
+            return false;
+        }
+
+        Meeting otherMeeting = (Meeting) other;
+        return otherMeeting != null
+                && otherMeeting.getTime().equals(getTime())
+                && otherMeeting.getAgenda().equals(getAgenda())
+                && otherMeeting.getPlace().equals(getPlace())
+                && otherMeeting.getAttendees().equals(getAttendees());
+    }
 }
