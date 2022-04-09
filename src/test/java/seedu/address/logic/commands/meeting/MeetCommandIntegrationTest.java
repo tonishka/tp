@@ -26,7 +26,7 @@ public class MeetCommandIntegrationTest {
 
     @Test
     public void execute_newMeeting_success() {
-        Meeting validMeeting = new MeetingBuilder().build();
+        Meeting validMeeting = new MeetingBuilder().withAgenda("Test Meeting").build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(), new UserPrefs());
         expectedModel.addMeeting(validMeeting);
