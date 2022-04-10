@@ -492,7 +492,10 @@ We help _busy working professionals_ manage their large list of contacts by prov
 
 ### 7.2 User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: 
+- High (must-have) - `* * *`
+- Medium (nice-to-have) - `* *`
+- Low (unlikely-to-have) - `*`
 
 | Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
 | -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -868,13 +871,23 @@ testers are expected to do more *exploratory* testing.
    9. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/2025-05-04 15:44`
       Expected: No meeting is added and an error message is shown in the status box
 
-[//]: # (### 8.4 Saving data)
+### 8.4 Saving data
 
-[//]: # ()
-[//]: # (1. Dealing with missing/corrupted data files)
+1. Dealing with missing/corrupted data files
 
-[//]: # ()
-[//]: # (   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_)
-
-[//]: # ()
-[//]: # (1. _{ more test cases …​ }_)
+   1. Prerequisite for each test case: Must have at least one contact and one meeting stored in the data files.
+   2. Test case: Delete the `addressbook.json` file and run the program.
+      Expected: The application will start with both sample contacts and a sample meeting.
+   3. Test case: Delete the `meetingbook.json` file and run the program.
+      Expected: The application will retain its stored contacts but the meetings list will be empty.
+   4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
+      contact and run the program. For example, you can add `"Landline": "32449877`
+      ![Add a valid number to a contact](images/testing/add_valid_number.png)
+      Expected: The application will have the new number associated with the contact it was added to. You can verify 
+      this by using the `view` command on the contact you added teh phone number to and checking their numbers list.
+   5. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
+      existing contact anf run the program. For example, you can add `"Landline": "landline number"`
+      Expected: The application will discard all existing data and start without any stored contacts or meetings.
+   6. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
+      ![Remove all attendees of a meeting](images/testing/remove_attendees.png)
+      Expected: The application will discard all existing data and start without any stored contacts or meetings.
