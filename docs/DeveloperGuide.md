@@ -393,11 +393,11 @@ _{Explain here how the data archiving feature will be implemented}_
 The find command is used to search for people based on certain criteria.
 <br> {More details to be added later}
 
-Below is a sequence diagram summarising the mechanism of find command:
+Below is a sequence diagram summarising the mechanism of `find` command:
 
 ![FindSequenceDiagaram](images/FindSequenceDiagram.png)
 
-Below is an activity diagram summarising the possible paths for a find command:
+Below is an activity diagram summarising the possible paths for a `find` command:
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
@@ -445,7 +445,19 @@ c) they do not remember which field they want to search.
 
   
 ### Manage meetings
-[Coming soon]
+
+### Meet Feature
+
+The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
+`Meeting Attendees`. 
+
+Below is a sequence diagram summarising the mechanism of the `meet` feature:
+
+![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
+
+### Update Feature
+
+The `update` feature allows the user to update the details of the meetings that they have scheduled.
 
 --------------------------------------------------------------------------------------------------------------------
 

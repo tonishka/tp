@@ -15,17 +15,19 @@ participant "predicate:FieldContainsKeywordsPredicate"  as FieldContainsKeywords
 end box
 
 activate model
-[-> LogicManager : executePersonListCommand(find n/alex)
+[-> LogicManager : executePersonListCommand\n(find n/alex)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(find n/alex)
+LogicManager -> AddressBookParser : parseCommand\n(find n/alex)
 activate AddressBookParser
 
 AddressBookParser -> FindCommandParser
 activate FindCommandParser
 AddressBookParser <-- FindCommandParser
+deactivate FindCommandParser
 
 AddressBookParser -> FindCommandParser : parse(n/alex)
+activate FindCommandParser
 
 activate FieldContainsKeywordsPredicate
 FindCommandParser -> FieldContainsKeywordsPredicate
@@ -40,7 +42,7 @@ LogicManager <-- AddressBookParser :f
 deactivate AddressBookParser
 LogicManager -> FindCommand : execute(model)
 
-FindCommand -> model : updateFilteredPersonList(predicate)
+FindCommand -> model : updateFilteredPersonList\n(predicate)
 loop For each person in address book
 model -> FieldContainsKeywordsPredicate : test(person)
 end
