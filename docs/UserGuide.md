@@ -254,10 +254,12 @@ This action is irreversible.
 <br>
 
 #### 3.1.6 Editing the data file
-_Reache_ data is saved as JSON files at `/data/addressbook.json` and `/data/meetingbook.json`. Advanced users are welcome to update data directly by editing the data file.
+_Reache_ data is saved as JSON files at `/data/addressbook.json` and `/data/meetingbook.json`. Advanced users are 
+welcome to update data directly by editing the data files.
    
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to any data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
+If your changes to any data file makes its format invalid, _Reache_ will discard all data and start with empty data 
+files at the next run.
 </div>
 
 <br>
@@ -292,7 +294,8 @@ Examples:<br>
 <br>
 
 #### 3.2.2 Listing all contacts: `list`
-View a list of all your contacts in the address book.
+View a list of all your contacts in the address book. This command will be useful after a `find` command to see all 
+your contacts again on the Home Page.
 
 Format: `list`
 
