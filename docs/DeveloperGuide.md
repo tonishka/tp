@@ -395,11 +395,11 @@ The find command is used to search for people based on certain criteria.
 
 Below is a sequence diagram summarising the mechanism of `find` command:
 
-![FindSequenceDiagaram](images/FindSequenceDiagram.png)
+![Find Sequence Diagram](images/FindSequenceDiagram.png)
 
 Below is an activity diagram summarising the possible paths for a `find` command:
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+![Find Activity Diagram](images/FindActivityDiagram.png)
 
 #### Design Considerations
 

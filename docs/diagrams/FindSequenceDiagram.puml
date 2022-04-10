@@ -11,47 +11,56 @@ end box
 
 box Model MODEL_COLOR_T1
 participant "model:Model" as model MODEL_COLOR
-participant "predicate:FieldContainsKeywordsPredicate"  as FieldContainsKeywordsPredicate MODEL_COLOR
+participant "predicate:\nFieldContainsKeywordsPredicate"  as FieldContainsKeywordsPredicate MODEL_COLOR
 end box
 
-activate model
 [-> LogicManager : executePersonListCommand\n(find n/alex)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand\n(find n/alex)
 activate AddressBookParser
 
-AddressBookParser -> FindCommandParser
+AddressBookParser -> FindCommandParser** : FindCommandParser()
 activate FindCommandParser
 AddressBookParser <-- FindCommandParser
 deactivate FindCommandParser
 
-AddressBookParser -> FindCommandParser : parse(n/alex)
+AddressBookParser -> FindCommandParser : parse\n(n/alex)
 activate FindCommandParser
 
+FindCommandParser -> FieldContainsKeywordsPredicate** : FieldContainsKeywordsPredicate(keywords, field)
 activate FieldContainsKeywordsPredicate
-FindCommandParser -> FieldContainsKeywordsPredicate
+FieldContainsKeywordsPredicate --> FindCommandParser :predicate
+deactivate FieldContainsKeywordsPredicate
 
+FindCommandParser -> FindCommand** :FindCommand(predicate))
 activate FindCommand
-FindCommandParser -> FindCommand
 FindCommandParser <-- FindCommand :f
+deactivate FindCommand
 
 AddressBookParser <-- FindCommandParser :f
 deactivate FindCommandParser
 LogicManager <-- AddressBookParser :f
 deactivate AddressBookParser
 LogicManager -> FindCommand : execute(model)
+activate FindCommand
 
 FindCommand -> model : updateFilteredPersonList\n(predicate)
+activate model
 loop For each person in address book
 model -> FieldContainsKeywordsPredicate : test(person)
-end
+activate FieldContainsKeywordsPredicate
 deactivate FieldContainsKeywordsPredicate
+end
 FindCommand -> model : getFilteredPersonList()
-FindCommand -> CommandResult
+model --> FindCommand :filteredPersonList
+deactivate model
+FindCommand -> CommandResult** : commandResult(message, filteredPersonList)
 activate CommandResult
-FindCommand <-- CommandResult : c
+FindCommand <-- CommandResult :c
 deactivate CommandResult
 LogicManager <-- FindCommand :c
+deactivate FindCommand
+<-- LogicManager :c
 deactivate LogicManager
 @enduml
