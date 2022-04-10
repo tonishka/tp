@@ -336,7 +336,7 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 #### 3.3.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
-- Any of the meeting details given under the [6. Meeting Fields Summary](#6-meeting-fields-summary).
+- Any of the meeting details given under [6. Meeting Fields Summary](#6-meeting-fields-summary).
 
 Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
 
@@ -365,7 +365,7 @@ This action is irreversible.
 <br>
 
 ### 3.4 Viewing help: `help`
-Find help by getting a weblink to the _Reache_ user guide with this command.
+If you need help while using _Reache_, use this command to get a link to the _Reache_ user guide.
 
 Format: `help`
 
@@ -382,7 +382,7 @@ Format: `exit`
 
 <br>   
    
-### Home Page  
+### 4.1 Home Page  
 
 | **Action**             | **Format & Example**                                                                                                                                   |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -398,12 +398,12 @@ Format: `exit`
 | **Help**               | Format: `help`                                                                                                                                         |
 | **Exit**               | Format: `exit`                                                                                                                                         |
 
-### Contact Details Page 
+### 4.2 Contact Details Page 
   
 | **Action**              | **Format & Example**                                                                                                                                              |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
-| **Delete Contact Info** | Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/`                                                                    |
+| **Delete Contact Info** | Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/ t/`                                                                 |
 | **Back**                | Format: `back`                                                                                                                                                    |
 | **Help**                | Format: `help`                                                                                                                                                    |
 | **Exit**                | Format: `exit`                                                                                                                                                    |
