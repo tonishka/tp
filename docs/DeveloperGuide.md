@@ -368,8 +368,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-The find command is used to search for people based on certain criteria.
-<br> {More details to be added later}
+The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
+field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
+`FieldContainsKeywordsPredicate` classes.
 
 Below is a sequence diagram summarising the mechanism of find command:
 
@@ -420,7 +421,6 @@ c) they do not remember which field they want to search.
 **Alternative 3:** Produce a command syntax error and ask user to enter field
 - Pros: Simple implementation. Useful in scenario a) above.
 - Cons: Useless for scenario b) and c).
-
   
 ### Manage meetings
 [Coming soon]
