@@ -22,7 +22,7 @@ This guide will familiarize you with Reache's interface and features, and provid
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
 
-   ![Ui](images/Ui.png)
+   ![Ui](images/NewUI.png)
 
 5. Refer to the [Features](#3-features) below for details of each command.
 
@@ -97,23 +97,23 @@ Experienced users should skip this section.
 In this tutorial we will be adding your personal contact information to Reache.
 
 1. Launch Reache from the folder in which it is located by double clicking on it. You will see the window shown below with some sample contacts. <br>
-![Sample Contacts](images/Tutorial/sample_contacts_screen.png)
+![Sample Contacts](images/Tutorial/new sample contacts.png)
    Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts stored. Let’s start storing some real contacts in it. <br><br>
 2. Firstly, we have to clear the sample data first. Type `clear` in the command box and press Enter/Return. Press 'Yes’ when Reache asks for confirmation. <br><br>
 3. Now that the sample data has been cleared, we can start adding some real contacts to it. <br><br>
 4. Begin by typing `add n/<YOUR NAME>` in the command box. Press enter/return. <br><br>
 5. You will be redirected to the **Contacts Details Window** as shown below: 
-![Contact Details Window](images/Tutorial/contact_details_page.png)
+![Contact Details Window](images/Tutorial/new contact details added screen.png)
 **Note**: `edit` commands can only be issued in the **Contacts Details Window.** <br><br>
 6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
-![Company & Job Added](images/Tutorial/company_job_edited_screen.png)
+![Company & Job Added](images/Tutorial/new company job added screen.png)
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
-![Email Added](images/Tutorial/email_edited_screen.png)
+![Email Added](images/Tutorial/new emails edited screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
 9. Finally tag yourself using `edit t/me`. Your final contact details window should look like this:
-![Full Contact Details](images/Tutorial/tag_added.png)
+![Full Contact Details](images/Tutorial/new tag added me.png)
 10. Now type `back` in the command box to return to the main window. Your **Main Window** should look like this:
-![Main Window](images/Tutorial/main_window.png)
+![Main Window](images/Tutorial/new main window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
 12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window. <br><br>
 13. As additional practice, try adding more contacts using `add` and `edit`. When you are done, type `list` to view all saved contacts.
