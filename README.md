@@ -3,7 +3,7 @@
 
 _Reache_ is a desktop app that helps **busy working professionals** manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. _Reache_ is especially suited for professionals who would like to optimize their contact management by using a **Command Line Interface (CLI)**.
 
-![Ui](docs/images/NewUI.png)
+![Ui](docs/images/Ui.png)
 
 ## Quick Start
 
