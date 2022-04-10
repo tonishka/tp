@@ -859,21 +859,21 @@ testers are expected to do more *exploratory* testing.
 1. Adding a meeting
    
    1. Prerequisites: Have an empty meeting list and 1 contact in the contacts list. The list of test cases have to be followed in order for the testing to work.
-   2. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   2. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: The added meeting is shown on the list of meetings at the side and a success message is displayed
-   3. Test case: `meet with/2 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   3. Test case: `meet with/2 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
-   4. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   4. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
-   5. Test case: `meet with/ for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   5. Test case: `meet with/ for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
    6. Test case: `meet with/1 for/ in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   7. Test case: `meet with/1 for/Product Demo with Client in/ on/05-04-2025 15:44` <br>
+   7. Test case: `meet with/1 for/Product Demo in/ on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   8. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/` <br>
+   8. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   9. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/2025-05-04 15:44`
+   9. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/2025-05-04 15:44`
       Expected: No meeting is added and an error message is shown in the status box
 
 ### 8.4 Saving data
