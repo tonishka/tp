@@ -20,7 +20,7 @@ meetings.
   - Enhanced `EditCommandParser` class to fit v1.3, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
   - Added the command and parser classes for adding, editing, deleting and clearing meetings, PRs [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files), [\#137](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/137) and [\#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
   - Implemented more tests to increase code coverage from 53.49% to 61.29%, PR [\#234](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/234)
-  - Implemented more tests, PR [\#249](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/249)
+  - Implemented more tests, PRs [\#249](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/249) & [\#256](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/256)
 
 * **Contributions to the UG**:
   - Partitioning the `command summary` into the Main Window section and Contact Detail Window section, PR [\#206](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/206)
@@ -37,7 +37,8 @@ meetings.
 
 * **Contributions to the team-based tasks**:
   - Created the team repository
-  - Created the collaborative project document 
+  - Created the collaborative project document
+  - Set up issues: [\#29](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/29) ,[\#138](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/138) and [\#160](https://github.com/AY2122S2-CS2103T-W12-4/tp/issues/160)
   - Fixed bug where cancel-all and clear commands does not update the data in the JSON file, PR [\#149](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/149)
   - Reduced number of failing tests after implemenation of new edit command, PRs [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79) and [\#38](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/38).
 
