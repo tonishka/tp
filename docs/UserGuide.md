@@ -168,7 +168,7 @@ Now you are all set to manage your contacts and meetings using Reache!
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
 
-- Items with ... after them can be used multiple times including zero times.
+- Items with `...` after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
 - Fields can be in any order.
@@ -201,7 +201,8 @@ Example: `add n/Alex Dunphy t/friend`
 <br>
 
 #### 3.1.2 Editing a contact: `edit`
-On the Contact Details Page, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Page, modify the details of the person displayed. The fields that can be added/edited are given 
+in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
@@ -214,20 +215,21 @@ _Note_: Editing a field with the same category/label as an existing entry will o
 #### 3.1.3 Deleting a field: `del <FIELDS>`
 On the Contact Details Page, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
-`<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
-Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
+- `<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
+- Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
 
 Format: `del <FIELD 1> [<LABEL 1>] [<FIELD 2> <LABEL 2>...]`
 
 Examples:
+1. `del ph/ personal` -    Deletes the personal phone number of the contact.
 
-`del ph/ personal` -    Deletes the personal phone number of the contact.
+2. `del a/` -         Deletes **all** addresses of the contact.
 
-`del a/` -         Deletes **all** addresses of the contact.
+3. `del e/ Official` -   Deletes the 'Official' email of the contact.
 
-`del e/ Official` -   Deletes the 'Official' email of the contact.
+4. `del pr/ her` -   Deletes the 'her' pronoun of the contact.
 
-`del pr/ her` -   Deletes the 'her' pronoun of the contact.
+5. `del ph/ t/` - Deletes all phone numbers **and** all tags of the contact.
 
 <br>
 
