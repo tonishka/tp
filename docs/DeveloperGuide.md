@@ -32,7 +32,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
 </div>
 
 ### 4.1 Architecture
@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -78,7 +78,7 @@ The sections below give more details of each component.
 
 ### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,9 +93,9 @@ The specific UI parts that make up the `MainWindow` depend on which page of the 
 
 ![Contact Details Page UI Parts](images/ContactDetailsPageDiagram.png)
 
-Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details page is displayed.
+Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details Page is displayed.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -106,7 +106,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -135,7 +135,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 We have divided the class diagram of the `Model` component into two parts for better understandability. <br>
 The first diagram below illustrates the `Model` component's structure for storing `Person` objects.
@@ -156,7 +156,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
@@ -214,12 +214,12 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 ### 5.2 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
-This feature is also restricted to the Contact Details Window, 
+This feature is also restricted to the Contact Details Page, 
 which can be accessed after the _add_ or _view_ commands. 
 It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
 
-<ins>Note</ins>: This feature is different from the **delete contacts** feature, 
-which is only accessible on the Main Window.
+_Note:_ This feature is different from the **delete contacts** feature, 
+which is only accessible on the Home Page.
 
 #### 5.2.1 Design considerations:
 Since certain fields allow for multiple values to be stored, 
@@ -236,6 +236,7 @@ they want to delete along with the field to be deleted for such fields.
     * Cons:
       * User may have forgotten to mention the label or field, which could lead to unintended loss of data.
 
+
 * **Alternative 2 :** Confirm that the user wants to delete all values for this field
     * Pros:
       * Allows user to cancel the command if it was unintentional.
@@ -250,7 +251,7 @@ very helpful for executing other commands.
 ### 5.3 Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
 and to start with a new address book. Since deleted data cannot be recovered, 
-the app opens a pop-up window asking for confirmation that 
+the app opens a pop-up window asking for **confirmation** that 
 the user wants to delete all of their stored contacts.
 
 The following sequence diagram shows how the clear operation works:
