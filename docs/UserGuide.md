@@ -96,7 +96,7 @@ Experienced users should skip this section.
 
 In this tutorial we will be adding your personal contact information to Reache.
 
-1. Launch Reache from the folder in which it is located by double clicking on it. You will see the home page shown below with some sample contacts. <br>
+1. Launch Reache from the folder in which it is located by double clicking on it. You will see the Home Page shown below with some sample contacts. <br>
 ![Sample Contacts](images/Tutorial/Tutorial_1/new_sample_contacts.png)
    Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts stored. Let’s start storing some real contacts in it. <br><br>
 2. Firstly, we have to clear the sample data first. Type `clear` in the command box and press Enter/Return. Press 'Yes’ when Reache asks for confirmation. <br><br>
@@ -105,17 +105,17 @@ In this tutorial we will be adding your personal contact information to Reache.
 5. You will be redirected to the **Contacts Details Page** as shown below: 
 ![Contact Details Page](images/Tutorial/Tutorial_1/new_contact_details_added_screen.png)
 **Note**: `edit` commands can only be issued in the **Contacts Details Page.** <br><br>
-6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
+6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the page, as shown below:
 ![Company & Job Added](images/Tutorial/Tutorial_1/new_company_job_added_screen.png)
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
 ![Email Added](images/Tutorial/Tutorial_1/new_emails_edited_screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
-9. Finally tag yourself using `edit t/me`. Your final contact details window should look like this:
+9. Finally tag yourself using `edit t/me`. Your final contact details page should look like this:
 ![Full Contact Details](images/Tutorial/Tutorial_1/new_tag_added_me.png)
-10. Now type `back` in the command box to return to the home page. Your **Home Page** should look like this:
+10. Now type `back` in the command box to return to the Home Page. Your **Home Page** should look like this:
 ![Home Page](images/Tutorial/Tutorial_1/new_main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
-12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the home Page. <br><br>
+12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Home Page. <br><br>
 13. As additional practice, try adding more contacts using `add` and `edit`. When you are done, type `list` to view all saved contacts.
 
 <hr>
@@ -197,7 +197,7 @@ Example: `add n/Alex Dunphy t/friend`
 <br>
 
 #### 3.1.2 Editing a contact: `edit`
-On the Contact Details Window, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Page, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
@@ -302,7 +302,7 @@ Example: `view 34`
 <br>
 
 #### 3.2.4 Returning after viewing a person's full details: `back`
-Return to the Home after viewing and/or editing a person's details from the Contact Details Page.
+Return to the Home Page after viewing and/or editing a person's details from the Contact Details Page.
 
 Format: `back`
 
