@@ -26,6 +26,7 @@ public class CompanyTest {
         // invalid company
         assertFalse(Company.isValidCompany("")); // empty string
         assertFalse(Company.isValidCompany(" ")); // spaces only
+        assertFalse(Company.isValidCompany(" Orange")); //first character blank
 
         // valid company
         assertTrue(Company.isValidCompany("peter jack")); // alphabets only
@@ -33,6 +34,7 @@ public class CompanyTest {
         assertTrue(Company.isValidCompany("peter the 2nd")); // alphanumeric characters
         assertTrue(Company.isValidCompany("Capital Tan")); // with capital letters
         assertTrue(Company.isValidCompany("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Company.isValidCompany("@#$%^&*(")); //pure symbols
         assertTrue(Company.isValidCompany("@BakerBoi {c00k1n9 **GRILL777**} !!!!")); //random combination
     }
 }
