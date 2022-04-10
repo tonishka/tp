@@ -110,7 +110,7 @@ In this tutorial we will be adding your personal contact information to Reache.
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
 ![Email Added](images/Tutorial/Tutorial_1/new_emails_edited_screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
-9. Finally tag yourself using `edit t/me`. Your final contact details page should look like this:
+9. Finally tag yourself using `edit t/me`. Your final Contact Details Page should look like this:
 ![Full Contact Details](images/Tutorial/Tutorial_1/new_tag_added_me.png)
 10. Now type `back` in the command box to return to the Home Page. Your **Home Page** should look like this:
 ![Home Page](images/Tutorial/Tutorial_1/new_main_window.png)
