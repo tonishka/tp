@@ -65,7 +65,7 @@ class ContactDetailsPageParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand("", person));
+            -> parser.parseCommand("", person));
     }
 
     @Test
