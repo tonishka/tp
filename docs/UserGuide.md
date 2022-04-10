@@ -3,10 +3,14 @@ layout: page
 title: User Guide
 ---
 
-Reache is a desktop app that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would like to optimize their contact management by using a Command Line Interface (CLI).
+_Reache_ is a desktop app that helps **busy working professionals** manage their large list of contacts by providing an 
+easy-to-use interface to store contacts and organize meetings. Reache is especially suited for professionals who would 
+like to optimize their contact management by using a **Command Line Interface (CLI).**
 
 
-This guide will familiarize you with Reache's interface and features, and provide you all the information you need to begin using Reache.
+This guide will familiarize you with Reache's interface and features, and provide you all the information you need to 
+begin using Reache.
+
 * Table of Contents
 {:toc}
 
@@ -111,7 +115,7 @@ In this tutorial we will be adding your personal contact information to Reache.
 ![Email Added](images/Tutorial/Tutorial_1/new_emails_edited_screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
 9. Finally tag yourself using `edit t/me`. Your final Contact Details Page should look like this:
-![Full Contact Details](images/Tutorial/Tutorial_1/new_tag_added_me.png)
+![Full Contact Details](images/Tutorial/Tutorial_1/new_number_and_tag_added.png)
 10. Now type `back` in the command box to return to the Home Page. Your **Home Page** should look like this:
 ![Home Page](images/Tutorial/Tutorial_1/new_main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
@@ -164,7 +168,7 @@ Now you are all set to manage your contacts and meetings using Reache!
 - Items in square brackets are optional. <br>
   e.g `n/NAME [t/TAG]` can be used as `n/Alex Dunphy t/Likes Science` or as `n/Alex Dunphy`.
 
-- Items with ... after them can be used multiple times including zero times.
+- Items with `...` after them can be used multiple times including zero times.
   e.g. `[ph/<PHONE_NUMBER> l/<LABEL>]...` can be either ignored, or used as `ph/12345678 l/personal`, `ph/90123456 l/office ph/78901234` etc.
 
 - Fields can be in any order.
@@ -197,7 +201,8 @@ Example: `add n/Alex Dunphy t/friend`
 <br>
 
 #### 3.1.2 Editing a contact: `edit`
-On the Contact Details Page, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Page, modify the details of the person displayed. The fields that can be added/edited are given 
+in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
@@ -210,20 +215,21 @@ _Note_: Editing a field with the same category/label as an existing entry will o
 #### 3.1.3 Deleting a field: `del <FIELDS>`
 On the Contact Details Page, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
-`<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
-Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
+- `<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
+- Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
 
 Format: `del <FIELD 1> [<LABEL 1>] [<FIELD 2> <LABEL 2>...]`
 
 Examples:
+1. `del ph/ personal` -    Deletes the personal phone number of the contact.
 
-`del ph/ personal` -    Deletes the personal phone number of the contact.
+2. `del a/` -         Deletes **all** addresses of the contact.
 
-`del a/` -         Deletes **all** addresses of the contact.
+3. `del e/ Official` -   Deletes the 'Official' email of the contact.
 
-`del e/ Official` -   Deletes the 'Official' email of the contact.
+4. `del pr/ her` -   Deletes the 'her' pronoun of the contact.
 
-`del pr/ her` -   Deletes the 'her' pronoun of the contact.
+5. `del ph/ t/` - Deletes all phone numbers **and** all tags of the contact.
 
 <br>
 
@@ -248,10 +254,12 @@ This action is irreversible.
 <br>
 
 #### 3.1.6 Editing the data file
-_Reache_ data is saved as JSON files at `/data/addressbook.json` and `/data/meetingbook.json`. Advanced users are welcome to update data directly by editing the data file.
+_Reache_ data is saved as JSON files at `/data/addressbook.json` and `/data/meetingbook.json`. Advanced users are 
+welcome to update data directly by editing the data files.
    
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to any data file makes its format invalid, _Reache_ will discard all data and start with empty data files at the next run.
+If your changes to any data file makes its format invalid, _Reache_ will discard all data and start with empty data 
+files at the next run.
 </div>
 
 <br>
@@ -286,7 +294,8 @@ Examples:<br>
 <br>
 
 #### 3.2.2 Listing all contacts: `list`
-View a list of all your contacts in the address book.
+View a list of all your contacts in the address book. This command will be useful after a `find` command to see all 
+your contacts again on the Home Page.
 
 Format: `list`
 
@@ -327,7 +336,7 @@ Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 #### 3.3.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings list
-- Any of the meeting details given under the [6. Meeting Fields Summary](#6-meeting-fields-summary).
+- Any of the meeting details given under [6. Meeting Fields Summary](#6-meeting-fields-summary).
 
 Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND TIME> with/<ATTENDEE 1 INDEX>...]`
 
@@ -356,7 +365,7 @@ This action is irreversible.
 <br>
 
 ### 3.4 Viewing help: `help`
-Find help by getting a weblink to the _Reache_ user guide with this command.
+If you need help while using _Reache_, use this command to get a link to the _Reache_ user guide.
 
 Format: `help`
 
@@ -373,7 +382,7 @@ Format: `exit`
 
 <br>   
    
-### Home Page  
+### 4.1 Home Page  
 
 | **Action**             | **Format & Example**                                                                                                                                   |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -389,12 +398,12 @@ Format: `exit`
 | **Help**               | Format: `help`                                                                                                                                         |
 | **Exit**               | Format: `exit`                                                                                                                                         |
 
-### Contact Details Page 
+### 4.2 Contact Details Page 
   
 | **Action**              | **Format & Example**                                                                                                                                              |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Edit Contact Info**   | Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `edit n/Michael J Wolf pr/her j/Farmer c/FarmingInc ph/999 l/Police t/friend ph/123456` |
-| **Delete Contact Info** | Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/`                                                                    |
+| **Delete Contact Info** | Format: `del <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER>` <br> Example: `del ph/ personal e/ t/`                                                                 |
 | **Back**                | Format: `back`                                                                                                                                                    |
 | **Help**                | Format: `help`                                                                                                                                                    |
 | **Exit**                | Format: `exit`                                                                                                                                                    |
