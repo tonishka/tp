@@ -38,21 +38,21 @@ Reache is a contact manager application that helps you:
 <br>
 
 ### 2.2 Interface Guide
-Reache uses **two windows**, the [Main Window](#221-main-window) and the 
-[Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. 
-The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for 
-contact identification, while the `Contact Details Window` displays the more detailed information inside a 
+Reache uses **two pages**, the [Home Page](#221-home-page) and the 
+[Contact Details Page](#222-contact-details-page) as a means of maintaning **information segregation**. 
+The `Home Page` displays only the `names` and `tags` which is our predetermined basic requirement for 
+contact identification, while the `Contact Details Page` displays the more detailed information of a 
 specific contact. You could imagine this layout as **resembling looking through a folder with small identification 
-tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help 
-to save space on the main window as well as preventing information overload.
+tags sticking out and only pulling out the document with the tag when you want to view its details**. This helps 
+save space on the Home Page as well as prevents information overload.
 
 
-#### 2.2.1 Main Window
-Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
+#### 2.2.1 Home Page
+Upon launching Reache, you will see the Home Page, which is depicted below. The Home Page displays your entire contact list as well as all upcoming meetings you have planned.
 
-![Main Window](images/MainWindow.png)
+![Home Page](images/HomePage.png)
 
-The Main Window contains the following elements:
+The Home Page contains the following elements:
 1. **Menu Bar**: Contains Reache's options and help.
 2. **Command Box**: A dialog box from which you can type commands to use Reache.
 3. **Result Display**: When you use the Command Box to enter a command, Reache will show the result of that command here.
@@ -61,19 +61,19 @@ The Main Window contains the following elements:
 
 <br>
 
-#### 2.2.2 Contact Details Window
-The Contact Details Window, which is depicted below, displays all the contact information associated with a specific contact.
+#### 2.2.2 Contact Details Page
+The Contact Details Page, which is depicted below, displays all the contact information associated with a specific contact.
 
-![Contact Details Window](images/ContactDetailsWindow.png)
+![Contact Details Page](images/ContactDetailsPage.png)
 
-The Contact Details Window contains many of the same elements as the Main Window, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
-1. **Particulars**: Consists of their name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
+The Contact Details Page contains many of the same elements as the Home Page, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
+1. **Particulars**: Consists of a contact's name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
 
 
 2. **Contact Information**: A contact's phone numbers, email addresses, and physical addresses. Reache lets you assign *custom labels* to these fields to help you organize a contact's information. For example, a person might have a *personal* phone number and an *office* phone number.
 
 
-3. **Meetings with Contact**: Whereas the Meeting List in the Main Window displays all your upcoming meetings, the Contact Details Window only displays upcoming meetings that involve the contact being viewed.
+3. **Meetings with Contact**: Whereas the Meeting List in the Home Page displays all your upcoming meetings, the Contact Details Page only displays upcoming meetings that involve the contact being viewed.
 
 Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache](#23-getting-started-with-reache) to begin using the application.
 
