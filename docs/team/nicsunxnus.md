@@ -20,6 +20,7 @@ meetings.
   - Enhanced `EditCommandParser` class to fit v1.3, PR [\#79](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/79)
   - Added the command and parser classes for adding, editing, deleting and clearing meetings, PRs [\#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118/files), [\#137](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/137) and [\#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142)
   - Implemented more tests to increase code coverage from 53.49% to 61.29%, PR [\#234](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/234)
+  - Implemented more tests, PR [\#249](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/249)
 
 * **Contributions to the UG**:
   - Partitioning the `command summary` into the Main Window section and Contact Detail Window section, PR [\#206](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/206)
