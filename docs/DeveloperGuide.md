@@ -443,9 +443,6 @@ c) they do not remember which field they want to search.
 - Pros: Simple implementation. Useful in scenario a) above.
 - Cons: Useless for scenario b) and c).
 
-  
-### Manage meetings
-
 ### Meet Feature
 
 The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
@@ -459,6 +456,9 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
 The `update` feature allows the user to update the details of the meetings that they have scheduled.
 
+Below is a sequence diagram summarising the mechanism of the `update` feature:
+
+![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
