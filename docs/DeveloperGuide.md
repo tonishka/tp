@@ -737,7 +737,7 @@ Use case resumes at step 1. <br>
 **MSS:**
 <p>
 1. User requests to delete a meeting. <br>
-4. Reache deletes the meeting. <br>
+2. Reache deletes the meeting. <br>
 Use case ends.
 </p>
 
@@ -754,7 +754,7 @@ Use case ends.
 
 **MSS:**
 <p>
-1. User requests to clear all meetings
+1. User requests to clear all meetings <br>
 2. Reache asks for confirmation. <br>
 3. User confirms the action. <br>
 4. Reache clears all meetings. <br>
