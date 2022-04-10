@@ -22,7 +22,7 @@ This guide will familiarize you with Reache's interface and features, and provid
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.<br>
 
-   ![Ui](images/NewUI.png)
+   ![Ui](images/Ui.png)
 
 5. Refer to the [Features](#3-features) below for details of each command.
 
