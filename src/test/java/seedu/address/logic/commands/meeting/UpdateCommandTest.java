@@ -114,19 +114,6 @@ public class UpdateCommandTest {
         assertCommandFailure(command, model, MESSAGE_DUPLICATE_MEETING);
     }
 
-    /*@Test //THIS TEST CAN'T PASS
-    public void execute_duplicateMeetingFilteredList_failure() {
-
-        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
-
-        // update meeting in filtered list into a duplicate in meeting book
-        Meeting meetingInList = model.getMeetingBook().getMeetingList().get(INDEX_SECOND_MEETING.getZeroBased());
-        UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_MEETING,
-                new UpdateMeetingDescriptorBuilder(meetingInList).build());
-
-        assertCommandFailure(updateCommand, model, MESSAGE_DUPLICATE_MEETING);
-    }*/
-
     @Test
     public void execute_invalidMeetingIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);

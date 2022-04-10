@@ -196,19 +196,4 @@ public class SampleDataUtil {
                 .map(Id::new)
                 .collect(Collectors.toSet());
     }
-
-    /**
-     * Drives sample data util.
-     *
-     * @param s parameter
-     */
-    public static void main(String[] s) {
-        Map<Label, Address> map = getAddressMap("Blk 30 Geylang Street 29, #06-40", "Blk 30 Geylang l/ home");
-        for (Map.Entry<Label, Address> entry : map.entrySet()) {
-            Label key = entry.getKey();
-            Address tab = entry.getValue();
-            System.out.print("Label: " + key + ", ");
-            System.out.println("Address: " + tab);
-        }
-    }
 }
