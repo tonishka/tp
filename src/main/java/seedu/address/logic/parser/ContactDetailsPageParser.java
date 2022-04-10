@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Parses user input entered from the ContactDetails screen.
  */
-public class ContactDetailsParser {
+public class ContactDetailsPageParser {
 
     /**
      * Used for initial separation of command word and args.

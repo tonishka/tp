@@ -137,22 +137,22 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+We have divided the class diagram of the `Model` component into two parts for better understandability. <br>
+The first diagram below illustrates the `Model` component's structure for storing `Person` objects.
 
+![Person Model Class Diagram](images/ModelClassDiagram.png)
+
+The second diagram below illustrates the `Model` component's structure for storing `Meeting` objects. It is worthwhile to note that `Meeting` objects are associated to `Id` objects (each `Id` uniquely identifies each `Person`) so that updates to `AddressBook` do not affect the list of people in a `Meeting`.
+
+![Meeting Model Class Diagram](images/MeetingModelClassDiagram.png)
 
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the meeting book data i.e., all `Meeting` objects (which are contained in a `MeetingsList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -390,8 +390,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-The find command is used to search for people based on certain criteria.
-<br> {More details to be added later}
+The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
+field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
+`FieldContainsKeywordsPredicate` classes.
 
 Below is a sequence diagram summarising the mechanism of `find` command:
 
@@ -442,6 +443,7 @@ c) they do not remember which field they want to search.
 **Alternative 3:** Produce a command syntax error and ask user to enter field
 - Pros: Simple implementation. Useful in scenario a) above.
 - Cons: Useless for scenario b) and c).
+
 
 ### Meet Feature
 

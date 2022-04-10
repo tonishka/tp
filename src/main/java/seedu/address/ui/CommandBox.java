@@ -80,7 +80,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see seedu.address.logic.Logic#executePersonListCommand(String)
+         * @see seedu.address.logic.Logic#executeHomePageCommand(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
