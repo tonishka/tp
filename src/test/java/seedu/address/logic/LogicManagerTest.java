@@ -135,7 +135,7 @@ public class LogicManagerTest {
      */
     private void assertMainWindowCommandSuccess(String inputCommand, String expectedMessage,
                                                 Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.executePersonListCommand(inputCommand);
+        CommandResult result = logic.executeHomePageCommand(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -143,7 +143,7 @@ public class LogicManagerTest {
     private void assertContactDetailsWindowCommandSuccess(String inputCommand, Person commandPerson,
                                                           String expectedMessage,
                                                           Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.executeContactDetailsCommand(inputCommand, commandPerson);
+        CommandResult result = logic.executeContactDetailsPageCommand(inputCommand, commandPerson);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -187,13 +187,13 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.executePersonListCommand(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.executeHomePageCommand(inputCommand));
         assertEquals(expectedModel, model);
     }
 
     private void assertCommandFailureForContactDetailsWindow(String input, Class<? extends Throwable> exception,
                                                              String msg, Model model) {
-        assertThrows(exception, msg, () -> logic.executeContactDetailsCommand(input, Person.getEmptyPerson()));
+        assertThrows(exception, msg, () -> logic.executeContactDetailsPageCommand(input, Person.getEmptyPerson()));
         assertEquals(model, this.model);
     }
 

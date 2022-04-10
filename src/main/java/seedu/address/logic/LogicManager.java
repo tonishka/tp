@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult executePersonListCommand(String commandText) throws CommandException, ParseException {
+    public CommandResult executeHomePageCommand(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult executeContactDetailsCommand(String commandText, Person person)
+    public CommandResult executeContactDetailsPageCommand(String commandText, Person person)
             throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 

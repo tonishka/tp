@@ -216,11 +216,11 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#executePersonListCommand(String)
+     * @see seedu.address.logic.Logic#executeHomePageCommand(String)
      */
     private CommandResult executeHomePageCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.executePersonListCommand(commandText);
+            CommandResult commandResult = logic.executeHomePageCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -257,12 +257,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#executePersonListCommand(String)
+     * @see seedu.address.logic.Logic#executeHomePageCommand(String)
      */
     private CommandResult executeContactDetailsPageCommand(String commandText) throws CommandException, ParseException {
         try {
             Person currentPerson = contactDetailsPanel.getPerson();
-            CommandResult commandResult = logic.executeContactDetailsCommand(commandText, currentPerson);
+            CommandResult commandResult = logic.executeContactDetailsPageCommand(commandText, currentPerson);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
