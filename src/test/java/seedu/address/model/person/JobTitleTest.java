@@ -32,6 +32,7 @@ public class JobTitleTest {
         assertFalse(JobTitle.isValidJobTitle("2chef")); //starts with a non-alphabet
         assertFalse(JobTitle.isValidJobTitle("ch@f")); //non-alphanumeric character
         assertFalse(JobTitle.isValidJobTitle(" chef")); //first character blank
+        assertFalse(JobTitle.isValidJobTitle("Chief Executive Officer (CEO)")); // non-alphanumeric character
 
         // valid titles
         assertTrue(JobTitle.isValidJobTitle("peter jack")); // alphabets only
@@ -39,5 +40,6 @@ public class JobTitleTest {
         assertTrue(JobTitle.isValidJobTitle("peter the 2nd")); // alphanumeric with space
         assertTrue(JobTitle.isValidJobTitle("Capital Tan")); // with capital letters
         assertTrue(JobTitle.isValidJobTitle("David Roger Jackson Ray Jr 2nd")); // long titles
+
     }
 }
