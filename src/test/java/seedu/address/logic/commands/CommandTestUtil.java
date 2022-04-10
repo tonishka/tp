@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -57,10 +56,6 @@ public class CommandTestUtil {
     public static final String VALID_PRONOUN_SHE = "she";
     public static final String VALID_PRONOUN_HIM = "him";
     public static final String VALID_PRONOUN_THEY = "they";
-
-    public static final String LABEL_HOME = "home";
-    public static final String LABEL_WORK = "work";
-    public static final String LABEL_FRIEND = "friend";
 
     //@Todo CHANGE THIS TO HAVE ANOTHER WHTIESPACE AFTER PREFIX
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
