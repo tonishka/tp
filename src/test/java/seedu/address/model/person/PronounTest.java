@@ -21,14 +21,14 @@ public class PronounTest {
 
     @Test
     public void isValidPronoun() {
-        // null address
+        // null pronoun
         assertThrows(NullPointerException.class, () -> Pronoun.isValidPronoun(null));
 
-        // invalid addresses
+        // invalid pronoun
         assertFalse(Pronoun.isValidPronoun("")); // empty string
         assertFalse(Pronoun.isValidPronoun(" ")); // spaces only
 
-        // valid addresses
+        // valid pronoun
         assertTrue(Pronoun.isValidPronoun("him"));
         assertTrue(Pronoun.isValidPronoun("-")); // one character
         assertTrue(Pronoun.isValidPronoun("Him-Her-She-He-They")); // long pronoun
