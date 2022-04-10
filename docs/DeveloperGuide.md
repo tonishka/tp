@@ -5,7 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-## **Introduction**
+## 1. **Introduction**
 
 Reache is a desktop application that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings.
 
@@ -13,7 +13,7 @@ This Developer Guide is intended for the future software developers and designer
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 2. **Acknowledgements**
 
 * Reache, as well as its User Guide and Developer Guide, has been adapted from AddressBook Level-3 (AB3).
   * [AB3 Repository](https://github.com/nus-cs2103-AY2122S2/tp)
@@ -22,20 +22,20 @@ This Developer Guide is intended for the future software developers and designer
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 3. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 4. **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -76,7 +76,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -104,7 +104,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 4.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -134,7 +134,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` or `ContactDetailsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 4.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 We have divided the class diagram of the `Model` component into two parts for better understandability. <br>
@@ -154,7 +154,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Storage component
+### 4.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -171,17 +171,17 @@ The `Storage` component,
 * inherits from `AddressBookStorage`, `MeetingBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 5. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit feature
+### 5.1 Edit feature
 The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
@@ -200,7 +200,7 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 </div>
 
-#### Design considerations:
+#### 5.1.1 Design considerations:
 
 **Aspect: How edit saves:**
 
@@ -212,7 +212,7 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
 
-### Delete fields feature
+### 5.2 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
 This feature is also restricted to the Contact Details Window, 
 which can be accessed after the _add_ or _view_ commands. 
@@ -221,7 +221,7 @@ It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParse
 <ins>Note</ins>: This feature is different from the **delete contacts** feature, 
 which is only accessible on the Main Window.
 
-#### Design considerations:
+#### 5.2.1 Design considerations:
 Since certain fields allow for multiple values to be stored, 
 the user needs to specify the label of the value (or the value itself for non-labelled fields) 
 they want to delete along with the field to be deleted for such fields.
@@ -247,7 +247,7 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and efficie
 Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
 very helpful for executing other commands.
 
-### Clear address book feature
+### 5.3 Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
 and to start with a new address book. Since deleted data cannot be recovered, 
 the app opens a pop-up window asking for confirmation that 
@@ -261,7 +261,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### View feature
+### 5.4 View feature
 
 The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
@@ -279,7 +279,7 @@ The following sequence diagram shows how the view feature works:
 
 ![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
-#### Design considerations:
+#### 5.4.1 Design considerations:
 
 **Aspect: Where to display a person's contact details:**
 
@@ -302,9 +302,84 @@ We chose alternative 2 for two reasons:
 * Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
 * Given the quantity of information a contact can have associated with it, having to scroll through a cluttered and much longer list could take the user more time than simply navigating to a new page
 
-### \[Proposed\] Undo/redo feature
+### 5.5 Find feature
 
-#### Proposed Implementation
+The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
+field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
+`FieldContainsKeywordsPredicate` classes.
+
+Below is a sequence diagram summarising the mechanism of `find` command:
+
+![Find Sequence Diagram](images/FindSequenceDiagram.png)
+
+Below is an activity diagram summarising the possible paths for a `find` command:
+
+![Find Activity Diagram](images/FindActivityDiagram.png)
+
+#### 5.5.1 Design Considerations
+
+**Aspect: How keywords are matched**
+
+* **Alternative 1 (Current Choice):** Ignore case and full match is required <br>
+  - Pros:
+    - Easy to implement. 
+    - It gives the best performance if the user remembers the exact keyword they are searching for.
+  - Cons: Weak matching, i.e., `abc` does not match with `ab`. The current implementation would be less useful if the user 
+  remembers only some part of the search keywords.
+
+* **Alternative 2:** Ignore case but full match is not required <br>
+    - Pros: Strong matching, would be especially helpful if the user remembers only bits and pieces of search keywords.
+    - Cons: Difficult and time-consuming to implement.
+
+**Aspect: What happens when user does not specify a field**
+
+**Note:** <br> 
+For evaluating the usefulness of the alternatives these are the assumptions made as to why the user does not specify 
+the field: <br>
+a) they forgot, <br>
+b) they do not want to restrict their search to one field, or <br>
+c) they do not remember which field they want to search.
+
+* **Alternative 1 (Current Choice):** Search all fields for the keyword <br>
+  - Pros:
+    - This is the most intuitive approach. 
+    - For all above mentioned scenarios a-c, this alternative is will produce the most useful result.
+  - Cons:
+    - If there is a lot of data it will take more time to search all fields for every person.
+    - Requires the most complex implementation among all alternatives. 
+    - Performs a lot of unnecessary comparisons (`alex` will never match any phone number, likewise `659347563` will 
+    never match any name). 
+
+* **Alternative 2:** Use name as the default search field
+  - Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this command, this is likely to produce a useful result.
+  - Cons: Useless for scenario b) and c).
+
+* **Alternative 3:** Produce a command syntax error and ask user to enter field
+  - Pros: Simple implementation. Useful in scenario a) above.
+  - Cons: Useless for scenario b) and c).
+
+
+### 5.6 Meet Feature
+
+The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
+`Meeting Attendees`. 
+
+Below is a sequence diagram summarising the mechanism of the `meet` feature:
+
+![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
+
+### 5.7 Update Feature
+
+The `update` feature allows the user to update the details of the meetings that they have scheduled.
+
+Below is a sequence diagram summarising the mechanism of the `update` feature:
+
+![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
+
+
+### 5.8 \[Proposed\] Undo/redo feature
+
+#### 5.8.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -367,7 +442,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### 5.8.2 Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -380,90 +455,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### Find feature
-
-#### Implementation
-
-The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
-field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
-`FieldContainsKeywordsPredicate` classes.
-
-Below is a sequence diagram summarising the mechanism of `find` command:
-
-![Find Sequence Diagram](images/FindSequenceDiagram.png)
-
-Below is an activity diagram summarising the possible paths for a `find` command:
-
-![Find Activity Diagram](images/FindActivityDiagram.png)
-
-#### Design Considerations
-
-#### Aspect: How keywords are matched
-
-- **Alternative 1 (Current Choice):** Ignore case and full match is required <br>
-  - Pros:
-    - Easy to implement. 
-    - It gives the best performance if the user remembers the exact keyword they are searching for.
-  - Cons: Weak matching, i.e., `abc` does not match with `ab`. The current implementation would be less useful if the user 
-  remembers only some part of the search keywords.
-
-- **Alternative 2:** Ignore case but full match is not required <br>
-  - Pros: Strong matching, would be especially helpful if the user remembers only bits and pieces of search keywords.
-  - Cons: Difficult and time-consuming to implement.
-
-#### Aspect: What happens when user does not specify a field
-
-**Note:** <br> 
-For evaluating the usefulness of the alternatives these are the assumptions made as to why the user does not specify 
-the field: <br>
-a) they forgot, <br>
-b) they do not want to restrict their search to one field, or <br>
-c) they do not remember which field they want to search.
-
-**Alternative 1 (Current Choice):** Search all fields for the keyword <br>
-- Pros:
-  - This is the most intuitive approach. 
-  - For all above mentioned scenarios a-c, this alternative is will produce the most useful result.
-- Cons:
-  - If there is a lot of data it will take more time to search all fields for every person.
-  - Requires the most complex implementation among all alternatives. 
-  - Performs a lot of unnecessary comparisons (`alex` will never match any phone number, likewise `659347563` will 
-  never match any name). 
-
-**Alternative 2:** Use name as the default search field
-- Pros: Simple implementation. Since searching people by their name is the most probable and intuitive use of this command, this is likely to produce a useful result.
-- Cons: Useless for scenario b) and c).
-
-**Alternative 3:** Produce a command syntax error and ask user to enter field
-- Pros: Simple implementation. Useful in scenario a) above.
-- Cons: Useless for scenario b) and c).
-
-
-### Meet Feature
-
-The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
-`Meeting Attendees`. 
-
-Below is a sequence diagram summarising the mechanism of the `meet` feature:
-
-![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
-
-### Update Feature
-
-The `update` feature allows the user to update the details of the meetings that they have scheduled.
-
-Below is a sequence diagram summarising the mechanism of the `update` feature:
-
-![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 6. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -473,9 +467,9 @@ Below is a sequence diagram summarising the mechanism of the `update` feature:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 7. **Appendix: Requirements**
 
-### Product scope
+### 7.1 Product scope
 
 **Target user profile**:
 
@@ -496,9 +490,12 @@ We help _busy working professionals_ manage their large list of contacts by prov
 
 
 
-### User stories
+### 7.2 User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: 
+- High (must-have) - `* * *`
+- Medium (nice-to-have) - `* *`
+- Low (unlikely-to-have) - `*`
 
 | Priority | As a …​              | I want to …​                                                     | So that I can…​                                                                    |
 | -------- | ----------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -539,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with many contacts | be provided a history of my most searched-for contacts              | easily find the contacts I use more often                                             |
 | `*`      | user with many contacts | access my recent search history                                     | can easily search for a previously searched contact                                   |
 
-### Use cases
+### 7.3 Use cases
 
 (For all use cases below, the **System** is the `Reache` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -770,7 +767,7 @@ Use case ends.
 &emsp; Use case ends.
 </p>
 
-### Non-Functional Requirements
+### 7.4 Non-Functional Requirements
 
 **Technical requirements:**
 
@@ -802,7 +799,7 @@ Use case ends.
     2.  screen scales 150%.
 
 
-### Glossary
+### 7.5 Glossary
 
 * **Mainstream OS:** Windows, MacOS, Linux
 * **Busy working professionals:** Someone who has to manage a large number of 
@@ -812,7 +809,7 @@ co-workers, clients, mentors, mentees
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 8. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -821,7 +818,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1 Launch and shutdown
 
 1. Initial launch
 
@@ -836,9 +833,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a person
+### 8.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -853,34 +848,46 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
-### Adding a meeting
+### 8.3 Adding a meeting
 
 1. Adding a meeting
    
    1. Prerequisites: Have an empty meeting list and 1 contact in the contacts list. The list of test cases have to be followed in order for the testing to work.
-   2. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   2. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: The added meeting is shown on the list of meetings at the side and a success message is displayed
-   3. Test case: `meet with/2 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   3. Test case: `meet with/2 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
-   4. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   4. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
-   5. Test case: `meet with/ for/Product Demo with Client in/Conference Room 5A on/05-04-2025 15:44` <br>
+   5. Test case: `meet with/ for/Product Demo in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box.
    6. Test case: `meet with/1 for/ in/Conference Room 5A on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   7. Test case: `meet with/1 for/Product Demo with Client in/ on/05-04-2025 15:44` <br>
+   7. Test case: `meet with/1 for/Product Demo in/ on/05-04-2025 15:44` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   8. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/` <br>
+   8. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/` <br>
       Expected: No meeting is added and an error message is shown in the status box
-   9. Test case: `meet with/1 for/Product Demo with Client in/Conference Room 5A on/2025-05-04 15:44`
+   9. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/2025-05-04 15:44`
       Expected: No meeting is added and an error message is shown in the status box
 
-### Saving data
+### 8.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisite for each test case: Must have at least one contact and one meeting stored in the data files.
+   2. Test case: Delete the `addressbook.json` file and run the program.
+      Expected: The application will start with both sample contacts and a sample meeting.
+   3. Test case: Delete the `meetingbook.json` file and run the program.
+      Expected: The application will retain its stored contacts but the meetings list will be empty.
+   4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
+      contact and run the program. For example, you can add `"Landline": "32449877`
+      ![Add a valid number to a contact](images/testing/add_valid_number.png)
+      Expected: The application will have the new number associated with the contact it was added to. You can verify 
+      this by using the `view` command on the contact you added teh phone number to and checking their numbers list.
+   5. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
+      existing contact anf run the program. For example, you can add `"Landline": "landline number"`
+      Expected: The application will discard all existing data and start without any stored contacts or meetings.
+   6. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
+      ![Remove all attendees of a meeting](images/testing/remove_attendees.png)
+      Expected: The application will discard all existing data and start without any stored contacts or meetings.
