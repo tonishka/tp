@@ -275,7 +275,7 @@ Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 - The order of the keywords does not matter. e.g. `Bella Hadid` will match `Hadid Bella`.
 - Only full words will be matched e.g. `Bell` will not match `Bella`.
 - Persons matching at least one keyword will be returned, e.g. `Bella Hadid` will return `Gigi Hadid`, `Bella Swann`.
-- In case the field is not specified, all fields are searched.
+- In case the field is not specified/invalid, all fields are searched.
 
 Examples:<br>
 `find c/Tesla SpaceX` Finds all contacts who work in `Tesla` or `SpaceX`.<br>
