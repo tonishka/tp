@@ -9,7 +9,7 @@ end box
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HomePageParser" as HomePageParser LOGIC_COLOR
 participant ":ClearCommand" as ClearCommand LOGIC_COLOR
 end box
 
@@ -18,18 +18,18 @@ activate MainWindow
 MainWindow -> LogicManager:executePersonListCommand(clear)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(clear)
-activate AddressBookParser
+LogicManager -> HomePageParser : parseCommand(clear)
+activate HomePageParser
 
 create ClearCommand
-AddressBookParser -> ClearCommand
+HomePageParser -> ClearCommand
 activate ClearCommand
 
-ClearCommand --> AddressBookParser :
+ClearCommand --> HomePageParser :
 deactivate ClearCommand
 
-AddressBookParser --> LogicManager :
-deactivate AddressBookParser
+HomePageParser --> LogicManager :
+deactivate HomePageParser
 
 LogicManager -> ClearCommand : execute()
 activate ClearCommand

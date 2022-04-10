@@ -113,9 +113,9 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. if a command is entered from the Home Page, it goes to the AddressBookParser and if it is entered from the Contact Details Page it goes to the ContactDetailsParser.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+1. When `Logic` is called upon to execute a command, it uses the `HomePageParser` class to parse the user command.
+2. if a command is entered from the Home Page, it goes to the HomePageParser and if it is entered from the Contact Details Page it goes to the ContactDetailsPageParser.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -131,7 +131,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` or `ContactDetailsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HomePageParser` or `ContactDetailsPageParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HomePageParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
@@ -182,7 +182,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsParser`, `EditCommandParser` and `EditCommand` classes.
+The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
@@ -216,7 +216,7 @@ Below is an activity diagram summarising the possible paths for an edit command:
 The **delete fields** feature can be used to delete fields stored for the contacts. 
 This feature is also restricted to the Contact Details Page, 
 which can be accessed after the _add_ or _view_ commands. 
-It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
 
 _Note:_ This feature is different from the **delete contacts** feature, 
 which is only accessible on the Home Page.
@@ -264,7 +264,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ### 5.4 View feature
 
-The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
 * `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
