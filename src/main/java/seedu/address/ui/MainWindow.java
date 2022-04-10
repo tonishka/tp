@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executePersonListCommand);
+        CommandBox commandBox = new CommandBox(this::executeHomePageCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -176,11 +176,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Switches the screen to display the list of all contacts.
+     * Switches the page to display the lists of all contacts and meetings.
      */
-    private void loadPersonListScreen() {
+    private void loadHomePage() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        CommandBox commandBox = new CommandBox(this::executePersonListCommand);
+        CommandBox commandBox = new CommandBox(this::executeHomePageCommand);
         meetingListPanel = new MeetingListPanel(logic.getMeetingList(), logic.getPersonList());
 
         panelPlaceholder.getChildren().removeAll();
@@ -197,9 +197,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switches the screen to display the contact information of a specific person.
      */
-    private void loadContactScreen(Person personToDisplay) {
+    private void loadContactDetailsPage(Person personToDisplay) {
         contactDetailsPanel = new ContactDetailsPanel(personToDisplay);
-        CommandBox commandBox = new CommandBox(this::executeContactDetailsCommand);
+        CommandBox commandBox = new CommandBox(this::executeContactDetailsPageCommand);
         contactMeetingsPanel = new ContactMeetingsPanel(logic.getMeetingList(), logic.getPersonList(), personToDisplay);
 
         panelPlaceholder.getChildren().removeAll();
@@ -218,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#executePersonListCommand(String)
      */
-    private CommandResult executePersonListCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeHomePageCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.executePersonListCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -237,13 +237,13 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLoadPersonList()) {
-                loadPersonListScreen();
+                loadHomePage();
             }
 
             if (commandResult.isLoadContactDetails()) {
                 Person personToEdit = commandResult.getPerson();
                 requireNonNull(personToEdit);
-                loadContactScreen(personToEdit);
+                loadContactDetailsPage(personToEdit);
             }
 
             return commandResult;
@@ -259,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#executePersonListCommand(String)
      */
-    private CommandResult executeContactDetailsCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeContactDetailsPageCommand(String commandText) throws CommandException, ParseException {
         try {
             Person currentPerson = contactDetailsPanel.getPerson();
             CommandResult commandResult = logic.executeContactDetailsCommand(commandText, currentPerson);
@@ -275,13 +275,13 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLoadPersonList()) {
-                loadPersonListScreen();
+                loadHomePage();
             }
 
             if (commandResult.isLoadContactDetails()) {
                 Person personToEdit = commandResult.getPerson();
                 requireNonNull(personToEdit);
-                loadContactScreen(personToEdit);
+                loadContactDetailsPage(personToEdit);
             }
 
             return commandResult;
