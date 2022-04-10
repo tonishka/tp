@@ -11,7 +11,7 @@ import seedu.address.model.person.Id;
 /**
  * Jackson-friendly version of {@link Id}.
  */
-class JsonAdaptedAttendee {
+public class JsonAdaptedAttendee {
 
     private final String attendeeId;
 

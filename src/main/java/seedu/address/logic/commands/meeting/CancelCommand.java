@@ -20,7 +20,7 @@ public class CancelCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Cancelled Meeting: %1$s";
+    public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Cancelled Meeting: %1$s";
 
     private final Index targetIndex;
 
@@ -39,7 +39,7 @@ public class CancelCommand extends Command {
 
         Meeting meetingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMeeting(meetingToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, meetingToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete));
     }
 
     @Override

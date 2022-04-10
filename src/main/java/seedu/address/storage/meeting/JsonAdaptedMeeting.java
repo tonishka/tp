@@ -19,7 +19,7 @@ import seedu.address.model.person.Id;
 /**
  * Jackson-friendly version of {@link Meeting}.
  */
-class JsonAdaptedMeeting {
+public class JsonAdaptedMeeting {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
 

@@ -38,21 +38,21 @@ Reache is a contact manager application that helps you:
 <br>
 
 ### 2.2 Interface Guide
-Reache uses **two windows**, the [Main Window](#221-main-window) and the 
-[Contact Details Window](#222-contact-details-window) as a means of maintaning **information segregation**. 
-The `Main Window` displays only the `names` and `tags` which is our predetermined basic requirement for 
-contact identification, while the `Contact Details Window` displays the more detailed information inside a 
+Reache uses **two pages**, the [Home Page](#221-home-page) and the 
+[Contact Details Page](#222-contact-details-page) as a means of maintaning **information segregation**. 
+The `Home Page` displays only the `names` and `tags` which is our predetermined basic requirement for 
+contact identification, while the `Contact Details Page` displays the more detailed information of a 
 specific contact. You could imagine this layout as **resembling looking through a folder with small identification 
-tags sticking out and only pulling out the document with the tag when you want to view its details**. This would help 
-to save space on the main window as well as preventing information overload.
+tags sticking out and only pulling out the document with the tag when you want to view its details**. This helps 
+save space on the Home Page as well as prevents information overload.
 
 
-#### 2.2.1 Main Window
-Upon launching Reache, you will see the Main Window, which is depicted below. The Main Window displays your entire contact list as well as all upcoming meetings you have planned.
+#### 2.2.1 Home Page
+Upon launching Reache, you will see the Home Page, which is depicted below. The Home Page displays your entire contact list as well as all upcoming meetings you have planned.
 
-![Main Window](images/MainWindow.png)
+![Home Page](images/HomePage.png)
 
-The Main Window contains the following elements:
+The Home Page contains the following elements:
 1. **Menu Bar**: Contains Reache's options and help.
 2. **Command Box**: A dialog box from which you can type commands to use Reache.
 3. **Result Display**: When you use the Command Box to enter a command, Reache will show the result of that command here.
@@ -61,19 +61,19 @@ The Main Window contains the following elements:
 
 <br>
 
-#### 2.2.2 Contact Details Window
-The Contact Details Window, which is depicted below, displays all the contact information associated with a specific contact.
+#### 2.2.2 Contact Details Page
+The Contact Details Page, which is depicted below, displays all the contact information associated with a specific contact.
 
-![Contact Details Window](images/ContactDetailsWindow.png)
+![Contact Details Page](images/ContactDetailsPage.png)
 
-The Contact Details Window contains many of the same elements as the Main Window, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
-1. **Particulars**: Consists of their name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
+The Contact Details Page contains many of the same elements as the Home Page, like the Menu Bar, Command Box, and Result Display. In addition, it contains the following elements:
+1. **Particulars**: Consists of a contact's name, pronouns, job title, company, and tags. Tags are descriptive keywords that help you identify a person. For example, you might assign a contact the tag “Friend” to indicate that they are your friend.
 
 
 2. **Contact Information**: A contact's phone numbers, email addresses, and physical addresses. Reache lets you assign *custom labels* to these fields to help you organize a contact's information. For example, a person might have a *personal* phone number and an *office* phone number.
 
 
-3. **Meetings with Contact**: Whereas the Meeting List in the Main Window displays all your upcoming meetings, the Contact Details Window only displays upcoming meetings that involve the contact being viewed.
+3. **Meetings with Contact**: Whereas the Meeting List in the Home Page displays all your upcoming meetings, the Contact Details Page only displays upcoming meetings that involve the contact being viewed.
 
 Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache](#23-getting-started-with-reache) to begin using the application.
 
@@ -96,26 +96,26 @@ Experienced users should skip this section.
 
 In this tutorial we will be adding your personal contact information to Reache.
 
-1. Launch Reache from the folder in which it is located by double clicking on it. You will see the window shown below with some sample contacts. <br>
-![Sample Contacts](images/Tutorial/sample_contacts_screen.png)
+1. Launch Reache from the folder in which it is located by double clicking on it. You will see the Home Page shown below with some sample contacts. <br>
+![Sample Contacts](images/Tutorial/Tutorial_1/new_sample_contacts.png)
    Since this is the first time you are using Reache, it loads the sample contacts as there are no actual contacts stored. Let’s start storing some real contacts in it. <br><br>
 2. Firstly, we have to clear the sample data first. Type `clear` in the command box and press Enter/Return. Press 'Yes’ when Reache asks for confirmation. <br><br>
 3. Now that the sample data has been cleared, we can start adding some real contacts to it. <br><br>
 4. Begin by typing `add n/<YOUR NAME>` in the command box. Press enter/return. <br><br>
-5. You will be redirected to the **Contacts Details Window** as shown below: 
-![Contact Details Window](images/Tutorial/contact_details_page.png)
-**Note**: `edit` commands can only be issued in the **Contacts Details Window.** <br><br>
-6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the window, as shown below:
-![Company & Job Added](images/Tutorial/company_job_edited_screen.png)
+5. You will be redirected to the **Contacts Details Page** as shown below: 
+![Contact Details Page](images/Tutorial/Tutorial_1/new_contact_details_added_screen.png)
+**Note**: `edit` commands can only be issued in the **Contacts Details Page.** <br><br>
+6. Let’s add your company and job to it. Type `edit j/<YOUR JOB> c/<YOUR COMPANY>`. Again, press enter/return. You will see your newly entered information on the page, as shown below:
+![Company & Job Added](images/Tutorial/Tutorial_1/new_company_job_added_screen.png)
 7. Let’s add your emails to it. Type `edit e/<YOUR PERSONAL EMAIL> l/Personal e/<YOUR WORK EMAIL> l/Work`. The updated contact details should look like this:
-![Email Added](images/Tutorial/email_edited_screen.png)
+![Email Added](images/Tutorial/Tutorial_1/new_emails_edited_screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
-9. Finally tag yourself using `edit t/me`. Your final contact details window should look like this:
-![Full Contact Details](images/Tutorial/tag_added.png)
-10. Now type `back` in the command box to return to the main window. Your **Main Window** should look like this:
-![Main Window](images/Tutorial/main_window.png)
+9. Finally tag yourself using `edit t/me`. Your final Contact Details Page should look like this:
+![Full Contact Details](images/Tutorial/Tutorial_1/new_tag_added_me.png)
+10. Now type `back` in the command box to return to the Home Page. Your **Home Page** should look like this:
+![Home Page](images/Tutorial/Tutorial_1/new_main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
-12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Main Window. <br><br>
+12. Use more `edit` commands to edit your details as you wish. When you are done, type `back` to save the data and return to the Home Page. <br><br>
 13. As additional practice, try adding more contacts using `add` and `edit`. When you are done, type `list` to view all saved contacts.
 
 <hr>
@@ -131,16 +131,16 @@ In this tutorial, you will be scheduling a meeting with yourself on your next bi
 1. In the command box, type `find t/me` to find yourself in the contacts list. If you followed [Tutorial 1](#231-tutorial-1-managing-contacts-with-reache) correctly you should see your name as the first search result. <br><br>
 2. Now, type `meet for/Birthday in/Office on/<YOUR BIRTHDAY IN DD-MM-YYYY> 00:01 with/1`. <br><br>
 3. You will see your newly created meeting in the right panel, like so: 
-![New Meeting Created](images/Tutorial/new_meeting_created.png)
+![New Meeting Created](images/Tutorial/)
 4. Let's say you want to update your meeting to invite your best friend. Add their contact if you have not done so. <br><br>
 5. Type `list` to see a list of all you contacts. 
 ![List View](images/Tutorial/)
 As you can see, for this particular user, their best friend `Barry Ng` is at index position `2`. Similarly, find the position of yourself and your best friend. <br><br>
 6. Type `update <BIRTHDAY MEETING INDEX> with/<YOUR INDEX> <YOUR BEST FRIEND'S INDEX>`. For example, this user would type `update 1 with/1 2`. The updated meeting panel should look like this: <br><br>
-![Updated Meeting](images/Tutorial/updated_meeting.png)
+![Updated Meeting](images/Tutorial/)
 7. Let's say you change your mind and want to cancel this meeting. <br><br>
 8. Type `cancel 1`. The meeting will disappear from the panel, like so:
-![Cancelled Meeting](images/Tutorial/cancel_birthday.png)
+![Cancelled Meeting](images/Tutorial/)
 Now you are all set to manage your contacts and meetings using Reache!
 
 <hr>
@@ -197,7 +197,7 @@ Example: `add n/Alex Dunphy t/friend`
 <br>
 
 #### 3.1.2 Editing a contact: `edit`
-On the Contact Details Window, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Page, modify the details of the person displayed on the page. The fields that can be added/edited are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `edit <ANY NUMBER AND TYPE OF FIELDS IN ANY ORDER> `
 
@@ -208,7 +208,7 @@ _Note_: Editing a field with the same category/label as an existing entry will o
 <br>
 
 #### 3.1.3 Deleting a field: `del <FIELDS>`
-On the Contact Details Window, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
+On the Contact Details Page, delete any specific contact information of the person by specifying the field (and label) you want to delete. Command words for the fields that can be deleted are given in the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 `<FIELD>` refers to the contact field you wish to delete, as indicated by its command word.
 Without a `<LABEL>`, the command will delete all information stored in `<FIELD>`.
@@ -293,7 +293,7 @@ Format: `list`
 <br>
 
 #### 3.2.3 Viewing a person's full details: `view`
-View a certain contact's information and your meetings with them by specifying their index in the displayed contacts list. This will take you to the Contact Details Window and allow you to edit their fields as well.
+View a certain contact's information and your meetings with them by specifying their index in the displayed contacts list. This will take you to the Contact Details Page and allow you to edit their fields as well.
 
 Format: `view <INDEX NO>`
 
@@ -302,7 +302,7 @@ Example: `view 34`
 <br>
 
 #### 3.2.4 Returning after viewing a person's full details: `back`
-Return to the Main Window after viewing and/or editing a person's details from the Contact Details Window.
+Return to the Home Page after viewing and/or editing a person's details from the Contact Details Page.
 
 Format: `back`
 
@@ -373,7 +373,7 @@ Format: `exit`
 
 <br>   
    
-### Main Window  
+### Home Page  
 
 | **Action**             | **Format & Example**                                                                                                                                   |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -389,7 +389,7 @@ Format: `exit`
 | **Help**               | Format: `help`                                                                                                                                         |
 | **Exit**               | Format: `exit`                                                                                                                                         |
 
-### Contact Details Window 
+### Contact Details Page 
   
 | **Action**              | **Format & Example**                                                                                                                                              |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|

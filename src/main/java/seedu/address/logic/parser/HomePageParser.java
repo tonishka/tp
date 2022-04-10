@@ -30,7 +30,7 @@ import seedu.address.logic.parser.meeting.UpdateCommandParser;
 /**
  * Parses user input entered from the PersonList screen.
  */
-public class AddressBookParser {
+public class HomePageParser {
 
     /**
      * Used for initial separation of command word and args.

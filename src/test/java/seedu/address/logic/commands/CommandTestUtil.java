@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -58,10 +57,6 @@ public class CommandTestUtil {
     public static final String VALID_PRONOUN_HIM = "him";
     public static final String VALID_PRONOUN_THEY = "they";
 
-    public static final String LABEL_HOME = "home";
-    public static final String LABEL_WORK = "work";
-    public static final String LABEL_FRIEND = "friend";
-
     //@Todo CHANGE THIS TO HAVE ANOTHER WHTIESPACE AFTER PREFIX
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -75,9 +70,6 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + LABEL_HOME;
-    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + LABEL_WORK;
-    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + LABEL_FRIEND;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PRONOUN_DESC_HIM = " " + PREFIX_PRONOUN + VALID_PRONOUN_HIM;
@@ -105,7 +97,6 @@ public class CommandTestUtil {
 
     public static final String AGENDA_DESC_QUARTERLY = " " + PREFIX_AGENDA + VALID_AGENDA_QUARTERLY;
     public static final String AGENDA_DESC_PROJECT = " " + PREFIX_AGENDA + VALID_AGENDA_PROJECT;
-    public static final String ATTENDEE_DESC_QUARTERLY = " " + PREFIX_ATTENDEES_INDEX + VALID_ATTENDEE_QUARTERLY;
     public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + VALID_ATTENDEE_PROJECT;
     public static final String TIME_DESC_QUARTERLY = " " + PREFIX_TIME + VALID_TIME_QUARTERLY;
     public static final String TIME_DESC_PROJECT = " " + PREFIX_TIME + VALID_TIME_PROJECT;
