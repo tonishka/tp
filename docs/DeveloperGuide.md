@@ -201,7 +201,7 @@ Listed below are a few significant decisions we made in designing Reache.
   * Pros:
     * Different countries have different standard phone number lengths, so allowing different lengths makes Reache more suitable for international users
   * Cons:
-    * In Singapore, where the application was developed, the lack of restiction on phone number length could give rise to user mistakes
+    * In Singapore, where the application was developed, the lack of restriction on phone number length could give rise to user mistakes
 
   
 ### 5.1 Edit feature
