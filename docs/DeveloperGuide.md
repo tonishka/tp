@@ -373,21 +373,61 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
 #### 5.6.1 Design Considerations
 
-#### Aspect: Specifying the domain of meeting time
-* **Alternative 1 (Current Choice):** Meetings can only be created for future 
-* **Alternative 2:**
+#### Aspect: Creation of multiple meetings at the same time
+* **Alternative 1 (Current Choice):** Multiple different meetings can be created at the same time
+  * Pros: 
+    * Gives the user greater flexibility in deciding their schedule. 
+    * When users have conflicting meetings, they should have the 
+    freedom to add both of them to Reache and decide later which one they want to attend. 
+    * It is also possible that some users may
+    attend more than one meeting simultaneously (such as when they are online). 
+  * Cons: Users may unknowingly add conflicting meetings.
+* **Alternative 2:** Only one meeting is allowed to be created at a given time
+  * Pros: Prevents the user from unknowingly adding conflicting meetings.
+  * Cons: 
+    * Affords the user less flexibility in deciding their schedule. 
+    * If a user wants to schedule multiple meetings but decide
+    later which ones they want to keep, they are unable to do so. The user will have to go through the additional step of cancelling 
+    the original meeting first before scheduling another at the same time.
 
 #### Aspect: Specifying the domain of meeting attendees
-* **Alternative 1 (Current Choice):**
-* **Alternative 2:**
+* **Alternative 1 (Current Choice):** Only people whose have been added to Reache can be attendees in a meeting
+  * Pros: 
+    * Compels the user to be proactive in adding their contacts to Reache. 
+    * If the user enters a non-existent index they are alerted of the fact and can rectify the command by adding valid
+    attendees.
+  * Cons:
+    * User will have to add all attendees to Reache before they can schedule a meeting with them.
+* **Alternative 2:** Anyone can be an attendee, but those who have not been added will be listed as `Unknown Attendee`
+  * Pros: 
+    * The users can add attendees to meetings that do not yet exist in Reache.
+  * Cons:
+    * If the user makes a genuine mistake of specifying a non-existent index, Reache will not alert the user of their error and instead create
+    a meeting with an `Unknown Attendee`. This will lead to the wrong attendees being associated with a meeting.
 
-#### Aspect: What happens when a meeting attendee does not exist
-* **Alternative 1 (Current Choice):**
-* **Alternative 2:**
 
 #### Aspect: What happens when a meeting attendee is deleted 
-* **Alternative 1 (Current Choice):**
-* **Alternative 2:**
+* **Alternative 1 (Current Choice):** The `Meetings` panel will show the attendee as `Unknown Attendee` in the meeting description 
+  * Pros: The user has a visual indication that they have deleted the contact information of a potentially relevant person.
+  * Cons: More challenging to implement than **Alternative 2**.
+* **Alternative 2:** The `Meetings` panel will not show any information about the attendee in the meeting description
+  * Pros: Easy to implement.
+  * Cons: Mislead the user about the number of attendees in the meeting. 
+
+#### Aspect: What happens to meetings once they are expired
+* **Alternative 1 (Current Choice):** Expired meetings are removed from the `Meetings` panel everytime the application is loaded
+  * Pros: 
+    * Prevents cluttering in the `Meetings` panel by removing meetings that are irrelevant.
+    * User does not have to go through the additional step of cancelling each expired meeting to prevent cluttering.
+  * Cons:
+    * Users will be unable to see the details of past meetings if they wish to do so.
+* **Alternative 2:** Expired meetings are not removed from the `Meetings` panel
+  * Pros: 
+    * Users can see details of their past meetings.
+  * Cons:
+    * Leads to cluttering in the `Meetings` panel.
+    * Meetings are shown to the user in a chronological order so that they can see their upcoming schedule. Not automatically removing expired meetings will
+      lead to loss of utility because the user has to scroll through countless expired meetings to find their upcoming schedule.
 
 ### 5.7 Update Feature
 
