@@ -963,9 +963,9 @@ testers are expected to do more *exploratory* testing.
    8. Test case: `find Barry` <br>
       Expected: Person who lives in `Barry Street` and person who is named `Barry` will appear in the search result. A message showing the number of people matched is displayed.
    9. Test case: `find`
-      Expected: No search results are shown and error message is displayed in the status box.
+      Expected: No search results are shown and error message is displayed in the Result Display.
    10. Test case: `find n/`
-       Expected: No search results are shown and error message is displayed in the status box.
+       Expected: No search results are shown and error message is displayed in the Result Display.
    
 ### 8.8 List
 
@@ -1018,19 +1018,19 @@ testers are expected to do more *exploratory* testing.
       Expected: The updated meeting is shown on the list of meetings at the side and a success message is displayed. 
    
    5. Test case: `update 1 in/` <br>
-      Expected: No meeting is updated and an error message is shown in the status box.
+      Expected: No meeting is updated and an error message is shown in the Result Display.
    
    6. Test case: `update 1 for/` <br>
-      Expected: No meeting is updated and an error message is shown in the status box.
+      Expected: No meeting is updated and an error message is shown in the Result Display.
    
    7. Test case: `update 1 on/21-09-2021 12:30` <br>
-      Expected: No meeting is updated and an error message is shown in the status box.
+      Expected: No meeting is updated and an error message is shown in the Result Display.
    
    8. Test case: `update 1` <br>
-      Expected: No meeting is updated and an error message is shown in the status box.
+      Expected: No meeting is updated and an error message is shown in the Result Display.
    
    9. Test case: `update 2 in/UTown` <br>
-      Expected: No meeting is updated and an error message is shown in the status box.
+      Expected: No meeting is updated and an error message is shown in the Result Display.
 
 ### 8.13 Cancelling a meeting
 
@@ -1039,7 +1039,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Must have only one meeting added in the `Meetings` list
    
    2. Test case: `cancel 2` <br>
-      Expected: No meeting is cancelled and an error message is shown in the status box.
+      Expected: No meeting is cancelled and an error message is shown in the Result Display.
    
    3. Test case: `cancel 1` <br>
       Expected: The meeting is cancelled and disappears from the `Meetings` list.
