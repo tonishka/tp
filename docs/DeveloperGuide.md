@@ -867,8 +867,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### 8.2 Adding a person
 
-### 8.2 Deleting a person
+### 8.3 Editing a person
+
+### 8.4 Deleting a field
+
+### 8.5 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -883,8 +889,17 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### 8.6 Clearing contacts and/or meetings
 
-### 8.3 Adding a meeting
+### 8.7 Finding
+
+### 8.8 List
+
+### 8.9 View
+
+### 8.10 Back
+
+### 8.11 Adding a meeting
 
 1. Adding a meeting
    
@@ -914,7 +929,11 @@ testers are expected to do more *exploratory* testing.
    9. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/2025-05-04 15:44`
       Expected: No meeting is added and an error message is shown in the status box.
 
-### 8.4 Saving data
+### 8.12 Updating a meeting
+
+### 8.13 Cancelling a meeting
+
+### 8.14 Saving data
 
 1. Dealing with missing/corrupted data files
 
