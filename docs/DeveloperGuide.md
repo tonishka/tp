@@ -915,6 +915,33 @@ testers are expected to do more *exploratory* testing.
       Expected: No meeting is added and an error message is shown in the status box.
 
 ### 8.12 Updating a meeting
+1. Updating a meeting
+
+   1. Prerequisites: Must have only one meeting added in the `Meetings` list
+   
+   2. Test case: `update 1 in/UTown` <br>
+      Expected: The updated meeting is shown on the list of meetings at the side and a success message is displayed.
+
+   3. Test case: `update 1 for/Testing Feature` <br>
+      Expected: The updated meeting is shown on the list of meetings at the side and a success message is displayed.
+
+   4. Test case: `update 1 on/22-08-2040 23:47`
+      Expected: The updated meeting is shown on the list of meetings at the side and a success message is displayed. 
+   
+   5. Test case: `update 1 in/` <br>
+      Expected: No meeting is updated and an error message is shown in the status box.
+   
+   6. Test case: `update 1 for/` <br>
+      Expected: No meeting is updated and an error message is shown in the status box.
+   
+   7. Test case: `update 1 on/21-09-2021 12:30` <br>
+      Expected: No meeting is updated and an error message is shown in the status box.
+   
+   8. Test case: `update 1` <br>
+      Expected: No meeting is updated and an error message is shown in the status box.
+   
+   9. Test case: `update 2 in/UTown` <br>
+      Expected: No meeting is updated and an error message is shown in the status box.
 
 ### 8.13 Cancelling a meeting
 
