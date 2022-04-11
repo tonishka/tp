@@ -14,7 +14,7 @@ participant "model:Model" as model MODEL_COLOR
 participant "predicate:\nFieldContainsKeywordsPredicate"  as FieldContainsKeywordsPredicate MODEL_COLOR
 end box
 
-[-> LogicManager : executePersonListCommand\n(find n/alex)
+[-> LogicManager : executeHomePageCommand\n(find n/alex)
 activate LogicManager
 
 LogicManager -> HomePageParser : parseCommand\n(find n/alex)

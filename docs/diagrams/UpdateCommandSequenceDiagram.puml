@@ -14,7 +14,7 @@ activate LogicManager
 
 note left of LogicManager: 1 is the index of the meeting for \nwhich the meeting place is updated
 
--> LogicManager : executePersonListCommand\n(update 1 in/new_place)
+-> LogicManager : executeHomePageCommand\n(update 1 in/new_place)
 LogicManager -> HomePageParser : parseCommand\n(update 1 in/new_place)
 activate HomePageParser
 HomePageParser -> UpdateCommandParser ** : UpdateCommandParser()

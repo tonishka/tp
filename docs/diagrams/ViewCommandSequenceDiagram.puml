@@ -13,10 +13,10 @@ participant ":HomePageParser" as HomePageParser LOGIC_COLOR
 participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
 end box
 
--> MainWindow : executePersonListCommand(view 2)
+-> MainWindow : executeHomePageCommand(view 2)
 activate MainWindow
 
-MainWindow -> LogicManager:executePersonListCommand(view 2)
+MainWindow -> LogicManager:executeHomePageCommand(view 2)
 activate LogicManager
 
 LogicManager -> HomePageParser : parseCommand(view 2)

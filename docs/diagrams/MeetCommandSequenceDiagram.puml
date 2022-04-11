@@ -12,7 +12,7 @@ end box
 
 activate LogicManager
 note left of LogicManager: 1 is the index of the meeting attendee \nin the current contacts list
--> LogicManager : executePersonListCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
+-> LogicManager : executeHomePageCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
 LogicManager -> HomePageParser : parseCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
 activate HomePageParser
 HomePageParser -> MeetCommandParser** : MeetCommandParser()

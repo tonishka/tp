@@ -15,7 +15,7 @@ end box
 
 -> MainWindow
 activate MainWindow
-MainWindow -> LogicManager:executePersonListCommand(clear)
+MainWindow -> LogicManager:executeHomePageCommand(clear)
 activate LogicManager
 
 LogicManager -> HomePageParser : parseCommand(clear)
