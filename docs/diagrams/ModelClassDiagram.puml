@@ -53,9 +53,9 @@ Person *--> "0..1" Job
 Person --> "*" Tag
 Person *--> "1" Id
 
-Phone --> "0..1" Label1
-Address --> "0..1" Label2
-Email --> "0..1" Label3
+Phone --> "1" Label1
+Address --> "1" Label2
+Email --> "1" Label3
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
