@@ -891,14 +891,14 @@ testers are expected to do more *exploratory* testing.
       stored in `data/meetingbook.json`. You can add this data to the files by using the `add` and `meet` commands on 
       the Reache application.
    
-   2. Test case: Delete the `addressbook.json` file and run the program.
+   2. Test case: Delete the `addressbook.json` file and run the program. <br>
       Expected: The application will start with both sample contacts and a sample meeting.
    
-   3. Test case: Delete the `meetingbook.json` file and run the program.
+   3. Test case: Delete the `meetingbook.json` file and run the program. <br>
       Expected: The application will retain its stored contacts but the meetings list will be empty.
    
-   4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
-      contact and run the program. For example, you can add `"Landline": "32449877"`.
+   4. Test case: Add a valid phone number (more than 3 digits) with any non-empty label in `addressbook.json` for an 
+      existing contact and run the program. For example, you can add `"Landline": "32449877"`.
    
       <p align="center">
         <img src="images/testing/add_valid_number.png" width="550" />
@@ -907,8 +907,8 @@ testers are expected to do more *exploratory* testing.
       Expected: The application will have the new number associated with the contact it was added to. You can verify 
       this by using the `view` command on the contact you added the phone number to and checking their numbers list.
    
-   5. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
-      existing contact anf run the program. For example, you can add `"Landline": "landline number"`.
+   5. Test case: Add an invalid phone number (having alphabets and symbols) with any label in `addressbook.json` for an 
+      existing contact and run the program. For example, you can add `"Landline": "landline number"`. <br>
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
    
    6. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
