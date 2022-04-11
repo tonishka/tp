@@ -190,6 +190,7 @@ Listed below are a few significant decisions we made in designing Reache, and th
   * Cons:
     * Presents the risk of the user accidentally storing the same number twice. An occurrence of this accident would be relatively easy to spot on the Contact Details Page, where all numbers appear in a list
 
+<br>
 
 * **Decision**: Allow multiple contacts to have the same name, so long as their tags differ.
   * Pros:
@@ -197,6 +198,7 @@ Listed below are a few significant decisions we made in designing Reache, and th
   * Cons:
     * The user may accidentally add the same contact twice. This risk is partially alleviated by the need for different tags, and because contacts are sorted alphabetically, an occurrence of this accident would be relatively easy to spot
 
+<br>
 
 * **Decision**: Allow phone numbers to be of varying lengths, as long as they are over 3 digits.
   * Pros:
