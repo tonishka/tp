@@ -242,40 +242,47 @@ Below is an activity diagram summarising the possible paths leading to and durin
 We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that manually saving after every edit did not make a meaningful difference to performance and would not affect user experience.
 
 ### 5.3 Delete fields feature
-The **delete fields** feature can be used to delete fields stored for the contacts. 
-This feature is also restricted to the Contact Details Page, 
-which can be accessed after the _add_ or _view_ commands. 
-It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+The **delete fields** feature can be used to delete fields stored for the 
+contacts. This feature is also restricted to the Contact Details Page, 
+which can be accessed after the _add_ or _view_ commands. It is mainly 
+facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` 
+and `DeleteFieldCommand` classes.
 
 _Note:_ This feature is different from the **delete contacts** feature, 
 which is only accessible on the Home Page.
 
 #### 5.3.1 Design considerations:
-Since certain fields allow for multiple values to be stored, 
-the user needs to specify the label of the value (or the value itself for non-labelled fields) 
-they want to delete along with the field to be deleted for such fields.
+Since certain fields allow for multiple values to be stored, the user needs 
+to specify the label of the value (or the value itself for non-labelled 
+fields) they want to delete along with the field to be deleted for such 
+fields.
 
 **Aspect: What happens when the user does not specify a label or value:**
 
-* **Alternative 1 (current choice):** Delete all the values stored for this field immediately.
+* **Alternative 1 (current choice):** Delete all the values stored for this 
+  field immediately.
     * Pros:
       * Seems to be the most intuitive approach.
       * Easier to implement.
       * Faster to execute command.
     * Cons:
-      * User may have forgotten to mention the label or field, which could lead to unintended loss of data.
+      * User may have forgotten to mention the label or field, which could 
+        lead to unintended loss of data.
 
 
-* **Alternative 2 :** Confirm that the user wants to delete all values for this field
+* **Alternative 2 :** Confirm that the user wants to delete all values for 
+  this field
     * Pros:
       * Allows user to cancel the command if it was unintentional.
     * Cons:
       * Slower to execute command.
-      * Difficult to implement, since the current implementation does not store command history.
+      * Difficult to implement, since the current implementation does not 
+        store command history.
 
-We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. 
-Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
-very helpful for executing other commands.
+We picked _alternative 1_ since the focus of our CLI app is on speed and 
+efficiency. Additionally, _alternative 2_ required a lot of changes to the 
+existing implementation which would not be very helpful for executing other 
+commands.
 
 
 ### 5.4 Clear all data feature
