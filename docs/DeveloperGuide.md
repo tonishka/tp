@@ -268,15 +268,15 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
+* `MainWindow#LoadContactDetailsPage(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
 Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
+Step 3. `MainWindow#loadContactDetailsPage(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
 The following sequence diagram shows how the view feature works:
 
@@ -286,20 +286,20 @@ The following sequence diagram shows how the view feature works:
 
 **Aspect: Where to display a person's contact details:**
 
-* **Alternative 1:** Display all contact information in the person list screen.
+* **Alternative 1:** Display all contact information in the Home Page.
   * Pros:
     * Easy to implement
     * Requires fewer commands from the user as they do not need to navigate to a new screen to view a contact's information
   * Cons:
-    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the person list screen would add a lot of clutter
+    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the Home Page would add a lot of clutter
     
 * **Alternative 2 (current choice):** Navigate to a new screen to for contact information
   * Pros:
-    * Greatly reduces clutter in the person list screen
-    * Reduces the length of the person list, making it easier and faster to scroll through
+    * Greatly reduces clutter in the Home Page
+    * Reduces the length of the contact list, making it easier and faster to scroll through
   * Cons:
     * More difficult to implement
-    * Requires an additional command from the user to both view a contact's information and return to the person list after
+    * Requires an additional command from the user to both view a contact's information and return to the Home Page after
     
 We chose alternative 2 for two reasons:
 * Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
