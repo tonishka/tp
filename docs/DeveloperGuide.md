@@ -395,7 +395,7 @@ c) they do not remember which field they want to search.
 
 The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
 `Meeting Attendees`. The `meet` command can only be issued from the `Home Page`. It is facilitated by such classes as
-`HomePageParser`, `MeetCommandParser`, and `UpdateCommand`.
+`HomePageParser`, `MeetCommandParser`, and `MeetCommand`.
 
 Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
@@ -465,11 +465,9 @@ The `update` feature allows the user to update the details of the meetings that 
 
 Below is a sequence diagram summarising the mechanism of the `update` feature:
 
-#### 5.9.2 Design considerations:
-
 ![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 
-#### 5.7.1 Design Considerations
+#### 5.8.1 Design Considerations
 
 The important design decisions made for `update` command are the same as design decisions made for `meet` command above.
 Meetings updated using the `update` command are subject to the same constraints as if they were added directly using the `meet` command. 
