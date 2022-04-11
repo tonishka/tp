@@ -877,7 +877,34 @@ testers are expected to do more *exploratory* testing.
 ### 8.6 Clearing contacts and/or meetings
 
 ### 8.7 Finding
-
+1. Finding contacts using various fields
+   1. Prerequisites: More than one person in the contacts list. They should collectively meet the following criteria:
+      1. Only one person has `Barry` in their name
+      2. At least one person is tagged `Manager`
+      3. Only one person lives in `Barry Street` and he is not `Barry`
+      4. At least one person's job is `Engineer`
+      5. No one is named `Dakota`
+      6. No one is tagged `Friend`
+      
+   2. Test case: `find n/Barry` <br>
+      Expected: Person named `Barry` will appear in the search result. A message showing the one person matched is displayed.
+   3. Test case: `find t/Manager` <br>
+      Expected: People tagged `Manager` will appear in the search result. A message showing the number of people matched is displayed.
+   4. Test case: `find a/Pine Street`<br>
+      Expected: People who live in `Pine Street` will appear in the search result. A message showing the number of people matched is displayed.
+   5. Test case: `find j/engineer`
+      Expected: People who work as `engineer` will appear in the search result. A message showing the number of people matched is displayed.
+   6. Test case: `find n/Dakota` <br>
+      Expected: A message showing that no people were matched is displayed.
+   7. Test case: `find t/Friend` <br>
+      Expected: A message showing that no people were matched is displayed.
+   8. Test case: `find Barry` <br>
+      Expected: Person who lives in `Barry Street` and person who is named `Barry` will appear in the search result. A message showing the number of people matched is displayed.
+   9. Test case: `find`
+      Expected: No search results are shown and error message is displayed in the status box.
+   10. Test case: `find n/`
+       Expected: No search results are shown and error message is displayed in the status box.
+   
 ### 8.8 List
 
 ### 8.9 View
