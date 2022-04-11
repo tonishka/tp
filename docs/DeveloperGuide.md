@@ -394,98 +394,83 @@ c) they do not remember which field they want to search.
 ### 5.7 Meet Feature
 
 The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
-`Meeting Attendees`. 
+`Meeting Attendees`. The `meet` command can only be issued from the `Home Page`. It is facilitated by such classes as
+`HomePageParser`, `MeetCommandParser`, and `MeetCommand`.
 
 Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
 ![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
 
+#### 5.7.1 Design Considerations
+
+#### Aspect: Creation of multiple meetings at the same time
+* **Alternative 1 (Current Choice):** Multiple different meetings can be created at the same time
+  * Pros: 
+    * Gives the user greater flexibility in deciding their schedule. 
+    * When users have conflicting meetings, they should have the 
+    freedom to add both of them to Reache and decide later which one they want to attend. 
+    * It is also possible that some users may
+    attend more than one meeting simultaneously (such as when they are online). 
+  * Cons: Users may unknowingly add conflicting meetings.
+* **Alternative 2:** Only one meeting is allowed to be created at a given time
+  * Pros: Prevents the user from unknowingly adding conflicting meetings.
+  * Cons: 
+    * Affords the user less flexibility in deciding their schedule. 
+    * If a user wants to schedule multiple meetings but decide
+    later which ones they want to keep, they are unable to do so. The user will have to go through the additional step of cancelling 
+    the original meeting first before scheduling another at the same time.
+
+#### Aspect: Specifying the domain of meeting attendees
+* **Alternative 1 (Current Choice):** Only people whose have been added to Reache can be attendees in a meeting
+  * Pros: 
+    * Compels the user to be proactive in adding their contacts to Reache. 
+    * If the user enters a non-existent index they are alerted of the fact and can rectify the command by adding valid
+    attendees.
+  * Cons:
+    * User will have to add all attendees to Reache before they can schedule a meeting with them.
+* **Alternative 2:** Anyone can be an attendee, but those who have not been added will be listed as `Unknown Attendee`
+  * Pros: 
+    * The users can add attendees to meetings that do not yet exist in Reache.
+  * Cons:
+    * If the user makes a genuine mistake of specifying a non-existent index, Reache will not alert the user of their error and instead create
+    a meeting with an `Unknown Attendee`. This will lead to the wrong attendees being associated with a meeting.
+    
+#### Aspect: What happens when a meeting attendee is deleted 
+* **Alternative 1 (Current Choice):** The `Meetings` panel will show the attendee as `Unknown Attendee` in the meeting description 
+  * Pros: The user has a visual indication that they have deleted the contact information of a potentially relevant person.
+  * Cons: More challenging to implement than **Alternative 2**.
+* **Alternative 2:** The `Meetings` panel will not show any information about the attendee in the meeting description
+  * Pros: Easy to implement.
+  * Cons: Mislead the user about the number of attendees in the meeting. 
+
+#### Aspect: What happens to meetings once they are expired
+* **Alternative 1 (Current Choice):** Expired meetings are removed from the `Meetings` panel everytime the application is loaded
+  * Pros: 
+    * Prevents cluttering in the `Meetings` panel by removing meetings that are irrelevant.
+    * User does not have to go through the additional step of cancelling each expired meeting to prevent cluttering.
+  * Cons:
+    * Users will be unable to see the details of past meetings if they wish to do so.
+* **Alternative 2:** Expired meetings are not removed from the `Meetings` panel
+  * Pros: 
+    * Users can see details of their past meetings.
+  * Cons:
+    * Leads to cluttering in the `Meetings` panel.
+    * Meetings are shown to the user in a chronological order so that they can see their upcoming schedule. Not automatically removing expired meetings will
+      lead to loss of utility because the user has to scroll through countless expired meetings to find their upcoming schedule.
+
 ### 5.8 Update Feature
 
-The `update` feature allows the user to update the details of the meetings that they have scheduled.
+The `update` feature allows the user to update the details of the meetings that they have scheduled. The `update` command can only be issued from the `Home Page`. It is facilitated by such classes as
+`HomePageParser`, `UpdateCommandParser`, and `UpdateCommand`.
 
 Below is a sequence diagram summarising the mechanism of the `update` feature:
 
 ![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 
+#### 5.8.1 Design Considerations
 
-### 5.9 \[Proposed\] Undo/redo feature
-
-#### 5.9.1 Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### 5.9.2 Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+The important design decisions made for `update` command are the same as design decisions made for `meet` command above.
+Meetings updated using the `update` command are subject to the same constraints as if they were added directly using the `meet` command. 
 
 --------------------------------------------------------------------------------------------------------------------
 
