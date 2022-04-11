@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HomePageParser" as HomePageParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant "c:CommandResult" as CommandResult LOGIC_COLOR
@@ -14,18 +14,18 @@ participant "model:Model" as model MODEL_COLOR
 participant "predicate:\nFieldContainsKeywordsPredicate"  as FieldContainsKeywordsPredicate MODEL_COLOR
 end box
 
-[-> LogicManager : executePersonListCommand\n(find n/alex)
+[-> LogicManager : executeHomePageCommand\n(find n/alex)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand\n(find n/alex)
-activate AddressBookParser
+LogicManager -> HomePageParser : parseCommand\n(find n/alex)
+activate HomePageParser
 
-AddressBookParser -> FindCommandParser** : FindCommandParser()
+HomePageParser -> FindCommandParser** : FindCommandParser()
 activate FindCommandParser
-AddressBookParser <-- FindCommandParser
+HomePageParser <-- FindCommandParser
 deactivate FindCommandParser
 
-AddressBookParser -> FindCommandParser : parse\n(n/alex)
+HomePageParser -> FindCommandParser : parse\n(n/alex)
 activate FindCommandParser
 
 FindCommandParser -> FieldContainsKeywordsPredicate** : FieldContainsKeywordsPredicate(keywords, field)
@@ -38,10 +38,10 @@ activate FindCommand
 FindCommandParser <-- FindCommand :f
 deactivate FindCommand
 
-AddressBookParser <-- FindCommandParser :f
+HomePageParser <-- FindCommandParser :f
 deactivate FindCommandParser
-LogicManager <-- AddressBookParser :f
-deactivate AddressBookParser
+LogicManager <-- HomePageParser :f
+deactivate HomePageParser
 LogicManager -> FindCommand : execute(model)
 activate FindCommand
 

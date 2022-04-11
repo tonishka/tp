@@ -113,11 +113,10 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `HomePageParser` class to parse the user command.
-2. if a command is entered from the Home Page, it goes to the HomePageParser and if it is entered from the Contact Details Page it goes to the ContactDetailsPageParser.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
-4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it uses one of two parsers to process the user command. If the command is entered from the Home Page, it is parsed by `HomePageParser`. If it is entered from the Contact Details Page, it is parsed by `ContactDetailsPageParser`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -181,18 +180,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
+### 5.1 General Design Considerations
+Listed below are a few significant decisions we made in designing Reache, and their implications for program use.
+
+* **Decision**: Allow the user to store the same phone number twice under different labels. For example, A contact can have one instance of the number "87654321" saved with the label "Personal" and one instance saved with the label "Office".
+  * Pros:
+    * The user may wish to make explicit that a contact uses the same number for two purposes
+
+  * Cons:
+    * Presents the risk of the user accidentally storing the same number twice. An occurrence of this accident would be relatively easy to spot on the Contact Details Page, where all numbers appear in a list
+
+<br>
+
+* **Decision**: Allow multiple contacts to have the same name, so long as their tags differ.
+  * Pros:
+    * If the user does know two people that share the same full name, they can include them both in their contact list without conflict by giving each person different tags
+  * Cons:
+    * The user may accidentally add the same contact twice. This risk is partially alleviated by the need for different tags, and because contacts are sorted alphabetically, an occurrence of this accident would be relatively easy to spot
+
+<br>
+
+* **Decision**: Allow phone numbers to be of varying lengths, as long as they are over 3 digits.
+  * Pros:
+    * Different countries have different standard phone number lengths, so allowing different lengths makes Reache more suitable for international users
+  * Cons:
+    * In Singapore, where the application was developed, the lack of restriction on phone number length could give rise to user mistakes
+
+  
+### 5.2 Edit feature
+The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an _add_ or _view_ command, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
-- Here, the user executes an add command which takes in a new name input "Jack" which is tagged with a prefix "n/" for input type identification.
-- If a user were to execute a view command instead, the only difference would be that the editing is done on an existing contact instead of a new one.
+- Here, the user executes an `EditCommand`, and supplies the argument `n/Jack`, meaning they wish to change the name of `personToEdit` to "Jack".
+
 
 ![DetailedParsingForEditSequenceDiagram](images/DetailedParsingForEditSequenceDiagram.png)
 
-Below is an activity diagram summarising the possible paths for an edit command:
+
+Below is an activity diagram summarising the possible paths leading to and during the execution of an `EditCommand`:
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
@@ -200,7 +227,7 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 </div>
 
-#### 5.1.1 Design considerations:
+#### 5.2.1 Design considerations:
 
 **Aspect: How edit saves:**
 
@@ -212,7 +239,9 @@ Below is an activity diagram summarising the possible paths for an edit command:
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
 
-### 5.2 Delete fields feature
+We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that manually saving after every edit did not make a meaningful difference to performance and would not affect user experience.
+
+### 5.3 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
 This feature is also restricted to the Contact Details Page, 
 which can be accessed after the _add_ or _view_ commands. 
@@ -221,7 +250,7 @@ It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandP
 _Note:_ This feature is different from the **delete contacts** feature, 
 which is only accessible on the Home Page.
 
-#### 5.2.1 Design considerations:
+#### 5.3.1 Design considerations:
 Since certain fields allow for multiple values to be stored, 
 the user needs to specify the label of the value (or the value itself for non-labelled fields) 
 they want to delete along with the field to be deleted for such fields.
@@ -248,69 +277,70 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and efficie
 Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
 very helpful for executing other commands.
 
-### 5.3 Clear address book feature
-The **clear address book** feature can be used to delete all the contacts 
-and meetings stored by the user and to start with a new address book. Since 
-deleted data cannot be recovered, the app opens a pop-up window asking for 
-confirmation that the user wants to delete all of their stored data.
+
+### 5.4 Clear all data feature
+The **clear all data** feature can be used to delete all the contacts 
+and meetings stored by the user. Since deleted data cannot be recovered, 
+the app opens a pop-up window asking for user confirmation before any 
+data is cleared.
 
 The following sequence diagram shows how the clear operation works:
 
-![ClearSequenceDiagram](../images/ClearSequenceDiagram.png)
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
 This activity diagram summarises the possible paths of executing the _clear_ 
 command:
 
-![ClearActivityDiagram](../images/ClearActivityDiagram.png)
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### 5.4 View feature
+### 5.5 View feature
 
 The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
+* `MainWindow#LoadContactDetailsPage(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
-Given below is an example usage scenario and how the view mechanism behaves at each step.
+Given below is an example usage scenario and how the _view_ mechanism behaves at each step.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
 Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
+Step 3. `MainWindow#loadContactDetailsPage(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
-The following sequence diagram shows how the view feature works:
+The following sequence diagram shows how the _view_ feature works:
 
 ![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
-#### 5.4.1 Design considerations:
+#### 5.5.1 Design considerations:
 
 **Aspect: Where to display a person's contact details:**
 
-* **Alternative 1:** Display all contact information in the person list screen.
+* **Alternative 1:** Display all contact information in the Home Page.
   * Pros:
     * Easy to implement
     * Requires fewer commands from the user as they do not need to navigate to a new screen to view a contact's information
   * Cons:
-    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the person list screen would add a lot of clutter
+    * Between phone numbers, emails, addresses, job titles, and more, a contact can have a large amount of information associated with it. Displaying all that information in the Home Page would add a lot of clutter
     
 * **Alternative 2 (current choice):** Navigate to a new screen to for contact information
   * Pros:
-    * Greatly reduces clutter in the person list screen
-    * Reduces the length of the person list, making it easier and faster to scroll through
+    * Greatly reduces clutter in the Home Page
+    * Reduces the length of the contact list, making it easier and faster to scroll through
   * Cons:
     * More difficult to implement
-    * Requires an additional command from the user to both view a contact's information and return to the person list after
+    * Requires an additional command from the user to both view a contact's information and return to the Home Page after
     
 We chose alternative 2 for two reasons:
 * Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
 * Given the quantity of information a contact can have associated with it, having to scroll through a cluttered and much longer list could take the user more time than simply navigating to a new page
 
-### 5.5 Find feature
+### 5.6 Find feature
 
 The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
-field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
+field that the user wishes to search. The `find` command is mainly facilitated by the `FindCommand`, `FindCommandParser`, and 
 `FieldContainsKeywordsPredicate` classes.
 
-Below is a sequence diagram summarising the mechanism of `find` command:
+Below is a sequence diagram summarising the mechanism of the _find_ command:
 
 ![Find Sequence Diagram](images/FindSequenceDiagram.png)
 
@@ -318,7 +348,7 @@ Below is an activity diagram summarising the possible paths for a `find` command
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
-#### 5.5.1 Design Considerations
+#### 5.6.1 Design Considerations
 
 **Aspect: How keywords are matched**
 
@@ -361,7 +391,7 @@ c) they do not remember which field they want to search.
   - Cons: Useless for scenario b) and c).
 
 
-### 5.6 Meet Feature
+### 5.7 Meet Feature
 
 The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
 `Meeting Attendees`. The `meet` command can only be issued from the `Home Page`. It is facilitated by such classes as
@@ -371,7 +401,7 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
 ![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
 
-#### 5.6.1 Design Considerations
+#### 5.7.1 Design Considerations
 
 #### Aspect: Creation of multiple meetings at the same time
 * **Alternative 1 (Current Choice):** Multiple different meetings can be created at the same time
@@ -404,8 +434,7 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
   * Cons:
     * If the user makes a genuine mistake of specifying a non-existent index, Reache will not alert the user of their error and instead create
     a meeting with an `Unknown Attendee`. This will lead to the wrong attendees being associated with a meeting.
-
-
+    
 #### Aspect: What happens when a meeting attendee is deleted 
 * **Alternative 1 (Current Choice):** The `Meetings` panel will show the attendee as `Unknown Attendee` in the meeting description 
   * Pros: The user has a visual indication that they have deleted the contact information of a potentially relevant person.
@@ -429,12 +458,14 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
     * Meetings are shown to the user in a chronological order so that they can see their upcoming schedule. Not automatically removing expired meetings will
       lead to loss of utility because the user has to scroll through countless expired meetings to find their upcoming schedule.
 
-### 5.7 Update Feature
+### 5.8 Update Feature
 
 The `update` feature allows the user to update the details of the meetings that they have scheduled. The `update` command can only be issued from the `Home Page`. It is facilitated by such classes as
 `HomePageParser`, `UpdateCommandParser`, and `UpdateCommand`.
 
 Below is a sequence diagram summarising the mechanism of the `update` feature:
+
+#### 5.9.2 Design considerations:
 
 ![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 
@@ -823,8 +854,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### 8.2 Adding a person
 
-### 8.2 Deleting a person
+### 8.3 Editing a person
+
+### 8.4 Deleting a field
+
+### 8.5 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -839,8 +876,17 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### 8.6 Clearing contacts and/or meetings
 
-### 8.3 Adding a meeting
+### 8.7 Finding
+
+### 8.8 List
+
+### 8.9 View
+
+### 8.10 Back
+
+### 8.11 Adding a meeting
 
 1. Adding a meeting
    
@@ -870,7 +916,11 @@ testers are expected to do more *exploratory* testing.
    9. Test case: `meet with/1 for/Product Demo in/Conference Room 5A on/2025-05-04 15:44`
       Expected: No meeting is added and an error message is shown in the status box.
 
-### 8.4 Saving data
+### 8.12 Updating a meeting
+
+### 8.13 Cancelling a meeting
+
+### 8.14 Saving data
 
 1. Dealing with missing/corrupted data files
 

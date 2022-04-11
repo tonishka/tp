@@ -42,13 +42,7 @@ Reache is a contact manager application that helps you:
 <br>
 
 ### 2.2 Interface Guide
-Reache uses **two pages**, the [Home Page](#221-home-page) and the 
-[Contact Details Page](#222-contact-details-page) as a means of maintaning **information segregation**. 
-The `Home Page` displays only the `names` and `tags` which is our predetermined basic requirement for 
-contact identification, while the `Contact Details Page` displays the more detailed information of a 
-specific contact. You could imagine this layout as **resembling looking through a folder with small identification 
-tags sticking out and only pulling out the document with the tag when you want to view its details**. This helps 
-save space on the Home Page as well as prevents information overload.
+Reache's interface comprises **two pages**, the [Home Page](#221-home-page) and the [Contact Details Page](#222-contact-details-page). The Home Page provides an overview of your contacts and meetings, whereas the Contact Details Page displays detailed information about a specific contact. Depending on which page you are on, you will have access to different commands, and be able to accomplish different tasks.
 
 
 #### 2.2.1 Home Page
@@ -62,6 +56,8 @@ The Home Page contains the following elements:
 3. **Result Display**: When you use the Command Box to enter a command, Reache will show the result of that command here.
 4. **Contact List**: A list of all your contacts, sorted alphabetically. Each contact has a corresponding index number, which you can use to refer to that contact in commands.
 5. **Meeting List**: A list of all your upcoming meetings, sorted chronologically. As with contacts, each meeting has a corresponding index number for use in commands.
+
+You can find the list of all commands available on the Home Page by visiting the [Home Page Command Summary](#41-home-page).
 
 <br>
 
@@ -78,6 +74,8 @@ The Contact Details Page contains many of the same elements as the Home Page, li
 
 
 3. **Meetings with Contact**: Whereas the Meeting List in the Home Page displays all your upcoming meetings, the Contact Details Page only displays upcoming meetings that involve the contact being viewed.
+
+You can find the list of all commands available on the Contact Details Page by visiting the [Contact Details Page Command Summary](#42-contact-details-page).
 
 Now that you are familiar with Reache's interface, we recommend visiting [Getting Started With Reache](#23-getting-started-with-reache) to begin using the application.
 
@@ -191,7 +189,7 @@ Add a person to your contact list by specifying details such as:
 
 _Note_: 
 - When adding contacts, 'name' is the only compulsory field. 
-- You can add optional labels to your contact's phone numbers, email ids and physical addresses.
+- You can add optional labels to your contact's phone numbers, email addresses and physical addresses.
 - Command words for the fields that can be added are given under the [5. Contact Fields Summary](#5-contact-fields-summary) section.
 
 Format: `add n/<NAME> [ph/<PHONE_NUMBER> l/<LABEL>]... [e/<EMAIL> l/<LABEL>]... [a/<ADDRESS> l/LABEL]... [t/TAG]...`

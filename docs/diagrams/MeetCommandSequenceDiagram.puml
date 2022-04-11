@@ -4,7 +4,7 @@ hide footbox
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HomePageParser" as HomePageParser LOGIC_COLOR
 participant ":MeetCommandParser" as MeetCommandParser LOGIC_COLOR
 participant ":Meeting" as Meeting LOGIC_COLOR
 participant ":MeetCommand" as MeetCommand LOGIC_COLOR
@@ -12,15 +12,15 @@ end box
 
 activate LogicManager
 note left of LogicManager: 1 is the index of the meeting attendee \nin the current contacts list
--> LogicManager : executePersonListCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
-LogicManager -> AddressBookParser : parseCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
-activate AddressBookParser
-AddressBookParser -> MeetCommandParser** : MeetCommandParser()
+-> LogicManager : executeHomePageCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
+LogicManager -> HomePageParser : parseCommand\n(meet with/1 for/Agenda in/Place \non/01-01-2040 23:59)
+activate HomePageParser
+HomePageParser -> MeetCommandParser** : MeetCommandParser()
 activate MeetCommandParser
-MeetCommandParser --> AddressBookParser
+MeetCommandParser --> HomePageParser
 deactivate MeetCommandParser
-AddressBookParser -> MeetCommandParser : parse\n(with/1 for/Agenda in/Place \non/01-01-2040 23:59)
-ref over MeetCommandParser, AddressBookParser :The lower-level details of parsing individual arguments is hidden for simplicity
+HomePageParser -> MeetCommandParser : parse\n(with/1 for/Agenda in/Place \non/01-01-2040 23:59)
+ref over MeetCommandParser, HomePageParser :The lower-level details of parsing individual arguments is hidden for simplicity
 
 activate MeetCommandParser
 MeetCommandParser --> Meeting** :Meeting(agenda, meetingPlace, meetingTime, indexes, new HashSet<>())
@@ -31,10 +31,10 @@ MeetCommandParser --> MeetCommand** :MeetCommand(createdMeeting)
 activate MeetCommand
 MeetCommand --> MeetCommandParser :meetCommand
 deactivate MeetCommand
-MeetCommandParser --> AddressBookParser :meetCommand
+MeetCommandParser --> HomePageParser :meetCommand
 deactivate MeetCommandParser
-AddressBookParser --> LogicManager :meetCommand
-deactivate AddressBookParser
+HomePageParser --> LogicManager :meetCommand
+deactivate HomePageParser
 LogicManager --> MeetCommand :execute(model)
 activate MeetCommand
 MeetCommand --> LogicManager :commandResult

@@ -9,28 +9,28 @@ end box
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HomePageParser" as HomePageParser LOGIC_COLOR
 participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
 end box
 
--> MainWindow : executePersonListCommand(view 2)
+-> MainWindow : executeHomePageCommand(view 2)
 activate MainWindow
 
-MainWindow -> LogicManager:executePersonListCommand(view 2)
+MainWindow -> LogicManager:executeHomePageCommand(view 2)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(view 2)
-activate AddressBookParser
+LogicManager -> HomePageParser : parseCommand(view 2)
+activate HomePageParser
 
 create ViewCommand
-AddressBookParser -> ViewCommand
+HomePageParser -> ViewCommand
 activate ViewCommand
 
-ViewCommand --> AddressBookParser : v
+ViewCommand --> HomePageParser : v
 deactivate ViewCommand
 
-AddressBookParser --> LogicManager : v
-deactivate AddressBookParser
+HomePageParser --> LogicManager : v
+deactivate HomePageParser
 
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
