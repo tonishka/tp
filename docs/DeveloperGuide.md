@@ -270,7 +270,7 @@ The `view` feature allows the user to view the contact details of a specified pe
 
 * `MainWindow#LoadContactDetailsPage(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
-Given below is an example usage scenario and how the view mechanism behaves at each step.
+Given below is an example usage scenario and how the _view_ mechanism behaves at each step.
 
 Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
@@ -278,7 +278,7 @@ Step 2. The `ViewCommand` is executed, and the person that corresponds to the pr
 
 Step 3. `MainWindow#loadContactDetailsPage(Person personToDisplay)` is executed with the specified person passed as argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
-The following sequence diagram shows how the view feature works:
+The following sequence diagram shows how the _view_ feature works:
 
 ![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
@@ -308,10 +308,10 @@ We chose alternative 2 for two reasons:
 ### 5.5 Find feature
 
 The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
-field that the user wishes to search. The `find` command is mainly facilitated by the `Find Command`, `FindCommandParser`, and 
+field that the user wishes to search. The `find` command is mainly facilitated by the `FindCommand`, `FindCommandParser`, and 
 `FieldContainsKeywordsPredicate` classes.
 
-Below is a sequence diagram summarising the mechanism of `find` command:
+Below is a sequence diagram summarising the mechanism of the _find_ command:
 
 ![Find Sequence Diagram](images/FindSequenceDiagram.png)
 
