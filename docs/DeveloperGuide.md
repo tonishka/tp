@@ -32,7 +32,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
 </div>
 
 ### 4.1 Architecture
@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -78,7 +78,7 @@ The sections below give more details of each component.
 
 ### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,9 +93,9 @@ The specific UI parts that make up the `MainWindow` depend on which page of the 
 
 ![Contact Details Page UI Parts](images/ContactDetailsPageDiagram.png)
 
-Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details page is displayed.
+Note that the `PersonListPanel` and `MeetingListPanel` are replaced by the `ContactDetailsPanel` and `ContactMeetingsPanel` when the Contact Details Page is displayed.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -106,16 +106,16 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. if a command is entered from the Home Page, it goes to the AddressBookParser and if it is entered from the Contact Details Page it goes to the ContactDetailsParser.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+1. When `Logic` is called upon to execute a command, it uses the `HomePageParser` class to parse the user command.
+2. if a command is entered from the Home Page, it goes to the HomePageParser and if it is entered from the Contact Details Page it goes to the ContactDetailsPageParser.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -131,11 +131,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` or `ContactDetailsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HomePageParser` or `ContactDetailsPageParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HomePageParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 We have divided the class diagram of the `Model` component into two parts for better understandability. <br>
 The first diagram below illustrates the `Model` component's structure for storing `Person` objects.
@@ -156,7 +156,7 @@ The `Model` component,
 
 ### 4.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
@@ -182,7 +182,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsParser`, `EditCommandParser` and `EditCommand` classes.
+The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
@@ -214,12 +214,12 @@ Below is an activity diagram summarising the possible paths for an edit command:
 
 ### 5.2 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
-This feature is also restricted to the Contact Details Window, 
+This feature is also restricted to the Contact Details Page, 
 which can be accessed after the _add_ or _view_ commands. 
-It is mainly facilitated by the `ContactDetailsParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
 
-<ins>Note</ins>: This feature is different from the **delete contacts** feature, 
-which is only accessible on the Main Window.
+_Note:_ This feature is different from the **delete contacts** feature, 
+which is only accessible on the Home Page.
 
 #### 5.2.1 Design considerations:
 Since certain fields allow for multiple values to be stored, 
@@ -236,6 +236,7 @@ they want to delete along with the field to be deleted for such fields.
     * Cons:
       * User may have forgotten to mention the label or field, which could lead to unintended loss of data.
 
+
 * **Alternative 2 :** Confirm that the user wants to delete all values for this field
     * Pros:
       * Allows user to cancel the command if it was unintentional.
@@ -250,7 +251,7 @@ very helpful for executing other commands.
 ### 5.3 Clear address book feature
 The **clear address book** feature can be used to delete all the contacts stored by the user 
 and to start with a new address book. Since deleted data cannot be recovered, 
-the app opens a pop-up window asking for confirmation that 
+the app opens a pop-up window asking for **confirmation** that 
 the user wants to delete all of their stored contacts.
 
 The following sequence diagram shows how the clear operation works:
@@ -263,7 +264,7 @@ This activity diagram summarises the possible paths of executing the _clear_ com
 
 ### 5.4 View feature
 
-The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `AddressBookParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
 * `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
@@ -736,7 +737,7 @@ Use case resumes at step 1. <br>
 **MSS:**
 <p>
 1. User requests to delete a meeting. <br>
-4. Reache deletes the meeting. <br>
+2. Reache deletes the meeting. <br>
 Use case ends.
 </p>
 
@@ -753,7 +754,7 @@ Use case ends.
 
 **MSS:**
 <p>
-1. User requests to clear all meetings
+1. User requests to clear all meetings <br>
 2. Reache asks for confirmation. <br>
 3. User confirms the action. <br>
 4. Reache clears all meetings. <br>
@@ -894,7 +895,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
       contact and run the program. For example, you can add `"Landline": "32449877`.
    
-      <img src="images/testing/add_valid_number.png" width="280" />
+      <img src="images/testing/add_valid_number.png" width="350" />
    
       Expected: The application will have the new number associated with the contact it was added to. You can verify 
       this by using the `view` command on the contact you added teh phone number to and checking their numbers list.
@@ -905,6 +906,6 @@ testers are expected to do more *exploratory* testing.
    
    7. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
 
-      <img src="images/testing/remove_attendees.png" width="280" />
+      <img src="images/testing/remove_attendees.png" width="350" />
    
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
