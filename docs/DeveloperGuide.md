@@ -865,6 +865,35 @@ testers are expected to do more *exploratory* testing.
 ### 8.3 Editing a person
 
 ### 8.4 Deleting a field
+1. Deleting only particular fields of a contact
+
+   1. Prerequisites: Have at least one contact stored with multiple phone 
+      numbers, tags, pronouns and the job title and view their details with
+      the `view <INDEX NO>` command. These test cases must be followed in 
+      order.
+
+   2. Test case: `del` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
+
+   3. Test case: `del ph` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
+
+   4. Test case: `del ph/ <LABEL OF FIRST PHONE NUMBER>` <br>
+      Expected: The first phone number is deleted while the rest are still 
+      displayed in the contact details.
+
+   5. Test case: `del t/` <br>
+      Expected: All the tags of the person displayed are deleted.
+
+   6. Test case: `del pr/ j/` <br>
+      Expected: All the pronouns and the job title of the person displayed
+      are deleted.
+
+   7. Test case: `del j/` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
 
 ### 8.5 Deleting a person
 
@@ -872,10 +901,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `del 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `del 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
