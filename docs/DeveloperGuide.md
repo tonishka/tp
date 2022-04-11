@@ -114,9 +114,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses one of two parsers to process the user command. If the command is entered from the Home Page, it is parsed by `HomePageParser`. If it is entered from the Contact Details Page, it is parsed by `ContactDetailsPageParser`.
-3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
-4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -212,7 +212,7 @@ Below is an activity diagram summarising the possible paths leading to and durin
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
 
-We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that saving after every edit did not make a meaningful difference to performance and would not affect user experience.
+We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that manually saving after every edit did not make a meaningful difference to performance and would not affect user experience.
 
 ### 5.2 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
