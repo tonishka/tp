@@ -14,7 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.EditMeetingDescriptor;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
     /**
@@ -36,26 +36,26 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);
         }
-        EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
+        UpdateMeetingDescriptor updateMeetingDescriptor = new UpdateMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_ATTENDEES_INDEX).isPresent()) {
-            editMeetingDescriptor.setAttendees(ParserUtil
+            updateMeetingDescriptor.setIndexes(ParserUtil
                     .parseAttendees(argMultimap.getValue(PREFIX_ATTENDEES_INDEX).get()));
         }
         if (argMultimap.getValue(PREFIX_AGENDA).isPresent()) {
-            editMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_AGENDA).get()));
+            updateMeetingDescriptor.setAgenda(ParserUtil.parseAgenda(argMultimap.getValue(PREFIX_AGENDA).get()));
         }
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editMeetingDescriptor.setMeetingTime(ParserUtil
+            updateMeetingDescriptor.setMeetingTime(ParserUtil
                     .parseMeetingTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_PLACE).isPresent()) {
-            editMeetingDescriptor.setMeetingPlace(ParserUtil
+            updateMeetingDescriptor.setMeetingPlace(ParserUtil
                     .parseMeetingPlace(argMultimap.getValue(PREFIX_PLACE).get()));
         }
 
-        if (!editMeetingDescriptor.isAnyFieldEdited()) {
+        if (!updateMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }
-        return new UpdateCommand(index, editMeetingDescriptor);
+        return new UpdateCommand(index, updateMeetingDescriptor);
     }
 }

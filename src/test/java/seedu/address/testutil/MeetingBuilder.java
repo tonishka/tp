@@ -15,9 +15,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class MeetingBuilder {
 
-    public static final String DEFAULT_AGENDA = "Paper supply for Greendale College";
-    public static final String DEFAULT_PLACE = "David's Office";
-    public static final String DEFAULT_TIME = "02-04-2023 13:30";
+    public static final String DEFAULT_AGENDA = "Metal supply for Greendale College";
+    public static final String DEFAULT_PLACE = "Jerry's Office";
+    public static final String DEFAULT_TIME = "02-04-2024 13:30";
 
     private Agenda agenda;
     private MeetingPlace meetingPlace;

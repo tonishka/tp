@@ -1,0 +1,48 @@
+@startuml
+!include Style.puml
+hide footbox
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UpdateCommandParser" as UpdateCommandParser LOGIC_COLOR
+participant ":UpdateMeetingDescriptor" as UpdateMeetingDescriptor LOGIC_COLOR
+participant "updateCommand:UpdateCommand" as updateCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+note left of LogicManager: 1 is the index of the meeting for \nwhich the meeting place is updated
+
+-> LogicManager : executePersonListCommand\n(update 1 in/new_place)
+LogicManager -> AddressBookParser : parseCommand\n(update 1 in/new_place)
+activate AddressBookParser
+AddressBookParser -> UpdateCommandParser ** : UpdateCommandParser()
+activate UpdateCommandParser
+UpdateCommandParser --> AddressBookParser
+deactivate UpdateCommandParser
+AddressBookParser -> UpdateCommandParser : parse(1 in/new_place)
+activate UpdateCommandParser
+UpdateCommandParser -> UpdateMeetingDescriptor **
+activate UpdateMeetingDescriptor
+UpdateMeetingDescriptor --> UpdateCommandParser :updateMeetingDescriptor
+deactivate UpdateMeetingDescriptor
+UpdateCommandParser -> updateCommand ** : UpdateCommand(meetingIndex, updateMeetingDescriptor)
+activate updateCommand
+updateCommand --> UpdateCommandParser :updateCommand
+deactivate updateCommand
+
+UpdateCommandParser --> AddressBookParser : updateCommand
+deactivate UpdateCommandParser
+AddressBookParser --> LogicManager : updateCommand
+deactivate AddressBookParser
+
+note right of LogicManager : model is the list of meetings
+
+LogicManager -> updateCommand : execute(model)
+activate updateCommand
+updateCommand --> LogicManager : commandResult
+deactivate updateCommand
+<-- LogicManager: commandResult
+@enduml
+

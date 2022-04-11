@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDEES_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLACE;
@@ -25,13 +25,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.EditMeetingDescriptor;
+import seedu.address.model.meeting.AgendaContainsKeywordsPredicate;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UpdateMeetingDescriptor;
 import seedu.address.model.person.EditPersonDescriptor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.UpdateMeetingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -56,10 +57,6 @@ public class CommandTestUtil {
     public static final String VALID_PRONOUN_HIM = "him";
     public static final String VALID_PRONOUN_THEY = "they";
 
-    public static final String LABEL_HOME = "home";
-    public static final String LABEL_WORK = "work";
-    public static final String LABEL_FRIEND = "friend";
-
     //@Todo CHANGE THIS TO HAVE ANOTHER WHTIESPACE AFTER PREFIX
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -73,9 +70,6 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String LABEL_DESC_HOME = " " + PREFIX_LABEL + LABEL_HOME;
-    public static final String LABEL_DESC_WORK = " " + PREFIX_LABEL + LABEL_WORK;
-    public static final String LABEL_DESC_FRIEND = " " + PREFIX_LABEL + LABEL_FRIEND;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PRONOUN_DESC_HIM = " " + PREFIX_PRONOUN + VALID_PRONOUN_HIM;
@@ -94,6 +88,8 @@ public class CommandTestUtil {
 
     public static final String VALID_AGENDA_QUARTERLY = "Quarterly meeting";
     public static final String VALID_AGENDA_PROJECT = "Project meeting";
+    public static final String VALID_ATTENDEE_QUARTERLY = "1";
+    public static final String VALID_ATTENDEE_PROJECT = "2";
     public static final String VALID_TIME_QUARTERLY = "01-01-2023 10:00";
     public static final String VALID_TIME_PROJECT = "28-05-2023 15:00";
     public static final String VALID_PLACE_QUARTERLY = "Conference Room #03-26";
@@ -101,6 +97,7 @@ public class CommandTestUtil {
 
     public static final String AGENDA_DESC_QUARTERLY = " " + PREFIX_AGENDA + VALID_AGENDA_QUARTERLY;
     public static final String AGENDA_DESC_PROJECT = " " + PREFIX_AGENDA + VALID_AGENDA_PROJECT;
+    public static final String ATTENDEE_DESC_PROJECT = " " + PREFIX_ATTENDEES_INDEX + VALID_ATTENDEE_PROJECT;
     public static final String TIME_DESC_QUARTERLY = " " + PREFIX_TIME + VALID_TIME_QUARTERLY;
     public static final String TIME_DESC_PROJECT = " " + PREFIX_TIME + VALID_TIME_PROJECT;
     public static final String PLACE_DESC_QUARTERLY = " " + PREFIX_PLACE + VALID_PLACE_QUARTERLY;
@@ -108,12 +105,15 @@ public class CommandTestUtil {
 
     public static final String INVALID_AGENDA_DESC = " " + PREFIX_AGENDA + " "; // Agenda cannot be empty
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "15:00 01-01-2023"; //Wrong order of date & time
-    public static final String INVALID_PLACE_DESC = " " + PREFIX_PLACE + " "; //Place cannot be empty
+    public static final String EMPTY_TIME_DESC = " " + PREFIX_TIME + " ";
+    public static final String EMPTY_PLACE_DESC = " " + PREFIX_PLACE + " ";
+    public static final String EMPTY_ATTENDEE_DESC = " " + PREFIX_ATTENDEES_INDEX + " ";
+    public static final String PAST_TIME_DESC = " " + PREFIX_TIME + "22-08-2021 12:30";
 
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
-    public static final EditMeetingDescriptor DESC_QUARTERLY;
-    public static final EditMeetingDescriptor DESC_PROJECT;
+    public static final UpdateMeetingDescriptor DESC_QUARTERLY;
+    public static final UpdateMeetingDescriptor DESC_PROJECT;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -126,9 +126,11 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withPronouns(VALID_PRONOUN_THEY, VALID_PRONOUN_HIM).build();
 
-        DESC_QUARTERLY = new EditMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
-                .withTime(VALID_TIME_QUARTERLY).withPlace(VALID_PLACE_QUARTERLY).build();
-        DESC_PROJECT = new EditMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT).withTime(VALID_TIME_PROJECT)
+        DESC_QUARTERLY = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_QUARTERLY)
+                .withAttendees(VALID_ATTENDEE_QUARTERLY).withTime(VALID_TIME_QUARTERLY)
+                .withPlace(VALID_PLACE_QUARTERLY).build();
+        DESC_PROJECT = new UpdateMeetingDescriptorBuilder().withAgenda(VALID_AGENDA_PROJECT)
+                .withAttendees(VALID_ATTENDEE_QUARTERLY).withTime(VALID_TIME_PROJECT)
                 .withPlace(VALID_PLACE_PROJECT).build();
     }
 
@@ -138,7 +140,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -153,7 +155,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -178,6 +180,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredPersonList, actualModel.getFilteredPersonList());
         assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
+
     /**
      * Updates {@code model}'s filtered person list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -190,5 +193,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered meeting list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s meeting book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitAgenda = meeting.getAgenda().description.split("\\s+");
+        model.updateFilteredMeetingList(new AgendaContainsKeywordsPredicate(Arrays.asList(splitAgenda[0])));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 }

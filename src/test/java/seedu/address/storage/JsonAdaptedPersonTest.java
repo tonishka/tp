@@ -68,9 +68,6 @@ public class JsonAdaptedPersonTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
     }
 
-
-
-
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
@@ -84,7 +81,7 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(INVALID_ID, VALID_NAME, VALID_COMPANY, VALID_JOBTITLE, validNumbers,
                         validEmails, validAddresses, VALID_PRONOUNS, VALID_TAGS);
         String expectedMessage = Id.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     //@@author ckcherry23

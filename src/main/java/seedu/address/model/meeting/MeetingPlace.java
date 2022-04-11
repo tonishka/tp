@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the location of the meeting.
  */
-public class MeetingPlace {
+public class MeetingPlace implements Comparable<MeetingPlace> {
     public static final String MESSAGE_CONSTRAINTS = "Places can take any values, and it should not be blank.";
 
     /*
@@ -49,5 +49,10 @@ public class MeetingPlace {
     @Override
     public int hashCode() {
         return place.hashCode();
+    }
+
+    @Override
+    public int compareTo(MeetingPlace other) {
+        return this.place.compareTo(other.place);
     }
 }

@@ -19,13 +19,13 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox>
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="primary_text">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" >
+        <Label fx:id="name" text="\$first" styleClass="primary_text" >
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
