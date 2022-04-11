@@ -181,7 +181,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an `AddCommand` or a `ViewCommand`, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
+The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an _add_ or _view_ command, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
@@ -211,6 +211,8 @@ Below is an activity diagram summarising the possible paths leading to and durin
 * **Alternative 2 :** All edits are saved only after executing a save command (not implemented feature).
     * Pros: Allows user to revert their changes
     * Cons: System crashes will not save the edits.
+
+We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that saving after every edit did not make a meaningful difference to performance and would not affect user experience.
 
 ### 5.2 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
