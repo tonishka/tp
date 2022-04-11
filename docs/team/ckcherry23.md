@@ -117,9 +117,9 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 ```markdown
 ### Clear address book feature
 The **clear address book** feature can be used to delete all the contacts 
-stored by the user and to start with a new address book. Since deleted data 
-cannot be recovered, the app opens a pop-up window asking for confirmation 
-that the user wants to delete all of their stored contacts.
+and meetings stored by the user and to start with a new address book. Since 
+deleted data cannot be recovered, the app opens a pop-up window asking for 
+confirmation that the user wants to delete all of their stored data.
 
 The following sequence diagram shows how the clear operation works:
 
