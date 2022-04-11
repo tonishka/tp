@@ -53,28 +53,29 @@ meetings.
 * **Contributions to the Developer Guide (Extracts)**:
 
 ```markdown
-### View person feature
-The view feature allows the user to view the full contact details of a specified person in the address book. The command 
-is only available from the person list window,and is thus facilitated by the `AddressBookParser`,`ViewCommandParser`,
-and `ViewCommand`. Additionally, it implements the following operation:
+### 5.4 View feature
 
-* `MainWindow#LoadContactScreen(Person personToDisplay)` — Constructs and shows a `ContactDetailsPanel`, which 
-  displays the full details of the `Person` provided as argument.
+The `view` feature allows the user to view the contact details of a specified person in the address book, as well as 
+meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the
+`HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
-Given below is an example usage scenario and how the view mechanism behaves at each step.
+* `MainWindow#LoadContactDetailsPage(Person personToDisplay)` — Constructs a `ContactDetailsPanel` and a
+  `ContactMeetingsPanel` for the specified `personToDisplay`,and displays them in the `MainWindow`.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the 
-address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Given below is an example usage scenario and how the _view_ mechanism behaves at each step.
 
-Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to the 
-`MainWindow` inside a `CommandResult`.
+Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address
+book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
-Step 3. `MainWindow#loadContactScreen(Person personToDisplay)` is executed with the specified person passed as argument,
-which constructs and displays the respective `ContactDetailsPanel`.
+Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow`
+inside a `CommandResult`.
 
-The following sequence diagram shows how the view feature works:
+Step 3. `MainWindow#loadContactDetailsPage(Person personToDisplay)` is executed with the specified person passed as
+argument, which constructs and displays the respective `ContactDetailsPanel` and `ContactMeetingsPanel`.
 
-![ViewSequenceDiagram](/images/ViewCommandSequenceDiagram.png)
+The following sequence diagram shows how the _view_ feature works:
+
+![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 ```
 
 
