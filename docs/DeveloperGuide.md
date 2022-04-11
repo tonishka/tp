@@ -440,8 +440,8 @@ Below is a sequence diagram summarising the mechanism of the `update` feature:
 
 #### 5.7.1 Design Considerations
 
-The important design decisions made for `update` command are the same as design decisions made for `meet` command above, 
-namely: **Aspect: Specifying the domain of meeting time** and **Aspect: Specifying the domain of meeting attendees**.
+The important design decisions made for `update` command are the same as design decisions made for `meet` command above.
+Meetings updated using the `update` command are subject to the same constraints as if they were added directly using the `meet` command. 
 
 --------------------------------------------------------------------------------------------------------------------
 
