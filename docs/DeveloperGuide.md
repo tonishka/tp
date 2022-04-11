@@ -248,11 +248,11 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and efficie
 Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
 very helpful for executing other commands.
 
-### 5.3 Clear address book feature
-The **clear address book** feature can be used to delete all the contacts 
-and meetings stored by the user and to start with a new address book. Since 
-deleted data cannot be recovered, the app opens a pop-up window asking for 
-confirmation that the user wants to delete all of their stored data.
+### 5.3 Clear all data feature
+The **clear all data** feature can be used to delete all the contacts 
+and meetings stored by the user. Since deleted data cannot be recovered, 
+the app opens a pop-up window asking for user confirmation before any 
+data is cleared.
 
 The following sequence diagram shows how the clear operation works:
 
