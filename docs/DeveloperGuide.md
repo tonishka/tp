@@ -929,14 +929,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Clearing all meetings
 
-  1. Prerequisites: Have at least one meeting stored in the application
+   1. Prerequisites: Have at least one meeting stored in the application
 
-  2. Test case: `cancel-all` <br>
-     Expected: A confirmation window appears.
-    1. Test case i: Close the confirmation window. <br>
-       Expected: No meetings get deleted.
-    2. Test case ii: Click on the 'Yes' button to confirm meetings' deletion. <br>
-       Expected: All meetings get deleted from the application.
+   2. Test case: `cancel-all` <br>
+      Expected: A confirmation window appears.
+      1. Test case i: Close the confirmation window. <br>
+         Expected: No meetings get deleted.
+      2. Test case ii: Click on the 'Yes' button to confirm meetings' deletion. <br>
+         Expected: All meetings get deleted from the application.
 
 ### 8.7 Finding
 
