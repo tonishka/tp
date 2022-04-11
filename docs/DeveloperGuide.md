@@ -895,7 +895,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The application will retain its stored contacts but the meetings list will be empty.
    
    4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
-      contact and run the program. For example, you can add `"Landline": "32449877`.
+      contact and run the program. For example, you can add `"Landline": "32449877"`.
    
       <p align="center">
         <img src="images/testing/add_valid_number.png" width="550" />
