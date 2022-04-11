@@ -12,6 +12,7 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 
 * **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=ckcherry23&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+
 * **Enhancements Implemented**:
   * Implemented storage functionality for the meetings list and for the new attributes in persons list:
     [#44](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/44),
@@ -46,7 +47,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Updated the GUI color scheme: 
     [#218](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/218).
 
-<br>
 
 * **Contributions to the UG**: 
   * Added the `Managing Meetings` section under `Features`: 
@@ -56,7 +56,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
     [#10](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/10),
     [#146](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/146).
 
-<br>
 
 * **Contributions to the DG**: 
   * Added the `Delete fields feature` under `Implementation` along with its design decisions:
@@ -71,7 +70,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Added instructions for manually testing the `Saving data` feature for missing and corrupted data files: 
     [#265](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/265)
 
-<br>
 
 * **Contributions to the team-based tasks**:
   * Managed [labels](https://github.com/AY2122S2-CS2103T-W12-4/tp/labels) for issue-tracking and PRs.
@@ -91,7 +89,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Updated the product scope in the UG, website home page and README.md:
     [#9](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/9).
 
-<br>
 
 * **Review/mentoring contributions**: 
   * Gave 87 comments on _others'_ PRs to detect bugs and ensure consistency in design and implementation: 
@@ -102,7 +99,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
     [#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118),
     [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142).
 
-<br>
 
 * **Contributions beyond the project team**: 
   * Posted [14 issues](https://github.com/ckcherry23/ped/issues) 
