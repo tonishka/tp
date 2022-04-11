@@ -16,7 +16,7 @@ begin using Reache.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start
+## **1. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -32,7 +32,7 @@ begin using Reache.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Introduction
+## **2. Introduction**
 ### 2.1 Overview
 Reache is a contact manager application that helps you:
 - Store and organize contacts
@@ -149,7 +149,7 @@ Now you are all set to manage your contacts and meetings using Reache!
 
 <hr>
 
-## 3. Features
+## **3. Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -378,7 +378,7 @@ Format: `exit`
 
 <br>
 
-## 4. Command Summary
+## **4. Command Summary**
 
 <br>   
    
@@ -410,7 +410,7 @@ Format: `exit`
 
 <br>
 
-## 5. Contact Fields Summary
+## 5. **Contact Fields Summary**
 
 | **Field**            | **Mandatory** | **Format & Example**                                                                                                           |
 |----------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------|
@@ -425,7 +425,7 @@ Format: `exit`
 
 <br>
    
-## 6. Meeting Fields Summary
+## **6. Meeting Fields Summary**
 
 | **Field**         | **Mandatory** | **Format & Example**                                                                |
 |-------------------|---------------|-------------------------------------------------------------------------------------|
