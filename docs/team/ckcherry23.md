@@ -67,8 +67,10 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Mentioned the `Non-functional requirements` of the project and added a `Glossary` for better user readability:
     [#21](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/21).
 
-  * Added instructions for manually testing the `Saving data` feature for missing and corrupted data files: 
-    [#265](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/265)
+  * Added instructions for manually testing the `Saving data`, `Deleting fields`, and 
+    `Clearing contacts and/or meetings` features: 
+    [#265](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/265),
+    [#279](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/279).
 
 
 * **Contributions to the team-based tasks**:
