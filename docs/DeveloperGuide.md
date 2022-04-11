@@ -113,8 +113,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `HomePageParser` class to parse the user command.
-2. if a command is entered from the Home Page, it goes to the HomePageParser and if it is entered from the Contact Details Page it goes to the ContactDetailsPageParser.
+1. When `Logic` is called upon to execute a command, it uses one of two parsers to process the user command. If the command is entered from the Home Page, it is parsed by `HomePageParser`. If it is entered from the Contact Details Page, it is parsed by `ContactDetailsPageParser`.
 3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -182,17 +181,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
+The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an `AddCommand` or a `ViewCommand`, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
 ![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
-- Here, the user executes an add command which takes in a new name input "Jack" which is tagged with a prefix "n/" for input type identification.
-- If a user were to execute a view command instead, the only difference would be that the editing is done on an existing contact instead of a new one.
+- Here, the user executes an `EditCommand`, and supplies the argument `n/Jack`, meaning they wish to change the name of `personToEdit` to "Jack".
+
 
 ![DetailedParsingForEditSequenceDiagram](images/DetailedParsingForEditSequenceDiagram.png)
 
-Below is an activity diagram summarising the possible paths for an edit command:
+
+Below is an activity diagram summarising the possible paths leading to and during the execution of an `EditCommand`:
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
