@@ -205,7 +205,7 @@ Listed below are a few significant decisions we made in designing Reache, and th
     * In Singapore, where the application was developed, the lack of restriction on phone number length could give rise to user mistakes
 
   
-### 5.1 Edit feature
+### 5.2 Edit feature
 The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an _add_ or _view_ command, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
@@ -225,7 +225,7 @@ Below is an activity diagram summarising the possible paths leading to and durin
 
 </div>
 
-#### 5.1.1 Design considerations:
+#### 5.2.1 Design considerations:
 
 **Aspect: How edit saves:**
 
@@ -239,7 +239,7 @@ Below is an activity diagram summarising the possible paths leading to and durin
 
 We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that manually saving after every edit did not make a meaningful difference to performance and would not affect user experience.
 
-### 5.2 Delete fields feature
+### 5.3 Delete fields feature
 The **delete fields** feature can be used to delete fields stored for the contacts. 
 This feature is also restricted to the Contact Details Page, 
 which can be accessed after the _add_ or _view_ commands. 
@@ -248,7 +248,7 @@ It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandP
 _Note:_ This feature is different from the **delete contacts** feature, 
 which is only accessible on the Home Page.
 
-#### 5.2.1 Design considerations:
+#### 5.3.1 Design considerations:
 Since certain fields allow for multiple values to be stored, 
 the user needs to specify the label of the value (or the value itself for non-labelled fields) 
 they want to delete along with the field to be deleted for such fields.
@@ -275,7 +275,7 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and efficie
 Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
 very helpful for executing other commands.
 
-### 5.3 Clear address book feature
+### 5.4 Clear address book feature
 The **clear address book** feature can be used to delete all the contacts 
 and meetings stored by the user and to start with a new address book. Since 
 deleted data cannot be recovered, the app opens a pop-up window asking for 
@@ -290,7 +290,7 @@ command:
 
 ![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
-### 5.4 View feature
+### 5.5 View feature
 
 The `view` feature allows the user to view the contact details of a specified person in the address book, as well as meetings the user has with that person. The command is only available from the Home Page, and is facilitated by the `HomePageParser`, `ViewCommandParser`, and `ViewCommand`. Additionally, it implements the following operation:
 
@@ -308,7 +308,7 @@ The following sequence diagram shows how the _view_ feature works:
 
 ![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
-#### 5.4.1 Design considerations:
+#### 5.5.1 Design considerations:
 
 **Aspect: Where to display a person's contact details:**
 
@@ -331,7 +331,7 @@ We chose alternative 2 for two reasons:
 * Its benefit to the visual clarity of the address book and thus the ease of its use outweighs the cost of including an additional navigation step
 * Given the quantity of information a contact can have associated with it, having to scroll through a cluttered and much longer list could take the user more time than simply navigating to a new page
 
-### 5.5 Find feature
+### 5.6 Find feature
 
 The `find` command is used to search people's contact information for a particular keyword. It takes an optional argument which is the
 field that the user wishes to search. The `find` command is mainly facilitated by the `FindCommand`, `FindCommandParser`, and 
@@ -345,7 +345,7 @@ Below is an activity diagram summarising the possible paths for a `find` command
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
-#### 5.5.1 Design Considerations
+#### 5.6.1 Design Considerations
 
 **Aspect: How keywords are matched**
 
@@ -388,7 +388,7 @@ c) they do not remember which field they want to search.
   - Cons: Useless for scenario b) and c).
 
 
-### 5.6 Meet Feature
+### 5.7 Meet Feature
 
 The `meet` feature allows the user to schedule meetings having an `Agenda`, a `Meeting Time`, a `Meeting Place`, and 
 `Meeting Attendees`. 
@@ -397,7 +397,7 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
 
 ![Meet Command Sequence Diagram](images/MeetCommandSequenceDiagram.png)
 
-### 5.7 Update Feature
+### 5.8 Update Feature
 
 The `update` feature allows the user to update the details of the meetings that they have scheduled.
 
@@ -406,9 +406,9 @@ Below is a sequence diagram summarising the mechanism of the `update` feature:
 ![Update Sequence Diagram](images/UpdateCommandSequenceDiagram.png)
 
 
-### 5.8 \[Proposed\] Undo/redo feature
+### 5.9 \[Proposed\] Undo/redo feature
 
-#### 5.8.1 Proposed Implementation
+#### 5.9.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -471,7 +471,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### 5.8.2 Design considerations:
+#### 5.9.2 Design considerations:
 
 **Aspect: How undo & redo executes:**
 
