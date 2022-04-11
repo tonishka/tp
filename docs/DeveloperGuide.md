@@ -884,7 +884,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Prerequisite for each test case: Must have at least one contact and one meeting stored in the data files.
+   1. Prerequisite for each test case: Must have at least one contact stored in `data/addressbook.json` and one meeting 
+      stored in `data/meetingbook.json`. You can add this data to the files by using the `add` and `meet` commands on 
+      the Reache application.
    
    2. Test case: Delete the `addressbook.json` file and run the program.
       Expected: The application will start with both sample contacts and a sample meeting.
@@ -895,17 +897,17 @@ testers are expected to do more *exploratory* testing.
    4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
       contact and run the program. For example, you can add `"Landline": "32449877`.
    
-      <img src="images/testing/add_valid_number.png" width="350" />
+      <img src="images/testing/add_valid_number.png" width="550" align="center" />
    
       Expected: The application will have the new number associated with the contact it was added to. You can verify 
-      this by using the `view` command on the contact you added teh phone number to and checking their numbers list.
+      this by using the `view` command on the contact you added the phone number to and checking their numbers list.
    
-   6. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
+   5. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
       existing contact anf run the program. For example, you can add `"Landline": "landline number"`.
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
    
-   7. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
+   6. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
 
-      <img src="images/testing/remove_attendees.png" width="350" />
+      <img src="images/testing/remove_attendees.png" width="550" align="center" />
    
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
