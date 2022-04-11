@@ -918,6 +918,16 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.13 Cancelling a meeting
 
+1. Canceling a meeting
+
+   1. Prerequisites: Must have only one meeting added in the `Meetings` list
+   
+   2. Test case: `cancel 2` <br>
+      Expected: No meeting is cancelled and an error message is shown in the status box.
+   
+   3. Test case: `cancel 1` <br>
+      Expected: The meeting is cancelled and disappears from the `Meetings` list.
+
 ### 8.14 Saving data
 
 1. Dealing with missing/corrupted data files
