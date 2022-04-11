@@ -191,8 +191,9 @@ Format: `meet for/<AGENDA> in/<MEETING PLACE> on/<MEETING DATE AND TIME>
 with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
 
 Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
+```
 
-
+```markdown
 #### 3.3.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
 - Meeting index: The index of the meeting you want to edit on the meetings 
@@ -204,16 +205,18 @@ Format: `update <MEETING INDEX> [in/<MEETING PLACE> on/<MEETING DATE AND
 TIME> with/<ATTENDEE 1 INDEX>...]`
 
 Example: `update 2 in/COM2 on/29-04-2022 20:00`
+```
 
-
+```markdown
 #### 3.3.3 Canceling a meeting: `cancel`
 Cancel a meeting by specifying its index on the meetings list.
 
 Format: `cancel <MEETING INDEX>`
 
 Example: `cancel 2`
+```
 
-
+```markdown
 #### 3.3.4 Canceling all meetings: `cancel-all`
 Clear your meetings list by canceling all meetings.
 
