@@ -181,7 +181,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 General Design Considerations
-Listed below are a few significant decisions we made in designing Reache.
+Listed below are a few significant decisions we made in designing Reache, and their implications for program use.
 
 * **Decision**: Allow the user to store the same phone number twice under different labels. For example, A contact can have one instance of the number "87654321" saved with the label "Personal" and one instance saved with the label "Office".
   * Pros:
