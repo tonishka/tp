@@ -792,12 +792,12 @@ Use case ends.
 
 1.  The DG and UG must be PDF-friendly. 
 2.  The GUI should not cause any resolution-related inconveniences to the user for:
-    1.  standard screen resolutions 1920x1080 and higher
-    2.  screen scales 100% and 125%.
-
+    1. standard screen resolutions 1920x1080 and higher
+    2. screen scales 100% and 125%.
+    
     In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
-    1.  resolutions 1280x720 and higher
-    2.  screen scales 150%.
+    1. resolutions 1280x720 and higher 
+    2. screen scales 150%.
 
 
 ### 7.5 Glossary
