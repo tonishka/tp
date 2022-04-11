@@ -900,7 +900,7 @@ testers are expected to do more *exploratory* testing.
       <img src="images/testing/add_valid_number.png" width="550" align="center" />
    
       Expected: The application will have the new number associated with the contact it was added to. You can verify 
-      this by using the `view` command on the contact you added teh phone number to and checking their numbers list.
+      this by using the `view` command on the contact you added the phone number to and checking their numbers list.
    
    5. Test case: Add an invalid phone number (with alphabets and symbols) with any label in `addressbook.json` for an 
       existing contact anf run the program. For example, you can add `"Landline": "landline number"`.
