@@ -151,8 +151,11 @@ We picked _alternative 1_ since the focus of our CLI app is on speed and
 efficiency. Additionally, _alternative 2_ required a lot of changes to the
 existing implementation which would not be very helpful for executing other
 commands.
+```
 
+<div style="page-break-after: always;"></div>
 
+```markdown
 ### 5.4 Clear all data feature
 The **clear all data** feature can be used to delete all the contacts
 and meetings stored by the user. Since deleted data cannot be recovered,
@@ -189,7 +192,6 @@ with/<ATTENDEE 1 INDEX> [<ATTENDEE 2 INDEX>]…`
 
 Example: `meet for/Project Discussion in/UTown on/28-04-2022 13:30 with/1 3 4`
 
-<br>
 
 #### 3.3.2 Updating meeting details: `update`
 Update any of the meeting’s details by indicating the following:
@@ -203,7 +205,6 @@ TIME> with/<ATTENDEE 1 INDEX>...]`
 
 Example: `update 2 in/COM2 on/29-04-2022 20:00`
 
-<br>
 
 #### 3.3.3 Canceling a meeting: `cancel`
 Cancel a meeting by specifying its index on the meetings list.
@@ -212,7 +213,6 @@ Format: `cancel <MEETING INDEX>`
 
 Example: `cancel 2`
 
-<br>
 
 #### 3.3.4 Canceling all meetings: `cancel-all`
 Clear your meetings list by canceling all meetings.
