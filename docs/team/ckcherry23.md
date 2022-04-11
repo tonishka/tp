@@ -173,6 +173,13 @@ command:
 
 ![ClearActivityDiagram](../images/ClearActivityDiagram.png)
 ```
+<br> 
+
+**Sequence Diagram: `clear`**
+![ClearSequenceDiagram](../images/ClearSequenceDiagram.png)
+
+<br>
+<div style="page-break-after: always;"></div>
 
 ```markdown
 ### 8.4 Deleting fields
@@ -211,6 +218,7 @@ command:
 ```
 
 <br>
+<div style="page-break-after: always;"></div>
 
 * **Contributions to the User Guide (Extracts)**: 
 
