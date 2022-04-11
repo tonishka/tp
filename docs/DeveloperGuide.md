@@ -896,8 +896,7 @@ testers are expected to do more *exploratory* testing.
    
    4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
       contact and run the program. For example, you can add `"Landline": "32449877`.
-
-      ![Add valid number](images/testing/add_valid_number.png){ width="550" style="display: block; margin: 0 auto" }
+      <img src="images/testing/add_valid_number.png" width="550" />
    
       Expected: The application will have the new number associated with the contact it was added to. You can verify 
       this by using the `view` command on the contact you added the phone number to and checking their numbers list.
@@ -907,7 +906,6 @@ testers are expected to do more *exploratory* testing.
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
    
    6. Test case: Remove the attendees of an existing meeting in `meetingbook.json`.
-
-      ![Add valid number](images/testing/remove_attendees.png){ width="550" style="display: block; margin: 0 auto" }
+      <img src="images/testing/remove_attendees.png" width="550" />
    
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
