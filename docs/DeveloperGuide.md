@@ -188,7 +188,7 @@ Listed below are a few significant decisions we made in designing Reache, and th
     * The user may wish to make explicit that a contact uses the same number for two purposes
 
   * Cons:
-    * Presents the risk of the user accidentally storing the same number twice. An occurence of this accident would be relatively easy to spot on the Contact Details Page, where all numbers appear in a list
+    * Presents the risk of the user accidentally storing the same number twice. An occurrence of this accident would be relatively easy to spot on the Contact Details Page, where all numbers appear in a list
 
 
 * **Decision**: Allow multiple contacts to have the same name, so long as their tags differ.
