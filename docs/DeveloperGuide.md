@@ -181,8 +181,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 General Design Considerations
-Listed below are 
+Listed below are a few significant decisions we made in designing Reache.
 
+* **Decision**: Allow the user to store the same phone number twice under different labels. For example, A contact can have one instance of the number "87654321" saved with the label "Personal" and one instance saved with the label "Office".
+  * Pros:
+    * The user may wish to make explicit that a contact uses the same number for two purposes
+
+  * Cons:
+    * Presents the risk of the user accidentally storing the same number twice. An occurence of this accident would be relatively easy to spot on the Contact Details Page, where all numbers appear in a list
+
+
+* **Decision**: Allow multiple contacts to have the same name, so long as their tags differ.
+  * Pros:
+    * If the user does know two people that share the same full name, they can include them both in their contact list without conflict by giving each person different tags
+  * Cons:
+    * The user may accidentally add the same contact twice. This risk is partially alleviated by the need for different tags, and because contacts are sorted alphabetically, an occurrence of this accident would be relatively easy to spot
+
+* **Decision**: Allow phone numbers to be of varying lengths, as long as they are over 3 digits.
+  * Pros:
+    * Different countries have different standard phone number lengths, so allowing different lengths makes Reache more suitable for international users
+  * Cons:
+    * In Singapore, where the application was developed, the lack of restiction on phone number length could give rise to user mistakes
+
+  
 ### 5.1 Edit feature
 The edit mechanism is a feature used to change the details of a contact. It is only accessible from the Contact Details Page, and so must be preceded by an _add_ or _view_ command, both of which navigate the user to the Contact Details Page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
