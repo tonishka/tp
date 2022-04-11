@@ -115,7 +115,7 @@ In this tutorial we will be adding your personal contact information to Reache.
 ![Email Added](images/Tutorial/Tutorial_1/new_emails_edited_screen.png)
 8. Let’s add your number to it. Type `edit ph/<YOUR MOBILE NUMBER> l/Mobile`. <br><br>
 9. Finally tag yourself using `edit t/me`. Your final Contact Details Page should look like this:
-![Full Contact Details](images/Tutorial/Tutorial_1/new_number_and_tag_added.png)
+![Full Contact Details](images/Tutorial/Tutorial_1/new_tag_added_me.png)
 10. Now type `back` in the command box to return to the Home Page. Your **Home Page** should look like this:
 ![Home Page](images/Tutorial/Tutorial_1/new_main_window.png)
 11. Now type `view 1` in the command box to navigate to your contact details. <br><br>
@@ -283,7 +283,7 @@ Format: `find <OPTIONAL_FIELD> <KEYWORDS>`
 - The order of the keywords does not matter. e.g. `Bella Hadid` will match `Hadid Bella`.
 - Only full words will be matched e.g. `Bell` will not match `Bella`.
 - Persons matching at least one keyword will be returned, e.g. `Bella Hadid` will return `Gigi Hadid`, `Bella Swann`.
-- In case the field is not specified, all fields are searched.
+- In case the field is not specified/invalid, all fields are searched.
 
 Examples:<br>
 `find c/Tesla SpaceX` Finds all contacts who work in `Tesla` or `SpaceX`.<br>
