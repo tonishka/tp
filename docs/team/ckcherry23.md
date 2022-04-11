@@ -211,7 +211,6 @@ command:
 ```
 
 <br>
-<div style="page-break-after: always;"></div>
 
 * **Contributions to the User Guide (Extracts)**: 
 
