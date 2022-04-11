@@ -271,7 +271,7 @@ The `view` feature allows the user to view the contact details of a specified pe
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
 Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
