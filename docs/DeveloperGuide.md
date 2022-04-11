@@ -5,7 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-## 1. **Introduction**
+## **1. Introduction**
 
 Reache is a desktop application that helps busy working professionals manage their large list of contacts by providing an easy-to-use interface to store contacts and organize meetings.
 
@@ -13,7 +13,7 @@ This Developer Guide is intended for the future software developers and designer
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Acknowledgements**
+## **2. Acknowledgements**
 
 * Reache, as well as its User Guide and Developer Guide, has been adapted from AddressBook Level-3 (AB3).
   * [AB3 Repository](https://github.com/nus-cs2103-AY2122S2/tp)
@@ -22,13 +22,13 @@ This Developer Guide is intended for the future software developers and designer
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Setting up, getting started**
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Design**
+## **4. Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -177,7 +177,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -458,7 +458,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Documentation, logging, testing, configuration, dev-ops**
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -468,7 +468,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. **Appendix: Requirements**
+## **7. Appendix: Requirements**
 
 ### 7.1 Product scope
 
@@ -810,7 +810,7 @@ co-workers, clients, mentors, mentees
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. **Appendix: Instructions for manual testing**
+## **8. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
