@@ -104,7 +104,7 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
   * Posted [14 issues](https://github.com/ckcherry23/ped/issues) 
     for [LinkyTime](https://github.com/AY2122S2-CS2103T-T13-3/tp) during the PE-D
 
-<br>
+<div style="page-break-after: always;"></div>
 
 * **Contributions to the Developer Guide (Extracts)**:
 
