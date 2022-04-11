@@ -242,40 +242,47 @@ Below is an activity diagram summarising the possible paths leading to and durin
 We chose to use alternative 1 in our implementation because in manually using the application and assessing its performance, we found that manually saving after every edit did not make a meaningful difference to performance and would not affect user experience.
 
 ### 5.3 Delete fields feature
-The **delete fields** feature can be used to delete fields stored for the contacts. 
-This feature is also restricted to the Contact Details Page, 
-which can be accessed after the _add_ or _view_ commands. 
-It is mainly facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` and `DeleteFieldCommand` classes.
+The **delete fields** feature can be used to delete fields stored for the 
+contacts. This feature is also restricted to the Contact Details Page, 
+which can be accessed after the _add_ or _view_ commands. It is mainly 
+facilitated by the `ContactDetailsPageParser`, `DeleteFieldCommandParser` 
+and `DeleteFieldCommand` classes.
 
 _Note:_ This feature is different from the **delete contacts** feature, 
 which is only accessible on the Home Page.
 
 #### 5.3.1 Design considerations:
-Since certain fields allow for multiple values to be stored, 
-the user needs to specify the label of the value (or the value itself for non-labelled fields) 
-they want to delete along with the field to be deleted for such fields.
+Since certain fields allow for multiple values to be stored, the user needs 
+to specify the label of the value (or the value itself for non-labelled 
+fields) they want to delete along with the field to be deleted for such 
+fields.
 
 **Aspect: What happens when the user does not specify a label or value:**
 
-* **Alternative 1 (current choice):** Delete all the values stored for this field immediately.
+* **Alternative 1 (current choice):** Delete all the values stored for this 
+  field immediately.
     * Pros:
       * Seems to be the most intuitive approach.
       * Easier to implement.
       * Faster to execute command.
     * Cons:
-      * User may have forgotten to mention the label or field, which could lead to unintended loss of data.
+      * User may have forgotten to mention the label or field, which could 
+        lead to unintended loss of data.
 
 
-* **Alternative 2 :** Confirm that the user wants to delete all values for this field
+* **Alternative 2 :** Confirm that the user wants to delete all values for 
+  this field
     * Pros:
       * Allows user to cancel the command if it was unintentional.
     * Cons:
       * Slower to execute command.
-      * Difficult to implement, since the current implementation does not store command history.
+      * Difficult to implement, since the current implementation does not 
+        store command history.
 
-We picked _alternative 1_ since the focus of our CLI app is on speed and efficiency. 
-Additionally, _alternative 2_ required a lot of changes to the existing implementation which would not be 
-very helpful for executing other commands.
+We picked _alternative 1_ since the focus of our CLI app is on speed and 
+efficiency. Additionally, _alternative 2_ required a lot of changes to the 
+existing implementation which would not be very helpful for executing other 
+commands.
 
 
 ### 5.4 Clear all data feature
@@ -857,7 +864,39 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.3 Editing a person
 
-### 8.4 Deleting a field
+### 8.4 Deleting fields
+1. Deleting only particular fields of a contact
+
+   1. Prerequisites: Have at least one contact stored with multiple phone 
+      numbers, tags, pronouns and the job title and view their details with
+      the `view <INDEX NO>` command. These test cases must be followed in 
+      order.
+
+   2. Test case: `del` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
+
+   3. Test case: `del ph` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
+
+   4. Test case: `del ph/ <LABEL OF FIRST PHONE NUMBER>` <br>
+      Expected: The first phone number is deleted while the rest are still 
+      displayed in the contact details.
+
+   5. Test case: `del t/` <br>
+      Expected: All the tags of the person displayed are deleted. <br>
+      Exception: If there is another contact with the same name as this
+      contact but without any tags, this command will result in an error
+      and no fields will be deleted.
+
+   6. Test case: `del pr/ j/` <br>
+      Expected: All the pronouns and the job title of the person displayed
+      are deleted.
+
+   7. Test case: `del j/` <br>
+      Expected: No field is deleted. An error message is shown in the status
+      box.
 
 ### 8.5 Deleting a person
 
@@ -865,16 +904,39 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `del 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `del 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `del`, `del x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### 8.6 Clearing contacts and/or meetings
+
+1. Clearing all data
+
+   1. Prerequisites: Have at least one contact and one meeting stored in the
+      application
+
+   2. Test case: `clear` <br>
+      Expected: A confirmation window appears.
+      1. Test case i: Close the confirmation window. <br>
+         Expected: No data gets deleted.
+      2. Test case ii: Click on the 'Yes' button to confirm data deletion. <br>
+         Expected: All data gets deleted from the application.
+
+1. Clearing all meetings
+
+  1. Prerequisites: Have at least one meeting stored in the application
+
+  2. Test case: `cancel-all` <br>
+     Expected: A confirmation window appears.
+    1. Test case i: Close the confirmation window. <br>
+       Expected: No meetings get deleted.
+    2. Test case ii: Click on the 'Yes' button to confirm meetings' deletion. <br>
+       Expected: All meetings get deleted from the application.
 
 ### 8.7 Finding
 
