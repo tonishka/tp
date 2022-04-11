@@ -4,7 +4,7 @@ hide footbox
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ContactDetailsParser" as ContactDetailsParser LOGIC_COLOR
+participant ":ContactDetailsPageParser" as ContactDetailsParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "editCommand:EditCommand" as EditCommand LOGIC_COLOR
 end box
