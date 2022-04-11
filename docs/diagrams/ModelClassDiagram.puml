@@ -23,6 +23,10 @@ Class Pronoun
 Class Company
 Class Job
 Class Id
+Class "Label" as Label1
+Class "Label" as Label2
+Class "Label" as Label3
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -48,6 +52,10 @@ Person *--> "*" Pronoun
 Person *--> "0..1" Job
 Person --> "*" Tag
 Person *--> "1" Id
+
+Phone --> "0..1" Label1
+Address --> "0..1" Label2
+Email --> "0..1" Label3
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
