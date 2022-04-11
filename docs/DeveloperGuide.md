@@ -784,20 +784,23 @@ Use case ends.
 
 **Data requirements:**
 
-1.  Data should be stored locally and on a human-editable file.
-2.  The final JAR file size should not exceed 100MB.
-3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+1. Data should be stored locally and on a human-editable file.
+
+2. The final JAR file size should not exceed 100MB.
+
+3. The PDF file size for the DG and UG should not exceed 15 MB per file.
 
 **Usability requirements:**
 
-1.  The DG and UG must be PDF-friendly. 
-2.  The GUI should not cause any resolution-related inconveniences to the user for:
-    1.  standard screen resolutions 1920x1080 and higher
-    2.  screen scales 100% and 125%.
+1. The DG and UG must be PDF-friendly. 
 
+2. The GUI should not cause any resolution-related inconveniences to the user for:
+    1. standard screen resolutions 1920x1080 and higher
+    2. screen scales 100% and 125%.
+    
     In addition, all functions in the GUI should be usable even if the user experience is not optimal for:
-    1.  resolutions 1280x720 and higher
-    2.  screen scales 150%.
+    1. resolutions 1280x720 and higher 
+    2. screen scales 150%.
 
 
 ### 7.5 Glossary
@@ -895,7 +898,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The application will retain its stored contacts but the meetings list will be empty.
    
    4. Test case: Add a valid phone number (more than 3 digits) with any label in `addressbook.json` for an existing 
-      contact and run the program. For example, you can add `"Landline": "32449877`.
+      contact and run the program. For example, you can add `"Landline": "32449877"`.
    
       <p align="center">
         <img src="images/testing/add_valid_number.png" width="550" />
