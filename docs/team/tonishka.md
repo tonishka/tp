@@ -30,12 +30,11 @@ fast typers.
       <br><br>
 * **Contributions to UG**:
     * Added details about `find` command under the `Finding Contacts` section. [#77](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/77/files), [#84](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/84), [#158](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/158)
-    * Added tutorials in UG to facilitate on-boarding of first time users. [#139](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/139), [#221](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/221), []
+    * Added tutorials in UG to facilitate on-boarding of first time users. [#139](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/139), [#221](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/221)
       <br><br>
 * **Contributions to DG**:
     * Added **6 Use Cases** [#22](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/22/files)
-    * Added two Class Diagrams for `Model` component to match new implementation (https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/235)
-    * Added 
+    * Added two Class Diagrams for `Model` component to match new implementation [#235](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/235), [#267](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/267)
     * Added `find feature` under `Implementation` along with its design considerations, activity diagram and sequence diagram [#97](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/97), [#105](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/105)
     * Added `meet feature` under `Implementation` along with its design considerations and sequence diagram [#262](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/262)
     * Added `update feature` under `Implementation` along with its design considerations and sequence diagram [#262](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/262)
