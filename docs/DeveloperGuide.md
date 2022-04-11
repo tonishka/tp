@@ -374,7 +374,7 @@ Below is a sequence diagram summarising the mechanism of the `meet` feature:
 #### 5.6.1 Design Considerations
 
 #### Aspect: Specifying the domain of meeting time
-* **Alternative 1 (Current Choice):** Meetings can only be created for fur
+* **Alternative 1 (Current Choice):** Meetings can only be created for future 
 * **Alternative 2:**
 
 #### Aspect: Specifying the domain of meeting attendees
