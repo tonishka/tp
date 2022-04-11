@@ -38,7 +38,7 @@ fast typers.
     * Added `find feature` under `Implementation` along with its design considerations, activity diagram and sequence diagram [#97](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/97), [#105](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/105)
     * Added `meet feature` under `Implementation` along with its design considerations and sequence diagram [#262](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/262)
     * Added `update feature` under `Implementation` along with its design considerations and sequence diagram [#262](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/262)
-    * Added instructions for manual testing for `find`, `update`, and `cancel` commands 
+    * Added instructions for manual testing for `find`, `update`, and `cancel` commands [#281](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/281)
       <br><br>
 * **Contributions to Team-based Tasks**:
     * Created demo videos for `v1.2` and `v1.3`
