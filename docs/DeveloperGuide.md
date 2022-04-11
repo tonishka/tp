@@ -256,12 +256,12 @@ confirmation that the user wants to delete all of their stored data.
 
 The following sequence diagram shows how the clear operation works:
 
-![ClearSequenceDiagram](../images/ClearSequenceDiagram.png)
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
 This activity diagram summarises the possible paths of executing the _clear_ 
 command:
 
-![ClearActivityDiagram](../images/ClearActivityDiagram.png)
+![ClearActivityDiagram](images/ClearActivityDiagram.png)
 
 ### 5.4 View feature
 
