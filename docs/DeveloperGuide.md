@@ -784,14 +784,17 @@ Use case ends.
 
 **Data requirements:**
 
-1.  Data should be stored locally and on a human-editable file.
-2.  The final JAR file size should not exceed 100MB.
-3.  The PDF file size for the DG and UG should not exceed 15 MB per file.
+1. Data should be stored locally and on a human-editable file.
+
+2. The final JAR file size should not exceed 100MB.
+
+3. The PDF file size for the DG and UG should not exceed 15 MB per file.
 
 **Usability requirements:**
 
-1.  The DG and UG must be PDF-friendly. 
-2.  The GUI should not cause any resolution-related inconveniences to the user for:
+1. The DG and UG must be PDF-friendly. 
+
+2. The GUI should not cause any resolution-related inconveniences to the user for:
     1. standard screen resolutions 1920x1080 and higher
     2. screen scales 100% and 125%.
     
