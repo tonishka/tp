@@ -12,8 +12,6 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 
 * **Code Contributed**: [RepoSense Link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=ckcherry23&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-02-18&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-<br>
-
 * **Enhancements Implemented**:
   * Implemented storage functionality for the meetings list and for the new attributes in persons list:
     [#44](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/44),
