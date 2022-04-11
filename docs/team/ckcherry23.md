@@ -96,9 +96,10 @@ with it using a CLI, and it has a GUI created with JavaFX. It is written in Java
 <br>
 
 * **Review/mentoring contributions**: 
-  * [tP Comments Link](https://nus-cs2103-ay2122s2.github.io/dashboards/contents/tp-comments.html#13-charisma-kausar-ckcherry23-70-comments)
+  * Gave 87 comments on _others'_ PRs to detect bugs and ensure consistency in design and implementation: 
+    [tP Comments Link](https://nus-cs2103-ay2122s2.github.io/dashboards/contents/tp-comments.html#11-char-usar-ckcherry23-87-comments)
   
-  * PRs reviewed with meaningful comments:
+  * Some PRs reviewed with meaningful comments:
     [#110](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/110),
     [#118](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/118),
     [#142](https://github.com/AY2122S2-CS2103T-W12-4/tp/pull/142).
