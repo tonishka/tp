@@ -949,3 +949,17 @@ testers are expected to do more *exploratory* testing.
       </p>
    
       Expected: The application will discard all existing data and start without any stored contacts or meetings.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **9. Appendix: Effort**
+Below are some of the largest challenges we faced in the design and development of Reache.
+
+### 9.1 The Implementation of Meetings
+The implementation of `Meeting` was especially difficult due to its relationship with the `Person` class, and the challenges that presented particularly with regard to loading and storing data. We considered several implementations before arriving at the current one, as follows:
+
+**Implementation 1**: In `Meeting`, just store the names of attendees as `Strings`. This would have been easy to implement but if an attendee's name was edited, it would not be reflected in the `Meeting`.
+
+**Implementation 2**: Store `Meeting` attendees as a list of `Persons`. The issue this implementation presents is that when the list of `Persons` and the list of `Meetings` is stored and then loaded upon application launch, both lists would cause copies of the same `Person` to be constructed.
+
+**Implementation 3 (Our Implementation)**: When a `Person` is created, assign them a unique and permanent identifier. In `Meeting`, store the identifiers of each attendee. This implementation makes matching `Meeting` attendee to `Person` a simple matter of comparing identifiers.
