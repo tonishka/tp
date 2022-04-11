@@ -963,3 +963,18 @@ The implementation of `Meeting` was especially difficult due to its relationship
 **Implementation 2**: Store `Meeting` attendees as a list of `Persons`. The issue this implementation presents is that when the list of `Persons` and the list of `Meetings` is stored and then loaded upon application launch, both lists would cause copies of the same `Person` to be constructed.
 
 **Implementation 3 (Our Implementation)**: When a `Person` is created, assign them a unique and permanent identifier. In `Meeting`, store the identifiers of each attendee. This implementation makes matching `Meeting` attendee to `Person` a simple matter of comparing identifiers.
+
+### 9.2 Navigation & UI
+To accommodate the large amount of information Reache can store about a contact, we had to make significant changes to the UI, including the creation of an additional page to allow for a more organised presentation of information.
+
+To accomplish this, we:
+* Created over 10 new UI parts and their respective FXML files. This allowed us to not only add a designated panel for meetings in the Home Page, but create an entirely new page for contact details.
+* Implemented a navigation system that allows the user to move between pages, and provides them access to different commands depending on the page they are viewing.
+* Created mechanisms to have the UI respond to changes the user made
+
+### 9.3 The Storing of New Types of Information
+AB3 allows a user to store a fairly limited amount of information for a `Person` and allows only one entry per type of information. In contrast, Reache allows for the storage of:
+* Entirely new types of information (job title, company, etc.). This required us to create new classes for each new type of information and integrate them into the `Model` component.
+* Optional information. The only required information about a `Person` is their name. To accommodate this, we needed to create checks and mechanisms that handle when information is not provided.
+* Variable amounts of information. A `Person` can have multiple phone numbers, email addresses, and physical addresses.
+* Labelled entries. A user can choose to label the information they provide. To support labelling, we created systems that check for duplicate labels and create default labels for the user if they choose not to provide one.
