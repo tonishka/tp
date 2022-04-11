@@ -114,7 +114,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HomePageParser` class to parse the user command.
-2. if a command is entered from the Home Page, it goes to the HomePageParser and if it is entered from the Contact Details Page it goes to the ContactDetailsPageParser.
+2. if a command is entered from the Home Page, it goes to the `HomePageParser` and if it is entered from the Contact Details Page it goes to the `ContactDetailsPageParser`.
 3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`. The only commands whose creation is specific to the `ContactDetailsPageParser` class are the `EditCommand` ,`DeleteFieldCommand` and `BackCommand`  classes. General commands applicable to both parsers are the `ExitCommand` and `HelpCommand` classes. 
 4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -182,7 +182,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### 5.1 Edit feature
-The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details windows. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
+The edit mechanism is a feature used to change the details of the contacts. It is only allowed in the application after initiating an add command or view command and in other words, it is functional only in the contact details page. It is facilitated mainly by the `ContactDetailsPageParser`, `EditCommandParser` and `EditCommand` classes.
 
 The following sequence diagram shows how the edit operation works:
 
@@ -271,7 +271,7 @@ The `view` feature allows the user to view the contact details of a specified pe
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
-Step 1. From the person list window, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
+Step 1. From the Home Page, the user executes `view 2` to view the contact details of the second person in the address book. A `ViewCommand` is constructed with the index of the person to de displayed.
 
 Step 2. The `ViewCommand` is executed, and the person that corresponds to the provided index is returned to `MainWindow` inside a `CommandResult`.
 
