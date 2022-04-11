@@ -197,6 +197,7 @@ Listed below are a few significant decisions we made in designing Reache.
   * Cons:
     * The user may accidentally add the same contact twice. This risk is partially alleviated by the need for different tags, and because contacts are sorted alphabetically, an occurrence of this accident would be relatively easy to spot
 
+
 * **Decision**: Allow phone numbers to be of varying lengths, as long as they are over 3 digits.
   * Pros:
     * Different countries have different standard phone number lengths, so allowing different lengths makes Reache more suitable for international users
