@@ -864,7 +864,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.3 Editing a person
 
-### 8.4 Deleting a field
+### 8.4 Deleting fields
 1. Deleting only particular fields of a contact
 
    1. Prerequisites: Have at least one contact stored with multiple phone 
@@ -907,10 +907,33 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `del 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `del`, `del x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### 8.6 Clearing contacts and/or meetings
+
+1. Clearing all data
+
+   1. Prerequisites: Have at least one contact and one meeting stored in the
+      application
+
+   2. Test case: `clear` <br>
+      Expected: A confirmation window appears.
+      1. Test case i: Close the confirmation window. <br>
+         Expected: No data gets deleted.
+      2. Test case ii: Click on the 'Yes' button to confirm data deletion. <br>
+         Expected: All data gets deleted from the application.
+
+1. Clearing all meetings
+
+  1. Prerequisites: Have at least one meeting stored in the application
+
+  2. Test case: `cancel-all` <br>
+     Expected: A confirmation window appears.
+    1. Test case i: Close the confirmation window. <br>
+       Expected: No meetings get deleted.
+    2. Test case ii: Click on the 'Yes' button to confirm meetings' deletion. <br>
+       Expected: All meetings get deleted from the application.
 
 ### 8.7 Finding
 
