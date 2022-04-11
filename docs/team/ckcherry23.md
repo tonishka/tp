@@ -196,7 +196,10 @@ command:
       displayed in the contact details.
 
    5. Test case: `del t/` <br>
-      Expected: All the tags of the person displayed are deleted.
+      Expected: All the tags of the person displayed are deleted. <br>
+      Exception: If there is another contact with the same name as this 
+      contact but without any tags, this command will result in an error
+      and no fields will be deleted.
 
    6. Test case: `del pr/ j/` <br>
       Expected: All the pronouns and the job title of the person displayed
