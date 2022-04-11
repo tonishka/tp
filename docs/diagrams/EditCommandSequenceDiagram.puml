@@ -11,7 +11,7 @@ end box
 
 activate LogicManager
 note left of LogicManager: personToEdit is the Person object\n encompassing the edited contact
--> LogicManager : executeContactDetailsCommand\n(edit n/Jack, personToEdit)
+-> LogicManager : executeContactDetailsPageCommand\n(edit n/Jack, personToEdit)
 LogicManager -> ContactDetailsParser : parseCommand\n(edit n/Jack, personToEdit)
 activate ContactDetailsParser
 ContactDetailsParser -> EditCommandParser ** : EditCommandParser()
